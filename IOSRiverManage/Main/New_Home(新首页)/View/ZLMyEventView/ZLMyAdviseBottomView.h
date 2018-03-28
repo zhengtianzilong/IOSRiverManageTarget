@@ -17,4 +17,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame withTitles:(NSArray *)titles;
 
+- (void)setStartButtonHidden:(BOOL)ishidden;
+- (void)setendButtonHidden:(BOOL)ishidden;
+
 @end

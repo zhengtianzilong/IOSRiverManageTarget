@@ -30,7 +30,7 @@
     ZLTaskWaitVC *waitVC = [[ZLTaskWaitVC alloc]init];
     ZLTaskMyAlreadyWorkVC *alreadyVC = [[ZLTaskMyAlreadyWorkVC alloc]init];
     ZLTaskMyDownVC *downVC = [[ZLTaskMyDownVC alloc]init];
-    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"下发任务",@"代办任务",@"已办任务",@"任务查询"] WithVCs:@[downVC,waitVC,alreadyVC,checkVC]];
+    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"下发任务",@"待办任务",@"已办任务",@"任务查询"] WithVCs:@[downVC,waitVC,alreadyVC,checkVC]];
     pageView.ninaPagerStyles = NinaPagerStyleBottomLine;
     pageView.nina_navigationBarHidden = NO;
     pageView.selectTitleColor = selectColor;

@@ -22,7 +22,7 @@
         make.top.equalTo(self.lineViewBottom.mas_bottom).offset(10);
         make.height.mas_equalTo(30);
         make.width.mas_equalTo(55);
-        make.bottom.equalTo(self.mas_bottom).offset(-10);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
     }];
     
     

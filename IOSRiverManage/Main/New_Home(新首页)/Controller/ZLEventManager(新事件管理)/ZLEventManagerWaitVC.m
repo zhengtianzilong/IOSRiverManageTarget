@@ -37,6 +37,8 @@
     
     __weak typeof(self) weakSelf = self;
     
+    
+    
     cell.dealClick = ^{
         ZLMyventDealDetailVC *vc = [[ZLMyventDealDetailVC alloc]init];
         [weakSelf.navigationController pushViewController:vc animated:YES];

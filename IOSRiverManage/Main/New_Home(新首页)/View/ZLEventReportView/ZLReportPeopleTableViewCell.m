@@ -24,6 +24,15 @@
     return self;
     
 }
+
+// 接收值的变化
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    NSLog(@"%@", [object text]);
+    
+    [self textViewDidChange:self.infoTextView];
+    
+}
+
 - (void)textViewDidChange:(UITextView *)textView
 {
     CGRect bounds = textView.bounds;
@@ -62,7 +71,7 @@
         make.left.equalTo(self.contentView).offset(10);
         make.width.mas_equalTo(90);
 //        make.right.equalTo(self.bgView.mas_right);
-                make.top.equalTo(self.contentView).offset(10);
+                make.top.equalTo(self.contentView).offset(0);
 //        make.centerY.equalTo(self.bgView);
         make.height.mas_equalTo(45);
         
@@ -106,6 +115,34 @@
     
 }
 
+- (void)longGesClick:(UILongPressGestureRecognizer *)sender{
+    
+    if (![_infoTextView.text isEqualToString:@""]) {
+        
+        if (sender.state == UIGestureRecognizerStateBegan) {
+            [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
+            
+            [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+                
+                if (buttonIndex == 1) {
+                    [_infoTextView setText:@""];
+                    
+//                    [self textViewDidChange:_infoTextView];
+                    
+                }
+                
+            } title:@"提示" message:@"确定清除吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
+        }
+    }
+}
+
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+    [UIMenuController sharedMenuController].menuVisible = NO;
+    [_infoTextView resignFirstResponder];
+    return NO;
+}
+
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
         
@@ -124,12 +161,19 @@
         _infoTextView = [[UITextView alloc]init];
         
         _infoTextView.font = CHINESE_SYSTEM(17);
-        _infoTextView.editable = YES;
+        _infoTextView.editable = NO;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
-//        _infoTextView addPlaceHolder:@""
         [_infoTextView addGestureRecognizer:tap];
+        
+        UILongPressGestureRecognizer *longGes = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longGesClick:)];
+        
+        [_infoTextView addGestureRecognizer:longGes];
+        
         _infoTextView.delegate = self;
         _infoTextView.scrollEnabled = NO;
+        
+        [_infoTextView addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
+        
 //        [_infoTextView addTarget:self action:@selector(tapClick) forControlEvents:(UIControlEventTouchUpInside)];
         
         

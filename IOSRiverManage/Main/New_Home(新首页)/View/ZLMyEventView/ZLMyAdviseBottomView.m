@@ -21,6 +21,48 @@
     return self;
 }
 
+- (void)setStartButtonHidden:(BOOL)ishidden{
+    
+    if (ishidden) {
+        
+        self.startButton.hidden = ishidden;
+        [self.startButton removeFromSuperview];
+        
+        [self.endButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(20);
+//            make.width.mas_equalTo(152 * kScreenWidthRatio);
+            make.right.equalTo(self.mas_right).offset(-20);
+            make.height.mas_equalTo(44 * kScreenHeightRatio);
+            make.centerY.equalTo(self);
+            
+        }];
+        
+        
+    }
+    
+}
+- (void)setendButtonHidden:(BOOL)ishidden{
+    
+    if (ishidden) {
+        
+        self.endButton.hidden = ishidden;
+        [self.endButton removeFromSuperview];
+        
+        [self.startButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self).offset(20);
+            //            make.width.mas_equalTo(152 * kScreenWidthRatio);
+            make.right.equalTo(self.mas_right).offset(-20);
+            make.height.mas_equalTo(44 * kScreenHeightRatio);
+            make.centerY.equalTo(self);
+            
+        }];
+        
+        
+    }
+
+    
+}
+
 - (void)setUpUI{
     
     self.startButton = [UIButton buttonWithType:(UIButtonTypeCustom)];

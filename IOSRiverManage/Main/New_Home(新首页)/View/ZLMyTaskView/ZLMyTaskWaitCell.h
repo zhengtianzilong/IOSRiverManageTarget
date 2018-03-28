@@ -6,8 +6,19 @@
 //  Copyright © 2018年 caizilong. All rights reserved.
 //
 
-#import "ZLMyEventWaitCell.h"
+#import "ZLEventManageTableViewCell.h"
+#import "ZLTaskWaitDataModel.h"
 
-@interface ZLMyTaskWaitCell : ZLMyEventWaitCell
+typedef void(^dealBtnClickCallBlock)(ZLTaskWaitDataModel *model, UIButton *dealBtn);
+
+@interface ZLMyTaskWaitCell : ZLEventManageTableViewCell
+@property (nonatomic, strong) ZLTaskWaitDataModel *dataModel;
+
+@property (nonatomic, strong) dealBtnClickCallBlock dealClick;
+
+/**
+ 处理按钮
+ */
+@property (nonatomic, strong) UIButton *dealBtn;
 
 @end

@@ -31,7 +31,7 @@
     ZLEventManagerWaitVC *waitVC = [[ZLEventManagerWaitVC alloc]init];
     ZLEventManagerCheckVC *checkVC = [[ZLEventManagerCheckVC alloc]init];
     
-    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"事件上报",@"代办事件",@"已办事件",@"事件查询"] WithVCs:@[reportVC,waitVC,alreadyVC,checkVC]];
+    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"事件上报",@"待办事件",@"已办事件",@"事件查询"] WithVCs:@[reportVC,waitVC,alreadyVC,checkVC]];
     pageView.ninaPagerStyles = NinaPagerStyleBottomLine;
     pageView.nina_navigationBarHidden = NO;
     pageView.selectTitleColor = selectColor;

@@ -6,10 +6,29 @@
 //  Copyright © 2018年 caizilong. All rights reserved.
 //
 
-#import "ZLMyEventCell.h"
+#import "ZLEventManageTableViewCell.h"
 #import "ZLTaskManageDataModel.h"
-@interface ZLMyTaskChangAndDeleteCell : ZLMyEventCell
+
+typedef void(^deleteBtnClickCallBack)(ZLTaskManageDataModel *model);
+
+typedef void(^changeBtnClickCallBack)(ZLTaskManageDataModel *model);
+
+@interface ZLMyTaskChangAndDeleteCell : ZLEventManageTableViewCell
 
 @property (nonatomic, strong) ZLTaskManageDataModel *dataModel;
+
+@property (nonatomic, strong) deleteBtnClickCallBack deleteClick;
+
+@property (nonatomic, strong) changeBtnClickCallBack changeClick;
+
+/**
+ 修改按钮
+ */
+@property (nonatomic, strong) UIButton *changeBtn;
+
+/**
+ 删除按钮
+ */
+@property (nonatomic, strong) UIButton *deleteBtn;
 
 @end

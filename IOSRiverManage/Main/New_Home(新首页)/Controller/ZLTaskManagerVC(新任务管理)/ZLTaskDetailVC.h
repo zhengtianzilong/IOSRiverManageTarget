@@ -12,4 +12,7 @@
 
 @property (nonatomic, strong) NSString *code;
 
+// 从什么控制器传入
+@property (nonatomic, strong) NSString *passCode;
+
 @end

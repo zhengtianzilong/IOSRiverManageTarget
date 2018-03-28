@@ -101,6 +101,9 @@
 // 仅创建(保存)任务
 #define River_SaveTaskUrl @"/city/appRiverTask/saveTask"
 
+// 修改并保存任务
+#define River_UpdateTaskUrl @"/city/appRiverTask/updateTask"
+
 // 普通下发任务
 #define River_SaveAndSentTaskUrl @"/city/appRiverTask/saveAndSentTask"
 

@@ -7,7 +7,9 @@
 //
 
 #import "ZLBaseCustomNavViewController.h"
-
+#import "ZLTaskManageDataModel.h"
 @interface ZLNewChangeTaskDownVC : ZLBaseCustomNavViewController
+
+@property (nonatomic, strong) ZLTaskManageDataModel *dataModel;
 
 @end

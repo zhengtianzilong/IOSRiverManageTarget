@@ -13,7 +13,7 @@
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
 #import "ZLBadgeZeroService.h"
-//#import <FLEX/FLEX.h>
+#import <FLEX/FLEX.h>
 #import "XGPush.h"
 #import "ZLHomeWebViewViewController.h"
 
@@ -60,7 +60,7 @@
     
     [self customizeTabbarItem];
     
-//    [[FLEXManager sharedManager] showExplorer];
+    [[FLEXManager sharedManager] showExplorer];
     
     
     

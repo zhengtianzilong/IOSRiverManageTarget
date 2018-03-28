@@ -185,7 +185,7 @@
         make.left.equalTo(_contentLabel.mas_right).offset(0);
         make.top.equalTo(_contentLabel);
         make.right.equalTo(self.contentView.mas_right).offset(-5);
-        make.height.mas_equalTo(25);
+        make.height.mas_equalTo(20);
 //        make.bottom.equalTo(_lineViewBottom.mas_top).offset(0);
     }];
 //    [_content setContentHuggingPriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];

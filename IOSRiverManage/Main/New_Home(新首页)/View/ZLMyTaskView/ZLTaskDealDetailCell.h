@@ -33,6 +33,13 @@ typedef void(^completeBtnClick)(ZLTaskRiverTaskDetailListModel *model);
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UIButton *completeBtn;
 
+
+/**
+ 从不同控制器传入
+ */
+@property (nonatomic, strong) NSString *passCode;
+
+
 @property (nonatomic, strong) detailBtnClick detailClick;
 
 @property (nonatomic, strong) backBtnClick backClick;

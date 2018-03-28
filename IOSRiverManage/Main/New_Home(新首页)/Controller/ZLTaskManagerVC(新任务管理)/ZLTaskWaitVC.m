@@ -10,6 +10,10 @@
 #import "ZLMyTaskWaitCell.h"
 #import "ZLMyventDealDetailVC.h"
 #import "ZLFindMyToDoTaskListService.h"
+#import "ZLTaskWaitModel.h"
+
+#import "ZLReceiveTaskService.h"
+#import "ZLTaskDealDetailVC.h"
 @interface ZLTaskWaitVC ()
 @property (nonatomic, strong) NSString *createName;
 
@@ -22,13 +26,43 @@
 
 @implementation ZLTaskWaitVC
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self.mainTableView.mj_header beginRefreshing];
+    
+    
+}
+
 - (void)getData{
     ZLFindMyToDoTaskListService *service = [[ZLFindMyToDoTaskListService alloc]initWithpageSize:10 createTimeFormat:_lastCreateTime taskName:_taskName createName:_createName createStartTime:_createStartTime createEndTime:_createEndTime];
-    
+
     [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         ZLLog(@"%@",request.responseString);
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         
+        ZLTaskWaitModel *waitModel = [[ZLTaskWaitModel alloc]initWithString:request.responseString error:nil];
+        
+        if ([waitModel.code isEqualToString:@"0"]) {
+            if ([_lastCreateTime isEqualToString: @""]) {
+                
+                [_sourceArray removeAllObjects];
+                
+            }
+            for (ZLTaskWaitDataModel *dataModel in waitModel.data) {
+                
+                [self.sourceArray addObject:dataModel];
+                
+            }
+        }
+        
+        [self.mainTableView reloadData];
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
     }];
 }
 
@@ -44,7 +78,6 @@
     
     _lastCreateTime = @"";
     
-    [self getData];
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
     [self.view addSubview:self.mainTableView];
     
@@ -67,7 +100,7 @@
     
     self.queryView = [[ZLQueryEventManageView alloc] init];
     self.queryView.selectInfoView.eventName.titleLabel.text = @"任务名称";
-    //        con.backgroundColor = [UIColor blackColor];
+     [self.queryView.queryButton addTarget:self action:@selector(queryButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
     [headView addSubview:self.queryView];
     
     [self.queryView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -111,16 +144,13 @@
 
 
 #pragma mark -- 列表的代理
-- (NSInteger)setSectionsCount{
-    return 10;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [self setSectionsCount];
+    return self.sourceArray.count;
 }
 
 
@@ -130,13 +160,72 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    ZLTaskWaitDataModel *model = self.sourceArray[indexPath.section];
+    
+    cell.dataModel = model;
+    
+    if (indexPath.row == _sourceArray.count - 1) {
+        ZLTaskWaitDataModel *dataModel = _sourceArray[indexPath.row];
+        _lastCreateTime = dataModel.createTime;
+        
+    }
+    
     __weak typeof(self) weakSelf = self;
     
-    cell.dealClick = ^{
-        ZLMyventDealDetailVC *vc = [[ZLMyventDealDetailVC alloc]init];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+    cell.dealClick = ^(ZLTaskWaitDataModel *model, UIButton *dealBtn) {
+        
+        if ([dealBtn.currentTitle isEqualToString:@"接收"]) {
+            
+            DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认接收吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
+
+            alert.otherButtonAction = ^{
+                
+                ZLReceiveTaskService *service = [[ZLReceiveTaskService alloc]initWithtaskDetailId:model.taskDetailId];
+                [SVProgressHUD showWithStatus:@"接收中"];
+                [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                   
+                    ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                    
+                    if ([model.code isEqualToString:@"0"]) {
+                        
+                        [SVProgressHUD showSuccessWithStatus:@"接收成功"];
+                        [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                            
+                            [tableView.mj_header beginRefreshing];
+                            
+                        }];
+                        
+                    }else{
+                        [SVProgressHUD showErrorWithStatus:model.detail];
+                        [SVProgressHUD dismissWithDelay:0.3];
+                    }
+                    
+                    
+                } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                    [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                    [SVProgressHUD dismissWithDelay:0.3];
+                }];
+                
+                
+
+            };
+
+
+            [alert show];
+            
+            
+            
+        }else if ([dealBtn.currentTitle isEqualToString:@"处理"]){
+            ZLTaskDealDetailVC *vc = [[ZLTaskDealDetailVC alloc]init];
+            vc.dataModel = model;
+            
+            
+            
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+
+        
     };
-    
     
     return cell;
     
@@ -145,9 +234,11 @@
     
     ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
     
+    ZLTaskWaitDataModel *dataModel = self.sourceArray[indexPath.section];
+    vc.passCode = @"待办任务";
+    vc.code = dataModel.taskId;
     [self.navigationController pushViewController:vc animated:YES];
-    
-    
+
 }
 
 

@@ -18,7 +18,7 @@
 @property (nonatomic , strong) NSString<Optional>              * taskName;
 @property (nonatomic , strong) NSString<Optional>              * taskContent;
 @property (nonatomic , strong) NSString<Optional>              * patrolCode;
-@property (nonatomic , strong) NSString<Optional>          *pageSize;
+@property (nonatomic , strong) NSString<Optional>               *pageSize;
 @property (nonatomic , strong) NSString<Optional>               * completeTime;
 @property (nonatomic , strong) NSString<Optional>              * completeEndTime;
 @property (nonatomic , strong) NSString<Optional>               * updateTime;

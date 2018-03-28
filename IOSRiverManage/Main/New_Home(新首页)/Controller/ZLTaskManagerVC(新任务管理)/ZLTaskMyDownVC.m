@@ -12,6 +12,7 @@
 #import "ZLFindMyCreatedTaskListService.h"
 #import "ZLTaskManagerModel.h"
 #import "ZLTaskDetailVC.h"
+#import "ZLDeleteTasksService.h"
 @interface ZLTaskMyDownVC ()<UITableViewDelegate, UITableViewDataSource>
 
 //@property (nonatomic, strong) NSString *createTimeFormat;
@@ -88,6 +89,7 @@
     
 }
 
+
 - (void)setTabViewHeadView{
     
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -102,7 +104,7 @@
     
     self.queryView = [[ZLZLQueryEventDownView alloc] init];
     self.queryView.selectInfoView.eventName.titleLabel.text = @"任务名称";
-    //        con.backgroundColor = [UIColor blackColor];
+    [self.queryView.queryButton addTarget:self action:@selector(queryButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
     [headView addSubview:self.queryView];
     
     [self.queryView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -137,15 +139,64 @@
     ZLTaskManageDataModel *model = self.sourceArray[indexPath.section];
     
     cell.dataModel = model;
-    __weak typeof(self) weakSelf = self;
     
-    cell.changeClick = ^{
+    if (indexPath.row == _sourceArray.count - 1) {
+        ZLTaskManageDataModel *dataModel = _sourceArray[indexPath.row];
+        _lastCreateTime = dataModel.createTime;
         
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    cell.changeClick = ^(ZLTaskManageDataModel *model) {
         ZLNewChangeTaskDownVC *changeVC = [[ZLNewChangeTaskDownVC alloc]init];
+        changeVC.dataModel = model;
         [weakSelf.navigationController pushViewController:changeVC animated:YES];
+    };
+    
+    cell.deleteClick = ^(ZLTaskManageDataModel *model) {
+      
+        DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认删除吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
+        
+        alert.otherButtonAction = ^{
+            
+            ZLDeleteTasksService *service = [[ZLDeleteTasksService alloc]initWithtaskId:model.taskId];
+            [SVProgressHUD showWithStatus:@"删除中"];
+            [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                
+                ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                
+                if ([model.code isEqualToString:@"0"]) {
+                    
+                    [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                    [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                        
+                        [tableView.mj_header beginRefreshing];
+                        
+                    }];
+                    
+                }else{
+                    [SVProgressHUD showErrorWithStatus:model.detail];
+                    [SVProgressHUD dismissWithDelay:0.3];
+                }
+                
+                
+            } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                [SVProgressHUD dismissWithDelay:0.3];
+            }];
+        };
+        [alert show];
+        
         
         
     };
+    
+    
+    
+    
+    
+    
+    
     return cell;
     
 }
@@ -155,6 +206,8 @@
     ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
     
     ZLTaskManageDataModel *dataModel = self.sourceArray[indexPath.section];
+    
+    vc.passCode = @"下发任务";
     
     vc.code = dataModel.taskId;
     
@@ -202,7 +255,7 @@
         _mainTableView.contentInset = UIEdgeInsetsMake(20 - 35, 0, 0, 0);
         
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
-        _mainTableView.estimatedRowHeight = 150;
+        _mainTableView.estimatedRowHeight = 180;
         
         _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             _lastCreateTime = @"";

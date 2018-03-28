@@ -47,7 +47,7 @@
         
         _isSingleSelection = selection;
         
-        self.selectedArray = [[[NSUserDefaults standardUserDefaults] objectForKey:kLastSelection] mutableCopy];
+//        self.selectedArray = [[[NSUserDefaults standardUserDefaults] objectForKey:kLastSelection] mutableCopy];
         
         if (!self.selectedArray) {
             self.selectedArray = [NSMutableArray new];
@@ -171,8 +171,8 @@
         }
     }else{
         
-        [[NSUserDefaults standardUserDefaults] setObject:self.selectedArray forKey:kLastSelection];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+//        [[NSUserDefaults standardUserDefaults] setObject:self.selectedArray forKey:kLastSelection];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
         
         if (_selectItemsMuti) {
             self.selectItemsMuti(_selectedArray);
@@ -313,11 +313,11 @@
     ZLLog(@"%@",self.contentArr[indexPath.row]);
 }
 
-- (void)clearMemory{
-    
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kLastSelection];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
+//- (void)clearMemory{
+//
+//    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kLastSelection];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//}
 
 #pragma mark -- 懒加载
 - (UILabel *)titleLabel{

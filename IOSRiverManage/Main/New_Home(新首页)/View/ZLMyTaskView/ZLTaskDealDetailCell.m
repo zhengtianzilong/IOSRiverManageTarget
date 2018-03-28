@@ -191,18 +191,25 @@
     NSString *timeString = [ZLUtility getDateByTimestamp:[time longLongValue] / 1000 type:4];
     self.time.text = timeString;
     
-    if ([dataModel.isPass isEqualToString:@"0"]) {
+    if ([self.passCode isEqualToString:@"下发任务"] || [self.passCode isEqualToString:@"待办任务"] || [self.passCode isEqualToString:@"任务查询"]) {
         
         self.completeBtn.hidden = YES;
-        
-    }
-    
-    if ([dataModel.isReject isEqualToString:@"0"]) {
-        
         self.backBtn.hidden = YES;
         
+    }else{
+        
+        if ([dataModel.isPass isEqualToString:@"0"]) {
+            
+            self.completeBtn.hidden = YES;
+            
+        }
+        
+        if ([dataModel.isReject isEqualToString:@"0"]) {
+            
+            self.backBtn.hidden = YES;
+            
+        }
     }
-    
     
 }
 

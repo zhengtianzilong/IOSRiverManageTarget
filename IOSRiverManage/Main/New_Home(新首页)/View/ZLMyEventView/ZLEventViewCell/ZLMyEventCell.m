@@ -16,6 +16,15 @@
     [self.contentView addSubview:self.changeBtn];
     [self.contentView addSubview:self.deleteBtn];
     
+//    [self.timeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.left.equalTo(self.imageV);
+//        make.top.equalTo(self.lineViewBottom.mas_bottom).offset(10);
+//        make.height.mas_equalTo(20);
+////        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+//
+//    }];
+    
     
     [self.deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -23,7 +32,7 @@
         make.top.equalTo(self.lineViewBottom.mas_bottom).offset(10);
         make.height.mas_equalTo(30);
         make.width.mas_equalTo(55);
-        make.bottom.equalTo(self.mas_bottom).offset(-10);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
     }];
     
     [self.changeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -32,7 +41,7 @@
         make.top.equalTo(self.deleteBtn);
         make.height.equalTo(self.deleteBtn);
         make.width.equalTo(self.deleteBtn);
-        make.bottom.equalTo(self.mas_bottom).offset(-10);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
     }];
     
 }
@@ -40,7 +49,7 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    [self.deleteBtn jm_setCornerRadius:0.7 withBackgroundColor:[UIColor whiteColor]];
+    [self.deleteBtn jm_setCornerRadius:0.8 withBackgroundColor:[UIColor whiteColor]];
 //    [self.changeBtn jm_setCornerRadius:0.7 withBackgroundColor:[UIColor whiteColor]];
     
 }

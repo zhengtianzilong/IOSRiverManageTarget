@@ -100,8 +100,6 @@
             } title:@"提示" message:@"确定清除这个时间吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
         }
     }
-    
-    
 }
 
 - (UILabel *)timeLabel{

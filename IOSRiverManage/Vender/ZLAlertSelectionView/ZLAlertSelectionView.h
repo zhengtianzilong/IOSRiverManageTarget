@@ -22,6 +22,6 @@ typedef void(^sureClickedMutiSelect)(NSArray *options);
 
 - (void)hide;
 
-- (void)clearMemory;
+//- (void)clearMemory;
 
 @end

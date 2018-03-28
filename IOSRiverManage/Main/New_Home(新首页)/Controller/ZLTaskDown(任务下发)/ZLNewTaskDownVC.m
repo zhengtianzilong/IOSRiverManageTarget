@@ -19,6 +19,7 @@
 #import "ZLNewFileUpLoadService.h"
 #import "ZLUploadFileModel.h"
 #import "ZLSaveTaskService.h"
+#import "ZLSaveAndSentTaskService.h"
 @interface ZLNewTaskDownVC ()<UITableViewDelegate, UITableViewDataSource>
 
 
@@ -102,7 +103,7 @@
     
     ZLGetDepartModel *departsModel = [[ZLGetDepartModel alloc]initWithString:departs error:nil];
     
-    NSString *users = [self.store getStringById:DBEventPeopleListRivers fromTable:DBUserTable];
+    NSString *users = [self.store getStringById:DBTaskPeopleListRivers fromTable:DBUserTable];
     
     ZLGetEventUserListModel *taskUserListModel = [[ZLGetEventUserListModel alloc]initWithString:users error:nil];
     
@@ -206,7 +207,18 @@
         cell.selectInfo = ^(UITextView *infoTextView) {
             [self peopleClick:infoTextView with:tableView];
         };
-        
+        cell.infoTextView.tag = indexPath.row;
+        cell.getText = ^(NSString *text, NSInteger tag) {
+            switch (1) {
+                case 1:{
+                    if ([text isEqualToString:@""]) {
+                        self.peopleCodeString = @"";
+                        self.taskPeopleString = @"";
+                    }
+                }
+                    break;
+            }
+        };
         
         return cell;
     }
@@ -224,6 +236,18 @@
             [self departmentClick:infoTextView with:tableView];
         };
         
+        cell.infoTextView.tag = indexPath.row;
+        cell.getText = ^(NSString *text, NSInteger tag) {
+            switch (2) {
+                case 2:{
+                    if ([text isEqualToString:@""]) {
+                        self.departCodeString = @"";
+                        self.taskDepartString = @"";
+                    }
+                }
+                    break;
+            }
+        };
         
         return cell;
     }
@@ -254,6 +278,8 @@
     return nil;
     
 }
+
+
 
 // 接收人选择
 - (void)peopleClick:(UITextView *)textView with:(UITableView *)tableView{
@@ -291,19 +317,8 @@
         
         textView.text = [weakSelf.peopleNameTempArray componentsJoinedByString:@","];
         
-        ZLReportPeopleTableViewCell *cell = tableView.visibleCells[2];
-        
-        cell.infoTextView.text = @"";
-        
         weakSelf.taskPeopleString = textView.text;
-        weakSelf.taskDepartString = @"";
-        
-        
-        weakSelf.departCodeString = @"";
         weakSelf.peopleCodeString = [weakSelf.peopleCode componentsJoinedByString:@","];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
-        
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationNone)];
         
     };
     
@@ -349,21 +364,10 @@
         }
         textView.text = [weakSelf.departNameTempArray componentsJoinedByString:@","];
         
-        ZLReportPeopleTableViewCell *cell = tableView.visibleCells[1];
-        
-        cell.infoTextView.text = @"";
-        
-        weakSelf.taskPeopleString = @"";
         weakSelf.taskDepartString = textView.text;
        
         
         weakSelf.departCodeString = [weakSelf.departCode componentsJoinedByString:@","];
-        weakSelf.peopleCodeString = @"";
-        
-        
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-        
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationNone)];
         
     };
     
@@ -373,8 +377,48 @@
     
 }
 
+/**
+ 检测文本框的内容
+ */
+- (BOOL)checkTextFieldContent{
+    
+    if ([self.taskDepartString isEqualToString:@""] && [self.taskPeopleString isEqualToString:@""]) {
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"必须选择接收部门或接收对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        return NO;
+    }
+    
+    if ([self.taskName isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写任务名称" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    if ([self.taskDesc isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写描述内容" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    
+    return YES;
+}
+
+
 
 - (void)saveButtonClick{
+    
+    if (![self checkTextFieldContent]) {
+        return;
+    }
+    
+    [self.imageNameArray removeAllObjects];
     
     dispatch_group_t group = dispatch_group_create();
     
@@ -398,7 +442,7 @@
         
         ZLLog(@"%@", self.imageNameArray);
         
-        ZLSaveTaskService *service = [[ZLSaveTaskService alloc]initWithimgList:self.imageNameArray taskName:self.taskName taskContent:self.taskDesc receiverDepartmentNames:self.taskDepartString receiverDepartmentCodes:self.departCodeString receiverPersonIds:self.taskPeopleString receiverPersonNames:self.peopleCodeString];
+        ZLSaveTaskService *service = [[ZLSaveTaskService alloc]initWithimgList:self.imageNameArray taskName:self.taskName taskContent:self.taskDesc receiverDepartmentNames:self.taskDepartString receiverDepartmentCodes:self.departCodeString receiverPersonIds:self.peopleCodeString receiverPersonNames:self.taskPeopleString];
         
         [SVProgressHUD showWithStatus:@"保存中"];
         
@@ -423,19 +467,61 @@
 }
 
 - (void)reportButtonClick{
+    if (![self checkTextFieldContent]) {
+        return;
+    }
     
+    [self.imageNameArray removeAllObjects];
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    [_imageArray enumerateObjectsUsingBlock:^(ACMediaModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+        dispatch_group_enter(group);
+        ZLNewFileUpLoadService *fileService = [[ZLNewFileUpLoadService alloc]initWithImage:model];
+        [fileService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+            
+            ZLUploadFileModel *model = [[ZLUploadFileModel alloc]initWithString:fileService.responseString error:nil];
+            if ([model.code isEqualToString:@"0"]) {
+                [self.imageNameArray addObject:model.data.toDictionary];
+            }
+            
+            dispatch_group_leave(group);
+            
+        } failure:^(__kindof YTKBaseRequest *request) {
+            
+        }];
+    }];
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        
+        ZLLog(@"%@", self.imageNameArray);
+        
+        ZLSaveAndSentTaskService *service = [[ZLSaveAndSentTaskService alloc]initWithimgList:self.imageNameArray taskName:self.taskName taskContent:self.taskDesc receiverDepartmentNames:self.taskDepartString receiverDepartmentCodes:self.departCodeString receiverPersonIds:self.peopleCodeString receiverPersonNames:self.taskPeopleString];
+        
+        [SVProgressHUD showWithStatus:@"下发中"];
+        
+        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+            
+            if ([model.code isEqualToString:@"0"]) {
+                
+                [SVProgressHUD showSuccessWithStatus:@"下发成功"];
+                [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                }];
+            }else{
+                [SVProgressHUD showErrorWithStatus:model.detail];
+                [SVProgressHUD dismissWithDelay:0.3];
+            }
+            ZLLog(@"%@",request.responseString);
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            [SVProgressHUD dismissWithDelay:0.3];
+        }];
+    });
     
 }
-
-- (void)left_button_event:(UIButton *)sender{
-    
-    [_alert clearMemory];
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    
-    
-}
-
 
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
@@ -451,7 +537,7 @@
 
 - (NSArray *)placeHolderArray{
     if (!_placeHolderArray) {
-        _placeHolderArray = @[@"请输入事件名称",
+        _placeHolderArray = @[@"请输入任务名称",
                               @"请选择接收人",
                               @"请选择接收部门",
                               @"请输入描述内容(140字以内)"];
