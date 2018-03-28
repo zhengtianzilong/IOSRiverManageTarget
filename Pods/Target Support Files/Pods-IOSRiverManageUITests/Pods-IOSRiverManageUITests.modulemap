@@ -1,0 +1,6 @@
+framework module Pods_IOSRiverManageUITests {
+  umbrella header "Pods-IOSRiverManageUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,70 @@
+//
+//  PrefixHeader.pch
+//  AIProduct
+//
+//  Created by mac on 2017/8/1.
+//  Copyright © 2017年 mac. All rights reserved.
+//
+
+#ifndef PrefixHeader_h
+#define PrefixHeader_h
+
+
+//引入Masonry两个宏 便于写布局代码
+//#define MAS_SHORTHAND
+#define MAS_SHORTHAND_GLOBALS
+
+#import <AFNetworking/AFNetworking.h>
+#import <Masonry/Masonry.h>
+#import <YYText/YYText.h>
+#import <JSONModel/JSONModel.h>
+//#import <ReactiveCocoa/ReactiveCocoa.h>
+//#import <ReactiveCocoa/RACEXTScope.h>
+#import "UIImageView+WebCache.h"
+//#import "MBProgressHUD.h"
+#import "MBProgressHUD+MP.h"
+#import "MWPhotoBrowser.h"
+#import "KeyboardManager.h"
+#import "Macros.h"
+#import "UIImage+Color.h"
+#import "UIFont+ZLFontPXAndPT.h"
+#import "SVProgressHUD.h"
+#import "ThirdMacros.h"
+#import "NetUrl.h"
+#import "UserDefaultKey.h"
+#import "DataBaseKey.h"
+#import "MJRefresh.h"
+#import "UIButton+JKImagePosition.h"
+#import "UILabel+ZLLeftAndRight.h"
+#import "Colors.h"
+#import "LYEmptyViewHeader.h"
+#import "UITextView+ZWPlaceHolder.h"
+
+#import "ZLUtility.h"
+
+
+#ifdef Suqian
+#import "IOSRiverManageSuqian-Swift.h"
+#elif TouBiao
+#import "IOSRiverManageTouBiao-Swift.h"
+#else
+#import "IOSRiverManage-Swift.h"
+#endif
+
+#import "UIAlertView+Block.h"
+#import "YTKKeyValueStore.h"
+#import "ZLDBStoreManager.h"
+// 如果是开发环境
+#if DEVELOPMENT
+#define SERVER_URL @"http://dev.server.com/api/"
+#define API_TOKEN @"DI2023409jf90ew"
+
+#else
+// 否则就是发布环境
+#define SERVER_URL @"http://prod.server.com/api/"
+#define API_TOKEN @"71a629j0f090232"
+//#import "AIProduct-Swift.h"
+#endif
+
+
+#endif /* PrefixHeader_h */

@@ -1,0 +1,111 @@
+//
+//  ZLRiverChiefAddEventService.m
+//  IOSRiverManage
+//
+//  Created by 蔡紫龙 on 2017/9/21.
+//  Copyright © 2017年 caizilong. All rights reserved.
+//
+
+#import "ZLRiverChiefAddEventService.h"
+@interface ZLRiverChiefAddEventService (){
+    NSString *_eventName;
+    NSString *_eventContent;
+    NSString *_positionDesc;
+    NSString *_uuid;
+    NSString *_type;
+    NSString *_lgt;
+    NSString *_lat;
+    NSString *_riverid;
+    NSString *_liable_id;
+    NSString *_uid;
+    NSString *_dataImgBase;
+}
+
+@end
+@implementation ZLRiverChiefAddEventService
+- (instancetype)initWitheventName:(NSString *)eventName
+                     eventContent:(NSString *)eventContent
+                     positionDesc:(NSString *)positionDesc
+                             uuid:(NSString *)uuid
+                             type:(NSString *)type
+                              lgt:(NSString *)lgt
+                              lat:(NSString *)lat
+                          riverid:(NSString *)riverid
+                        liable_id:(NSString *)liable_id
+                              uid:(NSString *)uid
+                      dataImgBase:(NSString *)dataImgBase{
+    
+    self = [super init];
+    if (self) {
+        _eventName = eventName;
+        _eventContent = eventContent;
+        _positionDesc = positionDesc;
+        _uuid = uuid;
+        _type = type;
+        _lgt = lgt;
+        _lat = lat;
+        _riverid = riverid;
+        _liable_id = liable_id;
+        if (_liable_id == nil) {
+            _liable_id = @"";
+        }
+        _uid = uid;
+        _dataImgBase = dataImgBase;
+        
+    }
+    return self;
+    
+}
+
+- (NSString *)requestUrl {
+    return River_AddRiverEventUrl;
+}
+
+- (YTKRequestMethod)requestMethod {
+    return YTKRequestMethodPOST;
+}
+
+
+
+- (YTKRequestSerializerType)requestSerializerType{
+    return YTKRequestSerializerTypeHTTP;
+}
+
+//- (YTKResponseSerializerType)responseSerializerType{
+//    return YTKResponseSerializerTypeHTTP;
+//}
+
+- (id)requestArgument{
+    
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         _eventName,@"eventName",
+                         _eventContent,@"eventContent",
+                         _positionDesc,@"positionDesc",
+                         _uuid,@"uuid",
+                         _type,@"type",
+                         _lgt,@"lgt",
+                         _lat,@"lat",
+                         _riverid,@"riverid",
+                         _liable_id,@"liable_id",
+                         _uid,@"uid",
+                         _dataImgBase,@"dataImgBase",
+                         nil];
+    return dic;
+    
+//    return @{@"eventName":_eventName,
+//             @"eventContent":_eventContent,
+//             @"positionDesc":_positionDesc,
+//             @"uuid":_uuid,
+//             @"type":_type,
+//             @"lgt":_lgt,
+//             @"lat":_lat,
+//             @"riverid":_riverid,
+//             @"liable_id":_liable_id,
+//             @"uid":_uid,
+//             @"dataImgBase":_dataImgBase
+//             };
+    
+}
+
+
+@end

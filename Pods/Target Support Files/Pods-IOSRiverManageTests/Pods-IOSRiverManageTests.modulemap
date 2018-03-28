@@ -1,0 +1,6 @@
+framework module Pods_IOSRiverManageTests {
+  umbrella header "Pods-IOSRiverManageTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

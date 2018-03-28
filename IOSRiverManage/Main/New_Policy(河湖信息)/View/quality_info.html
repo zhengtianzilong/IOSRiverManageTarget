@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <title>地表水质类别说明</title>
+</head>
+<style type="text/css">
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .fz27{font-size: 3.75vw;}
+    .wq_col{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-size: 16px;
+        text-align: center;
+        line-height: 2.5;
+        background-color: #fff;
+        height: 70px;
+    }
+    .wq_rank{
+        margin: 20px 12px 0 14px;
+        width: 35px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+        border-radius: 50%;
+        text-indent: 0;
+        text-align: center;
+        color: #fff;
+    }
+    .wq_rankInfo{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border-bottom: 1px solid #d1d0d5;
+        text-align: left;
+        padding: 5px 0;
+        line-height: 1.4;
+    }
+    .wq_p{
+        margin: 12px 14px;
+        line-height: 1.5;
+        font-size: 16px;
+    }
+    .waterRank{
+        text-align: center;
+        line-height: 2.5;
+        background-color: #e0fded;
+        color: #58ca90;
+    }
+    .wq_flex{
+        display: flex;
+        justify-content: space-around;
+    }
+    .wq_index{
+        text-align: center;
+        line-height: 2.5;
+    }
+    .wq_li:nth-child(2n+1){
+        background-color: #fff;
+    }
+    .wq_li:nth-child(2n){
+        background-color: #f7f7f7;
+    }
+    .wq_para{
+        width: 27.1%;
+        padding-left: 2%;
+        text-align: left;
+    }
+    .w15{width: 15%;}
+    /*水质等级颜色*/
+    .level1{background-color:#5ed3ff;}
+    .level2{background-color:#18adef; }
+    .level3{background-color:#59d51f; }
+    .level4{background-color:#1fb55b; }
+    .level5{background-color:#ffbf0d; }
+    .level6{background-color:#ff5304; }
+
+</style>
+<body class="fz27" style="color: #606060;">
+<div class="main2">
+    <div class="wq_col">
+        <div class="wq_rank level1">Ⅰ</div>
+        <div class="wq_rankInfo">主要适用于源头水、国家自然保护区</div>
+    </div>
+    <div class="wq_col">
+        <div class="wq_rank level2">Ⅱ</div>
+        <div class="wq_rankInfo">主要适用于集中式生活饮用水地表水源地一级保护区、珍稀水生生物栖息地、鱼虾类产卵场、仔稚幼鱼的索饵场等</div>
+    </div>
+    <div class="wq_col">
+        <div class="wq_rank level3">Ⅲ</div>
+        <div class="wq_rankInfo">主要适用于集中式生活饮用水地表水源地二级保护区、鱼虾类越冬场、洄游通道、水产养殖区等渔业水域及游泳区</div>
+    </div>
+    <div class="wq_col">
+        <div class="wq_rank level4">Ⅳ</div>
+        <div class="wq_rankInfo">主要适用于一般工业用水区及人体非直接触的娱乐用水区</div>
+    </div>
+    <div class="wq_col">
+        <div class="wq_rank level5">Ⅴ</div>
+        <div class="wq_rankInfo">主要适用于农业用水区及一般景观要求水域</div>
+    </div>
+    <div class="wq_col">
+        <div class="wq_rank level6" style="letter-spacing: -1px;">劣Ⅴ</div>
+        <div class="wq_rankInfo" style="border-bottom: none;">污染程度已超过类的Ⅴ水</div>
+    </div>
+    <div class="wq_p">
+        对应地表水上述五类水域功能，将地表水环境质量标准基本项目标准值分为五类，不同功能类别分别执行相应类别的标准值。水域功能类别高的标准值严于水域功能类别低的标准值。同一水域兼有多类使用功能的，执行最高功能类别对应的标准值。实现水域功能与达功能类别标准为同一含义。<br />注：水质分类方案依据国家地表水坏境质量标准(GB3838-2002)
+    </div>
+    <div class="waterRank">
+        <div class="fz34 w100">水质指标项目标准限值</div>
+        <div class="wq_flex">
+            <div class="wq_para">标准值(MG/L)</div>
+            <div class="w15">Ⅰ类</div>
+            <div class="w15">Ⅱ类</div>
+            <div class="w15">Ⅲ类</div>
+            <div class="w15">Ⅳ类</div>
+            <div class="w15">Ⅴ类</div>
+        </div>
+    </div>
+    <ul class="wq_index">
+        <li class="wq_flex wq_li">
+            <div class="wq_para">溶解氧≧ </div>
+            <div class="w15">7.5</div>
+            <div class="w15">6</div>
+            <div class="w15">5</div>
+            <div class="w15">3</div>
+            <div class="w15">2</div>
+        </li>
+        <li class="wq_flex wq_li">
+            <div class="wq_para">高锰酸盐指数≦</div>
+            <div class="w15">2</div>
+            <div class="w15">4</div>
+            <div class="w15">6</div>
+            <div class="w15">10</div>
+            <div class="w15">15</div>
+        </li>
+        <li class="wq_flex wq_li">
+            <div class="wq_para">氨氮≦</div>
+            <div class="w15">0.15</div>
+            <div class="w15">0.5</div>
+            <div class="w15">1.0</div>
+            <div class="w15">1.5</div>
+            <div class="w15">2.0</div>
+        </li>
+        <li class="wq_flex wq_li">
+            <div class="wq_para">总磷≦</div>
+            <div class="w15">0.02</div>
+            <div class="w15">0.1</div>
+            <div class="w15">0.2</div>
+            <div class="w15">0.3</div>
+            <div class="w15">0.4</div>
+        </li>
+    </ul>
+</div>
+</body>
+
+</html>

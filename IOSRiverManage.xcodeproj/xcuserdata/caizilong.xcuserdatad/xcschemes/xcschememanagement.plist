@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>IOSRiverManage.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>IOSRiverManageSuqian.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>29</integer>
+		</dict>
+		<key>IOSRiverManageTouBiao.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>30</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>D51D3AD61F69344900CA0903</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D51D3AEF1F69344900CA0903</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D51D3AFA1F69344900CA0903</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D5850F631FF08CC8001B8165</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
