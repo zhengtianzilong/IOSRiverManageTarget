@@ -16,10 +16,10 @@
 #import "ZLGetDepartModel.h"
 #import "ZLGetEventUserListModel.h"
 #import "ZLAlertSelectionView.h"
-#import "ZLNewFileUpLoadService.h"
-#import "ZLUploadFileModel.h"
 #import "ZLSaveTaskService.h"
 #import "ZLSaveAndSentTaskService.h"
+#import "ZLNewFilesUpLoadService.h"
+#import "ZLUploadImagesModel.h"
 @interface ZLNewTaskDownVC ()<UITableViewDelegate, UITableViewDataSource>
 
 
@@ -420,31 +420,41 @@
     
     [self.imageNameArray removeAllObjects];
     
+    [SVProgressHUD showWithStatus:@"保存中"];
+    
     dispatch_group_t group = dispatch_group_create();
     
-    [_imageArray enumerateObjectsUsingBlock:^(ACMediaModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-        dispatch_group_enter(group);
-        ZLNewFileUpLoadService *fileService = [[ZLNewFileUpLoadService alloc]initWithImage:model];
-        [fileService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+    ZLNewFilesUpLoadService *filesService = [[ZLNewFilesUpLoadService alloc]initWithImage:_imageArray];
+    
+    dispatch_group_enter(group);
+    
+    [filesService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLUploadImagesModel *imagesModel = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
+        if ([imagesModel.code isEqualToString:@"0"]) {
             
-            ZLUploadFileModel *model = [[ZLUploadFileModel alloc]initWithString:fileService.responseString error:nil];
-            if ([model.code isEqualToString:@"0"]) {
-                [self.imageNameArray addObject:model.data.toDictionary];
+            for (ZLTaskInfoImageListModel *model in imagesModel.data) {
+                
+                [self.imageNameArray addObject:model.toDictionary];
             }
-            
-            dispatch_group_leave(group);
-            
-        } failure:^(__kindof YTKBaseRequest *request) {
-            
-        }];
+        }
+        
+        ZLLog(@"%@", request.responseString);
+        dispatch_group_leave(group);
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        [SVProgressHUD dismissWithDelay:0.3];
     }];
+    
+    
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         
         ZLLog(@"%@", self.imageNameArray);
         
         ZLSaveTaskService *service = [[ZLSaveTaskService alloc]initWithimgList:self.imageNameArray taskName:self.taskName taskContent:self.taskDesc receiverDepartmentNames:self.taskDepartString receiverDepartmentCodes:self.departCodeString receiverPersonIds:self.peopleCodeString receiverPersonNames:self.taskPeopleString];
         
-        [SVProgressHUD showWithStatus:@"保存中"];
+//        [SVProgressHUD showWithStatus:@"保存中"];
         
         [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
             ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
@@ -473,31 +483,59 @@
     
     [self.imageNameArray removeAllObjects];
     
+    
+    [SVProgressHUD showWithStatus:@"下发中"];
+    
     dispatch_group_t group = dispatch_group_create();
     
-    [_imageArray enumerateObjectsUsingBlock:^(ACMediaModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-        dispatch_group_enter(group);
-        ZLNewFileUpLoadService *fileService = [[ZLNewFileUpLoadService alloc]initWithImage:model];
-        [fileService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+    ZLNewFilesUpLoadService *filesService = [[ZLNewFilesUpLoadService alloc]initWithImage:_imageArray];
+    
+    dispatch_group_enter(group);
+    
+    [filesService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+       
+        ZLUploadImagesModel *imagesModel = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
+        if ([imagesModel.code isEqualToString:@"0"]) {
             
-            ZLUploadFileModel *model = [[ZLUploadFileModel alloc]initWithString:fileService.responseString error:nil];
-            if ([model.code isEqualToString:@"0"]) {
-                [self.imageNameArray addObject:model.data.toDictionary];
+            for (ZLTaskInfoImageListModel *model in imagesModel.data) {
+                
+                [self.imageNameArray addObject:model.toDictionary];
             }
-            
-            dispatch_group_leave(group);
-            
-        } failure:^(__kindof YTKBaseRequest *request) {
-            
-        }];
+        }
+        
+        ZLLog(@"%@", request.responseString);
+        dispatch_group_leave(group);
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        [SVProgressHUD dismissWithDelay:0.3];
     }];
+    
+    
+//
+//    [_imageArray enumerateObjectsUsingBlock:^(ACMediaModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+//        dispatch_group_enter(group);
+//        ZLNewFileUpLoadService *fileService = [[ZLNewFileUpLoadService alloc]initWithImage:model];
+//        [fileService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
+//
+//            ZLUploadFileModel *model = [[ZLUploadFileModel alloc]initWithString:fileService.responseString error:nil];
+//            if ([model.code isEqualToString:@"0"]) {
+//                [self.imageNameArray addObject:model.data.toDictionary];
+//            }
+//
+//            dispatch_group_leave(group);
+//
+//        } failure:^(__kindof YTKBaseRequest *request) {
+//
+//        }];
+//    }];
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         
         ZLLog(@"%@", self.imageNameArray);
         
         ZLSaveAndSentTaskService *service = [[ZLSaveAndSentTaskService alloc]initWithimgList:self.imageNameArray taskName:self.taskName taskContent:self.taskDesc receiverDepartmentNames:self.taskDepartString receiverDepartmentCodes:self.departCodeString receiverPersonIds:self.peopleCodeString receiverPersonNames:self.taskPeopleString];
         
-        [SVProgressHUD showWithStatus:@"下发中"];
+        
         
         [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
             ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];

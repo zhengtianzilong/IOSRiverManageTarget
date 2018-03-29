@@ -7,7 +7,7 @@
 //
 
 #import "ZLLabelAndTextFieldWithImageV.h"
-@interface ZLLabelAndTextFieldWithImageV ()
+@interface ZLLabelAndTextFieldWithImageV ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *placeHolder;
@@ -70,9 +70,17 @@
 
 - (void)tapclick{
     
+    if (_selectBlock) {
+        self.selectBlock(self.infoTextField);
+    }
     
     
 }
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    return NO;
+}
+
 
 - (UIImageView *)imageV{
     
@@ -103,7 +111,8 @@
         _infoTextField.backgroundColor = [UIColor whiteColor];
         [_infoTextField setValue:CHINESE_SYSTEM(15) forKeyPath:@"_placeholderLabel.font"];
 //        [_infoTextField setEnabled:NO];
-        
+        _infoTextField.font = CHINESE_SYSTEM(15);
+        _infoTextField.delegate = self;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapclick)];
         [_infoTextField addGestureRecognizer:tap];
     }

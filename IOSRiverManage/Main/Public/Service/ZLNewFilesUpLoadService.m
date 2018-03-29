@@ -1,32 +1,32 @@
 //
-//  ZLNewFileUpLoadService.m
+//  ZLNewFilesUpLoadService.m
 //  IOSRiverManage
 //
-//  Created by 蔡紫龙 on 2018/3/15.
+//  Created by 蔡紫龙 on 2018/3/29.
 //  Copyright © 2018年 caizilong. All rights reserved.
 //
 
-#import "ZLNewFileUpLoadService.h"
-@interface ZLNewFileUpLoadService (){
-    ACMediaModel *_imageModel;
+#import "ZLNewFilesUpLoadService.h"
+@interface ZLNewFilesUpLoadService (){
+    NSArray<ACMediaModel *>  *_imageArray;
     NSString *_name;
     NSData *_data;
-
+    
 }
 
 @end
-@implementation ZLNewFileUpLoadService
+@implementation ZLNewFilesUpLoadService
 
-- (instancetype)initWithImage:(ACMediaModel *)imageModel{
+- (instancetype)initWithImage:(NSArray<ACMediaModel *> *)imageArray{
     self = [super init];
     if (self) {
-      _imageModel = imageModel;
+        _imageArray = imageArray;
     }
     return self;
 }
 
 - (NSString *)requestUrl {
-    return River_UploadUrl;
+    return River_BatchUploadUrl;
 }
 
 
@@ -44,18 +44,21 @@
     
     return ^(id<AFMultipartFormData> formData)
     {
-        NSData *imageDataW = nil;
-        if ([self getHEFIWith:_imageModel.asset]) {
-            NSArray *nameArray = [_imageModel.name componentsSeparatedByString:@"."];
-            _imageModel.name = [NSString stringWithFormat:@"%@.jpg",nameArray.firstObject];
-        }
         
-        imageDataW = UIImageJPEGRepresentation(_imageModel.image, 0.8);
-        NSData *data = imageDataW;
-        NSString *name = _imageModel.name;
-        NSString *formKey = @"file";
-        NSString *type = @"image/jpeg";
-        [formData appendPartWithFileData:data name:formKey fileName:name mimeType:type];
+        for (ACMediaModel *model in _imageArray) {
+            NSData *imageDataW = nil;
+            if ([self getHEFIWith:model.asset]) {
+                NSArray *nameArray = [model.name componentsSeparatedByString:@"."];
+                model.name = [NSString stringWithFormat:@"%@.jpg",nameArray.firstObject];
+            }
+            
+            imageDataW = UIImageJPEGRepresentation(model.image, 0.8);
+            NSData *data = imageDataW;
+            NSString *name = model.name;
+            NSString *formKey = @"file";
+            NSString *type = @"image/jpeg";
+            [formData appendPartWithFileData:data name:formKey fileName:name mimeType:type];
+        }
 
     };
 }
@@ -81,6 +84,5 @@
     }
     return isHEIF;
 }
-
 
 @end

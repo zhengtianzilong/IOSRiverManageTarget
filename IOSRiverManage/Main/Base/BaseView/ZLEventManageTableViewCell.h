@@ -45,6 +45,8 @@
 
 @property (nonatomic, strong) UIView *lineViewBottom;
 
+@property (nonatomic, strong) NSString *userCode;
+
 - (void)setUpUI;
 
 

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^selectBlock)(UITextField *textField);
+
 @interface ZLLabelAndTextFieldWithImageV : UIView
 @property (nonatomic, strong) UILabel *titleLabel;
 
@@ -16,6 +18,8 @@
 @property (nonatomic, strong) UIImageView *imageV;
 
 @property (nonatomic, strong) UIView *lineView;
+
+@property (nonatomic, strong) selectBlock selectBlock;
 
 - (instancetype)initWithFrame:(CGRect)frame title:(NSString *)title placeHolder:(NSString *)placeHolder imageString:(NSString *)imageString;
 @end

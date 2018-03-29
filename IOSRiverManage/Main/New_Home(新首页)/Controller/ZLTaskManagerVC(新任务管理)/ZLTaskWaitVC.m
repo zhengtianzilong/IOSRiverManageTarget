@@ -26,14 +26,14 @@
 
 @implementation ZLTaskWaitVC
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    [self.mainTableView.mj_header beginRefreshing];
-    
-    
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//
+//    [super viewWillAppear:animated];
+//
+//    [self.mainTableView.mj_header beginRefreshing];
+//
+//
+//}
 
 - (void)getData{
     ZLFindMyToDoTaskListService *service = [[ZLFindMyToDoTaskListService alloc]initWithpageSize:10 createTimeFormat:_lastCreateTime taskName:_taskName createName:_createName createStartTime:_createStartTime createEndTime:_createEndTime];
@@ -77,6 +77,8 @@
     _sourceArray = [NSMutableArray array];
     
     _lastCreateTime = @"";
+    
+    [self getData];
     
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
     [self.view addSubview:self.mainTableView];
@@ -164,8 +166,8 @@
     
     cell.dataModel = model;
     
-    if (indexPath.row == _sourceArray.count - 1) {
-        ZLTaskWaitDataModel *dataModel = _sourceArray[indexPath.row];
+    if (indexPath.section == _sourceArray.count - 1) {
+        ZLTaskWaitDataModel *dataModel = _sourceArray[indexPath.section];
         _lastCreateTime = dataModel.createTime;
         
     }
@@ -253,7 +255,7 @@
         
         _mainTableView.sectionFooterHeight = 20;
         _mainTableView.sectionHeaderHeight = 0;
-        _mainTableView.contentInset = UIEdgeInsetsMake(20 - 35, 0, 0, 0);
+        _mainTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
         _mainTableView.estimatedRowHeight = 180;
         _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{

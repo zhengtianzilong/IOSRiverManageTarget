@@ -67,8 +67,6 @@
         
         
         [self.mainTableView reloadData];
-//        [self.mainTableView.mj_header endRefreshing];
-//        [self.mainTableView.mj_footer endRefreshing];
         
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         [self.mainTableView.mj_header endRefreshing];
@@ -114,7 +112,6 @@
 }
 
 #pragma mark -- 列表的代理
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 2) {
         return self.incidentList.count;

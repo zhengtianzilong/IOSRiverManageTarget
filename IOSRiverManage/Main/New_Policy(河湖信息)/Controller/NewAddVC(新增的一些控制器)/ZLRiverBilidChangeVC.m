@@ -14,8 +14,8 @@
 #import "UIView+RoundedCorner.h"
 #import "ZLNewAddPublicBrandService.h"
 #import "ZLBaseModel.h"
-#import "ZLNewFileUpLoadService.h"
-#import "ZLUploadFileModel.h"
+#import "ZLNewFilesUpLoadService.h"
+#import "ZLUploadImagesModel.h"
 @interface ZLRiverBilidChangeVC ()<UITableViewDelegate, UITableViewDataSource, YTKChainRequestDelegate>
 
 
@@ -85,18 +85,21 @@
     }
 
     YTKChainRequest *chain = [[YTKChainRequest alloc]init];
-    ZLNewFileUpLoadService *fileService = [[ZLNewFileUpLoadService alloc]initWithImage:self.imageArray];
+    ZLNewFilesUpLoadService *fileService = [[ZLNewFilesUpLoadService alloc]initWithImage:self.imageArray];
     
     [chain addRequest:fileService callback:^(YTKChainRequest * _Nonnull chainRequest, YTKBaseRequest * _Nonnull baseRequest) {
         
-        ZLNewFileUpLoadService *fileService = (ZLNewFileUpLoadService *)baseRequest;
+        ZLNewFilesUpLoadService *fileService = (ZLNewFilesUpLoadService *)baseRequest;
         
         ZLLog(@"%@",fileService.responseString);
         
-        ZLUploadFileModel *model = [[ZLUploadFileModel alloc]initWithString:fileService.responseString error:nil];
+        ZLUploadImagesModel *model = [[ZLUploadImagesModel alloc]initWithString:fileService.responseString error:nil];
         
         if ([model.code isEqualToString:@"0"]) {
-             ZLNewAddPublicBrandService *service = [[ZLNewAddPublicBrandService alloc]initWithriverCode:_riverDataModel.riverCode imgUrl:model.data.fileName name:self.name longitude:self.locationModel.longitude latitude:self.locationModel.latitude detail:self.address];
+            
+            ZLTaskInfoImageListModel *imageModel = model.data.firstObject;
+            
+             ZLNewAddPublicBrandService *service = [[ZLNewAddPublicBrandService alloc]initWithriverCode:_riverDataModel.riverCode imgUrl:imageModel.fileAddr name:self.name longitude:self.locationModel.longitude latitude:self.locationModel.latitude detail:self.address];
 
             [chainRequest addRequest:service callback:nil];
 
@@ -113,9 +116,9 @@
 }
 - (void)chainRequestFinished:(YTKChainRequest *)chainRequest{
     
-    ZLNewFileUpLoadService *request = (ZLNewFileUpLoadService *)chainRequest.requestArray[0];
+    ZLNewFilesUpLoadService *request = (ZLNewFilesUpLoadService *)chainRequest.requestArray[0];
     
-    ZLUploadFileModel *model = [[ZLUploadFileModel alloc]initWithString:request.responseString error:nil];
+    ZLUploadImagesModel *model = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
     
     if ([model.code isEqualToString:@"0"]) {
         

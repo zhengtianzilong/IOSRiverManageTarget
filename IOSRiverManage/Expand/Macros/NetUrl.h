@@ -49,8 +49,11 @@
 // 查询通讯录数据
 #define River_NewsListUrl @"/base/appNew/getNewsListByAreaCode"
 
-// 上传数据
-#define River_UploadUrl @"/base/system/upload"
+//// 上传数据
+//#define River_UploadUrl @"/base/system/upload"
+
+// 多张图片上传
+#define River_BatchUploadUrl @"/base/system/batch/upload"
 
 // 获取河道基础信息
 #define River_GetRiverInfoByRiverCodeUrl @"/base/riverInfoController/getRiverInfoByRiverCode"
@@ -115,17 +118,33 @@
 // 获取我创建的任务
 #define River_FindMyCreatedTaskListUrl @"/city/appRiverTask/findMyCreatedTaskList"
 
+// 获取我创建的事件
+#define River_GetMyCreateIncidentListUrl @"/city/incident/getMyCreateIncidentForApp"
+
 // 获取我已办的任务
 #define River_FindMyDoneTaskListUrl @"/city/appRiverTask/findMyDoneTaskList"
+
+// 获取我已办的事件
+#define River_GetMyHaveDoIncidentListUrl @"/city/incident/getMyHaveDoIncidentForApp"
 
 // 获取我的待办任务列表
 #define River_FindMyToDoTaskListUrl @"/city/appRiverTask/findMyToDoTaskList"
 
+// 获取我待办的事件
+#define River_GetMyToDoIncidentListUrl @"/city/incident/getMyToDoIncidentForApp"
+
 // 任务查询列表
 #define River_FindTaskListUrl @"/city/appRiverTask/findTaskList"
 
+// 事件查询列表
+#define River_GetIncidentListUrl @"/city/incident/getIncidentForApp"
+
+
 // 获取任务详情
 #define River_FindTaskByIdUrl @"/city/appRiverTask/findTaskById"
+
+// 获取事件详情
+#define River_GetIncidentAllUrl @"/city/incident/getIncidentAllForApp"
 
 // 删除任务
 #define River_DeleteTasksUrl @"/city/appRiverTask/deleteTasks"
@@ -138,6 +157,23 @@
 
 // 任务审核-通过
 #define River_CheckOkTaskUrl @"/city/appRiverTask/checkOkTask"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 河长联系单巡河查询当前用户管辖河道接口
 #define River_DemandReachUrl @"/hzz/phoneController.do?demandReach"

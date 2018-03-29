@@ -15,17 +15,6 @@
     
     [self.contentView addSubview:self.changeBtn];
     [self.contentView addSubview:self.deleteBtn];
-    
-//    [self.timeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.equalTo(self.imageV);
-//        make.top.equalTo(self.lineViewBottom.mas_bottom).offset(10);
-//        make.height.mas_equalTo(20);
-////        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
-//
-//    }];
-    
-    
     [self.deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.equalTo(self.contentView.mas_right).offset(-10);
@@ -44,6 +33,98 @@
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
     }];
     
+
+    
+}
+
+- (void)setDataModel:(ZLEventManagerReportDataModel *)dataModel{
+    
+    _dataModel = dataModel;
+    self.initiatorName.text = _dataModel.createName;
+    self.receivedName.text = _dataModel.userName;
+    self.content.text = _dataModel.incidentContent;
+    self.timeLabel.text = _dataModel.createTime;
+    self.title.text = _dataModel.incidentName;
+    
+    NSString *status = @"";
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImage_URL,_dataModel.imgUrl]];
+
+    [self.imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"event_placeImage"]];
+    
+    if ([_dataModel.createBy isEqualToString:self.userCode]) {
+        
+        if ([_dataModel.incidentStatus isEqualToString:@"0"]) {
+            status = @"创建";
+            self.deleteBtn.hidden = NO;
+            self.changeBtn.hidden = NO;
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"1"]) {
+            
+            status = @"已上报";
+            
+            self.deleteBtn.hidden = YES;
+            self.changeBtn.hidden = YES;
+            
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"2"]) {
+            
+            status = @"已接收";
+            self.deleteBtn.hidden = YES;
+            self.changeBtn.hidden = YES;
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"3"]) {
+            
+            status = @"已转报";
+            self.deleteBtn.hidden = YES;
+            self.changeBtn.hidden = YES;
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"9"]) {
+            
+            status = @"完结";
+            self.deleteBtn.hidden = YES;
+            self.changeBtn.hidden = YES;
+        }
+    }else{
+        if ([_dataModel.incidentStatus isEqualToString:@"0"]) {
+            status = @"已创建";
+            self.deleteBtn.hidden = NO;
+            self.changeBtn.hidden = NO;
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"1"]) {
+            
+            status = @"未接收";
+            
+            self.deleteBtn.hidden = YES;
+            self.changeBtn.hidden = YES;
+            
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"2"]) {
+            
+            status = @"待处理";
+            self.deleteBtn.hidden = YES;
+            self.changeBtn.hidden = YES;
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"3"]) {
+            
+            status = @"已转报";
+            self.deleteBtn.hidden = YES;
+            self.changeBtn.hidden = YES;
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"9"]) {
+            
+            status = @"反馈";
+            self.deleteBtn.hidden = YES;
+            self.changeBtn.hidden = YES;
+        }
+        
+        
+    }
+  
+    self.state.text = status;
+    
+    
+    
 }
 
 - (void)layoutSubviews{
@@ -57,14 +138,14 @@
 - (void)deleteBtnClick{
     
     if (_deleteClick) {
-        self.deleteClick();
+        self.deleteClick(_dataModel);
     }
     
 }
 
 - (void)changeBtnClick{
     if (_changeClick) {
-        self.changeClick();
+        self.changeClick(_dataModel);
     }
 }
 

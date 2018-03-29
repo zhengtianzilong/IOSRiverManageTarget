@@ -14,8 +14,8 @@
 #import "UIView+RoundedCorner.h"
 #import "ZLNewReportBottomView.h"
 #import "ZLOnlyAddIncidentService.h"
-#import "ZLNewFileUpLoadService.h"
-#import "ZLUploadFileModel.h"
+#import "ZLNewFilesUpLoadService.h"
+#import "ZLUploadImagesModel.h"
 #import "ZLGetDepartModel.h"
 #import "ZLAlertSelectionView.h"
 #import "ZLGetEventUserListModel.h"
@@ -344,21 +344,32 @@
  */
 - (void)saveButtonClick{
     
-        dispatch_group_t group = dispatch_group_create();
+    [SVProgressHUD showWithStatus:@"保存中"];
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    ZLNewFilesUpLoadService *filesService = [[ZLNewFilesUpLoadService alloc]initWithImage:_imageArray];
+    
+    dispatch_group_enter(group);
+    
+    [filesService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         
-        [_imageArray enumerateObjectsUsingBlock:^(ACMediaModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-                dispatch_group_enter(group);
-                 ZLNewFileUpLoadService *fileService = [[ZLNewFileUpLoadService alloc]initWithImage:model];
-                [fileService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-                    dispatch_group_leave(group);
-                    ZLUploadFileModel *model = [[ZLUploadFileModel alloc]initWithString:fileService.responseString error:nil];
-                    if ([model.code isEqualToString:@"0"]) {
-                        [self.imageNameArray addObject:model.data.fileName];
-                    }
-                } failure:^(__kindof YTKBaseRequest *request) {
-                    
-                }];
-        }];
+        ZLUploadImagesModel *imagesModel = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
+        if ([imagesModel.code isEqualToString:@"0"]) {
+            
+            for (ZLTaskInfoImageListModel *model in imagesModel.data) {
+                
+                [self.imageNameArray addObject:model.toDictionary];
+            }
+        }
+        
+        ZLLog(@"%@", request.responseString);
+        dispatch_group_leave(group);
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        [SVProgressHUD dismissWithDelay:0.3];
+    }];
         dispatch_group_notify(group, dispatch_get_main_queue(), ^{
             
             ZLLog(@"%@", self.imageNameArray);
@@ -378,20 +389,33 @@
 }
     
 - (void)reportButtonClick{
+    
+    
+    [SVProgressHUD showWithStatus:@"保存中"];
+    
     dispatch_group_t group = dispatch_group_create();
     
-    [_imageArray enumerateObjectsUsingBlock:^(ACMediaModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
-        dispatch_group_enter(group);
-        ZLNewFileUpLoadService *fileService = [[ZLNewFileUpLoadService alloc]initWithImage:model];
-        [fileService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest *request) {
-            dispatch_group_leave(group);
-            ZLUploadFileModel *model = [[ZLUploadFileModel alloc]initWithString:fileService.responseString error:nil];
-            if ([model.code isEqualToString:@"0"]) {
-                [self.imageNameArray addObject:model.data.fileName];
-            }
-        } failure:^(__kindof YTKBaseRequest *request) {
+    ZLNewFilesUpLoadService *filesService = [[ZLNewFilesUpLoadService alloc]initWithImage:_imageArray];
+    
+    dispatch_group_enter(group);
+    
+    [filesService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLUploadImagesModel *imagesModel = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
+        if ([imagesModel.code isEqualToString:@"0"]) {
             
-        }];
+            for (ZLTaskInfoImageListModel *model in imagesModel.data) {
+                
+                [self.imageNameArray addObject:model.toDictionary];
+            }
+        }
+        
+        ZLLog(@"%@", request.responseString);
+        dispatch_group_leave(group);
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        [SVProgressHUD dismissWithDelay:0.3];
     }];
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         

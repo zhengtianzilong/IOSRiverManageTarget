@@ -29,14 +29,6 @@
 @end
 
 @implementation ZLTaskMyDownVC
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    [self.mainTableView.mj_header beginRefreshing];
-    
-    
-}
 
 - (void)getData{
     ZLFindMyCreatedTaskListService *service = [[ZLFindMyCreatedTaskListService alloc]initWithpageSize:10 createTimeFormat:_lastCreateTime taskName:self.taskName createStartTime:self.createStartTime createEndTime:self.createEndTime];
@@ -80,7 +72,7 @@
     
     _lastCreateTime = @"";
     
-//    [self getData];
+    [self getData];
     
     [self.view addSubview:self.mainTableView];
     
@@ -140,8 +132,8 @@
     
     cell.dataModel = model;
     
-    if (indexPath.row == _sourceArray.count - 1) {
-        ZLTaskManageDataModel *dataModel = _sourceArray[indexPath.row];
+    if (indexPath.section == _sourceArray.count - 1) {
+        ZLTaskManageDataModel *dataModel = _sourceArray[indexPath.section];
         _lastCreateTime = dataModel.createTime;
         
     }
@@ -186,9 +178,6 @@
             }];
         };
         [alert show];
-        
-        
-        
     };
     
     
@@ -252,7 +241,7 @@
         
         _mainTableView.sectionFooterHeight = 20;
         _mainTableView.sectionHeaderHeight = 0;
-        _mainTableView.contentInset = UIEdgeInsetsMake(20 - 35, 0, 0, 0);
+        _mainTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
         _mainTableView.estimatedRowHeight = 180;

@@ -6,8 +6,13 @@
 //  Copyright © 2018年 caizilong. All rights reserved.
 //
 
-#import "ZLEventBaseVC.h"
 
-@interface ZLEventManagerReportVC : ZLEventBaseVC
+#import "ZLBaseCustomNavViewController.h"
+#import "ZLZLQueryEventDownView.h"
+@interface ZLEventManagerReportVC : ZLBaseCustomNavViewController
+@property (nonatomic, strong) ZLZLQueryEventDownView *queryView;
+@property (nonatomic, strong) UITableView *mainTableView;
+
+@property (nonatomic, strong) NSString *userCode;
 
 @end

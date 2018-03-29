@@ -8,9 +8,12 @@
 
 #import "ZLBaseCustomNavViewController.h"
 #import "ZLQueryEventManagerCheckView.h"
-#import "ZLMyEventCell.h"
+#import "ZLMyEventCheckCell.h"
 #import "ZLMyEventDetailVC.h"
 @interface ZLEventManagerCheckVC : ZLBaseCustomNavViewController
 @property (nonatomic, strong) ZLQueryEventManagerCheckView *queryView;
 @property (nonatomic, strong) UITableView *mainTableView;
+
+@property (nonatomic, strong) NSString *userCode;
+
 @end

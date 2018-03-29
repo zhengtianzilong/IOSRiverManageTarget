@@ -7,7 +7,8 @@
 //
 
 #import "ZLEventManageTableViewCell.h"
-typedef void(^dealBtnClick)(void);
+#import "ZLEventManagerReportDataModel.h"
+typedef void(^dealBtnClick)(ZLEventManagerReportDataModel *dataModel);
 @interface ZLMyEventWaitCell : ZLEventManageTableViewCell
 /**
  处理按钮
@@ -15,4 +16,7 @@ typedef void(^dealBtnClick)(void);
 @property (nonatomic, strong) UIButton *dealBtn;
 
 @property (nonatomic, strong) dealBtnClick dealClick;
+
+@property (nonatomic, strong) ZLEventManagerReportDataModel *dataModel;
+
 @end

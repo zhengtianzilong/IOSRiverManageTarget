@@ -7,9 +7,12 @@
 //
 #import "ZLBaseCustomNavViewController.h"
 #import "ZLQueryEventManagerAlreadyView.h"
-#import "ZLEventManageTableViewCell.h"
+#import "ZLMyEventCompletedCell.h"
 #import "ZLMyEventDetailVC.h"
 @interface ZLEventManagerAlreadyVC : ZLBaseCustomNavViewController
 @property (nonatomic, strong) ZLQueryEventManagerAlreadyView *queryView;
 @property (nonatomic, strong) UITableView *mainTableView;
+
+@property (nonatomic, strong) NSString *userCode;
+
 @end

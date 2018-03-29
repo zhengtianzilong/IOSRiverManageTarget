@@ -1590,12 +1590,6 @@
 		D58814C1205F9B9E0086FE4C /* ZLNewAddPublicBrandService.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814C0205F9B9E0086FE4C /* ZLNewAddPublicBrandService.m */; };
 		D58814C2205F9B9E0086FE4C /* ZLNewAddPublicBrandService.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814C0205F9B9E0086FE4C /* ZLNewAddPublicBrandService.m */; };
 		D58814C3205F9B9E0086FE4C /* ZLNewAddPublicBrandService.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814C0205F9B9E0086FE4C /* ZLNewAddPublicBrandService.m */; };
-		D58814C6205FA4740086FE4C /* ZLUploadFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814C5205FA4740086FE4C /* ZLUploadFileModel.m */; };
-		D58814C7205FA4740086FE4C /* ZLUploadFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814C5205FA4740086FE4C /* ZLUploadFileModel.m */; };
-		D58814C8205FA4740086FE4C /* ZLUploadFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814C5205FA4740086FE4C /* ZLUploadFileModel.m */; };
-		D58814CB205FA48D0086FE4C /* ZLUploadFileDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814CA205FA48D0086FE4C /* ZLUploadFileDataModel.m */; };
-		D58814CC205FA48D0086FE4C /* ZLUploadFileDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814CA205FA48D0086FE4C /* ZLUploadFileDataModel.m */; };
-		D58814CD205FA48D0086FE4C /* ZLUploadFileDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814CA205FA48D0086FE4C /* ZLUploadFileDataModel.m */; };
 		D58814D0205FCF760086FE4C /* ZLOutletDeleteService.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814CF205FCF760086FE4C /* ZLOutletDeleteService.m */; };
 		D58814D1205FCF760086FE4C /* ZLOutletDeleteService.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814CF205FCF760086FE4C /* ZLOutletDeleteService.m */; };
 		D58814D2205FCF760086FE4C /* ZLOutletDeleteService.m in Sources */ = {isa = PBXBuildFile; fileRef = D58814CF205FCF760086FE4C /* ZLOutletDeleteService.m */; };
@@ -1693,9 +1687,6 @@
 		D59BBA222059FF7C00B3DB4C /* ZLNewGetUserRiversService.m in Sources */ = {isa = PBXBuildFile; fileRef = D59BBA212059FF7C00B3DB4C /* ZLNewGetUserRiversService.m */; };
 		D59BBA232059FF7C00B3DB4C /* ZLNewGetUserRiversService.m in Sources */ = {isa = PBXBuildFile; fileRef = D59BBA212059FF7C00B3DB4C /* ZLNewGetUserRiversService.m */; };
 		D59BBA242059FF7C00B3DB4C /* ZLNewGetUserRiversService.m in Sources */ = {isa = PBXBuildFile; fileRef = D59BBA212059FF7C00B3DB4C /* ZLNewGetUserRiversService.m */; };
-		D59BBA27205A08CA00B3DB4C /* ZLNewFileUpLoadService.m in Sources */ = {isa = PBXBuildFile; fileRef = D59BBA26205A08CA00B3DB4C /* ZLNewFileUpLoadService.m */; };
-		D59BBA28205A08CA00B3DB4C /* ZLNewFileUpLoadService.m in Sources */ = {isa = PBXBuildFile; fileRef = D59BBA26205A08CA00B3DB4C /* ZLNewFileUpLoadService.m */; };
-		D59BBA29205A08CA00B3DB4C /* ZLNewFileUpLoadService.m in Sources */ = {isa = PBXBuildFile; fileRef = D59BBA26205A08CA00B3DB4C /* ZLNewFileUpLoadService.m */; };
 		D59BBA2C205A26ED00B3DB4C /* ZLNewAddressBookService.m in Sources */ = {isa = PBXBuildFile; fileRef = D59BBA2B205A26ED00B3DB4C /* ZLNewAddressBookService.m */; };
 		D59BBA2D205A26ED00B3DB4C /* ZLNewAddressBookService.m in Sources */ = {isa = PBXBuildFile; fileRef = D59BBA2B205A26ED00B3DB4C /* ZLNewAddressBookService.m */; };
 		D59BBA2E205A26ED00B3DB4C /* ZLNewAddressBookService.m in Sources */ = {isa = PBXBuildFile; fileRef = D59BBA2B205A26ED00B3DB4C /* ZLNewAddressBookService.m */; };
@@ -2091,6 +2082,60 @@
 		D5C0B2EC20692D8500E88716 /* ZLReceiveTaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C0B2EB20692D8500E88716 /* ZLReceiveTaskService.m */; };
 		D5C0B2ED20692D8500E88716 /* ZLReceiveTaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C0B2EB20692D8500E88716 /* ZLReceiveTaskService.m */; };
 		D5C0B2EE20692D8500E88716 /* ZLReceiveTaskService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C0B2EB20692D8500E88716 /* ZLReceiveTaskService.m */; };
+		D5C382B4206C777A000F77F8 /* ZLMyTaskAlreadyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382B3206C777A000F77F8 /* ZLMyTaskAlreadyCell.m */; };
+		D5C382B5206C777A000F77F8 /* ZLMyTaskAlreadyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382B3206C777A000F77F8 /* ZLMyTaskAlreadyCell.m */; };
+		D5C382B6206C777A000F77F8 /* ZLMyTaskAlreadyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382B3206C777A000F77F8 /* ZLMyTaskAlreadyCell.m */; };
+		D5C382BA206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382B9206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m */; };
+		D5C382BB206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382B9206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m */; };
+		D5C382BC206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382B9206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m */; };
+		D5C382BF206C7C1E000F77F8 /* ZLTaskAlreadyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382BE206C7C1E000F77F8 /* ZLTaskAlreadyModel.m */; };
+		D5C382C0206C7C1E000F77F8 /* ZLTaskAlreadyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382BE206C7C1E000F77F8 /* ZLTaskAlreadyModel.m */; };
+		D5C382C1206C7C1E000F77F8 /* ZLTaskAlreadyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382BE206C7C1E000F77F8 /* ZLTaskAlreadyModel.m */; };
+		D5C382C5206C91A6000F77F8 /* ZLTaskCheckModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382C4206C91A6000F77F8 /* ZLTaskCheckModel.m */; };
+		D5C382C6206C91A6000F77F8 /* ZLTaskCheckModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382C4206C91A6000F77F8 /* ZLTaskCheckModel.m */; };
+		D5C382C7206C91A6000F77F8 /* ZLTaskCheckModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382C4206C91A6000F77F8 /* ZLTaskCheckModel.m */; };
+		D5C382CA206C91C6000F77F8 /* ZLTaskCheckDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382C9206C91C6000F77F8 /* ZLTaskCheckDataModel.m */; };
+		D5C382CB206C91C6000F77F8 /* ZLTaskCheckDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382C9206C91C6000F77F8 /* ZLTaskCheckDataModel.m */; };
+		D5C382CC206C91C6000F77F8 /* ZLTaskCheckDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382C9206C91C6000F77F8 /* ZLTaskCheckDataModel.m */; };
+		D5C382CF206CBA30000F77F8 /* ZLNewFilesUpLoadService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382CE206CBA30000F77F8 /* ZLNewFilesUpLoadService.m */; };
+		D5C382D0206CBA30000F77F8 /* ZLNewFilesUpLoadService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382CE206CBA30000F77F8 /* ZLNewFilesUpLoadService.m */; };
+		D5C382D1206CBA30000F77F8 /* ZLNewFilesUpLoadService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382CE206CBA30000F77F8 /* ZLNewFilesUpLoadService.m */; };
+		D5C382D4206CC124000F77F8 /* ZLUploadImagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382D3206CC124000F77F8 /* ZLUploadImagesModel.m */; };
+		D5C382D5206CC124000F77F8 /* ZLUploadImagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382D3206CC124000F77F8 /* ZLUploadImagesModel.m */; };
+		D5C382D6206CC124000F77F8 /* ZLUploadImagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382D3206CC124000F77F8 /* ZLUploadImagesModel.m */; };
+		D5C382DA206CCBB7000F77F8 /* ZLEventManagerReportService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382D9206CCBB7000F77F8 /* ZLEventManagerReportService.m */; };
+		D5C382DB206CCBB7000F77F8 /* ZLEventManagerReportService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382D9206CCBB7000F77F8 /* ZLEventManagerReportService.m */; };
+		D5C382DC206CCBB7000F77F8 /* ZLEventManagerReportService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382D9206CCBB7000F77F8 /* ZLEventManagerReportService.m */; };
+		D5C382E1206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382E0206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m */; };
+		D5C382E2206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382E0206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m */; };
+		D5C382E3206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382E0206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m */; };
+		D5C382E6206CD1FD000F77F8 /* ZLEventManagerReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382E5206CD1FD000F77F8 /* ZLEventManagerReportModel.m */; };
+		D5C382E7206CD1FD000F77F8 /* ZLEventManagerReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382E5206CD1FD000F77F8 /* ZLEventManagerReportModel.m */; };
+		D5C382E8206CD1FD000F77F8 /* ZLEventManagerReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382E5206CD1FD000F77F8 /* ZLEventManagerReportModel.m */; };
+		D5C382EB206CDC28000F77F8 /* ZLEventManagerWaitService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382EA206CDC28000F77F8 /* ZLEventManagerWaitService.m */; };
+		D5C382EC206CDC28000F77F8 /* ZLEventManagerWaitService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382EA206CDC28000F77F8 /* ZLEventManagerWaitService.m */; };
+		D5C382ED206CDC28000F77F8 /* ZLEventManagerWaitService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382EA206CDC28000F77F8 /* ZLEventManagerWaitService.m */; };
+		D5C382F0206D027E000F77F8 /* ZLEventManagerAlreadyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382EF206D027E000F77F8 /* ZLEventManagerAlreadyService.m */; };
+		D5C382F1206D027E000F77F8 /* ZLEventManagerAlreadyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382EF206D027E000F77F8 /* ZLEventManagerAlreadyService.m */; };
+		D5C382F2206D027E000F77F8 /* ZLEventManagerAlreadyService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382EF206D027E000F77F8 /* ZLEventManagerAlreadyService.m */; };
+		D5C382F5206D06A9000F77F8 /* ZLEventManagerCheckService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382F4206D06A9000F77F8 /* ZLEventManagerCheckService.m */; };
+		D5C382F6206D06A9000F77F8 /* ZLEventManagerCheckService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382F4206D06A9000F77F8 /* ZLEventManagerCheckService.m */; };
+		D5C382F7206D06A9000F77F8 /* ZLEventManagerCheckService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382F4206D06A9000F77F8 /* ZLEventManagerCheckService.m */; };
+		D5C382FA206D0F54000F77F8 /* ZLMyEventCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382F9206D0F54000F77F8 /* ZLMyEventCheckCell.m */; };
+		D5C382FB206D0F54000F77F8 /* ZLMyEventCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382F9206D0F54000F77F8 /* ZLMyEventCheckCell.m */; };
+		D5C382FC206D0F54000F77F8 /* ZLMyEventCheckCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382F9206D0F54000F77F8 /* ZLMyEventCheckCell.m */; };
+		D5C382FF206D1A4B000F77F8 /* ZLEventManagerDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382FE206D1A4B000F77F8 /* ZLEventManagerDetailService.m */; };
+		D5C38300206D1A4B000F77F8 /* ZLEventManagerDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382FE206D1A4B000F77F8 /* ZLEventManagerDetailService.m */; };
+		D5C38301206D1A4B000F77F8 /* ZLEventManagerDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C382FE206D1A4B000F77F8 /* ZLEventManagerDetailService.m */; };
+		D5C38304206D1FA0000F77F8 /* ZLEventInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C38303206D1FA0000F77F8 /* ZLEventInfoCell.m */; };
+		D5C38305206D1FA0000F77F8 /* ZLEventInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C38303206D1FA0000F77F8 /* ZLEventInfoCell.m */; };
+		D5C38306206D1FA0000F77F8 /* ZLEventInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C38303206D1FA0000F77F8 /* ZLEventInfoCell.m */; };
+		D5C38309206D2099000F77F8 /* ZLEventDealDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C38308206D2099000F77F8 /* ZLEventDealDetailCell.m */; };
+		D5C3830A206D2099000F77F8 /* ZLEventDealDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C38308206D2099000F77F8 /* ZLEventDealDetailCell.m */; };
+		D5C3830B206D2099000F77F8 /* ZLEventDealDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C38308206D2099000F77F8 /* ZLEventDealDetailCell.m */; };
+		D5C3830E206D2947000F77F8 /* ZLEventDetailDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C3830D206D2947000F77F8 /* ZLEventDetailDataModel.m */; };
+		D5C3830F206D2947000F77F8 /* ZLEventDetailDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C3830D206D2947000F77F8 /* ZLEventDetailDataModel.m */; };
+		D5C38310206D2947000F77F8 /* ZLEventDetailDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C3830D206D2947000F77F8 /* ZLEventDetailDataModel.m */; };
 		D5CF60982050EBC40060926D /* ZLRiverChangeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CF60972050EBC40060926D /* ZLRiverChangeCollectionViewCell.m */; };
 		D5CF60992050EBC40060926D /* ZLRiverChangeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CF60972050EBC40060926D /* ZLRiverChangeCollectionViewCell.m */; };
 		D5CF609A2050EBC40060926D /* ZLRiverChangeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CF60972050EBC40060926D /* ZLRiverChangeCollectionViewCell.m */; };
@@ -3200,10 +3245,6 @@
 		D58814BB205F95C40086FE4C /* ZLNewAddOutletService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLNewAddOutletService.m; sourceTree = "<group>"; };
 		D58814BF205F9B9E0086FE4C /* ZLNewAddPublicBrandService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLNewAddPublicBrandService.h; sourceTree = "<group>"; };
 		D58814C0205F9B9E0086FE4C /* ZLNewAddPublicBrandService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLNewAddPublicBrandService.m; sourceTree = "<group>"; };
-		D58814C4205FA4740086FE4C /* ZLUploadFileModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLUploadFileModel.h; sourceTree = "<group>"; };
-		D58814C5205FA4740086FE4C /* ZLUploadFileModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLUploadFileModel.m; sourceTree = "<group>"; };
-		D58814C9205FA48D0086FE4C /* ZLUploadFileDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLUploadFileDataModel.h; sourceTree = "<group>"; };
-		D58814CA205FA48D0086FE4C /* ZLUploadFileDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLUploadFileDataModel.m; sourceTree = "<group>"; };
 		D58814CE205FCF760086FE4C /* ZLOutletDeleteService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLOutletDeleteService.h; sourceTree = "<group>"; };
 		D58814CF205FCF760086FE4C /* ZLOutletDeleteService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLOutletDeleteService.m; sourceTree = "<group>"; };
 		D58814D3205FDE5B0086FE4C /* ZLUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLUtility.m; sourceTree = "<group>"; };
@@ -3269,8 +3310,6 @@
 		D59BBA1C2059FE6A00B3DB4C /* ZLNewUserRiversModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLNewUserRiversModel.m; sourceTree = "<group>"; };
 		D59BBA202059FF7C00B3DB4C /* ZLNewGetUserRiversService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLNewGetUserRiversService.h; sourceTree = "<group>"; };
 		D59BBA212059FF7C00B3DB4C /* ZLNewGetUserRiversService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLNewGetUserRiversService.m; sourceTree = "<group>"; };
-		D59BBA25205A08CA00B3DB4C /* ZLNewFileUpLoadService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLNewFileUpLoadService.h; sourceTree = "<group>"; };
-		D59BBA26205A08CA00B3DB4C /* ZLNewFileUpLoadService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLNewFileUpLoadService.m; sourceTree = "<group>"; };
 		D59BBA2A205A26ED00B3DB4C /* ZLNewAddressBookService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLNewAddressBookService.h; sourceTree = "<group>"; };
 		D59BBA2B205A26ED00B3DB4C /* ZLNewAddressBookService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLNewAddressBookService.m; sourceTree = "<group>"; };
 		D59BBA2F205A277B00B3DB4C /* ZLNewAddressBookModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLNewAddressBookModel.h; sourceTree = "<group>"; };
@@ -3540,6 +3579,42 @@
 		D5C0B2E620692CD700E88716 /* ZLDeleteTasksService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLDeleteTasksService.m; sourceTree = "<group>"; };
 		D5C0B2EA20692D8500E88716 /* ZLReceiveTaskService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLReceiveTaskService.h; sourceTree = "<group>"; };
 		D5C0B2EB20692D8500E88716 /* ZLReceiveTaskService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLReceiveTaskService.m; sourceTree = "<group>"; };
+		D5C382B2206C777A000F77F8 /* ZLMyTaskAlreadyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLMyTaskAlreadyCell.h; sourceTree = "<group>"; };
+		D5C382B3206C777A000F77F8 /* ZLMyTaskAlreadyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLMyTaskAlreadyCell.m; sourceTree = "<group>"; };
+		D5C382B8206C7B19000F77F8 /* ZLTaskAlreadyDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLTaskAlreadyDataModel.h; sourceTree = "<group>"; };
+		D5C382B9206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLTaskAlreadyDataModel.m; sourceTree = "<group>"; };
+		D5C382BD206C7C1E000F77F8 /* ZLTaskAlreadyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLTaskAlreadyModel.h; sourceTree = "<group>"; };
+		D5C382BE206C7C1E000F77F8 /* ZLTaskAlreadyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLTaskAlreadyModel.m; sourceTree = "<group>"; };
+		D5C382C3206C91A6000F77F8 /* ZLTaskCheckModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLTaskCheckModel.h; sourceTree = "<group>"; };
+		D5C382C4206C91A6000F77F8 /* ZLTaskCheckModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLTaskCheckModel.m; sourceTree = "<group>"; };
+		D5C382C8206C91C6000F77F8 /* ZLTaskCheckDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLTaskCheckDataModel.h; sourceTree = "<group>"; };
+		D5C382C9206C91C6000F77F8 /* ZLTaskCheckDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLTaskCheckDataModel.m; sourceTree = "<group>"; };
+		D5C382CD206CBA30000F77F8 /* ZLNewFilesUpLoadService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLNewFilesUpLoadService.h; sourceTree = "<group>"; };
+		D5C382CE206CBA30000F77F8 /* ZLNewFilesUpLoadService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLNewFilesUpLoadService.m; sourceTree = "<group>"; };
+		D5C382D2206CC124000F77F8 /* ZLUploadImagesModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLUploadImagesModel.h; sourceTree = "<group>"; };
+		D5C382D3206CC124000F77F8 /* ZLUploadImagesModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLUploadImagesModel.m; sourceTree = "<group>"; };
+		D5C382D8206CCBB7000F77F8 /* ZLEventManagerReportService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventManagerReportService.h; sourceTree = "<group>"; };
+		D5C382D9206CCBB7000F77F8 /* ZLEventManagerReportService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventManagerReportService.m; sourceTree = "<group>"; };
+		D5C382DF206CD1A5000F77F8 /* ZLEventManagerReportDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventManagerReportDataModel.h; sourceTree = "<group>"; };
+		D5C382E0206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventManagerReportDataModel.m; sourceTree = "<group>"; };
+		D5C382E4206CD1FD000F77F8 /* ZLEventManagerReportModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventManagerReportModel.h; sourceTree = "<group>"; };
+		D5C382E5206CD1FD000F77F8 /* ZLEventManagerReportModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventManagerReportModel.m; sourceTree = "<group>"; };
+		D5C382E9206CDC28000F77F8 /* ZLEventManagerWaitService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventManagerWaitService.h; sourceTree = "<group>"; };
+		D5C382EA206CDC28000F77F8 /* ZLEventManagerWaitService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventManagerWaitService.m; sourceTree = "<group>"; };
+		D5C382EE206D027D000F77F8 /* ZLEventManagerAlreadyService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventManagerAlreadyService.h; sourceTree = "<group>"; };
+		D5C382EF206D027E000F77F8 /* ZLEventManagerAlreadyService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventManagerAlreadyService.m; sourceTree = "<group>"; };
+		D5C382F3206D06A9000F77F8 /* ZLEventManagerCheckService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventManagerCheckService.h; sourceTree = "<group>"; };
+		D5C382F4206D06A9000F77F8 /* ZLEventManagerCheckService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventManagerCheckService.m; sourceTree = "<group>"; };
+		D5C382F8206D0F54000F77F8 /* ZLMyEventCheckCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLMyEventCheckCell.h; sourceTree = "<group>"; };
+		D5C382F9206D0F54000F77F8 /* ZLMyEventCheckCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLMyEventCheckCell.m; sourceTree = "<group>"; };
+		D5C382FD206D1A4B000F77F8 /* ZLEventManagerDetailService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventManagerDetailService.h; sourceTree = "<group>"; };
+		D5C382FE206D1A4B000F77F8 /* ZLEventManagerDetailService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventManagerDetailService.m; sourceTree = "<group>"; };
+		D5C38302206D1FA0000F77F8 /* ZLEventInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventInfoCell.h; sourceTree = "<group>"; };
+		D5C38303206D1FA0000F77F8 /* ZLEventInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventInfoCell.m; sourceTree = "<group>"; };
+		D5C38307206D2099000F77F8 /* ZLEventDealDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventDealDetailCell.h; sourceTree = "<group>"; };
+		D5C38308206D2099000F77F8 /* ZLEventDealDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventDealDetailCell.m; sourceTree = "<group>"; };
+		D5C3830C206D2947000F77F8 /* ZLEventDetailDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventDetailDataModel.h; sourceTree = "<group>"; };
+		D5C3830D206D2947000F77F8 /* ZLEventDetailDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventDetailDataModel.m; sourceTree = "<group>"; };
 		D5CF60962050EBC40060926D /* ZLRiverChangeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLRiverChangeCollectionViewCell.h; sourceTree = "<group>"; };
 		D5CF60972050EBC40060926D /* ZLRiverChangeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLRiverChangeCollectionViewCell.m; sourceTree = "<group>"; };
 		D5CF609B205119FA0060926D /* ZLRiverAddIntakeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLRiverAddIntakeVC.h; sourceTree = "<group>"; };
@@ -3746,10 +3821,10 @@
 				D51ACEB52048DCC9006C283D /* ZLEventManagerWaitVC.m */,
 				D51ACEAF2048DCAF006C283D /* ZLEventManagerAlreadyVC.h */,
 				D51ACEB02048DCAF006C283D /* ZLEventManagerAlreadyVC.m */,
-				D5A2A8F82067778B00064F47 /* ZLMyventDealDetailVC.h */,
-				D5A2A8F92067778B00064F47 /* ZLMyventDealDetailVC.m */,
 				D5B35DE0205D0AB200369469 /* ZLEventManagerCheckVC.h */,
 				D5B35DE1205D0AB200369469 /* ZLEventManagerCheckVC.m */,
+				D5A2A8F82067778B00064F47 /* ZLMyventDealDetailVC.h */,
+				D5A2A8F92067778B00064F47 /* ZLMyventDealDetailVC.m */,
 				D51ACEDF2048FA18006C283D /* ZLMyEventDetailVC.h */,
 				D51ACEE02048FA18006C283D /* ZLMyEventDetailVC.m */,
 				D51ACEEE20492396006C283D /* ZLMyEventAdviseVC.h */,
@@ -3814,6 +3889,10 @@
 			children = (
 				D5AB33A42064AF7C00C232B1 /* ZLEventQueryView */,
 				D5AB33A32064AF3500C232B1 /* ZLEventViewCell */,
+				D5C38302206D1FA0000F77F8 /* ZLEventInfoCell.h */,
+				D5C38303206D1FA0000F77F8 /* ZLEventInfoCell.m */,
+				D5C38307206D2099000F77F8 /* ZLEventDealDetailCell.h */,
+				D5C38308206D2099000F77F8 /* ZLEventDealDetailCell.m */,
 				D5A2A8F32067737300064F47 /* ZLMyEventDealDetailCell.h */,
 				D5A2A8F42067737300064F47 /* ZLMyEventDealDetailCell.m */,
 				D51ACEDA2048F263006C283D /* ZLMyEventLaunchTableViewCell.h */,
@@ -5198,10 +5277,8 @@
 		D51D3F8E1F69398F00CA0903 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D58814C4205FA4740086FE4C /* ZLUploadFileModel.h */,
-				D58814C5205FA4740086FE4C /* ZLUploadFileModel.m */,
-				D58814C9205FA48D0086FE4C /* ZLUploadFileDataModel.h */,
-				D58814CA205FA48D0086FE4C /* ZLUploadFileDataModel.m */,
+				D5C382D2206CC124000F77F8 /* ZLUploadImagesModel.h */,
+				D5C382D3206CC124000F77F8 /* ZLUploadImagesModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5217,8 +5294,8 @@
 		D51D3F921F69398F00CA0903 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				D59BBA25205A08CA00B3DB4C /* ZLNewFileUpLoadService.h */,
-				D59BBA26205A08CA00B3DB4C /* ZLNewFileUpLoadService.m */,
+				D5C382CD206CBA30000F77F8 /* ZLNewFilesUpLoadService.h */,
+				D5C382CE206CBA30000F77F8 /* ZLNewFilesUpLoadService.m */,
 				D514287F1F8F4B73005E2952 /* ZLCustomBaseRequest.h */,
 				D51428801F8F4B73005E2952 /* ZLCustomBaseRequest.m */,
 			);
@@ -6402,6 +6479,7 @@
 		D58916F62045360E0064A945 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				D5C382D7206CCB72000F77F8 /* ZLEventManagerService(事件管理) */,
 				D59DF1A92068D1340044A778 /* ZLTaskManagerService(任务管理) */,
 				D59DF1A82068D1170044A778 /* ZLTaskDownService(任务下发) */,
 				D59DF18920687C3B0044A778 /* ZLEventReportService(事件上报) */,
@@ -6434,6 +6512,7 @@
 		D58916F82045360F0064A945 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D5C382DD206CD156000F77F8 /* ZLEventManageModel */,
 				D5C0B2B72068E8BD00E88716 /* ZLTaskManageModel */,
 				D5D575DB20627D41000043F2 /* ZLAssignTaskModel */,
 				D55094032060ECE5009DD61E /* ZLRiverRecordModel */,
@@ -6786,6 +6865,8 @@
 				D5A2A91820679CFA00064F47 /* ZLTaskDealDetailCell.m */,
 				D5A2A9212067AAF900064F47 /* ZLTimeLineTableViewCell.h */,
 				D5A2A9222067AAF900064F47 /* ZLTimeLineTableViewCell.m */,
+				D5C382B2206C777A000F77F8 /* ZLMyTaskAlreadyCell.h */,
+				D5C382B3206C777A000F77F8 /* ZLMyTaskAlreadyCell.m */,
 			);
 			path = ZLMyTaskView;
 			sourceTree = "<group>";
@@ -6897,6 +6978,8 @@
 				D5AB33A62064CBDA00C232B1 /* ZLMyEventWaitCell.m */,
 				D5AB33AA2064CF4300C232B1 /* ZLMyEventCompletedCell.h */,
 				D5AB33AB2064CF4300C232B1 /* ZLMyEventCompletedCell.m */,
+				D5C382F8206D0F54000F77F8 /* ZLMyEventCheckCell.h */,
+				D5C382F9206D0F54000F77F8 /* ZLMyEventCheckCell.m */,
 			);
 			path = ZLEventViewCell;
 			sourceTree = "<group>";
@@ -7052,6 +7135,8 @@
 		D5C0B2B72068E8BD00E88716 /* ZLTaskManageModel */ = {
 			isa = PBXGroup;
 			children = (
+				D5C382C2206C917D000F77F8 /* ZLTaskCheckModel */,
+				D5C382B7206C7AEE000F77F8 /* ZLTaskAlreadyModel */,
 				D5902A3E206B6729002721FB /* ZLTaskWaitModel */,
 				D5902A3D206B6702002721FB /* ZLTaskDownModel */,
 				D5A5B1BA2069DDDA00387451 /* ZLTaskInfoDetailModel.h */,
@@ -7068,6 +7153,66 @@
 				D5A5B1D4206A193B00387451 /* ZLTaskRiverTaskDetailListModel.m */,
 			);
 			path = ZLTaskManageModel;
+			sourceTree = "<group>";
+		};
+		D5C382B7206C7AEE000F77F8 /* ZLTaskAlreadyModel */ = {
+			isa = PBXGroup;
+			children = (
+				D5C382B8206C7B19000F77F8 /* ZLTaskAlreadyDataModel.h */,
+				D5C382B9206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m */,
+				D5C382BD206C7C1E000F77F8 /* ZLTaskAlreadyModel.h */,
+				D5C382BE206C7C1E000F77F8 /* ZLTaskAlreadyModel.m */,
+			);
+			path = ZLTaskAlreadyModel;
+			sourceTree = "<group>";
+		};
+		D5C382C2206C917D000F77F8 /* ZLTaskCheckModel */ = {
+			isa = PBXGroup;
+			children = (
+				D5C382C3206C91A6000F77F8 /* ZLTaskCheckModel.h */,
+				D5C382C4206C91A6000F77F8 /* ZLTaskCheckModel.m */,
+				D5C382C8206C91C6000F77F8 /* ZLTaskCheckDataModel.h */,
+				D5C382C9206C91C6000F77F8 /* ZLTaskCheckDataModel.m */,
+			);
+			path = ZLTaskCheckModel;
+			sourceTree = "<group>";
+		};
+		D5C382D7206CCB72000F77F8 /* ZLEventManagerService(事件管理) */ = {
+			isa = PBXGroup;
+			children = (
+				D5C382D8206CCBB7000F77F8 /* ZLEventManagerReportService.h */,
+				D5C382D9206CCBB7000F77F8 /* ZLEventManagerReportService.m */,
+				D5C382E9206CDC28000F77F8 /* ZLEventManagerWaitService.h */,
+				D5C382EA206CDC28000F77F8 /* ZLEventManagerWaitService.m */,
+				D5C382EE206D027D000F77F8 /* ZLEventManagerAlreadyService.h */,
+				D5C382EF206D027E000F77F8 /* ZLEventManagerAlreadyService.m */,
+				D5C382F3206D06A9000F77F8 /* ZLEventManagerCheckService.h */,
+				D5C382F4206D06A9000F77F8 /* ZLEventManagerCheckService.m */,
+				D5C382FD206D1A4B000F77F8 /* ZLEventManagerDetailService.h */,
+				D5C382FE206D1A4B000F77F8 /* ZLEventManagerDetailService.m */,
+			);
+			path = "ZLEventManagerService(事件管理)";
+			sourceTree = "<group>";
+		};
+		D5C382DD206CD156000F77F8 /* ZLEventManageModel */ = {
+			isa = PBXGroup;
+			children = (
+				D5C382DE206CD16A000F77F8 /* ZLEventReportModel */,
+			);
+			path = ZLEventManageModel;
+			sourceTree = "<group>";
+		};
+		D5C382DE206CD16A000F77F8 /* ZLEventReportModel */ = {
+			isa = PBXGroup;
+			children = (
+				D5C382DF206CD1A5000F77F8 /* ZLEventManagerReportDataModel.h */,
+				D5C382E0206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m */,
+				D5C382E4206CD1FD000F77F8 /* ZLEventManagerReportModel.h */,
+				D5C382E5206CD1FD000F77F8 /* ZLEventManagerReportModel.m */,
+				D5C3830C206D2947000F77F8 /* ZLEventDetailDataModel.h */,
+				D5C3830D206D2947000F77F8 /* ZLEventDetailDataModel.m */,
+			);
+			path = ZLEventReportModel;
 			sourceTree = "<group>";
 		};
 		D5D3FB4E1FCFA65200C509F5 /* MapManager */ = {
@@ -7915,6 +8060,7 @@
 				D51D3E081F69398900CA0903 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				D5B35DD2205CF95000369469 /* UITextView+ZWPlaceHolder.m in Sources */,
 				D51D3DC11F69398900CA0903 /* SYSafeCategory.m in Sources */,
+				D5C382C5206C91A6000F77F8 /* ZLTaskCheckModel.m in Sources */,
 				D582632B204E422D00359BEF /* ZLRiverInfoQuestionVC.m in Sources */,
 				D51D858C20454FFE007E5702 /* ZLPolicyRiverCategoryView.m in Sources */,
 				D57049621FD7D81000D0EE99 /* ZLGaodeDownTaskViewController.m in Sources */,
@@ -7957,7 +8103,6 @@
 				D5866BDC1F7342F400225268 /* MYColorBackView.m in Sources */,
 				D51D3DB31F69398900CA0903 /* NSURL+QueryDictionary.m in Sources */,
 				D51D3E021F69398900CA0903 /* UILabel+AutomaticWriting.m in Sources */,
-				D58814CB205FA48D0086FE4C /* ZLUploadFileDataModel.m in Sources */,
 				D51D3DA71F69398900CA0903 /* NSString+RegexCategory.m in Sources */,
 				D51D3E0B1F69398900CA0903 /* UINavigationController+StackManager.m in Sources */,
 				D51D40041F69399000CA0903 /* ZLLoginViewController.m in Sources */,
@@ -7971,6 +8116,7 @@
 				D51D3DD71F69398900CA0903 /* UIButton+BackgroundColor.m in Sources */,
 				D570495F1FD7D5FF00D0EE99 /* ZLGaodeReportBottomView.m in Sources */,
 				D53C1FDC1FFB5D9B00D2BCA3 /* ZLEventManageTableViewCell.m in Sources */,
+				D5C382BA206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m in Sources */,
 				D577876B205BD6AF005E39F4 /* ZLRiverPeopleLowerModel.m in Sources */,
 				D5D3FB641FCFDE6400C509F5 /* ZLAppChangeVersionService.m in Sources */,
 				D51D3E041F69398900CA0903 /* UILabel+ESAdjustableLabel.m in Sources */,
@@ -7993,6 +8139,7 @@
 				D582635A204E865400359BEF /* ZLOverSeeTableViewCell.m in Sources */,
 				D5C0B2C920690A9100E88716 /* ZLGetUserListByTaskNormalService.m in Sources */,
 				D58204002047D1C400B37340 /* ZLPolicyFiveModel.m in Sources */,
+				D5C382B4206C777A000F77F8 /* ZLMyTaskAlreadyCell.m in Sources */,
 				D5C023B520567FBA0049BCDF /* UIImage+ACGif.m in Sources */,
 				D51D3D951F69398900CA0903 /* NSObject+EasyCopy.m in Sources */,
 				D51D3D6C1F69398900CA0903 /* NSBundle+AppIcon.m in Sources */,
@@ -8000,11 +8147,13 @@
 				D51D3DB41F69398900CA0903 /* NSURLConnection+SelfSigned.m in Sources */,
 				D577873D205B7161005E39F4 /* ZLRiverBaseInfoDataModel.m in Sources */,
 				D552B22E1F6C06CC00063AA5 /* ZLLoginService.m in Sources */,
+				D5C382E1206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m in Sources */,
 				D5A1660C20468DB7008C810E /* ZLPolicyAllRiverAreaModel.m in Sources */,
 				D5866BE51F73459700225268 /* ZLBaiduReportView.m in Sources */,
 				D5457A212043D81D00D29169 /* ZLDayNotifactionViewController.m in Sources */,
 				D51D3E501F69398900CA0903 /* UIView+ZLEaseBlankPage.m in Sources */,
 				D51D3E171F69398900CA0903 /* UIScrollView+Pages.m in Sources */,
+				D5C382D4206CC124000F77F8 /* ZLUploadImagesModel.m in Sources */,
 				D549CD0D1F72778A0038FF1E /* ZLBaiduAddOrSubView.m in Sources */,
 				D51D3D851F69398900CA0903 /* NSFileManager+Paths.m in Sources */,
 				D51D3DCC1F69398900CA0903 /* UIAlertView+Block.m in Sources */,
@@ -8028,7 +8177,6 @@
 				D537D95A20637F0F00392FF4 /* ZLOverSeeSelectInfoView.m in Sources */,
 				D5A2A905206793DC00064F47 /* ZLMyTaskWaitCell.m in Sources */,
 				D50CD4212048027400F0F0AA /* ZLNewsAndNotifactionVC.m in Sources */,
-				D58814C6205FA4740086FE4C /* ZLUploadFileModel.m in Sources */,
 				D58BE1F52058BDA6000194AC /* ZLNewGaodeReportView.m in Sources */,
 				D51D3E591F69398900CA0903 /* TAAbstractDotView.m in Sources */,
 				D51D3D7F1F69398900CA0903 /* NSDictionary+Merge.m in Sources */,
@@ -8054,7 +8202,6 @@
 				D5B35DDD205D043B00369469 /* ZLNewTaskDownVC.m in Sources */,
 				D5388302206358FA00F4AA17 /* ZLGetSuperviseTaskListService.m in Sources */,
 				D5C023C420567FBA0049BCDF /* ACMediaModel.m in Sources */,
-				D59BBA27205A08CA00B3DB4C /* ZLNewFileUpLoadService.m in Sources */,
 				D51D3DBB1F69398900CA0903 /* MKMapView+ZoomLevel.m in Sources */,
 				D58653DC1FD51A0B0022BB34 /* ZLGaodeViewController.m in Sources */,
 				D5AC3DFE1FF1F50600BDF458 /* ZLRiverRecordCell.m in Sources */,
@@ -8108,6 +8255,7 @@
 				D52A6B9C1F6A08C600CD24E8 /* ZLMonitorMainViewController.m in Sources */,
 				D59DF1A52068CF8E0044A778 /* ZLAddAndSentIncidentService.m in Sources */,
 				D51D3E051F69398900CA0903 /* UILabel+SuggestSize.m in Sources */,
+				D5C382BF206C7C1E000F77F8 /* ZLTaskAlreadyModel.m in Sources */,
 				D50CD4142047F69A00F0F0AA /* BaseViewController.m in Sources */,
 				D585CD761FE7AF6900802DBB /* YTKKeyValueStore.m in Sources */,
 				D51D40CE1F6939AE00CA0903 /* MJRefreshGifHeader.m in Sources */,
@@ -8115,6 +8263,7 @@
 				D51D3DFF1F69398900CA0903 /* UIImageView+GeometryConversion.m in Sources */,
 				D5A166262046C174008C810E /* ZLRiverPeoplePhoneView.m in Sources */,
 				D58917082045375A0064A945 /* ZLMyHeadView.m in Sources */,
+				D5C38304206D1FA0000F77F8 /* ZLEventInfoCell.m in Sources */,
 				D51D40C51F6939AE00CA0903 /* MJRefreshComponent.m in Sources */,
 				D5866BEE1F73A35800225268 /* ZLBaiduImportReportViewController.m in Sources */,
 				D51D3D941F69398900CA0903 /* NSObject+Blocks.m in Sources */,
@@ -8142,6 +8291,7 @@
 				D5F9193C20523D8C005FCB23 /* ZLRiverInfoBaseChangeNoteTableViewCell.m in Sources */,
 				D5B35DF1205D108500369469 /* ZLQueryEventManageView.m in Sources */,
 				D58B0BEE204D320B00DA5151 /* ZLEventBaseVC.m in Sources */,
+				D5C3830E206D2947000F77F8 /* ZLEventDetailDataModel.m in Sources */,
 				D51D3D9E1F69398900CA0903 /* NSString+Base64.m in Sources */,
 				D5A1660720467FF0008C810E /* ZLPolicyALlRiverCollectionViewCell.m in Sources */,
 				D51D3E151F69398900CA0903 /* UIScrollView+APParallaxHeader.m in Sources */,
@@ -8150,6 +8300,7 @@
 				D5A6E68E204A7DAF00D1582E /* ZLTaskAdviseVC.m in Sources */,
 				D51D3E301F69398900CA0903 /* UIView+Screenshot.m in Sources */,
 				D51D3E251F69398900CA0903 /* UIView+Animation.m in Sources */,
+				D5C382EB206CDC28000F77F8 /* ZLEventManagerWaitService.m in Sources */,
 				D5778756205BCB1F005E39F4 /* ZLGetRiverManageByRiverIdService.m in Sources */,
 				D52A6B991F6A08AA00CD24E8 /* ZLHomeMainViewController.m in Sources */,
 				D51428841F8F508F005E2952 /* ZLContinueEventReportService.m in Sources */,
@@ -8171,6 +8322,7 @@
 				D51D3E361F69398900CA0903 /* UIViewController+BackButtonItemTitle.m in Sources */,
 				D51D3DAB1F69398900CA0903 /* NSString+Size.m in Sources */,
 				D5D575ED20628B03000043F2 /* ZLAssignTaskDetailService.m in Sources */,
+				D5C382CF206CBA30000F77F8 /* ZLNewFilesUpLoadService.m in Sources */,
 				D5902A50206BC4CF002721FB /* ZLUpdateTaskService.m in Sources */,
 				D51D3DF81F69398900CA0903 /* UIImage+RemoteSize.m in Sources */,
 				D51D40D31F6939AE00CA0903 /* UIScrollView+MJExtension.m in Sources */,
@@ -8192,6 +8344,7 @@
 				D5826346204E744700359BEF /* ZLQueryAssignedView.m in Sources */,
 				D51D40D21F6939AE00CA0903 /* MJRefreshConst.m in Sources */,
 				D563DBB01F9F684D0010DB72 /* ZLHomeAddButtonMaskView.m in Sources */,
+				D5C382FF206D1A4B000F77F8 /* ZLEventManagerDetailService.m in Sources */,
 				D51D3DDC1F69398900CA0903 /* UIButton+MiddleAligning.m in Sources */,
 				D51D3E131F69398900CA0903 /* UIScreen+Frame.m in Sources */,
 				D5866BEB1F73A11600225268 /* ZLBaiduiImportanceViewController.mm in Sources */,
@@ -8200,6 +8353,7 @@
 				D59BBA6C205A809200B3DB4C /* ZLNewListDataModel.m in Sources */,
 				D5457A2B2043D9FF00D29169 /* ZLHomeLoopTopView.m in Sources */,
 				D5A165F720467529008C810E /* ZLPolicyCheckAllRiverVC.m in Sources */,
+				D5C382F0206D027E000F77F8 /* ZLEventManagerAlreadyService.m in Sources */,
 				D552B2051F6BD62B00063AA5 /* ZLLoginView.m in Sources */,
 				D51D3D6A1F69398900CA0903 /* NSArray+Block.m in Sources */,
 				D537D964206388AD00392FF4 /* ZLSuperviseDataModel.m in Sources */,
@@ -8266,6 +8420,7 @@
 				D51D3D831F69398900CA0903 /* NSException+Trace.m in Sources */,
 				D5A6E6C6204AF2A000D1582E /* HanyuPinyinOutputFormat.m in Sources */,
 				D5891703204536A70064A945 /* ZLMyVC.m in Sources */,
+				D5C382FA206D0F54000F77F8 /* ZLMyEventCheckCell.m in Sources */,
 				D51D3E511F69398900CA0903 /* ZLEaseBlankPageView.m in Sources */,
 				D5902A46206B67BD002721FB /* ZLTaskWaitModel.m in Sources */,
 				D5A6E6D2204AF2A000D1582E /* PinYinForObjc.m in Sources */,
@@ -8278,6 +8433,7 @@
 				D51ACED62048E357006C283D /* ZLQueryOnlyTimeView.m in Sources */,
 				D5C0A2C32056571D00C2DB71 /* ZLLoginTopView.m in Sources */,
 				D5778733205B7100005E39F4 /* ZLPublicityBrandModel.m in Sources */,
+				D5C382CA206C91C6000F77F8 /* ZLTaskCheckDataModel.m in Sources */,
 				D55DB04C1F70A703001E1364 /* UIViewController+LeftSlide.m in Sources */,
 				D5A6E69F204AF1F100D1582E /* ZLAddressBookVC.m in Sources */,
 				D58814D5205FDE5D0086FE4C /* ZLUtility.m in Sources */,
@@ -8308,6 +8464,7 @@
 				D51D3D7C1F69398900CA0903 /* NSDateFormatter+Make.m in Sources */,
 				D55093FB2060E4FE009DD61E /* ZLGetRiverPatrolListByUserCodeService.m in Sources */,
 				D558F3021F7A31EB0076A0E3 /* ZLBaiduDownTaskViewController.m in Sources */,
+				D5C382E6206CD1FD000F77F8 /* ZLEventManagerReportModel.m in Sources */,
 				D537D98720639AF600392FF4 /* ZLSuperviseArrayModel.m in Sources */,
 				D51D3D891F69398900CA0903 /* NSInvocation+Block.m in Sources */,
 				D5A6E6D8204AF2A000D1582E /* UIAlertController+HCAdd.m in Sources */,
@@ -8341,6 +8498,7 @@
 				D53C1FE11FFB5EF100D2BCA3 /* ZLMyEventCell.m in Sources */,
 				D550942520610110009DD61E /* ZLRiverRecordAllPointModel.m in Sources */,
 				D58204052047F17900B37340 /* ZLHomeMainVC.m in Sources */,
+				D5C382F5206D06A9000F77F8 /* ZLEventManagerCheckService.m in Sources */,
 				D51D3E541F69398900CA0903 /* MMPopupItem.m in Sources */,
 				D58814B7205F93DB0086FE4C /* ZLRiverAddOutletVC.m in Sources */,
 				D537D9782063940D00392FF4 /* ZLSuperviseDetailVC.m in Sources */,
@@ -8361,6 +8519,7 @@
 				D58511501FF0CF81001B8165 /* ZLRiverRecordTopView.m in Sources */,
 				D51D3E221F69398900CA0903 /* UITextView+PinchZoom.m in Sources */,
 				D58511551FF0E480001B8165 /* ZLRiverThreeButton.m in Sources */,
+				D5C38309206D2099000F77F8 /* ZLEventDealDetailCell.m in Sources */,
 				D51D3DC81F69398900CA0903 /* CALayer+UIColor.m in Sources */,
 				D51D3D9D1F69398900CA0903 /* NSMutableString+Ruby.m in Sources */,
 				D51D3E5C1F69398900CA0903 /* TAPageControl.m in Sources */,
@@ -8463,6 +8622,7 @@
 				D52A6B961F6A085E00CD24E8 /* ZLDayWorkMainViewController.m in Sources */,
 				D5873D761FF33234005D9150 /* UILabel+ZLLeftAndRight.m in Sources */,
 				D51D3D811F69398900CA0903 /* NSDictionary+URL.m in Sources */,
+				D5C382DA206CCBB7000F77F8 /* ZLEventManagerReportService.m in Sources */,
 				D51D3D601F69398900CA0903 /* NSFetchRequest+Extensions.m in Sources */,
 				D51D3E481F69398900CA0903 /* ZLCheckRegilarExpression.swift in Sources */,
 				D51D3DBA1F69398900CA0903 /* MKMapView+MoveLogo.m in Sources */,
@@ -8598,6 +8758,7 @@
 				D57667FC1FEB9B3D00470A3F /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				D5B35DD3205CF95000369469 /* UITextView+ZWPlaceHolder.m in Sources */,
 				D57667FD1FEB9B3D00470A3F /* SYSafeCategory.m in Sources */,
+				D5C382C6206C91A6000F77F8 /* ZLTaskCheckModel.m in Sources */,
 				D582632C204E422D00359BEF /* ZLRiverInfoQuestionVC.m in Sources */,
 				D51D858D20454FFE007E5702 /* ZLPolicyRiverCategoryView.m in Sources */,
 				D57667FE1FEB9B3D00470A3F /* ZLGaodeDownTaskViewController.m in Sources */,
@@ -8640,7 +8801,6 @@
 				D57668111FEB9B3D00470A3F /* MYColorBackView.m in Sources */,
 				D57668121FEB9B3D00470A3F /* NSURL+QueryDictionary.m in Sources */,
 				D57668131FEB9B3D00470A3F /* UILabel+AutomaticWriting.m in Sources */,
-				D58814CC205FA48D0086FE4C /* ZLUploadFileDataModel.m in Sources */,
 				D57668141FEB9B3D00470A3F /* NSString+RegexCategory.m in Sources */,
 				D57668151FEB9B3D00470A3F /* UINavigationController+StackManager.m in Sources */,
 				D57668161FEB9B3D00470A3F /* ZLLoginViewController.m in Sources */,
@@ -8654,6 +8814,7 @@
 				D576681A1FEB9B3D00470A3F /* UIButton+BackgroundColor.m in Sources */,
 				D576681B1FEB9B3D00470A3F /* ZLGaodeReportBottomView.m in Sources */,
 				D53C1FDD1FFB5D9B00D2BCA3 /* ZLEventManageTableViewCell.m in Sources */,
+				D5C382BB206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m in Sources */,
 				D577876C205BD6AF005E39F4 /* ZLRiverPeopleLowerModel.m in Sources */,
 				D576681C1FEB9B3D00470A3F /* ZLAppChangeVersionService.m in Sources */,
 				D576681D1FEB9B3D00470A3F /* UILabel+ESAdjustableLabel.m in Sources */,
@@ -8676,6 +8837,7 @@
 				D582635B204E865400359BEF /* ZLOverSeeTableViewCell.m in Sources */,
 				D5C0B2CA20690A9100E88716 /* ZLGetUserListByTaskNormalService.m in Sources */,
 				D58204012047D1C400B37340 /* ZLPolicyFiveModel.m in Sources */,
+				D5C382B5206C777A000F77F8 /* ZLMyTaskAlreadyCell.m in Sources */,
 				D5C023B620567FBA0049BCDF /* UIImage+ACGif.m in Sources */,
 				D57668241FEB9B3D00470A3F /* NSObject+EasyCopy.m in Sources */,
 				D57668251FEB9B3D00470A3F /* NSBundle+AppIcon.m in Sources */,
@@ -8683,11 +8845,13 @@
 				D57668281FEB9B3D00470A3F /* NSURLConnection+SelfSigned.m in Sources */,
 				D577873E205B7161005E39F4 /* ZLRiverBaseInfoDataModel.m in Sources */,
 				D57668291FEB9B3D00470A3F /* ZLLoginService.m in Sources */,
+				D5C382E2206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m in Sources */,
 				D5A1660D20468DB7008C810E /* ZLPolicyAllRiverAreaModel.m in Sources */,
 				D576682A1FEB9B3D00470A3F /* ZLBaiduReportView.m in Sources */,
 				D5457A222043D81D00D29169 /* ZLDayNotifactionViewController.m in Sources */,
 				D576682B1FEB9B3D00470A3F /* UIView+ZLEaseBlankPage.m in Sources */,
 				D576682C1FEB9B3D00470A3F /* UIScrollView+Pages.m in Sources */,
+				D5C382D5206CC124000F77F8 /* ZLUploadImagesModel.m in Sources */,
 				D576682D1FEB9B3D00470A3F /* ZLBaiduAddOrSubView.m in Sources */,
 				D576682F1FEB9B3D00470A3F /* NSFileManager+Paths.m in Sources */,
 				D57668301FEB9B3D00470A3F /* UIAlertView+Block.m in Sources */,
@@ -8711,7 +8875,6 @@
 				D537D95B20637F0F00392FF4 /* ZLOverSeeSelectInfoView.m in Sources */,
 				D5A2A906206793DC00064F47 /* ZLMyTaskWaitCell.m in Sources */,
 				D50CD4222048027400F0F0AA /* ZLNewsAndNotifactionVC.m in Sources */,
-				D58814C7205FA4740086FE4C /* ZLUploadFileModel.m in Sources */,
 				D58BE1F62058BDA6000194AC /* ZLNewGaodeReportView.m in Sources */,
 				D576683C1FEB9B3D00470A3F /* TAAbstractDotView.m in Sources */,
 				D576683D1FEB9B3D00470A3F /* NSDictionary+Merge.m in Sources */,
@@ -8737,7 +8900,6 @@
 				D5B35DDE205D043B00369469 /* ZLNewTaskDownVC.m in Sources */,
 				D5388303206358FA00F4AA17 /* ZLGetSuperviseTaskListService.m in Sources */,
 				D5C023C520567FBA0049BCDF /* ACMediaModel.m in Sources */,
-				D59BBA28205A08CA00B3DB4C /* ZLNewFileUpLoadService.m in Sources */,
 				D57668451FEB9B3D00470A3F /* MKMapView+ZoomLevel.m in Sources */,
 				D57668461FEB9B3D00470A3F /* ZLGaodeViewController.m in Sources */,
 				D5AC3DFF1FF1F50600BDF458 /* ZLRiverRecordCell.m in Sources */,
@@ -8791,6 +8953,7 @@
 				D576685E1FEB9B3D00470A3F /* ZLMonitorMainViewController.m in Sources */,
 				D59DF1A62068CF8E0044A778 /* ZLAddAndSentIncidentService.m in Sources */,
 				D576685F1FEB9B3D00470A3F /* UILabel+SuggestSize.m in Sources */,
+				D5C382C0206C7C1E000F77F8 /* ZLTaskAlreadyModel.m in Sources */,
 				D50CD4152047F69A00F0F0AA /* BaseViewController.m in Sources */,
 				D57668601FEB9B3D00470A3F /* YTKKeyValueStore.m in Sources */,
 				D57668621FEB9B3D00470A3F /* MJRefreshGifHeader.m in Sources */,
@@ -8798,6 +8961,7 @@
 				D57668641FEB9B3D00470A3F /* UIImageView+GeometryConversion.m in Sources */,
 				D5A166272046C174008C810E /* ZLRiverPeoplePhoneView.m in Sources */,
 				D58917092045375A0064A945 /* ZLMyHeadView.m in Sources */,
+				D5C38305206D1FA0000F77F8 /* ZLEventInfoCell.m in Sources */,
 				D57668651FEB9B3D00470A3F /* MJRefreshComponent.m in Sources */,
 				D57668661FEB9B3D00470A3F /* ZLBaiduImportReportViewController.m in Sources */,
 				D57668671FEB9B3D00470A3F /* NSObject+Blocks.m in Sources */,
@@ -8825,6 +8989,7 @@
 				D5F9193D20523D8C005FCB23 /* ZLRiverInfoBaseChangeNoteTableViewCell.m in Sources */,
 				D5B35DF2205D108500369469 /* ZLQueryEventManageView.m in Sources */,
 				D58B0BEF204D320B00DA5151 /* ZLEventBaseVC.m in Sources */,
+				D5C3830F206D2947000F77F8 /* ZLEventDetailDataModel.m in Sources */,
 				D57668761FEB9B3D00470A3F /* NSString+Base64.m in Sources */,
 				D5A1660820467FF0008C810E /* ZLPolicyALlRiverCollectionViewCell.m in Sources */,
 				D57668771FEB9B3D00470A3F /* UIScrollView+APParallaxHeader.m in Sources */,
@@ -8833,6 +8998,7 @@
 				D5A6E68F204A7DAF00D1582E /* ZLTaskAdviseVC.m in Sources */,
 				D57668781FEB9B3D00470A3F /* UIView+Screenshot.m in Sources */,
 				D57668791FEB9B3D00470A3F /* UIView+Animation.m in Sources */,
+				D5C382EC206CDC28000F77F8 /* ZLEventManagerWaitService.m in Sources */,
 				D5778757205BCB1F005E39F4 /* ZLGetRiverManageByRiverIdService.m in Sources */,
 				D576687B1FEB9B3D00470A3F /* ZLHomeMainViewController.m in Sources */,
 				D576687C1FEB9B3D00470A3F /* ZLContinueEventReportService.m in Sources */,
@@ -8854,6 +9020,7 @@
 				D57668851FEB9B3D00470A3F /* UIViewController+BackButtonItemTitle.m in Sources */,
 				D57668861FEB9B3D00470A3F /* NSString+Size.m in Sources */,
 				D5D575EE20628B03000043F2 /* ZLAssignTaskDetailService.m in Sources */,
+				D5C382D0206CBA30000F77F8 /* ZLNewFilesUpLoadService.m in Sources */,
 				D5902A51206BC4CF002721FB /* ZLUpdateTaskService.m in Sources */,
 				D57668871FEB9B3D00470A3F /* UIImage+RemoteSize.m in Sources */,
 				D57668881FEB9B3D00470A3F /* UIScrollView+MJExtension.m in Sources */,
@@ -8875,6 +9042,7 @@
 				D5826347204E744700359BEF /* ZLQueryAssignedView.m in Sources */,
 				D57668941FEB9B3D00470A3F /* MJRefreshConst.m in Sources */,
 				D57668951FEB9B3D00470A3F /* ZLHomeAddButtonMaskView.m in Sources */,
+				D5C38300206D1A4B000F77F8 /* ZLEventManagerDetailService.m in Sources */,
 				D57668961FEB9B3D00470A3F /* UIButton+MiddleAligning.m in Sources */,
 				D57668971FEB9B3D00470A3F /* UIScreen+Frame.m in Sources */,
 				D57668981FEB9B3D00470A3F /* ZLBaiduiImportanceViewController.mm in Sources */,
@@ -8883,6 +9051,7 @@
 				D59BBA6D205A809200B3DB4C /* ZLNewListDataModel.m in Sources */,
 				D5457A2C2043D9FF00D29169 /* ZLHomeLoopTopView.m in Sources */,
 				D5A165F820467529008C810E /* ZLPolicyCheckAllRiverVC.m in Sources */,
+				D5C382F1206D027E000F77F8 /* ZLEventManagerAlreadyService.m in Sources */,
 				D576689A1FEB9B3D00470A3F /* ZLLoginView.m in Sources */,
 				D576689B1FEB9B3D00470A3F /* NSArray+Block.m in Sources */,
 				D537D965206388AD00392FF4 /* ZLSuperviseDataModel.m in Sources */,
@@ -8949,6 +9118,7 @@
 				D57668C61FEB9B3D00470A3F /* NSException+Trace.m in Sources */,
 				D5A6E6C7204AF2A000D1582E /* HanyuPinyinOutputFormat.m in Sources */,
 				D5891704204536A70064A945 /* ZLMyVC.m in Sources */,
+				D5C382FB206D0F54000F77F8 /* ZLMyEventCheckCell.m in Sources */,
 				D57668C71FEB9B3D00470A3F /* ZLEaseBlankPageView.m in Sources */,
 				D5902A47206B67BD002721FB /* ZLTaskWaitModel.m in Sources */,
 				D5A6E6D3204AF2A000D1582E /* PinYinForObjc.m in Sources */,
@@ -8961,6 +9131,7 @@
 				D51ACED72048E357006C283D /* ZLQueryOnlyTimeView.m in Sources */,
 				D5C0A2C42056571D00C2DB71 /* ZLLoginTopView.m in Sources */,
 				D5778734205B7100005E39F4 /* ZLPublicityBrandModel.m in Sources */,
+				D5C382CB206C91C6000F77F8 /* ZLTaskCheckDataModel.m in Sources */,
 				D57668CB1FEB9B3D00470A3F /* UIViewController+LeftSlide.m in Sources */,
 				D5A6E6A0204AF1F100D1582E /* ZLAddressBookVC.m in Sources */,
 				D58814D6205FDE5D0086FE4C /* ZLUtility.m in Sources */,
@@ -8991,6 +9162,7 @@
 				D57668D91FEB9B3D00470A3F /* NSDateFormatter+Make.m in Sources */,
 				D55093FC2060E4FE009DD61E /* ZLGetRiverPatrolListByUserCodeService.m in Sources */,
 				D57668DA1FEB9B3D00470A3F /* ZLBaiduDownTaskViewController.m in Sources */,
+				D5C382E7206CD1FD000F77F8 /* ZLEventManagerReportModel.m in Sources */,
 				D537D98820639AF600392FF4 /* ZLSuperviseArrayModel.m in Sources */,
 				D57668DB1FEB9B3D00470A3F /* NSInvocation+Block.m in Sources */,
 				D5A6E6D9204AF2A000D1582E /* UIAlertController+HCAdd.m in Sources */,
@@ -9024,6 +9196,7 @@
 				D53C1FE21FFB5EF100D2BCA3 /* ZLMyEventCell.m in Sources */,
 				D550942620610110009DD61E /* ZLRiverRecordAllPointModel.m in Sources */,
 				D58204062047F17900B37340 /* ZLHomeMainVC.m in Sources */,
+				D5C382F6206D06A9000F77F8 /* ZLEventManagerCheckService.m in Sources */,
 				D57668EF1FEB9B3D00470A3F /* MMPopupItem.m in Sources */,
 				D58814B8205F93DB0086FE4C /* ZLRiverAddOutletVC.m in Sources */,
 				D537D9792063940D00392FF4 /* ZLSuperviseDetailVC.m in Sources */,
@@ -9044,6 +9217,7 @@
 				D58511511FF0CF81001B8165 /* ZLRiverRecordTopView.m in Sources */,
 				D57668FC1FEB9B3D00470A3F /* UITextView+PinchZoom.m in Sources */,
 				D58511561FF0E480001B8165 /* ZLRiverThreeButton.m in Sources */,
+				D5C3830A206D2099000F77F8 /* ZLEventDealDetailCell.m in Sources */,
 				D57668FE1FEB9B3D00470A3F /* CALayer+UIColor.m in Sources */,
 				D57668FF1FEB9B3D00470A3F /* NSMutableString+Ruby.m in Sources */,
 				D57669001FEB9B3D00470A3F /* TAPageControl.m in Sources */,
@@ -9146,6 +9320,7 @@
 				D576693F1FEB9B3D00470A3F /* ZLDayWorkMainViewController.m in Sources */,
 				D5873D771FF33234005D9150 /* UILabel+ZLLeftAndRight.m in Sources */,
 				D57669401FEB9B3D00470A3F /* NSDictionary+URL.m in Sources */,
+				D5C382DB206CCBB7000F77F8 /* ZLEventManagerReportService.m in Sources */,
 				D57669411FEB9B3D00470A3F /* NSFetchRequest+Extensions.m in Sources */,
 				D57669421FEB9B3D00470A3F /* ZLCheckRegilarExpression.swift in Sources */,
 				D57669431FEB9B3D00470A3F /* MKMapView+MoveLogo.m in Sources */,
@@ -9265,6 +9440,7 @@
 				D5850F661FF08CC8001B8165 /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				D5B35DD4205CF95000369469 /* UITextView+ZWPlaceHolder.m in Sources */,
 				D5850F671FF08CC8001B8165 /* SYSafeCategory.m in Sources */,
+				D5C382C7206C91A6000F77F8 /* ZLTaskCheckModel.m in Sources */,
 				D582632D204E422D00359BEF /* ZLRiverInfoQuestionVC.m in Sources */,
 				D51D858E20454FFE007E5702 /* ZLPolicyRiverCategoryView.m in Sources */,
 				D5850F681FF08CC8001B8165 /* ZLGaodeDownTaskViewController.m in Sources */,
@@ -9307,7 +9483,6 @@
 				D5850F7B1FF08CC8001B8165 /* MYColorBackView.m in Sources */,
 				D5850F7C1FF08CC8001B8165 /* NSURL+QueryDictionary.m in Sources */,
 				D5850F7D1FF08CC8001B8165 /* UILabel+AutomaticWriting.m in Sources */,
-				D58814CD205FA48D0086FE4C /* ZLUploadFileDataModel.m in Sources */,
 				D5850F7E1FF08CC8001B8165 /* NSString+RegexCategory.m in Sources */,
 				D5850F7F1FF08CC8001B8165 /* UINavigationController+StackManager.m in Sources */,
 				D5850F801FF08CC8001B8165 /* ZLLoginViewController.m in Sources */,
@@ -9321,6 +9496,7 @@
 				D5850F841FF08CC8001B8165 /* UIButton+BackgroundColor.m in Sources */,
 				D5850F851FF08CC8001B8165 /* ZLGaodeReportBottomView.m in Sources */,
 				D53C1FDE1FFB5D9B00D2BCA3 /* ZLEventManageTableViewCell.m in Sources */,
+				D5C382BC206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m in Sources */,
 				D577876D205BD6AF005E39F4 /* ZLRiverPeopleLowerModel.m in Sources */,
 				D5850F861FF08CC8001B8165 /* ZLAppChangeVersionService.m in Sources */,
 				D5850F871FF08CC8001B8165 /* UILabel+ESAdjustableLabel.m in Sources */,
@@ -9343,6 +9519,7 @@
 				D582635C204E865400359BEF /* ZLOverSeeTableViewCell.m in Sources */,
 				D5C0B2CB20690A9100E88716 /* ZLGetUserListByTaskNormalService.m in Sources */,
 				D58204022047D1C400B37340 /* ZLPolicyFiveModel.m in Sources */,
+				D5C382B6206C777A000F77F8 /* ZLMyTaskAlreadyCell.m in Sources */,
 				D5C023B720567FBA0049BCDF /* UIImage+ACGif.m in Sources */,
 				D5850F8E1FF08CC8001B8165 /* NSObject+EasyCopy.m in Sources */,
 				D5850F8F1FF08CC8001B8165 /* NSBundle+AppIcon.m in Sources */,
@@ -9350,11 +9527,13 @@
 				D5850F921FF08CC8001B8165 /* NSURLConnection+SelfSigned.m in Sources */,
 				D577873F205B7161005E39F4 /* ZLRiverBaseInfoDataModel.m in Sources */,
 				D5850F931FF08CC8001B8165 /* ZLLoginService.m in Sources */,
+				D5C382E3206CD1A5000F77F8 /* ZLEventManagerReportDataModel.m in Sources */,
 				D5A1660E20468DB7008C810E /* ZLPolicyAllRiverAreaModel.m in Sources */,
 				D5850F941FF08CC8001B8165 /* ZLBaiduReportView.m in Sources */,
 				D5457A232043D81D00D29169 /* ZLDayNotifactionViewController.m in Sources */,
 				D5850F951FF08CC8001B8165 /* UIView+ZLEaseBlankPage.m in Sources */,
 				D5850F961FF08CC8001B8165 /* UIScrollView+Pages.m in Sources */,
+				D5C382D6206CC124000F77F8 /* ZLUploadImagesModel.m in Sources */,
 				D5850F971FF08CC8001B8165 /* ZLBaiduAddOrSubView.m in Sources */,
 				D5850F991FF08CC8001B8165 /* NSFileManager+Paths.m in Sources */,
 				D5850F9A1FF08CC8001B8165 /* UIAlertView+Block.m in Sources */,
@@ -9378,7 +9557,6 @@
 				D537D95C20637F0F00392FF4 /* ZLOverSeeSelectInfoView.m in Sources */,
 				D5A2A907206793DC00064F47 /* ZLMyTaskWaitCell.m in Sources */,
 				D50CD4232048027400F0F0AA /* ZLNewsAndNotifactionVC.m in Sources */,
-				D58814C8205FA4740086FE4C /* ZLUploadFileModel.m in Sources */,
 				D58BE1F72058BDA6000194AC /* ZLNewGaodeReportView.m in Sources */,
 				D5850FA61FF08CC8001B8165 /* TAAbstractDotView.m in Sources */,
 				D5850FA71FF08CC8001B8165 /* NSDictionary+Merge.m in Sources */,
@@ -9404,7 +9582,6 @@
 				D5B35DDF205D043B00369469 /* ZLNewTaskDownVC.m in Sources */,
 				D5388304206358FA00F4AA17 /* ZLGetSuperviseTaskListService.m in Sources */,
 				D5C023C620567FBA0049BCDF /* ACMediaModel.m in Sources */,
-				D59BBA29205A08CA00B3DB4C /* ZLNewFileUpLoadService.m in Sources */,
 				D5850FAF1FF08CC8001B8165 /* MKMapView+ZoomLevel.m in Sources */,
 				D5850FB01FF08CC8001B8165 /* ZLGaodeViewController.m in Sources */,
 				D5AC3E001FF1F50600BDF458 /* ZLRiverRecordCell.m in Sources */,
@@ -9458,6 +9635,7 @@
 				D5850FC81FF08CC8001B8165 /* ZLMonitorMainViewController.m in Sources */,
 				D59DF1A72068CF8E0044A778 /* ZLAddAndSentIncidentService.m in Sources */,
 				D5850FC91FF08CC8001B8165 /* UILabel+SuggestSize.m in Sources */,
+				D5C382C1206C7C1E000F77F8 /* ZLTaskAlreadyModel.m in Sources */,
 				D50CD4162047F69A00F0F0AA /* BaseViewController.m in Sources */,
 				D5850FCA1FF08CC8001B8165 /* YTKKeyValueStore.m in Sources */,
 				D5850FCC1FF08CC8001B8165 /* MJRefreshGifHeader.m in Sources */,
@@ -9465,6 +9643,7 @@
 				D5850FCE1FF08CC8001B8165 /* UIImageView+GeometryConversion.m in Sources */,
 				D5A166282046C174008C810E /* ZLRiverPeoplePhoneView.m in Sources */,
 				D589170A2045375A0064A945 /* ZLMyHeadView.m in Sources */,
+				D5C38306206D1FA0000F77F8 /* ZLEventInfoCell.m in Sources */,
 				D5850FCF1FF08CC8001B8165 /* MJRefreshComponent.m in Sources */,
 				D5850FD01FF08CC8001B8165 /* ZLBaiduImportReportViewController.m in Sources */,
 				D5850FD11FF08CC8001B8165 /* NSObject+Blocks.m in Sources */,
@@ -9492,6 +9671,7 @@
 				D5F9193E20523D8C005FCB23 /* ZLRiverInfoBaseChangeNoteTableViewCell.m in Sources */,
 				D5B35DF3205D108500369469 /* ZLQueryEventManageView.m in Sources */,
 				D58B0BF0204D320B00DA5151 /* ZLEventBaseVC.m in Sources */,
+				D5C38310206D2947000F77F8 /* ZLEventDetailDataModel.m in Sources */,
 				D5850FE01FF08CC8001B8165 /* NSString+Base64.m in Sources */,
 				D5A1660920467FF0008C810E /* ZLPolicyALlRiverCollectionViewCell.m in Sources */,
 				D5850FE11FF08CC8001B8165 /* UIScrollView+APParallaxHeader.m in Sources */,
@@ -9500,6 +9680,7 @@
 				D5A6E690204A7DAF00D1582E /* ZLTaskAdviseVC.m in Sources */,
 				D5850FE21FF08CC8001B8165 /* UIView+Screenshot.m in Sources */,
 				D5850FE31FF08CC8001B8165 /* UIView+Animation.m in Sources */,
+				D5C382ED206CDC28000F77F8 /* ZLEventManagerWaitService.m in Sources */,
 				D5778758205BCB1F005E39F4 /* ZLGetRiverManageByRiverIdService.m in Sources */,
 				D5850FE51FF08CC8001B8165 /* ZLHomeMainViewController.m in Sources */,
 				D5850FE61FF08CC8001B8165 /* ZLContinueEventReportService.m in Sources */,
@@ -9521,6 +9702,7 @@
 				D5850FEF1FF08CC8001B8165 /* UIViewController+BackButtonItemTitle.m in Sources */,
 				D5850FF01FF08CC8001B8165 /* NSString+Size.m in Sources */,
 				D5D575EF20628B03000043F2 /* ZLAssignTaskDetailService.m in Sources */,
+				D5C382D1206CBA30000F77F8 /* ZLNewFilesUpLoadService.m in Sources */,
 				D5902A52206BC4CF002721FB /* ZLUpdateTaskService.m in Sources */,
 				D5850FF11FF08CC8001B8165 /* UIImage+RemoteSize.m in Sources */,
 				D5850FF21FF08CC8001B8165 /* UIScrollView+MJExtension.m in Sources */,
@@ -9542,6 +9724,7 @@
 				D5826348204E744700359BEF /* ZLQueryAssignedView.m in Sources */,
 				D5850FFE1FF08CC8001B8165 /* MJRefreshConst.m in Sources */,
 				D5850FFF1FF08CC8001B8165 /* ZLHomeAddButtonMaskView.m in Sources */,
+				D5C38301206D1A4B000F77F8 /* ZLEventManagerDetailService.m in Sources */,
 				D58510001FF08CC8001B8165 /* UIButton+MiddleAligning.m in Sources */,
 				D58510011FF08CC8001B8165 /* UIScreen+Frame.m in Sources */,
 				D58510021FF08CC8001B8165 /* ZLBaiduiImportanceViewController.mm in Sources */,
@@ -9550,6 +9733,7 @@
 				D59BBA6E205A809200B3DB4C /* ZLNewListDataModel.m in Sources */,
 				D5457A2D2043D9FF00D29169 /* ZLHomeLoopTopView.m in Sources */,
 				D5A165F920467529008C810E /* ZLPolicyCheckAllRiverVC.m in Sources */,
+				D5C382F2206D027E000F77F8 /* ZLEventManagerAlreadyService.m in Sources */,
 				D58510041FF08CC8001B8165 /* ZLLoginView.m in Sources */,
 				D58510051FF08CC8001B8165 /* NSArray+Block.m in Sources */,
 				D537D966206388AD00392FF4 /* ZLSuperviseDataModel.m in Sources */,
@@ -9616,6 +9800,7 @@
 				D58510301FF08CC8001B8165 /* NSException+Trace.m in Sources */,
 				D5A6E6C8204AF2A000D1582E /* HanyuPinyinOutputFormat.m in Sources */,
 				D5891705204536A70064A945 /* ZLMyVC.m in Sources */,
+				D5C382FC206D0F54000F77F8 /* ZLMyEventCheckCell.m in Sources */,
 				D58510311FF08CC8001B8165 /* ZLEaseBlankPageView.m in Sources */,
 				D5902A48206B67BD002721FB /* ZLTaskWaitModel.m in Sources */,
 				D5A6E6D4204AF2A000D1582E /* PinYinForObjc.m in Sources */,
@@ -9628,6 +9813,7 @@
 				D51ACED82048E357006C283D /* ZLQueryOnlyTimeView.m in Sources */,
 				D5C0A2C52056571D00C2DB71 /* ZLLoginTopView.m in Sources */,
 				D5778735205B7100005E39F4 /* ZLPublicityBrandModel.m in Sources */,
+				D5C382CC206C91C6000F77F8 /* ZLTaskCheckDataModel.m in Sources */,
 				D58510351FF08CC8001B8165 /* UIViewController+LeftSlide.m in Sources */,
 				D5A6E6A1204AF1F100D1582E /* ZLAddressBookVC.m in Sources */,
 				D58814D7205FDE5D0086FE4C /* ZLUtility.m in Sources */,
@@ -9658,6 +9844,7 @@
 				D58510431FF08CC8001B8165 /* NSDateFormatter+Make.m in Sources */,
 				D55093FD2060E4FE009DD61E /* ZLGetRiverPatrolListByUserCodeService.m in Sources */,
 				D58510441FF08CC8001B8165 /* ZLBaiduDownTaskViewController.m in Sources */,
+				D5C382E8206CD1FD000F77F8 /* ZLEventManagerReportModel.m in Sources */,
 				D537D98920639AF600392FF4 /* ZLSuperviseArrayModel.m in Sources */,
 				D58510451FF08CC8001B8165 /* NSInvocation+Block.m in Sources */,
 				D5A6E6DA204AF2A000D1582E /* UIAlertController+HCAdd.m in Sources */,
@@ -9691,6 +9878,7 @@
 				D53C1FE31FFB5EF100D2BCA3 /* ZLMyEventCell.m in Sources */,
 				D550942720610110009DD61E /* ZLRiverRecordAllPointModel.m in Sources */,
 				D58204072047F17900B37340 /* ZLHomeMainVC.m in Sources */,
+				D5C382F7206D06A9000F77F8 /* ZLEventManagerCheckService.m in Sources */,
 				D58510591FF08CC8001B8165 /* MMPopupItem.m in Sources */,
 				D58814B9205F93DB0086FE4C /* ZLRiverAddOutletVC.m in Sources */,
 				D537D97A2063940D00392FF4 /* ZLSuperviseDetailVC.m in Sources */,
@@ -9711,6 +9899,7 @@
 				D58511521FF0CF81001B8165 /* ZLRiverRecordTopView.m in Sources */,
 				D58510661FF08CC8001B8165 /* UITextView+PinchZoom.m in Sources */,
 				D58511571FF0E480001B8165 /* ZLRiverThreeButton.m in Sources */,
+				D5C3830B206D2099000F77F8 /* ZLEventDealDetailCell.m in Sources */,
 				D58510681FF08CC8001B8165 /* CALayer+UIColor.m in Sources */,
 				D58510691FF08CC8001B8165 /* NSMutableString+Ruby.m in Sources */,
 				D585106A1FF08CC8001B8165 /* TAPageControl.m in Sources */,
@@ -9813,6 +10002,7 @@
 				D58510A81FF08CC8001B8165 /* ZLDayWorkMainViewController.m in Sources */,
 				D5873D781FF33234005D9150 /* UILabel+ZLLeftAndRight.m in Sources */,
 				D58510A91FF08CC8001B8165 /* NSDictionary+URL.m in Sources */,
+				D5C382DC206CCBB7000F77F8 /* ZLEventManagerReportService.m in Sources */,
 				D58510AA1FF08CC8001B8165 /* NSFetchRequest+Extensions.m in Sources */,
 				D58510AB1FF08CC8001B8165 /* ZLCheckRegilarExpression.swift in Sources */,
 				D58510AC1FF08CC8001B8165 /* MKMapView+MoveLogo.m in Sources */,

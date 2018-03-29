@@ -7,8 +7,8 @@
 //
 
 #import "ZLQueryEventManagerAlreadyView.h"
-#import "ZLMyEventCell.h"
-#import "ZLMyEventDetailVC.h"
+#import "ZLBaseCustomNavViewController.h"
+
 @interface ZLTaskMyAlreadyWorkVC : ZLBaseCustomNavViewController
 @property (nonatomic, strong) ZLQueryEventManagerAlreadyView *queryView;
 @property (nonatomic, strong) UITableView *mainTableView;

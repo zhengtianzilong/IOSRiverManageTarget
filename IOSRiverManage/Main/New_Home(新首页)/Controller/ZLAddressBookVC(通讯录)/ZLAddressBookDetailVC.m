@@ -47,9 +47,6 @@
     [SVProgressHUD show];
     ZLNewAddressBookGetRiversService *riversService = [[ZLNewAddressBookGetRiversService alloc]initWithUserCode:_addressModelDataModel.userCode];
 //    _dataSource = [NSMutableArray array];
-    
-    
-    
     [riversService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         
         ZLNewRiversByUserCodeModel *userRiversModel = [[ZLNewRiversByUserCodeModel alloc]initWithString:request.responseString error:nil];

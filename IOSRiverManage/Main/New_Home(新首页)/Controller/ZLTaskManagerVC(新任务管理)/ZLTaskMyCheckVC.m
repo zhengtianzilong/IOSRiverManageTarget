@@ -7,16 +7,88 @@
 //
 
 #import "ZLTaskMyCheckVC.h"
-
+#import "ZLFindTaskListService.h"
+#import "ZLAlertSelectionView.h"
+#import "ZLTaskCheckModel.h"
+#import "ZLTaskDetailVC.h"
+#import "ZLMyTaskAlreadyCell.h"
 @interface ZLTaskMyCheckVC ()<UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) NSString *createName;
 
+// 最后一个cell的数据创建时间,便于分页
+@property (nonatomic, strong) NSString *lastCreateTime;
+
+@property (nonatomic, strong) NSMutableArray *sourceArray;
+
+@property (nonatomic, strong) NSString *taskName;
+
+@property (nonatomic, strong) NSString *createStartTime;
+@property (nonatomic, strong) NSString *createEndTime;
+
+@property (nonatomic, strong) NSString *completeStartTime;
+@property (nonatomic, strong) NSString *completeEndTime;
+
+// 执行人
+@property (nonatomic, strong) NSString *userName;
+// 当前状态
+@property (nonatomic, strong) NSString *taskStatus;
+
+@property (nonatomic, strong) NSMutableArray *stateNameArray;
+
+@property (nonatomic, strong) NSMutableArray *stateIdArray;
 @end
 
 @implementation ZLTaskMyCheckVC
 
+- (void)getData{
+    ZLFindTaskListService *service = [[ZLFindTaskListService alloc]initWithpageSize:10 createTimeFormat:_lastCreateTime taskName:_taskName createName:_createName createStartTime:_createStartTime createEndTime:_createEndTime completeStartTime:_completeStartTime completeEndTime:_completeEndTime userName:_userName taskStatus:_taskStatus];
+    
+    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLLog(@"%@",request.responseString);
+        
+        ZLTaskCheckModel *checkModel = [[ZLTaskCheckModel alloc]initWithString:request.responseString error:nil];
+
+        if ([checkModel.code isEqualToString:@"0"]) {
+            if ([_lastCreateTime isEqualToString: @""]) {
+
+                [_sourceArray removeAllObjects];
+
+            }
+            for (ZLTaskCheckDataModel *dataModel in checkModel.data) {
+
+                [self.sourceArray addObject:dataModel];
+
+            }
+        }
+
+        [self.mainTableView reloadData];
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
+    
+    self.createEndTime = @"";
+    self.createStartTime = @"";
+    self.taskName = @"";
+    self.completeStartTime = @"";
+    self.completeEndTime = @"";
+    self.createName = @"";
+    self.userName = @"";
+    self.taskStatus = @"-1";
+    _sourceArray = [NSMutableArray array];
+    
+    _lastCreateTime = @"";
+    
+    [self getData];
     [self.view addSubview:self.mainTableView];
     
     [self setTabViewHeadView];
@@ -38,8 +110,29 @@
     
     self.queryView = [[ZLQueryEventManagerCheckView alloc] init];
     self.queryView.selectInfoView.eventName.titleLabel.text = @"任务名称";
-    //        con.backgroundColor = [UIColor blackColor];
     [headView addSubview:self.queryView];
+    
+    [self.queryView.queryButton addTarget:self action:@selector(queryButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    __weak typeof(self) weakSelef = self;
+    self.queryView.selectInfoView.state.selectBlock = ^(UITextField *textField) {
+      
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        
+        ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:weakSelef.stateNameArray withTitle:@"选择状态" sureTitle:@"确定" singleSelection:YES];
+    
+        alert.selectItem = ^(NSInteger index) {
+          
+            textField.text = weakSelef.stateNameArray[index];
+            weakSelef.taskStatus = weakSelef.stateIdArray[index];
+        };
+        
+        [alert show];
+
+    };
+    
+    
+    
     
     [self.queryView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(headView);
@@ -54,17 +147,54 @@
     
 }
 
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
+/**
+ 查询按钮
+ */
+- (void)queryButtonClick{
+    
+    if ([self.queryView.selectInfoView.createStartTimeView.selectTimeLabel.text isEqualToString:@"请选择时间"]) {
+        self.createStartTime = @"";
+    }else{
+        NSString *time = self.queryView.selectInfoView.createStartTimeView.selectTimeLabel.text;
+        self.createStartTime = time;
+    }
+    
+    if ([self.queryView.selectInfoView.createEndTimeView.selectTimeLabel.text isEqualToString:@"请选择时间"]) {
+        self.createEndTime = @"";
+    }else{
+        NSString *time = self.queryView.selectInfoView.createEndTimeView.selectTimeLabel.text;
+        
+        
+        self.createEndTime = time;
+    }
     
     
+    if ([self.queryView.selectInfoView.completeStartTimeView.selectTimeLabel.text isEqualToString:@"请选择时间"]) {
+        self.completeStartTime = @"";
+    }else{
+        NSString *time = self.queryView.selectInfoView.completeStartTimeView.selectTimeLabel.text;
+        
+        
+        self.completeStartTime = time;
+    }
     
+    if ([self.queryView.selectInfoView.completeEndTimeView.selectTimeLabel.text isEqualToString:@"请选择时间"]) {
+        self.completeEndTime = @"";
+    }else{
+        NSString *time = self.queryView.selectInfoView.completeEndTimeView.selectTimeLabel.text;
+        
+        
+        self.completeEndTime = time;
+    }
+    
+    self.taskName = self.queryView.selectInfoView.eventName.infoTextField.text;
+    self.createName = self.queryView.selectInfoView.people.infoTextField.text;
+    self.userName = self.queryView.selectInfoView.executorPeople.infoTextField.text;
+    [self.mainTableView.mj_header beginRefreshing];
 }
 
 #pragma mark -- 列表的代理
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 160;
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
@@ -72,106 +202,100 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     //    return self.sourceData.count;
-    return 10;
+    return self.sourceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    ZLMyEventCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLMyEventCell" forIndexPath:indexPath];
+    ZLMyTaskAlreadyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLMyTaskAlreadyCell" forIndexPath:indexPath];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    //    ZLFlotillaReportModel *model = self.sourceData[indexPath.section];
-    //
-    //    cell.flotillaModel = model;
+    ZLTaskCheckDataModel *model = self.sourceArray[indexPath.section];
+
+    cell.checkDataModel = model;
+
+    if (indexPath.section == _sourceArray.count - 1) {
+        ZLTaskCheckDataModel *dataModel = _sourceArray[indexPath.section];
+        _lastCreateTime = dataModel.createTime;
+
+    }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ZLMyEventDetailVC *vc = [[ZLMyEventDetailVC alloc]init];
-    
+    ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
+
+    ZLTaskCheckDataModel *dataModel = self.sourceArray[indexPath.section];
+    vc.passCode = @"任务查询";
+    vc.code = dataModel.taskId;
     [self.navigationController pushViewController:vc animated:YES];
     
     
 }
 
-/**
- 查询按钮
- */
-- (void)queryButtonClick{
-    
-    //    if ([self.queryView.selectInfoView.startTimeView.selectTimeLabel.text isEqualToString:@"请选择时间"]) {
-    //        self.startTime = @"";
-    //    }else{
-    //        NSString *time = self.queryView.selectInfoView.startTimeView.selectTimeLabel.text;
-    //
-    //        time = [time substringToIndex:time.length - 3];
-    //
-    //        self.startTime = time;
-    //    }
-    //
-    //    if ([self.queryView.selectInfoView.endTimeView.selectTimeLabel.text isEqualToString:@"请选择时间"]) {
-    //        self.endTime = @"";
-    //    }else{
-    //        NSString *time = self.queryView.selectInfoView.endTimeView.selectTimeLabel.text;
-    //
-    //        time = [time substringToIndex:time.length - 3];
-    //
-    //        self.endTime = time;
-    //    }
-    //    self.boatName = self.queryView.selectInfoView.shipName.infoTextField.text;
-    //
-    //    if ([self.startTime isEqualToString:@""] && [self.endTime isEqualToString:@""] && [self.boatName isEqualToString:@""] ) {
-    //        self.type = @"1";
-    //    }else{
-    //        self.type = @"2";
-    //    }
-    //    //    [self listData];
-    //    [self.mainTableView.mj_header beginRefreshing];
+- (NSMutableArray *)stateNameArray{
+    if (!_stateNameArray) {
+        _stateNameArray =  [NSMutableArray arrayWithArray:@[
+                            @"已创建",
+                            @"已下发",
+                            @"已接收",
+                            @"已转发",
+                            @"已反馈",
+                            @"已驳回",
+                            @"已完成",
+                            @"完结",
+                            @"全部"
+                            ]];
+        
+    }
+    return _stateNameArray;
 }
 
+- (NSMutableArray *)stateIdArray{
+    if (!_stateIdArray) {
+        _stateIdArray = [NSMutableArray arrayWithArray:@[
+                          @"0",
+                          @"1",
+                          @"2",
+                          @"3",
+                          @"6",
+                          @"7",
+                          @"8",
+                          @"9",
+                          @"-1"
+                          ]];
+    }
+    return _stateIdArray;
+}
 
-
-//- (ZLQueryOnlyTimeView *)queryView{
-//    if (!_queryView) {
-//        _queryView = [[ZLQueryOnlyTimeView alloc]init];
-//        [_queryView.queryButton addTarget:self action:@selector(queryButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
-//
-//    }
-//    return _queryView;
-//}
 
 - (UITableView *)mainTableView{
     if (!_mainTableView) {
         _mainTableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
         
-        [_mainTableView registerClass:[ZLMyEventCell class] forCellReuseIdentifier:@"ZLMyEventCell"];
+        [_mainTableView registerClass:[ZLMyTaskAlreadyCell class] forCellReuseIdentifier:@"ZLMyTaskAlreadyCell"];
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
         
         _mainTableView.sectionFooterHeight = 20;
         _mainTableView.sectionHeaderHeight = 0;
-        _mainTableView.contentInset = UIEdgeInsetsMake(20 - 35, 0, 0, 0);
+        _mainTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         
-        //        _mainTableView.rowHeight = UITableViewAutomaticDimension;
-        //        _mainTableView.estimatedRowHeight = 150;
+        _mainTableView.rowHeight = UITableViewAutomaticDimension;
+        _mainTableView.estimatedRowHeight = 180;
+        _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            _lastCreateTime = @"";
+            [self getData];
+            
+        }];
         
-        //        _mainTableView.tableHeaderView = self.queryView;
-        
-        //        _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        //
-        //            _requestStart = 1;
-        //            [self listData];
-        //
-        //        }];
-        //
-        //        _mainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        //            _requestStart += 1;
-        //            [self listData];
-        //
-        //        }];
+        _mainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            [self getData];
+            
+        }];
         
     }
     return _mainTableView;

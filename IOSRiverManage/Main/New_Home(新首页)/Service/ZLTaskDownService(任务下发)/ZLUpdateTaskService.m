@@ -78,7 +78,7 @@
                          _receiverDepartmentCodes , @"receiverDepartmentCodes",
                          _receiverPersonIds , @"receiverPersonIds",
                          _receiverPersonNames , @"receiverPersonNames",
-                         _ID , @"ID",
+                         _ID , @"id",
                          _fileList , @"fileList",
                          _taskCode , @"taskCode",
                          nil];

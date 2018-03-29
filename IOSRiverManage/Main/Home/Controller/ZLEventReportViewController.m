@@ -11,8 +11,7 @@
 #import "ACMediaFrame.h"
 #import "ZLNomalEventService.h"
 #import "ZLNomalEventModel.h"
-
-#import "ZLNewFileUpLoadService.h"
+#import "ZLNewFilesUpLoadService.h"
 
 @interface ZLEventReportViewController ()
 @property (nonatomic, strong) UIScrollView *mainScrollview;
@@ -130,7 +129,7 @@
         
     }
     
-    ZLNewFileUpLoadService *upload = [[ZLNewFileUpLoadService alloc]initWithImage:imageArray];
+    ZLNewFilesUpLoadService *upload = [[ZLNewFilesUpLoadService alloc]initWithImage:imageArray];
     
     
 //    [upload.requestHeaderFieldValueDictionary setValue:@"application/json;charset=UTF-8" forKey:@"Content-Type"];

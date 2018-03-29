@@ -7,9 +7,9 @@
 //
 
 #import "ZLEventManageTableViewCell.h"
-
-typedef void(^deleteBtnClick)(void);
-typedef void(^changeBtnClick)(void);
+#import "ZLEventManagerReportDataModel.h"
+typedef void(^deleteBtnClick)(ZLEventManagerReportDataModel *dataModel);
+typedef void(^changeBtnClick)(ZLEventManagerReportDataModel *dataModel);
 
 @interface ZLMyEventCell : ZLEventManageTableViewCell
 /**
@@ -25,5 +25,7 @@ typedef void(^changeBtnClick)(void);
 @property (nonatomic, strong) deleteBtnClick deleteClick;
 
 @property (nonatomic, strong) changeBtnClick changeClick;
+
+@property (nonatomic, strong) ZLEventManagerReportDataModel *dataModel;
 
 @end

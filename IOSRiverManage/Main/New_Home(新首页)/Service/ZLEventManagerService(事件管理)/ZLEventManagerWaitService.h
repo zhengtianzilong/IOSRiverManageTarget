@@ -1,0 +1,18 @@
+//
+//  ZLEventManagerWaitService.h
+//  IOSRiverManage
+//
+//  Created by 蔡紫龙 on 2018/3/29.
+//  Copyright © 2018年 caizilong. All rights reserved.
+//
+
+#import "ZLCustomBaseRequest.h"
+
+@interface ZLEventManagerWaitService : ZLCustomBaseRequest
+- (instancetype)initWithpageSize:(NSInteger)pageSize
+                    incidentName:(NSString *)incidentName
+                  createUserName:(NSString *)createUserName
+                 createBeginTime:(NSString *)createBeginTime
+                   createEndTime:(NSString *)createEndTime
+               appPageCreateTime:(NSString *)appPageCreateTime;
+@end

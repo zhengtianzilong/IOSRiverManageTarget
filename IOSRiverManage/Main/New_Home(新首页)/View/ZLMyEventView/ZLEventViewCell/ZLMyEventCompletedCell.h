@@ -7,7 +7,9 @@
 //
 
 #import "ZLEventManageTableViewCell.h"
+#import "ZLEventManagerReportDataModel.h"
+
 
 @interface ZLMyEventCompletedCell : ZLEventManageTableViewCell
-
+@property (nonatomic, strong) ZLEventManagerReportDataModel *dataModel;
 @end
