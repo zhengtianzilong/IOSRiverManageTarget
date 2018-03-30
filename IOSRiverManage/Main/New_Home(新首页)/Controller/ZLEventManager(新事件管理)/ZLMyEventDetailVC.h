@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSString *eventId;
 
+@property (nonatomic, strong) NSString *userCode;
+
 @end

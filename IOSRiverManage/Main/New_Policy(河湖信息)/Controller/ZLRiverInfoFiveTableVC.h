@@ -10,4 +10,6 @@
 
 @interface ZLRiverInfoFiveTableVC : ZLBaseCustomNavViewController
 
+@property (nonatomic, strong) NSString *riverCode;
+
 @end

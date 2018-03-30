@@ -9,7 +9,7 @@
 #import "ZLRiverInfoFiveTableVC.h"
 #import "ZLPolicyRiverFiveTableViewCell.h"
 #import "ZLPolicyFiveModel.h"
-#import "ZLRiverInfoQuestionVC.h"
+#import "ZLRiverInfoFiveDetailVC.h"
 @interface ZLRiverInfoFiveTableVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 
@@ -73,7 +73,11 @@
 //    vc.title = @"呵呵呵";
 //    [self.navigationController pushViewController:vc animated:YES];
     
-    ZLRiverInfoQuestionVC *vc = [[ZLRiverInfoQuestionVC alloc]init];
+    ZLRiverInfoFiveDetailVC *vc = [[ZLRiverInfoFiveDetailVC alloc]init];
+
+    NSArray *array = @[self.riverCode,[NSString stringWithFormat:@"%ld",(long)indexPath.row]];
+    
+    vc.riverCodeAndIndex = array;
     
     [self presentViewController:vc animated:YES completion:nil];
     

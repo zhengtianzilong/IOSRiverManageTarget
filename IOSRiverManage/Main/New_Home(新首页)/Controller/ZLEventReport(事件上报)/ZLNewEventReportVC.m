@@ -19,7 +19,7 @@
 #import "ZLGetDepartModel.h"
 #import "ZLAlertSelectionView.h"
 #import "ZLGetEventUserListModel.h"
-#import "ZLSaveAndSentTaskService.h"
+#import "ZLAddAndSentIncidentService.h"
 
 @interface ZLNewEventReportVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -52,6 +52,7 @@
 
 @property (nonatomic, strong) NSMutableArray *peopleModelArray;
 
+@property (nonatomic, strong) NSString *receiverType;
 
 @property (nonatomic, strong) YTKKeyValueStore *store;
 
@@ -75,7 +76,7 @@
     self.eventName = @"";
     self.departCode = @"";
     self.peopleCode = @"";
-    
+    self.receiverType = 0;
     self.store = [[YTKKeyValueStore alloc]initDBWithName:@"hzz.db"];
     
     NSString *tableName = DBUserTable;
@@ -338,11 +339,48 @@
     return _placeHolderArray;
 }
 
+/**
+ 检测文本框的内容
+ */
+- (BOOL)checkTextFieldContent{
+    
+    if ([self.eventDepart isEqualToString:@""] && [self.eventPeople isEqualToString:@""]) {
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"必须选择接收部门或接收对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        return NO;
+    }
+    
+    if ([self.eventName isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写事件名称" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    if ([self.eventDesc isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写描述内容" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    
+    return YES;
+}
+
 
 /**
  保存按钮
  */
 - (void)saveButtonClick{
+    
+    if (![self checkTextFieldContent]) {
+        return;
+    }
     
     [SVProgressHUD showWithStatus:@"保存中"];
     
@@ -361,8 +399,10 @@
                 
                 [self.imageNameArray addObject:model.toDictionary];
             }
+        }else{
+            [SVProgressHUD showErrorWithStatus:imagesModel.detail];
+            [SVProgressHUD dismissWithDelay:0.3];
         }
-        
         ZLLog(@"%@", request.responseString);
         dispatch_group_leave(group);
         
@@ -370,28 +410,41 @@
         [SVProgressHUD showErrorWithStatus:@"网络错误"];
         [SVProgressHUD dismissWithDelay:0.3];
     }];
+    
         dispatch_group_notify(group, dispatch_get_main_queue(), ^{
             
             ZLLog(@"%@", self.imageNameArray);
             
-            ZLOnlyAddIncidentService *service = [[ZLOnlyAddIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentName:_eventName incidentContent:_eventDesc receiverType:@"" receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverCode:@"" patrolCode:@"" longitude:@"" latitude:@"" positionDesc:@""];
+            if ([_eventPeople isEqualToString:@""]) {
+                
+                self.receiverType = @"2";
+            }else if ([_eventDepart isEqualToString:@""]){
+                _receiverType = @"1";
+            }
+            
+            ZLOnlyAddIncidentService *service = [[ZLOnlyAddIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentName:_eventName incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverCode:@"" patrolCode:@"" longitude:nil latitude:nil positionDesc:@""];
             
             [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-               
-                
+                 ZLLog(@"%@", request.responseString);
                 
             } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-                
+                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                [SVProgressHUD dismissWithDelay:0.3];
             }];
             
             
         });
 }
-    
+
+
+
+
 - (void)reportButtonClick{
+    if (![self checkTextFieldContent]) {
+        return;
+    }
     
-    
-    [SVProgressHUD showWithStatus:@"保存中"];
+    [SVProgressHUD showWithStatus:@"上报中"];
     
     dispatch_group_t group = dispatch_group_create();
     
@@ -421,15 +474,17 @@
         
         ZLLog(@"%@", self.imageNameArray);
         
-        ZLOnlyAddIncidentService *service = [[ZLOnlyAddIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentName:_eventName incidentContent:_eventDesc receiverType:@"" receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverCode:@"" patrolCode:@"" longitude:@"" latitude:@"" positionDesc:@""];
         
-        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-            
-            
-            
-        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-            
-        }];
+        
+////        ZLAddAndSentIncidentService *service = [[ZLAddAndSentIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentName:_eventName incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverCode:@"" patrolCode:@"" longitude:@"" latitude:@"" positionDesc:@""];
+//
+//        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request){
+//
+//             ZLLog(@"%@", request.responseString);
+//
+//        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+//
+//        }];
         
         
     });

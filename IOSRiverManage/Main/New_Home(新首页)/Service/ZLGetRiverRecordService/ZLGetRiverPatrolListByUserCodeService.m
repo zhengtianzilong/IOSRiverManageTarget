@@ -12,7 +12,7 @@
     NSString *_startTime;
     NSString *_quertStartTime;
     NSString *_quertEntTime;
-    NSString *_quertRiverName;
+    NSString *_queryRiverName;
     
 }
 
@@ -23,14 +23,14 @@
                        startTime:(NSString *)startTime
                   quertStartTime:(NSString *)quertStartTime
                     quertEntTime:(NSString *)quertEntTime
-                  quertRiverName:(NSString *)quertRiverName{
+                  queryRiverName:(NSString *)queryRiverName{
     self = [super init];
     if (self) {
         
         _pageSize = pageSize;
         _startTime = startTime;
         _quertEntTime = quertEntTime;
-        _quertRiverName = quertRiverName;
+        _queryRiverName = queryRiverName;
         _quertStartTime = quertStartTime;
         
     }
@@ -60,7 +60,7 @@
                          _pageSize,@"pageSize",
                          _quertStartTime,@"quertStartTime",
                          _quertEntTime,@"quertEntTime",
-                         _quertRiverName,@"quertRiverName",
+                         _queryRiverName,@"queryRiverName",
                          nil];
     return dic;
     

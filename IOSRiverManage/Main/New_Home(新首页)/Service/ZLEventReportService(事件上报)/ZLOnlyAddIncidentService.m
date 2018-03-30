@@ -81,6 +81,9 @@
 }
 
 - (id)requestArgument{
+    
+    
+    
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                          _imgList , @"imgList",
                          _fileList, @"fileList",

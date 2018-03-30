@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZLRiverIncidentDetailListModel.h"
 @interface ZLEventDealDetailCell : UITableViewCell
 /**
  颜色指示器
@@ -27,9 +27,12 @@
 @property (nonatomic, strong) UIButton *backBtn;
 @property (nonatomic, strong) UIButton *completeBtn;
 
-
 /**
  从不同控制器传入
  */
 @property (nonatomic, strong) NSString *passCode;
+
+@property (nonatomic, strong) ZLRiverIncidentDetailListModel *dataModel;
+
+@property (nonatomic, strong) NSString *userCode;
 @end

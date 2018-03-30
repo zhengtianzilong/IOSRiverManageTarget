@@ -213,7 +213,7 @@
     ZLEventManagerReportDataModel *model = self.sourceArray[indexPath.section];
     
     vc.eventId = model.ID;
-    
+    vc.userCode = self.userCode;
     
     [self.navigationController pushViewController:vc animated:YES];
     

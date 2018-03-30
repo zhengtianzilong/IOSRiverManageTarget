@@ -12,6 +12,7 @@
 #import "ZLMyAdviseBottomView.h"
 #import "ZLNewContiEventReportVC.h"
 #import "ZLMyEventAdviseVC.h"
+
 @interface ZLMyventDealDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 

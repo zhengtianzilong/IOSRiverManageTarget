@@ -19,18 +19,7 @@
     
     self.view.backgroundColor = [UIColor lightGrayColor];
     
-    UIButton *button = [[UIButton alloc]init];
-    button.backgroundColor = [UIColor redColor];
-    [self.view addSubview:button];
-    
-    [button addTarget:self action:@selector(clickBtn) forControlEvents:(UIControlEventTouchUpInside)];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view);
-        make.top.equalTo(self.view);
-        make.width.mas_equalTo(30);
-        make.height.mas_equalTo(30);
-        
-    }];
+
     
     
     

@@ -150,6 +150,20 @@
     return self.sourceArray.count;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ZLMyEventDetailVC *vc = [[ZLMyEventDetailVC alloc]init];
+    
+    ZLEventManagerReportDataModel *model = self.sourceArray[indexPath.section];
+    
+    vc.eventId = model.ID;
+    vc.userCode = self.userCode;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     

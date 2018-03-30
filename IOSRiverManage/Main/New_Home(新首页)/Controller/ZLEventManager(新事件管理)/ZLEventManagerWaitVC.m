@@ -151,7 +151,7 @@
     ZLEventManagerReportDataModel *model = self.sourceArray[indexPath.section];
     
     vc.eventId = model.ID;
-    
+    vc.userCode = self.userCode;
     
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -177,9 +177,8 @@
     }
     __weak typeof(self) weakSelf = self;
     
-    
-    
-    cell.dealClick = ^(ZLEventManagerReportDataModel *dataModel) {
+    cell.dealClick = ^(NSString *eventId, UIButton *dealBtn) {
+        
         ZLMyventDealDetailVC *vc = [[ZLMyventDealDetailVC alloc]init];
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };

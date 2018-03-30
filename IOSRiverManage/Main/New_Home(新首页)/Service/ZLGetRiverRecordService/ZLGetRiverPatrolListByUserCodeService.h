@@ -14,5 +14,5 @@
                        startTime:(NSString *)startTime
                   quertStartTime:(NSString *)quertStartTime
                     quertEntTime:(NSString *)quertEntTime
-                  quertRiverName:(NSString *)quertRiverName;
+                  queryRiverName:(NSString *)queryRiverName;
 @end

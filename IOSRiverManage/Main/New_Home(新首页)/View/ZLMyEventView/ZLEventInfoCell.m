@@ -43,28 +43,28 @@
         
     }];
     
-//    for (int i = 0; i < count; i++) {
-//        UIImageView *imageV = [[UIImageView alloc] init];
-//        
-//        ZLTaskInfoImageListModel *imageModel = urls[i];
-//        
-//        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImage_URL, imageModel.fileAddr]];
-//        
-//        MWPhoto *photo = [MWPhoto photoWithURL:url];
-//        [self.photosArray addObject:photo];
-//        
-//        
-//        [imageV sd_setImageWithURL:url];
-//        
-//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
-//        
-//        imageV.tag = (i + 1000);
-//        imageV.userInteractionEnabled = YES;
-//        [imageV addGestureRecognizer:tap];
-//        
-//        //        imageV.backgroundColor = [UIColor redColor];
-//        [self.containerView addSubview:imageV];
-//    }
+    for (int i = 0; i < count; i++) {
+        UIImageView *imageV = [[UIImageView alloc] init];
+        
+        ZLTaskInfoImageListModel *imageModel = urls[i];
+        
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImage_URL, imageModel.fileAddr]];
+        
+        MWPhoto *photo = [MWPhoto photoWithURL:url];
+        [self.photosArray addObject:photo];
+        
+        
+        [imageV sd_setImageWithURL:url];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
+        
+        imageV.tag = (i + 1000);
+        imageV.userInteractionEnabled = YES;
+        [imageV addGestureRecognizer:tap];
+        
+        //        imageV.backgroundColor = [UIColor redColor];
+        [self.containerView addSubview:imageV];
+    }
     
     [self.containerView.subviews mas_distributeSudokuViewsWithFixedItemWidth:0 fixedItemHeight:60
                                                             fixedLineSpacing:10 fixedInteritemSpacing:10
@@ -275,114 +275,122 @@
     
 }
 
-//- (void)setDataModel:(ZLTaskInfoDetailDataModel *)dataModel{
-//    
-//    _dataModel = dataModel;
-//    _event.text = dataModel.taskName;
-//    
-//    NSString *status = @"";
-//    
-//    if ([_dataModel.taskStatus isEqualToString:@"0"]) {
-//        status = @"已创建";
-//    }
-//    if ([_dataModel.taskStatus isEqualToString:@"1"]) {
-//        status = @"已下发";
-//    }
-//    if ([_dataModel.taskStatus isEqualToString:@"2"]) {
-//        
-//        status = @"已接收";
-//        
-//    }
-//    if ([_dataModel.taskStatus isEqualToString:@"3"]) {
-//        
-//        status = @"已转发";
-//    }
-//    if ([_dataModel.taskStatus isEqualToString:@"6"]) {
-//        
-//        status = @"已反馈";
-//    }
-//    if ([_dataModel.taskStatus isEqualToString:@"7"]) {
-//        
-//        status = @"已驳回";
-//    }
-//    if ([_dataModel.taskStatus isEqualToString:@"8"]) {
-//        
-//        status = @"已完成";
-//    }
-//    
-//    if ([_dataModel.taskStatus isEqualToString:@"9"]) {
-//        
-//        status = @"完结";
-//    }
-//    
-//    self.state.text = status;
-//    self.originator.text = dataModel.createName;
-//    self.receive.text = dataModel.receiverPersonNames;
-//    self.depart.text = dataModel.receiverDepartmentNames;
-//    
-//    NSString *time = dataModel.createTime;
-//    
-//    NSString *timeString = [ZLUtility getDateByTimestamp:[time longLongValue] / 1000 type:4];
-//    
-//    self.time.text = timeString;
-//    self.describe.text = dataModel.taskContent;
-//    
-//    if (dataModel.imgList.count > 0) {
-//        // 固定containerView的宽
-//        // 宫格的宽随containerView的宽改变
-//        // 固定宫格的高
-//        // containerView的高随宫格的高改变
-//        [self distributeDynamic2CellWithCount:dataModel.imgList.count warp:3 withImageUrl:dataModel.imgList];
-//        [self.attachmentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            
-//            make.left.equalTo(self.eventLabel);
-//            make.top.equalTo(self.containerView.mas_bottom).offset(5);
-//            make.height.mas_equalTo(20);
-//            make.width.mas_equalTo(60);
-//            
-//        }];
-//    }else{
-//        [self.attachmentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//            
-//            make.left.equalTo(self.eventLabel);
-//            make.top.equalTo(self.describe.mas_bottom).offset(5);
-//            make.height.mas_equalTo(20);
-//            make.width.mas_equalTo(60);
-//            
-//        }];
-//    }
-//    
-//    [self.attachment mas_makeConstraints:^(MASConstraintMaker *make) {
-//        
-//        make.left.equalTo(self.attachmentLabel.mas_right);
-//        make.right.equalTo(self.contentView.mas_right).offset(-10);
-//        make.top.equalTo(self.attachmentLabel).offset(0);
-//        make.bottom.equalTo(self.contentView.mas_bottom);
-//        //        make.height.mas_equalTo(80);
-//        //        make.width.mas_equalTo(50);
-//        
-//    }];
-//    
-//    NSMutableArray *fileNameArray = [NSMutableArray array];
-//    
-//    for (ZLTaskInfoFileListModel *fileModel in dataModel.fileList) {
-//        
-//        [fileNameArray addObject:fileModel.orgName];
-//        
-//    }
-//    
-//    if (fileNameArray.count>0) {
-//        self.attachment.text = [fileNameArray componentsJoinedByString:@"\n"];
-//    }else{
-//        
-//        self.attachment.text = @" ";
-//        
-//    }
-//    
-//    
-//    
-//    
-//}
+- (void)setDataModel:(ZLEventDetailDataModel *)dataModel{
+    
+    _dataModel = dataModel;
+    _event.text = dataModel.incidentName;
+    
+    NSString *status = @"";
+    
+    if ([_dataModel.createBy isEqualToString:self.userCode]) {
+        
+        if ([_dataModel.incidentStatus isEqualToString:@"0"]) {
+            status = @"创建";
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"1"]) {
+            
+            status = @"已上报";
+            
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"2"]) {
+            
+            status = @"已接收";
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"3"]) {
+            
+            status = @"已转报";
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"9"]) {
+            
+            status = @"完结";
+        }
+    }else{
+        if ([_dataModel.incidentStatus isEqualToString:@"0"]) {
+            status = @"已创建";
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"1"]) {
+            
+            status = @"未接收";
+            
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"2"]) {
+            
+            status = @"待处理";
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"3"]) {
+            
+            status = @"已转报";
+        }
+        if ([_dataModel.incidentStatus isEqualToString:@"9"]) {
+            
+            status = @"反馈";
+        }
+    }
+    
+    self.state.text = status;
+    self.originator.text = dataModel.createName;
+    self.receive.text = dataModel.receiverPersonName;
+    self.depart.text = dataModel.receiverDepartName;
+    
+    NSString *time = dataModel.createTime;
+    
+    NSString *timeString = [ZLUtility getDateByTimestamp:[time longLongValue] / 1000 type:4];
+    
+    self.time.text = timeString;
+    self.describe.text = dataModel.incidentContent;
+    
+    if (dataModel.imgList.count > 0) {
+        // 固定containerView的宽
+        // 宫格的宽随containerView的宽改变
+        // 固定宫格的高
+        // containerView的高随宫格的高改变
+        [self distributeDynamic2CellWithCount:dataModel.imgList.count warp:3 withImageUrl:dataModel.imgList];
+        [self.attachmentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(self.eventLabel);
+            make.top.equalTo(self.containerView.mas_bottom).offset(5);
+            make.height.mas_equalTo(20);
+            make.width.mas_equalTo(60);
+            
+        }];
+    }else{
+        [self.attachmentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(self.eventLabel);
+            make.top.equalTo(self.describe.mas_bottom).offset(5);
+            make.height.mas_equalTo(20);
+            make.width.mas_equalTo(60);
+            
+        }];
+    }
+    
+    [self.attachment mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.attachmentLabel.mas_right);
+        make.right.equalTo(self.contentView.mas_right).offset(-10);
+        make.top.equalTo(self.attachmentLabel).offset(0);
+        make.bottom.equalTo(self.contentView.mas_bottom);
+        //        make.height.mas_equalTo(80);
+        //        make.width.mas_equalTo(50);
+        
+    }];
+    
+    NSMutableArray *fileNameArray = [NSMutableArray array];
+    
+    for (ZLTaskInfoFileListModel *fileModel in dataModel.fileList) {
+        
+        [fileNameArray addObject:fileModel.orgName];
+        
+    }
+    
+    if (fileNameArray.count>0) {
+        self.attachment.text = [fileNameArray componentsJoinedByString:@"\n"];
+    }else{
+        
+        self.attachment.text = @" ";
+        
+    }
+}
 
 
 - (void)layoutSubviews{

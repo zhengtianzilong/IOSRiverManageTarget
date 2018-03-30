@@ -43,7 +43,7 @@
 - (void)deleteBtnClick{
     
     if (_dealClick) {
-        self.dealClick(self.dataModel, self.dealBtn);
+        self.dealClick(self.taskId, self.dealBtn);
     }
     
 }
@@ -126,8 +126,76 @@
     self.timeLabel.text = time;
     self.state.text = status;
     
+    self.taskId = _dataModel.taskId;
+}
+
+
+- (void)setHomeDataModel:(ZLHomeWaitEventAndTaskDataModel *)homeDataModel{
+    
+    _homeDataModel = homeDataModel;
+    self.initiatorName.text = _homeDataModel.createName;
+    self.receivedName.text = _homeDataModel.userName;
+    self.content.text = _homeDataModel.taskContent;
+    
+    self.title.text = _homeDataModel.taskName;
+    
+    NSString *status = @"";
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImage_URL,_homeDataModel.fileAddr]];
+    
+    [self.imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"event_placeImage"]];
+    
+    self.dealBtn.hidden = NO;
+    
+    if ([_homeDataModel.taskDetailStatus isEqualToString:@"0"]) {
+        status = @"已创建";
+        self.dealBtn.hidden = YES;
+    }
+    if ([_homeDataModel.taskDetailStatus isEqualToString:@"1"]) {
+        status = @"已下发";
+        
+        [self.dealBtn setTitle:@"接收" forState:(UIControlStateNormal)];
+        
+    }
+    if ([_homeDataModel.taskDetailStatus isEqualToString:@"2"]) {
+        
+        status = @"已接收";
+        
+        [self.dealBtn setTitle:@"处理" forState:(UIControlStateNormal)];
+        
+    }
+    if ([_homeDataModel.taskDetailStatus isEqualToString:@"3"]) {
+        status = @"已转发";
+        self.dealBtn.hidden = YES;
+    }
+    if ([_homeDataModel.taskDetailStatus isEqualToString:@"6"]) {
+        self.dealBtn.hidden = YES;
+        status = @"已反馈";
+    }
+    if ([_homeDataModel.taskDetailStatus isEqualToString:@"7"]) {
+        status = @"已驳回";
+        [self.dealBtn setTitle:@"处理" forState:(UIControlStateNormal)];
+    }
+    if ([_homeDataModel.taskDetailStatus isEqualToString:@"8"]) {
+        status = @"已完成";
+        self.dealBtn.hidden = YES;
+    }
+    
+    if ([_homeDataModel.taskDetailStatus isEqualToString:@"9"]) {
+        status = @"完结";
+        self.dealBtn.hidden = YES;
+    }
+    
+    NSString *time = _homeDataModel.createTime;
+    
+    //    NSString *timeString = [ZLUtility getDateByTimestamp:[time longLongValue] / 1000 type:4];
+    self.timeLabel.text = time;
+    self.state.text = status;
+    self.taskId = _homeDataModel.taskId;
     
 }
+
+
 
 
 

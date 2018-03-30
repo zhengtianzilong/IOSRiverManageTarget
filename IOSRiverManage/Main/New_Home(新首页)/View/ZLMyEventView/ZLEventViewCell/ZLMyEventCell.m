@@ -116,9 +116,7 @@
             status = @"反馈";
             self.deleteBtn.hidden = YES;
             self.changeBtn.hidden = YES;
-        }
-        
-        
+        } 
     }
   
     self.state.text = status;

@@ -61,21 +61,20 @@
         
     }];
     
-    [self.stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.state mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.contentView.mas_centerX).offset(10);
+        make.right.equalTo(self.contentView.mas_right).offset(-10);
         make.top.equalTo(self.peopleLabel);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(50);
         
     }];
     
-    [self.state mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.stateLabel.mas_right);
-        make.top.equalTo(self.stateLabel);
+    [self.stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.state.mas_left).offset(0);
+        make.top.equalTo(self.peopleLabel);
         make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(50);
+        make.width.mas_equalTo(60);
         
     }];
     

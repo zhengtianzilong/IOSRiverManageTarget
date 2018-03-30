@@ -330,6 +330,7 @@
     ZLLog(@"%@",self.mediaView.preShowMedias);
     
     
+    
     NSMutableArray *tempArray = [NSMutableArray array];
     
     for (int i = 0; i < _imageArray.count; i++) {
@@ -375,7 +376,11 @@
                 
                 [self.imageNameArray addObject:model.toDictionary];
             }
+        }else{
+            [SVProgressHUD showErrorWithStatus:imagesModel.detail];
+            [SVProgressHUD dismissWithDelay:0.3];
         }
+
         
         ZLLog(@"%@", request.responseString);
         dispatch_group_leave(group);

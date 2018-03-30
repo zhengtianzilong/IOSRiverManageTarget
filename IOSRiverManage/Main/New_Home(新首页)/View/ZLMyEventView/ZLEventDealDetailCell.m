@@ -58,25 +58,22 @@
         
     }];
     
-    [self.stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.state mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.contentView.mas_centerX).offset(10);
+        make.right.equalTo(self.contentView.mas_right).offset(-10);
+        make.top.equalTo(self.peopleLabel);
+        make.height.mas_equalTo(20);
+        make.width.mas_equalTo(50);
+        
+    }];
+    
+    [self.stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.state.mas_left).offset(0);
         make.top.equalTo(self.peopleLabel);
         make.height.mas_equalTo(20);
         make.width.mas_equalTo(60);
         
     }];
-    
-    [self.state mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.stateLabel.mas_right);
-        make.top.equalTo(self.stateLabel);
-        make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(50);
-        
-    }];
-    
-    
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -100,74 +97,67 @@
     
 }
 
-//- (void)setDataModel:(ZLTaskRiverTaskDetailListModel *)dataModel{
-//    
-//    _dataModel = dataModel;
-//    
-//    self.people.text = dataModel.userName;
-//    
-//    NSString *status = @"";
-//    
-//    if ([_dataModel.taskDetailStatus isEqualToString:@"0"]) {
-//        status = @"已创建";
-//    }
-//    if ([_dataModel.taskDetailStatus isEqualToString:@"1"]) {
-//        status = @"已下发";
-//    }
-//    if ([_dataModel.taskDetailStatus isEqualToString:@"2"]) {
-//        
-//        status = @"已接收";
-//        
-//    }
-//    if ([_dataModel.taskDetailStatus isEqualToString:@"3"]) {
-//        
-//        status = @"已转发";
-//    }
-//    if ([_dataModel.taskDetailStatus isEqualToString:@"6"]) {
-//        
-//        status = @"已反馈";
-//    }
-//    if ([_dataModel.taskDetailStatus isEqualToString:@"7"]) {
-//        
-//        status = @"已驳回";
-//    }
-//    if ([_dataModel.taskDetailStatus isEqualToString:@"8"]) {
-//        
-//        status = @"已完成";
-//    }
-//    
-//    if ([_dataModel.taskDetailStatus isEqualToString:@"9"]) {
-//        
-//        status = @"完结";
-//    }
-//    
-//    self.state.text = status;
-//    NSString *time = _dataModel.implementTime;
-//    
-//    NSString *timeString = [ZLUtility getDateByTimestamp:[time longLongValue] / 1000 type:4];
-//    self.time.text = timeString;
-//    
-//    if ([self.passCode isEqualToString:@"下发任务"] || [self.passCode isEqualToString:@"待办任务"] || [self.passCode isEqualToString:@"任务查询"]) {
-//        
-//        self.completeBtn.hidden = YES;
-//        self.backBtn.hidden = YES;
-//        
-//    }else{
-//        
-//        if ([dataModel.isPass isEqualToString:@"0"]) {
-//            
-//            self.completeBtn.hidden = YES;
-//            
-//        }
-//        
-//        if ([dataModel.isReject isEqualToString:@"0"]) {
-//            
-//            self.backBtn.hidden = YES;
-//            
-//        }
-//    }
-//    
-//}
+- (void)setDataModel:(ZLRiverIncidentDetailListModel *)dataModel{
+    
+    _dataModel = dataModel;
+    
+    self.people.text = dataModel.userName;
+    
+    NSString *status = @"";
+    
+    if ([_dataModel.createBy isEqualToString:self.userCode]) {
+        
+        if ([_dataModel.incidentDetailStatus isEqualToString:@"0"]) {
+            status = @"创建";
+        }
+        if ([_dataModel.incidentDetailStatus isEqualToString:@"1"]) {
+            
+            status = @"已上报";
+            
+        }
+        if ([_dataModel.incidentDetailStatus isEqualToString:@"2"]) {
+            
+            status = @"已接收";
+        }
+        if ([_dataModel.incidentDetailStatus isEqualToString:@"3"]) {
+            
+            status = @"已转报";
+        }
+        if ([_dataModel.incidentDetailStatus isEqualToString:@"9"]) {
+            
+            status = @"完结";
+        }
+    }else{
+        if ([_dataModel.incidentDetailStatus isEqualToString:@"0"]) {
+            status = @"已创建";
+        }
+        if ([_dataModel.incidentDetailStatus isEqualToString:@"1"]) {
+            
+            status = @"未接收";
+            
+        }
+        if ([_dataModel.incidentDetailStatus isEqualToString:@"2"]) {
+            
+            status = @"待处理";
+        }
+        if ([_dataModel.incidentDetailStatus isEqualToString:@"3"]) {
+            
+            status = @"已转报";
+        }
+        if ([_dataModel.incidentDetailStatus isEqualToString:@"9"]) {
+            
+            status = @"反馈";
+        }
+    }
+    
+    self.state.text = status;
+    NSString *time = _dataModel.updateTime;
+    
+    NSString *timeString = [ZLUtility getDateByTimestamp:[time longLongValue] / 1000 type:4];
+    self.time.text = timeString;
+    
+    
+}
 
 
 - (UIImageView *)colorIndicator{

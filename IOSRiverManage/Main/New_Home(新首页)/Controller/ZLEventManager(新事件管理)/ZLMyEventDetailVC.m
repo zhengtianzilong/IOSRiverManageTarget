@@ -15,6 +15,7 @@
 #import "ZLEventDealDetailCell.h"
 #import "ZLEventInfoCell.h"
 #import "ZLTimeLineTableViewCell.h"
+#import "ZLEventDetailModel.h"
 @interface ZLMyEventDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 
@@ -28,6 +29,10 @@
 
 @property (nonatomic, strong) NSMutableArray *taskInfoList;
 
+// 事件信息中的详情所需部门与接收人
+@property (nonatomic, strong) NSString *infoDepart;
+@property (nonatomic, strong) NSString *infoPeople;
+
 @end
 
 @implementation ZLMyEventDetailVC
@@ -40,26 +45,35 @@
         
         ZLLog(@"%@",request.responseString);
         
-//        ZLTaskInfoDetailModel *detailModel = [[ZLTaskInfoDetailModel alloc]initWithString:request.responseString error:nil];
-//
-//        if ([detailModel.code isEqualToString:@"0"]) {
-//
-//            for (ZLTaskIncidentListModel *model in detailModel.data.incidentList) {
-//                [self.incidentList addObject:model];
-//
-//            }
-//
-//            for (ZLTaskRiverTaskDetailListModel *model in detailModel.data.riverTaskDetailList) {
-//                [self.riverTaskDetailList addObject:model];
-//
-//            }
-//
-//            [self.taskInfoList addObject:detailModel.data];
-//            [self.sourceArray addObject:self.taskInfoList];
-//            [self.sourceArray addObject:self.riverTaskDetailList];
-//            [self.sourceArray addObject:self.incidentList];
+        ZLEventDetailModel *detailModel = [[ZLEventDetailModel alloc]initWithString:request.responseString error:nil];
+
+        if ([detailModel.code isEqualToString:@"0"]) {
+
+            for (ZLTaskIncidentListModel *model in detailModel.data.incidentList) {
+                [self.incidentList addObject:model];
+
+            }
+
+            for (ZLRiverIncidentDetailListModel *model in detailModel.data.riverIncidentDetailList) {
+                [self.riverTaskDetailList addObject:model];
+
+            }
+
+            [self.taskInfoList addObject:detailModel.data];
+            [self.sourceArray addObject:self.taskInfoList];
+            [self.sourceArray addObject:self.riverTaskDetailList];
+            [self.sourceArray addObject:self.incidentList];
         
-//        }
+        }
+        ZLRiverIncidentDetailListModel *model = self.riverTaskDetailList.lastObject;
+        
+        if (model) {
+            self.infoDepart = model.groupName;
+            self.infoPeople = model.userName;
+        }
+        
+      
+        
         
         
         [self.mainTableView reloadData];
@@ -138,52 +152,51 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 0) {
-//        ZLTaskInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLTaskInfoTableViewCell" forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//
-//        if (self.taskInfoList.count > 0) {
-//            ZLTaskInfoDetailDataModel *dataModel = self.taskInfoList[indexPath.section];
-//            cell.dataModel = dataModel;
-//        }
-//
-//        return cell;
-//    }
-//
-//    if (indexPath.section == 1) {
-//        ZLTaskDealDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLTaskDealDetailCell" forIndexPath:indexPath];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//
-//        if (self.riverTaskDetailList.count > 0) {
-//            ZLTaskRiverTaskDetailListModel *dataModel = self.riverTaskDetailList[indexPath.row];
-//            cell.dataModel = dataModel;
-//        }
-//            if (![cell.completeBtn isHidden]) {
-//
-//            }
-//
-//        }
-//        return cell;
-//    }
-//
-//    if (indexPath.section == 2) {
-//        ZLTimeLineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLTimeLineTableViewCell" forIndexPath:indexPath];
-//        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        if (self.incidentList.count > 0) {
-//            ZLTaskIncidentListModel *dataModel = self.incidentList[indexPath.row];
-//
-//            cell.dataModel = dataModel;
-//
-//            if (indexPath.row == 0) {
-//
-//                cell.topLineView.hidden = YES;
-//
-//            }
-//
-//        }
-//        return cell;
-//    }
+    if (indexPath.section == 0) {
+        ZLEventInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLEventInfoCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+        if (self.taskInfoList.count > 0) {
+            ZLEventDetailDataModel *dataModel = self.taskInfoList[indexPath.section];
+            dataModel.receiverDepartName = self.infoDepart;
+            dataModel.receiverPersonName = self.infoPeople;
+            cell.userCode = self.userCode;
+            cell.dataModel = dataModel;
+        }
+
+        return cell;
+    }
+
+    if (indexPath.section == 1) {
+        ZLEventDealDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLEventDealDetailCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (self.riverTaskDetailList.count > 0) {
+            ZLRiverIncidentDetailListModel *dataModel = self.riverTaskDetailList[indexPath.row];
+            cell.userCode = self.userCode;
+            cell.dataModel = dataModel;
+        }
+        return cell;
+    }
+
+    if (indexPath.section == 2) {
+        ZLTimeLineTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLTimeLineTableViewCell" forIndexPath:indexPath];
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (self.incidentList.count > 0) {
+            ZLTaskIncidentListModel *dataModel = self.incidentList[indexPath.row];
+
+            cell.dataModel = dataModel;
+
+            if (indexPath.row == 0) {
+
+                cell.topLineView.hidden = YES;
+
+            }
+
+        }
+        return cell;
+    }
     return nil;
 }
 

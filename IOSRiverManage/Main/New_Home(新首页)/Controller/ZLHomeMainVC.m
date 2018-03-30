@@ -28,7 +28,15 @@
 #import "ZLGaodeViewController.h"
 
 #import "ZLNewUserRiversModel.h"
+#import "ZLGetMyToDoTaskAndIncidentListService.h"
+#import "ZLHomeWaitEventAndTaskModel.h"
 
+#import "ZLMyTaskWaitCell.h"
+#import "ZLMyEventWaitCell.h"
+#import "ZLTaskDetailVC.h"
+#import "ZLMyEventDetailVC.h"
+#import "ZLStatisticsVC.h"
+#import "ZLNewLoginModel.h"
 @interface ZLHomeMainVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) ZLHomeHeadView *headView;
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -43,6 +51,12 @@
 
 @property (nonatomic, strong) NSMutableArray *riversModelArray;
 
+// 最后一个cell的数据创建时间,便于分页
+@property (nonatomic, strong) NSString *lastCreateTime;
+
+@property (nonatomic, strong) NSMutableArray *sourceArray;
+
+@property (nonatomic, strong) ZLNewLoginModel *loginModel;
 
 @end
 
@@ -107,6 +121,10 @@
     
     ZLNewUserRiversModel *riversModel = [[ZLNewUserRiversModel alloc]initWithString:rivers error:nil];
     
+    NSString *userModel = [self.store getStringById:DBLoginModel fromTable:DBUserTable];
+    
+    _loginModel = [[ZLNewLoginModel alloc]initWithString:userModel error:nil];
+    
     if (riversModel.data.count > 0) {
         
         for (ZLNewUserRiversDataModel *riverDataModel in riversModel.data ) {
@@ -120,13 +138,52 @@
     }
     
 }
+
+- (void)getData{
+    
+    ZLGetMyToDoTaskAndIncidentListService *service = [[ZLGetMyToDoTaskAndIncidentListService alloc]initWithpageSize:10 appPageCreateTime:self.lastCreateTime];
+    
+    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLLog(@"%@",request.responseString);
+        
+        ZLHomeWaitEventAndTaskModel *waitModel = [[ZLHomeWaitEventAndTaskModel alloc]initWithString:request.responseString error:nil];
+
+        if ([waitModel.code isEqualToString:@"0"]) {
+            if ([_lastCreateTime isEqualToString: @""]) {
+
+                [_sourceArray removeAllObjects];
+
+            }
+            for (ZLHomeWaitEventAndTaskDataModel *dataModel in waitModel.data) {
+
+                [self.sourceArray addObject:dataModel];
+
+            }
+        }
+
+        [self.mainTableView reloadData];
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+    }];
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-
     [self getRiversData];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
+    _sourceArray = [NSMutableArray array];
+    _lastCreateTime = @"";
+    
+    [self getData];
+    
     [self setUpUI];
     
     [self.store createTableWithName:DBMapTable];
@@ -188,6 +245,13 @@
             ZLOverSeeManagerVC *vc = [[ZLOverSeeManagerVC alloc]init];
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
+        
+        if ([model.title isEqualToString:@"综合统计"]) {
+            ZLStatisticsVC *vc = [[ZLStatisticsVC alloc]init];
+            vc.areaCode = weakSelf.loginModel.data.areaCode;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+        
     };
 }
 
@@ -210,16 +274,6 @@
     
 }
 
-
-
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-
-}
-
-
-
-
 - (void)clickAddButton{
     ZLLog(@"点击了加号");
 
@@ -234,7 +288,7 @@
 //
 //}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return self.sourceArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -243,31 +297,65 @@
     
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 160;
-//}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 2;
-}
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    return -10;
-//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZLHomeWaitEventAndTaskDataModel *model = self.sourceArray[indexPath.section];
     
-    ZLHomeTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLHomeTaskTableViewCell" forIndexPath:indexPath];
+    if (indexPath.section == _sourceArray.count - 1) {
+        _lastCreateTime = model.createTime;
+        
+    }
     
+    if ([model.type isEqualToString:@"1"]) {
+        ZLMyTaskWaitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLMyTaskWaitCell" forIndexPath:indexPath];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.homeDataModel = model;
+        return cell;
+    }else{
+        ZLMyEventWaitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLMyEventWaitCell" forIndexPath:indexPath];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.homeDataModel = model;
+        
+        return cell;
+    }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+   
     
-    return cell;
+    return nil;
+    
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ZLHomeWaitEventAndTaskDataModel *model = self.sourceArray[indexPath.section];
+    
+    if ([model.type isEqualToString:@"1"]) {
+        ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
+        vc.passCode = @"待办任务";
+        vc.code = model.taskId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        
+        ZLMyEventDetailVC *vc = [[ZLMyEventDetailVC alloc]init];
+        vc.eventId = model.ID;
+        vc.userCode = model.userCode;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    
+   
+    
+}
+
+
 
 - (UITableView *)mainTableView{
     if (!_mainTableView) {
         _mainTableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
-        [_mainTableView registerClass:[ZLHomeTaskTableViewCell class] forCellReuseIdentifier:@"ZLHomeTaskTableViewCell"];
+        [_mainTableView registerClass:[ZLMyTaskWaitCell class] forCellReuseIdentifier:@"ZLMyTaskWaitCell"];
+        [_mainTableView registerClass:[ZLMyEventWaitCell class] forCellReuseIdentifier:@"ZLMyEventWaitCell"];
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
         _mainTableView.showsVerticalScrollIndicator = NO;
@@ -277,7 +365,18 @@
         _mainTableView.sectionHeaderHeight = 0;
         
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
-        _mainTableView.estimatedRowHeight = 150;
+        _mainTableView.estimatedRowHeight = 200;
+        
+        _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            _lastCreateTime = @"";
+            [self getData];
+            
+        }];
+        
+        _mainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            [self getData];
+            
+        }];
         
 //        _mainTableView.scrollEnabled = NO;
         
@@ -354,18 +453,6 @@
 - (void)riverBtnClick{
     
     [_maskView dismissView];
-    
-//    NSMutableArray *sourceArray = [NSMutableArray arrayWithObjects:@"李伟",
-//                                   @"李青",
-//                                   @"张友善",
-//                                   @"刘霞",
-//                                   @"刘霞",
-//                                   @"刘霞",
-//                                   @"刘霞",
-//                                   @"刘霞",
-//                                   @"刘霞",
-//                                   @"刘霞",
-//                                   @"刘霞",nil];
     
     ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡河" singleSelection:YES];
     

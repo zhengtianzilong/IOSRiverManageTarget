@@ -14,13 +14,23 @@
 // http://192.168.0.250:8070
 // http://183.207.215.121:18881
 
-#define Base_URL @"http://192.168.0.232:1011"
+#define Base_URL @"http://192.168.0.89:1011"
+
+#define SERVER_NEWS_URL = "http://192.168.0.91:8087";
+
 // 基础图片地址
 #define BaseImage_URL @"http://192.168.0.143:22222/"
 // 登录接口
 #define River_LoginUrl @"/soa/mobile/login"
 // 登出接口
 #define River_LoginOutUrl @"/soa/mobile/logout"
+
+// 综合统计
+#define River_ComStatisticsUrl @"http://192.168.0.86:8086/comStatistics/index.html"
+
+// 查询首页待办数据
+#define River_GetMyToDoTaskAndIncidentListUrl @"/city/appRiverTask/getMyToDoTaskAndIncidentListForApp"
+
 // 查询区域的数据
 #define River_AreaListUrl @"/base/appArea/getAreaList"
 

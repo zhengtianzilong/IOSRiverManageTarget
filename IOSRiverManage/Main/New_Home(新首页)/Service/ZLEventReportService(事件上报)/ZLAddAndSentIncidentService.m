@@ -73,7 +73,7 @@
 }
 
 - (YTKRequestSerializerType)requestSerializerType{
-    return YTKRequestSerializerTypeJSON;
+    return YTKRequestSerializerTypeHTTP;
 }
 
 - (YTKResponseSerializerType)responseSerializerType{

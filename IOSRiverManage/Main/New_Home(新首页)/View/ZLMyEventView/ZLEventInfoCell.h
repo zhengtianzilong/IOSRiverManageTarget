@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZLEventDetailDataModel.h"
 @interface ZLEventInfoCell : UITableViewCell
 @property (nonatomic, strong) UIView *lineView;
 
@@ -40,4 +40,10 @@
 // 附件
 @property (nonatomic, strong) UILabel *attachmentLabel;
 @property (nonatomic, strong) UILabel *attachment;
+
+@property (nonatomic, strong) ZLEventDetailDataModel *dataModel;
+
+@property (nonatomic, strong) NSString *userCode;
+
+
 @end

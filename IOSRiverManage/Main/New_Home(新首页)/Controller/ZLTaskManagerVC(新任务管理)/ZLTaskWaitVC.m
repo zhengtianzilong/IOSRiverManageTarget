@@ -174,7 +174,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    cell.dealClick = ^(ZLTaskWaitDataModel *model, UIButton *dealBtn) {
+    cell.dealClick = ^(NSString *taskId, UIButton *dealBtn) {
         
         if ([dealBtn.currentTitle isEqualToString:@"接收"]) {
             

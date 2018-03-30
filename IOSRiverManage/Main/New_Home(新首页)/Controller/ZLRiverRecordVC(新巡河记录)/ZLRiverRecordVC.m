@@ -25,7 +25,7 @@
 
 @property (nonatomic, strong) NSString *quertEntTime;
 
-@property (nonatomic, strong) NSString *quertRiverName;
+@property (nonatomic, strong) NSString *queryRiverName;
 
 @end
 
@@ -35,7 +35,7 @@
     
     [self.mainTableView ly_hideEmptyView];
     
-    ZLGetRiverPatrolListByUserCodeService *service = [[ZLGetRiverPatrolListByUserCodeService alloc]initWithpageSize:@"10" startTime:self.lastCreateTime quertStartTime:self.quertStartTime quertEntTime:self.quertEntTime quertRiverName:self.quertRiverName];
+    ZLGetRiverPatrolListByUserCodeService *service = [[ZLGetRiverPatrolListByUserCodeService alloc]initWithpageSize:@"10" startTime:self.lastCreateTime quertStartTime:self.quertStartTime quertEntTime:self.quertEntTime queryRiverName:self.queryRiverName];
     
     [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         
@@ -100,7 +100,7 @@
     [self setTabViewHeadView];
     
     self.lastCreateTime = @"";
-    self.quertRiverName = @"";
+    self.queryRiverName = @"";
     self.quertEntTime = @"";
     self.quertStartTime = @"";
     //框架方法
@@ -171,7 +171,7 @@
         self.quertEntTime = time;
     }
     
-    self.quertRiverName = self.recordView.selectInfoView.nameAndTextField.infoTextField.text;
+    self.queryRiverName = self.recordView.selectInfoView.nameAndTextField.infoTextField.text;
     
     [self.mainTableView.mj_header beginRefreshing];
 }
