@@ -116,7 +116,7 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Policy(%E6%B2%B3%E6%B9%96%E4%BF%A1%E6%81%AF)/Controller/ZLRiverInfoBaseVC.m"
-                  timestampString = "544286567.571725"
+                  timestampString = "544289321.475487"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "185"
@@ -131,7 +131,7 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Policy(%E6%B2%B3%E6%B9%96%E4%BF%A1%E6%81%AF)/Controller/ZLRiverInfoBaseVC.m"
-                  timestampString = "544286567.576247"
+                  timestampString = "544289321.479628"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "186"
@@ -148,7 +148,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IOSRiverManage/Main/New_Home(&#x65b0;&#x9996;&#x9875;)/Controller/ZLTaskDown(&#x4efb;&#x52a1;&#x4e0b;&#x53d1;)/ZLNewChangeTaskDownVC.m"
-            timestampString = "544286567.011142"
+            timestampString = "544289321.055802"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "495"
@@ -164,7 +164,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IOSRiverManage/Main/New_Home(&#x65b0;&#x9996;&#x9875;)/Controller/ZLTaskDown(&#x4efb;&#x52a1;&#x4e0b;&#x53d1;)/ZLNewChangeTaskDownVC.m"
-            timestampString = "544286567.011278"
+            timestampString = "544289321.055943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "371"
@@ -180,7 +180,7 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLTaskDown(%E4%BB%BB%E5%8A%A1%E4%B8%8B%E5%8F%91)/ZLNewChangeTaskDownVC.m"
-                  timestampString = "544286567.5936821"
+                  timestampString = "544289321.488288"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "371"
@@ -195,7 +195,7 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLTaskDown(%E4%BB%BB%E5%8A%A1%E4%B8%8B%E5%8F%91)/ZLNewChangeTaskDownVC.m"
-                  timestampString = "544286567.601989"
+                  timestampString = "544289321.492433"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "372"
@@ -212,7 +212,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IOSRiverManage/Main/New_Home(&#x65b0;&#x9996;&#x9875;)/Controller/ZLEventReport(&#x4e8b;&#x4ef6;&#x4e0a;&#x62a5;)/ZLNewChangeEventReportVC.m"
-            timestampString = "544286567.011381"
+            timestampString = "544289321.056054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "540"
@@ -228,7 +228,7 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLEventReport(%E4%BA%8B%E4%BB%B6%E4%B8%8A%E6%8A%A5)/ZLNewChangeEventReportVC.m"
-                  timestampString = "544286567.613221"
+                  timestampString = "544289321.500958"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "540"
@@ -243,7 +243,7 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLEventReport(%E4%BA%8B%E4%BB%B6%E4%B8%8A%E6%8A%A5)/ZLNewChangeEventReportVC.m"
-                  timestampString = "544286567.6199991"
+                  timestampString = "544289321.505131"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "541"
@@ -260,7 +260,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IOSRiverManage/Main/New_Home(&#x65b0;&#x9996;&#x9875;)/Controller/ZLTaskDown(&#x4efb;&#x52a1;&#x4e0b;&#x53d1;)/ZLNewContiTaskDownVC.m"
-            timestampString = "544286567.0114729"
+            timestampString = "544289321.0561579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "466"
@@ -276,7 +276,7 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLTaskDown(%E4%BB%BB%E5%8A%A1%E4%B8%8B%E5%8F%91)/ZLNewContiTaskDownVC.m"
-                  timestampString = "544286567.6308531"
+                  timestampString = "544289321.513461"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "466"
@@ -291,7 +291,7 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLTaskDown(%E4%BB%BB%E5%8A%A1%E4%B8%8B%E5%8F%91)/ZLNewContiTaskDownVC.m"
-                  timestampString = "544286567.63767"
+                  timestampString = "544289321.517509"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "467"
@@ -308,12 +308,108 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IOSRiverManage/Main/New_Home(&#x65b0;&#x9996;&#x9875;)/Controller/ZLTaskDown(&#x4efb;&#x52a1;&#x4e0b;&#x53d1;)/ZLNewContiTaskDownVC.m"
-            timestampString = "544286567.011955"
+            timestampString = "544289321.056694"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "469"
             endingLineNumber = "469"
             landmarkName = "-contiClick"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeDownTaskViewController.m"
+            timestampString = "544289321.057072"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-getuserListData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeDownTaskViewController.m"
+            timestampString = "544289349.173617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "-getuserListData"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ZLGaodeDownTaskViewController getuserListData]"
+                  moduleName = "IOSRiverManage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeDownTaskViewController.m"
+                  timestampString = "544289349.398659"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "58"
+                  endingLineNumber = "58"
+                  offsetFromSymbolStart = "184">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__48-[ZLGaodeDownTaskViewController getuserListData]_block_invoke"
+                  moduleName = "IOSRiverManage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeDownTaskViewController.m"
+                  timestampString = "544289349.40288"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeDownTaskViewController.m"
+            timestampString = "544289360.284903"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "-getuserListData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeDownTaskViewController.m"
+            timestampString = "544289361.69666"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-getuserListData"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

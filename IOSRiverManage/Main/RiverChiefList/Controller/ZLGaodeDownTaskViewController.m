@@ -53,7 +53,11 @@
 }
 
 - (void)getuserListData{
-    ZLGetUserListByTaskNormalService *service = [[ZLGetUserListByTaskNormalService alloc]initWithriverCode:@""];
+    
+    self.peopleCodeArray = [NSMutableArray array];
+    self.peopleNameArray = [NSMutableArray array];
+    
+    ZLGetUserListByTaskNormalService *service = [[ZLGetUserListByTaskNormalService alloc]initWithriverCode:_demandModel.riverCode];
     
     [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
        
@@ -80,6 +84,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    [self getuserListData];
     
     [self.view addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
