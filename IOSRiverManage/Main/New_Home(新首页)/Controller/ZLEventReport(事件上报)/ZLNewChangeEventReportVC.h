@@ -7,7 +7,9 @@
 //
 
 #import "ZLBaseCustomNavViewController.h"
-
+#import "ZLEventManagerReportDataModel.h"
 @interface ZLNewChangeEventReportVC : ZLBaseCustomNavViewController
+
+@property (nonatomic, strong) ZLEventManagerReportDataModel *dataModel;
 
 @end

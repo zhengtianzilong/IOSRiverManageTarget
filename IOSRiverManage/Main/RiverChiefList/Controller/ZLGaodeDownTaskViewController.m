@@ -16,6 +16,9 @@
 #import "ACMediaModel.h"
 #import "ZLRiverDownTaskService.h"
 #import "ZLLoginModel.h"
+#import "ZLGetEventUserListModel.h"
+#import "ZLGetUserListByTaskNormalService.h"
+
 @interface ZLGaodeDownTaskViewController ()
 @property (nonatomic, strong) UIScrollView *mainScrollview;
 @property (nonatomic ,assign) CGFloat height;
@@ -26,6 +29,10 @@
 
 // 照片数组
 @property (nonatomic, strong) NSArray *imageArray;
+
+@property (nonatomic, strong) NSMutableArray *peopleNameArray;
+@property (nonatomic, strong) NSMutableArray *peopleCodeArray;
+
 @end
 
 @implementation ZLGaodeDownTaskViewController
@@ -44,6 +51,31 @@
     return _bottomView;
     
 }
+
+- (void)getuserListData{
+    ZLGetUserListByTaskNormalService *service = [[ZLGetUserListByTaskNormalService alloc]initWithriverCode:@""];
+    
+    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+       
+        ZLGetEventUserListModel *taskUserList = [[ZLGetEventUserListModel alloc]initWithString:request.responseString error:nil];
+        
+        if ([taskUserList.code isEqualToString:@"0"]) {
+            
+            for (ZLGetEventUserListDataModel *dataModel in taskUserList.data) {
+                
+                [self.peopleNameArray addObject:dataModel.realName];
+                [self.peopleCodeArray addObject:dataModel.userCode];
+                
+            }
+        }
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+    }];
+    
+    
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

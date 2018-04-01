@@ -10,4 +10,6 @@
 
 @interface ZLNewContiEventReportVC : ZLBaseCustomNavViewController
 
+@property (nonatomic, strong) NSString *incidentid;
+
 @end

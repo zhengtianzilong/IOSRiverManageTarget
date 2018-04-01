@@ -15,11 +15,15 @@
 #import "WJYAlertView.h"
 #import "ZLMyAdviseBottomView.h"
 #import "ZLNewContiTaskDownVC.h"
+#import "ZLMyTaskAdviseVC.h"
 @interface ZLTaskDealDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 @property (nonatomic, strong) NSMutableArray *sourceArray;;
 
 @property (nonatomic, strong) NSMutableArray *taskInfoList;
+
+@property (nonatomic, strong) NSString *taskDetailId;
+
 
 @end
 
@@ -40,9 +44,9 @@
             [self.taskInfoList addObject:detailModel.data];
             [self.sourceArray addObject:self.taskInfoList];
             
+            self.taskDetailId = detailModel.data.ID;
+            
         }
-        
-        
         [self.mainTableView reloadData];
         //        [self.mainTableView.mj_header endRefreshing];
         //        [self.mainTableView.mj_footer endRefreshing];
@@ -130,6 +134,8 @@
     
     ZLNewContiTaskDownVC *vc = [[ZLNewContiTaskDownVC alloc]init];
     
+    vc.taskDetailId = _taskDetailId;
+    
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -139,6 +145,14 @@
  任务反馈
  */
 - (void)endButtonClick{
+    
+    
+    ZLMyTaskAdviseVC *vc = [[ZLMyTaskAdviseVC alloc]init];
+    
+    vc.taskDetailId = _taskDetailId;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
     
 }
 

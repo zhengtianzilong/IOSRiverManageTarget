@@ -140,67 +140,8 @@
 
 - (void)loadDataWithRiverId:(NSString *)riverId{
     
-    NSString *tempRiverId = @"";
-    if ([kAPPAREA isEqualToString:@"suqian"]) {
-        tempRiverId = riverId;
-    }else{
-        tempRiverId = @"";
-    }
-    
-    _sourceArray = [NSMutableArray array];
-    _modelArray = [NSMutableArray array];
-    _idArray = [NSMutableArray array];
-    _nameArray = [NSMutableArray array];
-//    NSData *data = [[NSUserDefaults standardUserDefaults]objectForKey:ULoginModel];
-//    ZLLoginModel *loginModel = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-
-    YTKKeyValueStore *store = [[ZLDBStoreManager shareDbStoreManager] createDB];
-    
-    NSString *json = [store getStringById:DBLoginModel fromTable:DBUserTable];
-    ZLLoginModel *loginModel = [[ZLLoginModel alloc]initWithString:json error:nil];
-    
-    ZLEvent_DownObjectService *eventObjectService = [[ZLEvent_DownObjectService alloc]initWithuid:loginModel.userId riverId:tempRiverId];
-    NSMutableArray *tempArray = [NSMutableArray array];
-    [eventObjectService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        
-        ZLLog(@"%@",request.response);
-        NSDictionary *dic = request.responseObject;
-        if ([dic[@"code"] isEqualToString:@"0"]) {
-            for (NSDictionary *dics in dic[@"data"]) {
-                ZLEventObjectModel *objectModel = [[ZLEventObjectModel alloc]initWithDictionary:dics error:nil];
-                [tempArray addObject:objectModel];
-                [_modelArray addObject:objectModel.idObject];
-                if (objectModel.departname == nil) {
-                    objectModel.departname = @"";
-                }
-                NSString *nameAnddepartMent = [NSString stringWithFormat:@"%@ %@",objectModel.realname, objectModel.departname];
-                [_sourceArray addObject:nameAnddepartMent];
-                
-                //                [_sourceArray addObject:objectModel.realname];
-            }
-        }
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-        ZLLog(@"%@",request.response);
-    }];
-    
-    //    NSArray *array = [[NSUserDefaults standardUserDefaults]objectForKey:UEventObject];
 }
 
-//- (void)loadData{
-//    NSArray *array = [[NSUserDefaults standardUserDefaults]objectForKey:UDownEventObject];
-//    _sourceArray = [NSMutableArray array];
-//    _modelArray = [NSMutableArray array];
-//    _idArray = [NSMutableArray array];
-//    _nameArray = [NSMutableArray array];
-//    if (array.count > 0) {
-//        for (NSData *data in array) {
-//
-//            ZLEventObjectModel *eventModel = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-//            [_modelArray addObject:eventModel.idObject];
-//            [_sourceArray addObject:eventModel.realname];
-//        }
-//    }
-//}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     

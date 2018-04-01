@@ -1,13 +1,13 @@
 //
-//  ZLAddAndSentIncidentService.m
+//  ZLUpdateAndSentIncidentService.m
 //  IOSRiverManage
 //
-//  Created by 蔡紫龙 on 2018/3/26.
+//  Created by 蔡紫龙 on 2018/4/1.
 //  Copyright © 2018年 caizilong. All rights reserved.
 //
 
-#import "ZLAddAndSentIncidentService.h"
-@interface ZLAddAndSentIncidentService (){
+#import "ZLUpdateAndSentIncidentService.h"
+@interface ZLUpdateAndSentIncidentService (){
     NSArray *_imgList;
     NSArray *_fileList;
     NSString *_incidentName;
@@ -22,10 +22,11 @@
     NSString *_longitude;
     NSString *_latitude;
     NSString *_positionDesc;
+    NSString *_incidentCode;
 }
 
 @end
-@implementation ZLAddAndSentIncidentService
+@implementation ZLUpdateAndSentIncidentService
 
 - (instancetype)initWithimgList:(NSArray *)imgList
                        fileList:(NSArray *)fileList
@@ -40,7 +41,8 @@
                      patrolCode:(NSString *)patrolCode
                       longitude:(NSString *)longitude
                        latitude:(NSString *)latitude
-                   positionDesc:(NSString *)positionDesc{
+                   positionDesc:(NSString *)positionDesc
+                   incidentCode:(NSString *)incidentCode{
     self = [super init];
     if (self) {
         
@@ -58,6 +60,7 @@
         _longitude = longitude;
         _latitude = latitude;
         _positionDesc = positionDesc;
+        _incidentCode = incidentCode;
         
     }
     return self;
@@ -65,7 +68,7 @@
 
 
 - (NSString *)requestUrl {
-    return River_AddAndSentIncidentUrl;
+    return River_OnlyUpdateIncidentForAppUrl;
 }
 
 - (YTKRequestMethod)requestMethod {
@@ -96,8 +99,10 @@
                          _longitude , @"longitude",
                          _latitude , @"latitude",
                          _positionDesc , @"positionDesc",
+                         _incidentCode , @"incidentCode",
                          nil];
     return dic;
     
 }
+
 @end

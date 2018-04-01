@@ -12,14 +12,53 @@
 #import "ZLMyAdviseBottomView.h"
 #import "ZLNewContiEventReportVC.h"
 #import "ZLMyEventAdviseVC.h"
-
+#import "ZLEventManagerDetailService.h"
+#import "ZLEventDetailModel.h"
+#import "ZLRiverPeopleNameAndEditBtnView.h"
+#import "ZLEventInfoCell.h"
 @interface ZLMyventDealDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
+
+@property (nonatomic, strong) ZLEventDetailDataModel *dataModel;
+
 
 
 @end
 
 @implementation ZLMyventDealDetailVC
+
+- (void)getData{
+    
+    ZLEventManagerDetailService *service = [[ZLEventManagerDetailService alloc]initWitheventId:self.eventId];
+    
+    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLLog(@"%@",request.responseString);
+        
+        ZLEventDetailModel *detailModel = [[ZLEventDetailModel alloc]initWithString:request.responseString error:nil];
+        
+        if ([detailModel.code isEqualToString:@"0"]) {
+            
+            ZLRiverIncidentDetailListModel *model = detailModel.data.riverIncidentDetailList.lastObject;
+            
+            self.dataModel = detailModel.data;
+            
+            if (model) {
+                self.dataModel.receiverDepartName = model.groupName;
+                self.dataModel.receiverPersonName = model.userName;
+                
+            }
+            
+        }
+       
+        [self.mainTableView reloadData];
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+    }];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,16 +76,6 @@
 
     
 }
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    
-    
-    
-    
-}
-
-
-
 
 #pragma mark -- 列表的代理
 
@@ -59,16 +88,41 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 45;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] init];
+    ZLRiverPeopleNameAndEditBtnView *head;
+    if (section == 0) {
+        head = [[ZLRiverPeopleNameAndEditBtnView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 45) WithName:@"事件信息"];
+    }
+    head.nameLable.textColor = [UIColor blackColor];
+    [view addSubview:head];
+    return view;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    ZLMyEventDealDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLMyEventDealDetailCell" forIndexPath:indexPath];
+    ZLEventInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLEventInfoCell" forIndexPath:indexPath];
+    
+    if (_dataModel) {
+        cell.dataModel = self.dataModel;
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    
+    
     return cell;
 }
 
 - (void)startButtonClick{
     
     ZLNewContiEventReportVC *vc = [[ZLNewContiEventReportVC alloc]init];
+    
+    vc.incidentid = self.dataModel.ID;
     
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -89,7 +143,7 @@
     if (!_mainTableView) {
         _mainTableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStylePlain)];
         
-        [_mainTableView registerClass:[ZLMyEventDealDetailCell class] forCellReuseIdentifier:@"ZLMyEventDealDetailCell"];
+        [_mainTableView registerClass:[ZLEventInfoCell class] forCellReuseIdentifier:@"ZLEventInfoCell"];
         
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;

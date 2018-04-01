@@ -120,7 +120,7 @@
             ZLGetDepartmentListByIncidentService *getDepartListService = [[ZLGetDepartmentListByIncidentService alloc]init];
             [chainRequest addRequest:getDepartListService callback:nil];
             
-            ZLGetUserListByTaskNormalService *getTaskNormalService = [[ZLGetUserListByTaskNormalService alloc]init];
+            ZLGetUserListByTaskNormalService *getTaskNormalService = [[ZLGetUserListByTaskNormalService alloc]initWithriverCode:nil];
             [chainRequest addRequest:getTaskNormalService callback:nil];
             
             ZLGetDepartmentListByTaskService *getDepartListTaskService = [[ZLGetDepartmentListByTaskService alloc]init];

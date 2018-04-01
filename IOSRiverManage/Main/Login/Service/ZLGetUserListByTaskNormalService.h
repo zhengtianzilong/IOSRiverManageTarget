@@ -10,4 +10,6 @@
 
 @interface ZLGetUserListByTaskNormalService : ZLCustomBaseRequest
 
+- (instancetype)initWithriverCode:(NSString *)riverCode;
+
 @end

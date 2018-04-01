@@ -12,6 +12,8 @@
 #import "ZLEventManagerWaitService.h"
 #import "ZLEventManagerReportModel.h"
 #import "ZLMyEventDetailVC.h"
+#import "ZLReceiveIncidentService.h"
+
 @interface ZLEventManagerWaitVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSString *incidentName;
@@ -177,10 +179,48 @@
     }
     __weak typeof(self) weakSelf = self;
     
-    cell.dealClick = ^(NSString *eventId, UIButton *dealBtn) {
-        
-        ZLMyventDealDetailVC *vc = [[ZLMyventDealDetailVC alloc]init];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+    cell.dealClick = ^(NSString *eventId, NSString *detailId, UIButton *dealBtn) {
+        if ([dealBtn.currentTitle isEqualToString:@"接收"]) {
+            
+            DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认接收吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
+            
+            alert.otherButtonAction = ^{
+                
+                ZLReceiveIncidentService *service = [[ZLReceiveIncidentService alloc]initWithriverIncidentDetailId:detailId eventId:eventId];
+                [SVProgressHUD showWithStatus:@"接收中"];
+                [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                    
+                    ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                    
+                    if ([model.code isEqualToString:@"0"]) {
+                        
+                        [SVProgressHUD showSuccessWithStatus:@"接收成功"];
+                        [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                            
+                            [tableView.mj_header beginRefreshing];
+                            
+                        }];
+                        
+                    }else{
+                        [SVProgressHUD showErrorWithStatus:model.detail];
+                        [SVProgressHUD dismissWithDelay:0.3];
+                    }
+                    
+                    
+                } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                    [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                    [SVProgressHUD dismissWithDelay:0.3];
+                }];
+            };
+            
+            
+            [alert show];
+        }else if ([dealBtn.currentTitle isEqualToString:@"处理"]){
+            ZLMyventDealDetailVC *vc = [[ZLMyventDealDetailVC alloc]init];
+            vc.eventId = eventId;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+
     };
     
     

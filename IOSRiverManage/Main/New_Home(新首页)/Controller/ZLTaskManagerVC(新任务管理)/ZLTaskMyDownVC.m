@@ -180,12 +180,6 @@
         [alert show];
     };
     
-    
-    
-    
-    
-    
-    
     return cell;
     
 }

@@ -47,17 +47,22 @@
         
         for (ACMediaModel *model in _imageArray) {
             NSData *imageDataW = nil;
-            if ([self getHEFIWith:model.asset]) {
-                NSArray *nameArray = [model.name componentsSeparatedByString:@"."];
-                model.name = [NSString stringWithFormat:@"%@.jpg",nameArray.firstObject];
+            
+            if (model.asset) {
+                if ([self getHEFIWith:model.asset]) {
+                    NSArray *nameArray = [model.name componentsSeparatedByString:@"."];
+                    model.name = [NSString stringWithFormat:@"%@.jpg",nameArray.firstObject];
+                }
+                
+                imageDataW = UIImageJPEGRepresentation(model.image, 0.8);
+                NSData *data = imageDataW;
+                NSString *name = model.name;
+                NSString *formKey = @"file";
+                NSString *type = @"image/jpeg";
+                [formData appendPartWithFileData:data name:formKey fileName:name mimeType:type];
             }
             
-            imageDataW = UIImageJPEGRepresentation(model.image, 0.8);
-            NSData *data = imageDataW;
-            NSString *name = model.name;
-            NSString *formKey = @"file";
-            NSString *type = @"image/jpeg";
-            [formData appendPartWithFileData:data name:formKey fileName:name mimeType:type];
+
         }
 
     };

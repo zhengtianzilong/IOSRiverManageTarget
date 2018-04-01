@@ -23,6 +23,8 @@
 #import "ZLTaskDetailByIdService.h"
 #import "ZLTaskInfoDetailModel.h"
 #import "ZLUpdateTaskService.h"
+#import "ZLUpdateAndSentTaskService.h"
+
 @interface ZLNewChangeTaskDownVC ()<UITableViewDelegate, UITableViewDataSource>
 
 
@@ -42,10 +44,6 @@
  图片预览url存放的临时数组
  */
 @property (nonatomic, strong) NSMutableArray *imageTempArray;
-/**
- 图片预览存放的临时数组
- */
-@property (nonatomic, strong) NSMutableArray *imageModelTempArray;
 
 @property (nonatomic, strong) NSString *taskName;
 
@@ -103,12 +101,6 @@
             
         }
         [self.mainTableView reloadData];
-//        dispatch_sync(dispatch_get_main_queue(), ^{
-//
-//            _mediaView.preShowMedias = @[@"http://c.hiphotos.baidu.com/image/h%3D200/sign=ad1c53cd0355b31983f9857573ab8286/279759ee3d6d55fbb02469ea64224f4a21a4dd1f.jpg", @"http://img15.3lian.com/2015/h1/280/d/5.jpg"];
-//
-//
-//        });
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         [self.mainTableView.mj_header endRefreshing];
         [self.mainTableView.mj_footer endRefreshing];
@@ -325,45 +317,28 @@
     if (![self checkTextFieldContent]) {
         return;
     }
+    
     [self.imageNameArray removeAllObjects];
-    
-    ZLLog(@"%@",self.mediaView.preShowMedias);
-    
-    
-    
     NSMutableArray *tempArray = [NSMutableArray array];
-    
     for (int i = 0; i < _imageArray.count; i++) {
+        
         ACMediaModel *model = _imageArray[i];
-        if ([_imageTempArray containsObject:model.imageUrlString]) {
-            
-            [_imageArray removeObject:model];
-            // 将预加载的放入临时数组
-            [tempArray addObject:model.imageUrlString];
-        }
-    }
-    
-    if (tempArray.count > 0) {
         
-        for (int i = 0; i < _imageModelTempArray.count; i++) {
-            
-            ZLTaskInfoImageListModel *listModel = self.imageModelTempArray[i];
-            if ([tempArray containsObject: [NSString stringWithFormat:@"%@%@",BaseImage_URL,  listModel.fileAddr]]) {
-                
-                [self.imageNameArray addObject:listModel.toDictionary];
-                
-            }
-            
+        // 说明是预加载的图片
+        if (model.imageUrlString.length > 0) {
+            [self.imageNameArray addObject:model.imageListModel.toDictionary];
+        }else{
+            // 不是预加载的图片
+            [tempArray addObject:model];
         }
         
     }
-    
-    
+
     [SVProgressHUD showWithStatus:@"保存中"];
     
     dispatch_group_t group = dispatch_group_create();
     
-    ZLNewFilesUpLoadService *filesService = [[ZLNewFilesUpLoadService alloc]initWithImage:_imageArray];
+    ZLNewFilesUpLoadService *filesService = [[ZLNewFilesUpLoadService alloc]initWithImage:tempArray];
     
     dispatch_group_enter(group);
     
@@ -390,12 +365,8 @@
         [SVProgressHUD dismissWithDelay:0.3];
     }];
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        
         ZLLog(@"%@", self.imageNameArray);
-        
         ZLUpdateTaskService *service = [[ZLUpdateTaskService alloc]initWithimgList:self.imageNameArray taskName:self.taskName taskContent:self.taskDesc receiverDepartmentNames:self.taskDepartString receiverDepartmentCodes:self.departCodeString receiverPersonIds:self.peopleCodeString receiverPersonNames:self.taskPeopleString ID:_detailDataModel.ID taskCode:_detailDataModel.taskCode fileList:_detailDataModel.fileList];
-        
-        [SVProgressHUD showWithStatus:@"保存中"];
         
         [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
             ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
@@ -403,7 +374,9 @@
             if ([model.code isEqualToString:@"0"]) {
                 
                 [SVProgressHUD showSuccessWithStatus:@"保存成功"];
-                [SVProgressHUD dismissWithDelay:0.3];
+                [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
                 
             }else{
                 [SVProgressHUD showErrorWithStatus:model.detail];
@@ -415,6 +388,79 @@
             [SVProgressHUD dismissWithDelay:0.3];
         }];
     });
+}
+
+
+- (void)reportButtonClick{
+    if (![self checkTextFieldContent]) {
+        return;
+    }
+    [self.imageNameArray removeAllObjects];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (int i = 0; i < _imageArray.count; i++) {
+        ACMediaModel *model = _imageArray[i];
+        // 说明是预加载的图片
+        if (model.imageUrlString.length > 0) {
+            [self.imageNameArray addObject:model.imageListModel.toDictionary];
+        }else{
+            // 不是预加载的图片
+            [tempArray addObject:model];
+        }
+    }
+    [SVProgressHUD showWithStatus:@"下发中"];
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    ZLNewFilesUpLoadService *filesService = [[ZLNewFilesUpLoadService alloc]initWithImage:tempArray];
+    
+    dispatch_group_enter(group);
+    
+    [filesService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLUploadImagesModel *imagesModel = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
+        if ([imagesModel.code isEqualToString:@"0"]) {
+            
+            for (ZLTaskInfoImageListModel *model in imagesModel.data) {
+                
+                [self.imageNameArray addObject:model.toDictionary];
+            }
+        }else{
+            [SVProgressHUD showErrorWithStatus:imagesModel.detail];
+            [SVProgressHUD dismissWithDelay:0.3];
+        }
+        ZLLog(@"%@", request.responseString);
+        dispatch_group_leave(group);
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        [SVProgressHUD dismissWithDelay:0.3];
+    }];
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        ZLLog(@"%@", self.imageNameArray);
+        ZLUpdateAndSentTaskService *service = [[ZLUpdateAndSentTaskService alloc]initWithimgList:self.imageNameArray taskName:self.taskName taskContent:self.taskDesc receiverDepartmentNames:self.taskDepartString receiverDepartmentCodes:self.departCodeString receiverPersonIds:self.peopleCodeString receiverPersonNames:self.taskPeopleString ID:_detailDataModel.ID taskCode:_detailDataModel.taskCode fileList:_detailDataModel.fileList];
+        
+        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+            
+            if ([model.code isEqualToString:@"0"]) {
+                
+                [SVProgressHUD showSuccessWithStatus:@"下发成功"];
+                [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:model.detail];
+                [SVProgressHUD dismissWithDelay:0.3];
+            }
+            ZLLog(@"%@",request.responseString);
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            [SVProgressHUD dismissWithDelay:0.3];
+        }];
+    });
+    
+    
 }
 
 
@@ -439,19 +485,23 @@
     if (self.detailDataModel) {
         if (self.detailDataModel.imgList.count > 0) {
             self.imageTempArray = [NSMutableArray array];
-             self.imageModelTempArray = [NSMutableArray array];
             [self.imageArray removeAllObjects];
-            for (ZLTaskInfoImageListModel *imageModel in self.detailDataModel.imgList) {
-                
+            
+            for (int i = 0; i < self.detailDataModel.imgList.count; i++) {
+                ZLTaskInfoImageListModel *imageModel = self.detailDataModel.imgList[i];
                 NSString *urlString = [NSString stringWithFormat:@"%@%@",BaseImage_URL, imageModel.fileAddr];
                 [_imageTempArray addObject:urlString];
-                [_imageModelTempArray addObject:imageModel];
                 
                 ACMediaModel *mediaModel = [[ACMediaModel alloc]init];
                 mediaModel.imageUrlString = urlString;
+                
+                mediaModel.imageListModel = imageModel;
                 [self.imageArray addObject:mediaModel];
+                
+                
             }
-            mediaView.preShowMedias = _imageTempArray;
+            
+            mediaView.preShowMedias = self.imageArray;
         }
     }
     mediaView.allowMultipleSelection = NO;

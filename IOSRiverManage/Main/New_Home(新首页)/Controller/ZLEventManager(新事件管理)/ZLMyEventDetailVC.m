@@ -71,11 +71,6 @@
             self.infoDepart = model.groupName;
             self.infoPeople = model.userName;
         }
-        
-      
-        
-        
-        
         [self.mainTableView reloadData];
         
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {

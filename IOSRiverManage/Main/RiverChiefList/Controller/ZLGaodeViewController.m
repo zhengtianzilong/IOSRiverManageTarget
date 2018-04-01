@@ -282,10 +282,8 @@ typedef enum : NSUInteger {
         
         [self dismissViewControllerAnimated:NO completion:^{
             
-            
         }];
     }
-    
 }
 
 /**

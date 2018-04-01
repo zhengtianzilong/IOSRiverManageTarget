@@ -378,10 +378,6 @@
         self.attachment.text = @" ";
         
     }
-    
-    
-    
-    
 }
 
 

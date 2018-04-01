@@ -223,8 +223,6 @@
         return cell;
     }
     if (indexPath.row == 3) {
-        
-        
         ZLReportEventDesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportEventDesTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.titleLabel.text = self.sourceArray[indexPath.row];
@@ -233,23 +231,28 @@
         cell.infoTextView.tag = indexPath.row;
         
         cell.getText = ^(NSString *text, NSInteger tag) {
-            
             switch (3) {
                 case 3:
                     self.eventDesc = text;
                     break;
             }
-            
         };
-        
         return cell;
     }
     return nil;
-    
 }
 
 // 接收人选择
 - (void)peopleClick:(UITextView *)textView with:(UITableView *)tableView{
+    
+    if (self.peopleNameArray.count <= 0) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"暂无接收人对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        return;
+    }
     
     ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.peopleNameArray withTitle:@"选择接收人" sureTitle:@"确定" singleSelection:YES];
     
@@ -284,6 +287,15 @@
 
 // 部门选择
 - (void)departmentClick:(UITextView *)textView with:(UITableView *)tableView{
+    
+    if (self.departNameArray.count <= 0) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"暂无部门对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        return;
+    }
     
     ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.departNameArray withTitle:@"选择部门" sureTitle:@"确定" singleSelection:YES];
     
@@ -359,7 +371,6 @@
         } title:@"提示" message:@"请填写事件名称" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         return NO;
     }
-    
     if ([self.eventDesc isEqualToString:@""]) {
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
@@ -367,8 +378,6 @@
         } title:@"提示" message:@"请填写描述内容" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         return NO;
     }
-    
-    
     return YES;
 }
 
@@ -377,11 +386,9 @@
  保存按钮
  */
 - (void)saveButtonClick{
-    
     if (![self checkTextFieldContent]) {
         return;
     }
-    
     [SVProgressHUD showWithStatus:@"保存中"];
     
     dispatch_group_t group = dispatch_group_create();
@@ -426,13 +433,18 @@
             
             [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
                  ZLLog(@"%@", request.responseString);
-                
+                ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                if ([model.code isEqualToString:@"0"]) {
+                    [SVProgressHUD showSuccessWithStatus:@"保存成功"];
+                    [SVProgressHUD dismissWithDelay:0.3];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:model.detail];
+                    [SVProgressHUD dismissWithDelay:0.3];
+                }
             } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
                 [SVProgressHUD showErrorWithStatus:@"网络错误"];
                 [SVProgressHUD dismissWithDelay:0.3];
             }];
-            
-            
         });
 }
 
@@ -456,7 +468,6 @@
         
         ZLUploadImagesModel *imagesModel = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
         if ([imagesModel.code isEqualToString:@"0"]) {
-            
             for (ZLTaskInfoImageListModel *model in imagesModel.data) {
                 
                 [self.imageNameArray addObject:model.toDictionary];
@@ -470,23 +481,27 @@
         [SVProgressHUD showErrorWithStatus:@"网络错误"];
         [SVProgressHUD dismissWithDelay:0.3];
     }];
+    
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        
         ZLLog(@"%@", self.imageNameArray);
+        ZLAddAndSentIncidentService *service = [[ZLAddAndSentIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentName:_eventName incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverCode:@"" patrolCode:nil longitude:nil latitude:nil positionDesc:@""];
         
-        
-        
-////        ZLAddAndSentIncidentService *service = [[ZLAddAndSentIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentName:_eventName incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverCode:@"" patrolCode:@"" longitude:@"" latitude:@"" positionDesc:@""];
-//
-//        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request){
-//
-//             ZLLog(@"%@", request.responseString);
-//
-//        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-//
-//        }];
-        
-        
+        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request){
+            ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+            if ([model.code isEqualToString:@"0"]) {
+                [SVProgressHUD showSuccessWithStatus:@"上报成功"];
+                [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+            }else{
+                [SVProgressHUD showErrorWithStatus:model.detail];
+                [SVProgressHUD dismissWithDelay:0.3];
+            }
+            ZLLog(@"%@", request.responseString);
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            [SVProgressHUD dismissWithDelay:0.3];
+        }];
     });
     
 }

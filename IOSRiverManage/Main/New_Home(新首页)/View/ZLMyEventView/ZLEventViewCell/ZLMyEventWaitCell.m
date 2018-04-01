@@ -100,7 +100,8 @@
             self.dealBtn.hidden = YES;
         }
     }
-    self.eventId = _homeDataModel.ID;
+    self.eventId = dataModel.ID;
+    self.detailId = dataModel.detailId;
     self.state.text = status;
 }
 
@@ -180,6 +181,7 @@
     
     self.state.text = status;
     self.eventId = _homeDataModel.ID;
+    self.detailId = _homeDataModel.detailId;
 }
 
 
@@ -194,7 +196,7 @@
 - (void)deleteBtnClick{
     
     if (_dealClick) {
-        self.dealClick(self.eventId, self.dealBtn);
+        self.dealClick(self.eventId,self.detailId,self.dealBtn);
     }
     
 }

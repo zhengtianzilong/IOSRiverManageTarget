@@ -165,15 +165,10 @@
         
         if (self.riverTaskDetailList.count > 0) {
             ZLTaskRiverTaskDetailListModel *dataModel = self.riverTaskDetailList[indexPath.row];
-            
-            
-            
             cell.dataModel = dataModel;
             
             cell.detailClick = ^(ZLTaskRiverTaskDetailListModel *model) {
                 WJYAlertInputTextView *alertView = [[WJYAlertInputTextView alloc]initPagesViewWithTitle:@"审批意见" leftButtonTitle:@"取消" rightButtonTitle:@"确定" placeholderText:@"请输入审批意见"];
-                
-                
                 WJYAlertView *alert = [[WJYAlertView alloc]initWithCustomView:alertView dismissWhenTouchedBackground:YES];
                 
                 alertView.leftBlock = ^(NSString *text) {
@@ -232,7 +227,9 @@
                                 
                                 if ([baseModel.code isEqualToString:@"0"]) {
                                     [SVProgressHUD showSuccessWithStatus:@"上传成功"];
-                                    [SVProgressHUD dismissWithDelay:0.3];
+                                    [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                                        [self.mainTableView reloadData];
+                                    }];
                                 }else{
                                     [SVProgressHUD showErrorWithStatus:baseModel.detail];
                                     [SVProgressHUD dismissWithDelay:0.3];
@@ -272,7 +269,9 @@
                                 
                                 if ([baseModel.code isEqualToString:@"0"]) {
                                     [SVProgressHUD showSuccessWithStatus:@"上传成功"];
-                                    [SVProgressHUD dismissWithDelay:0.3];
+                                    [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                                        [self.mainTableView reloadData];
+                                    }];
                                 }else{
                                     [SVProgressHUD showErrorWithStatus:baseModel.detail];
                                     [SVProgressHUD dismissWithDelay:0.3];

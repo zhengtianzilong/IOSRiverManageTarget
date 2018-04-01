@@ -14,12 +14,12 @@
 @interface ZLEventDetailDataModel : JSONModel
 
 @property (nonatomic , copy) NSString<Optional>              *modifyTime;
-@property (nonatomic , copy) NSString<Optional>              * patrolCode;
-@property (nonatomic , copy) NSString<Optional>              * receiverDepartName;
+@property (nonatomic , copy) NSString<Optional>              *patrolCode;
+@property (nonatomic , copy) NSString<Optional>              *receiverDepartName;
 @property (nonatomic , copy) NSString<Optional>              *incidentStatus;
 @property (nonatomic , copy) NSString<Optional>              *completeTime;
-@property (nonatomic , copy) NSString<Optional>              * incidentName;
-@property (nonatomic , copy) NSString<Optional>              * receiverPersonName;
+@property (nonatomic , copy) NSString<Optional>              *incidentName;
+@property (nonatomic , copy) NSString<Optional>              *receiverPersonName;
 @property (nonatomic , copy) NSArray<ZLTaskIncidentListModel, Optional>              * incidentList;
 @property (nonatomic , copy) NSArray<ZLRiverIncidentDetailListModel, Optional>              * riverIncidentDetailList;
 @property (nonatomic , copy) NSString<Optional>              * feedbackContent;
@@ -29,7 +29,7 @@
 @property (nonatomic , copy) NSString<Optional>              * positionDesc;
 @property (nonatomic , copy) NSString<Optional>              * receiverType;
 @property (nonatomic , copy) NSString<Optional>              * ID;
-@property (nonatomic , copy) NSArray<ZLTaskInfoImageListModel, Optional>              * imgList;
+@property (nonatomic , copy) NSArray<ZLTaskInfoImageListModel, Optional>              *imgList;
 @property (nonatomic , copy) NSString<Optional>              * createBy;
 @property (nonatomic , copy) NSString<Optional>              *longitude;
 @property (nonatomic , copy) NSArray<ZLTaskInfoFileListModel,  Optional>              * fileList;

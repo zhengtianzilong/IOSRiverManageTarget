@@ -13,9 +13,16 @@
 #import "ACMediaFrame.h"
 #import "UIView+RoundedCorner.h"
 #import "ZLNewReportBottomView.h"
+#import "ZLEventManagerDetailService.h"
+#import "ZLEventDetailModel.h"
+#import "ZLAlertSelectionView.h"
+#import "ZLNewFilesUpLoadService.h"
+#import "ZLGetDepartModel.h"
+#import "ZLGetEventUserListModel.h"
+#import "ZLOnlyUpdateIncidentService.h"
+#import "ZLUpdateAndSentIncidentService.h"
+#import "ZLUploadImagesModel.h"
 @interface ZLNewChangeEventReportVC ()<UITableViewDelegate, UITableViewDataSource>
-
-
 @property (nonatomic, strong) UITableView *mainTableView;
 
 @property (nonatomic, strong) NSArray *sourceArray;
@@ -24,12 +31,179 @@
 
 @property (nonatomic, strong) ACSelectMediaView *mediaView;
 
+
+@property (nonatomic, strong) NSMutableArray<ACMediaModel *> *imageArray;
+
+@property (nonatomic, strong) NSMutableArray *imageNameArray;
+/**
+ 图片预览url存放的临时数组
+ */
+@property (nonatomic, strong) NSMutableArray *imageTempArray;
+
+@property (nonatomic, strong) NSString *eventName;
+
+@property (nonatomic, strong) NSMutableArray *eventPeople;
+
+@property (nonatomic, strong) NSString *eventPeopleString;
+
+@property (nonatomic, strong) NSMutableArray *eventDepart;
+
+@property (nonatomic, strong) NSString *eventDepartString;
+
+@property (nonatomic, strong) NSString *eventDesc;
+
+@property (nonatomic, strong) NSMutableArray *departCode;
+
+@property (nonatomic, strong) NSString *departCodeString;
+
+@property (nonatomic, strong) NSMutableArray *peopleCode;
+@property (nonatomic, strong) NSString *peopleCodeString;
+
+@property (nonatomic, strong) NSMutableArray *departNameArray;
+@property (nonatomic, strong) NSMutableArray *departNameTempArray;
+@property (nonatomic, strong) NSMutableArray *departModelArray;
+
+@property (nonatomic, strong) NSMutableArray *peopleNameArray;
+@property (nonatomic, strong) NSMutableArray *peopleNameTempArray;
+@property (nonatomic, strong) NSMutableArray *peopleModelArray;
+
+@property (nonatomic, strong) YTKKeyValueStore *store;
+
+@property (nonatomic, strong) ZLAlertSelectionView *alert;
+
+@property (nonatomic, strong) ZLEventDetailDataModel *detailDataModel;
+@property (nonatomic, strong) NSString *receiverType;
+
+@property (nonatomic, assign) BOOL isclear;
+
+
 @end
 
 @implementation ZLNewChangeEventReportVC
 
+- (void)getData{
+    
+    ZLEventManagerDetailService *service = [[ZLEventManagerDetailService alloc]initWitheventId:_dataModel.ID];
+    
+    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLLog(@"%@",request.responseString);
+        
+        ZLEventDetailModel *detailModel = [[ZLEventDetailModel alloc]initWithString:request.responseString error:nil];
+        
+        if ([detailModel.code isEqualToString:@"0"]) {
+            if (detailModel != nil) {
+                self.detailDataModel = detailModel.data;
+            }
+            
+            ZLRiverIncidentDetailListModel *model = detailModel.data.riverIncidentDetailList.lastObject;
+            
+            if (model) {
+                if (model.groupName) {
+                    self.detailDataModel.receiverDepartName = model.groupName;
+                    self.detailDataModel.receiverDepartCode = model.groupCode;
+                }else{
+                    self.detailDataModel.receiverDepartName = @"";
+                    self.detailDataModel.receiverDepartCode = @"";
+                }
+                
+                if (model.userName) {
+                    self.detailDataModel.receiverPersonName = model.userName;
+                    self.detailDataModel.receiverPersonCode = model.userCode;
+                }else{
+                    self.detailDataModel.receiverPersonName = @"";
+                    self.detailDataModel.receiverPersonCode = @"";
+                }
+                
+                
+                
+                
+                
+            }
+            
+        }
+        [self.mainTableView reloadData];
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+    }];
+}
+
+/**
+ 得到数据
+ */
+- (void)getDepartsData{
+    
+    self.departNameArray = [NSMutableArray array];
+    self.departModelArray = [NSMutableArray array];
+    self.peopleNameArray = [NSMutableArray array];
+    self.peopleModelArray = [NSMutableArray array];
+    self.peopleNameTempArray = [NSMutableArray array];
+    self.departNameTempArray = [NSMutableArray array];
+    
+    self.eventDesc = @"";
+    self.eventDepartString = @"";
+    self.eventDepart = [NSMutableArray array];
+    self.eventPeopleString = @"";
+    self.eventPeople = [NSMutableArray array];
+    self.eventName = @"";
+    self.departCodeString = @"";
+    self.departCode = [NSMutableArray array];
+    self.peopleCodeString = @"";
+    self.peopleCode = [NSMutableArray array];
+    
+    self.isclear = NO;
+    
+    self.store = [[YTKKeyValueStore alloc]initDBWithName:@"hzz.db"];
+    
+    NSString *tableName = DBUserTable;
+    
+    [self.store createTableWithName:tableName];
+    NSString *departs = [self.store getStringById:DBEventDepartListRivers fromTable:DBUserTable];
+    
+    ZLGetDepartModel *departsModel = [[ZLGetDepartModel alloc]initWithString:departs error:nil];
+    
+    NSString *users = [self.store getStringById:DBEventPeopleListRivers fromTable:DBUserTable];
+    
+    ZLGetEventUserListModel *taskUserListModel = [[ZLGetEventUserListModel alloc]initWithString:users error:nil];
+    
+    if (departsModel.data.count > 0) {
+        
+        for (ZLGetDepartDataModel *dataModel in departsModel.data ) {
+            
+            [self.departNameArray addObject:dataModel.departName];
+            
+            [self.departModelArray addObject:dataModel];
+            
+        }
+        
+    }
+    
+    if (taskUserListModel.data.count > 0) {
+        
+        for (ZLGetEventUserListDataModel *dataModel in taskUserListModel.data ) {
+            
+            [self.peopleNameArray addObject:dataModel.realName];
+            
+            [self.peopleModelArray addObject:dataModel];
+            
+        }
+        
+    }
+    
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    self.imageArray = [NSMutableArray array];
+    self.imageNameArray = [NSMutableArray array];
+    
+    [self getData];
+    
+    [self getDepartsData];
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.mainTableView];
@@ -44,10 +218,349 @@
     
 }
 
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
+// 接收人选择
+- (void)peopleClick:(UITextView *)textView with:(UITableView *)tableView{
+    
+    if (self.peopleNameArray.count <= 0) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"暂无接收对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        return;
+    }
+    
+    ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.peopleNameArray withTitle:@"选择接收人" sureTitle:@"确定" singleSelection:YES];
+    
+    alert.selectItem = ^(NSInteger index) {
+        
+        ZLLog(@"%ld",(long)index);
+        
+        textView.text = self.peopleNameArray[index];
+        
+        ZLReportPeopleTableViewCell *cell = tableView.visibleCells[2];
+        
+        cell.infoTextView.text = @"";
+        
+        self.isclear = YES;
+        
+        self.eventPeopleString = textView.text;
+        self.eventDepartString = @"";
+        
+        ZLGetEventUserListDataModel *model = self.peopleModelArray[index];
+        
+        self.departCodeString = @"";
+        self.peopleCodeString = model.userCode;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+        
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationNone)];
+        
+    };
+    
+    [alert show];
+    
+    
+//    _alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.peopleNameArray withTitle:@"选择接收人" sureTitle:@"确定" singleSelection:NO];
+//    __weak typeof(self) weakSelf = self;
+//    _alert.selectItemsMuti = ^(NSArray *options) {
+//
+//        ZLLog(@"%ld",(long)index);
+//
+//        [weakSelf.peopleNameTempArray removeAllObjects];
+//        [weakSelf.peopleCode removeAllObjects];
+//
+//        for (int i = 0; i < options.count; i++) {
+//
+//            NSNumber *number = options[i] ;
+//
+//            NSInteger index = [number integerValue];
+//
+//            ZLGetEventUserListDataModel *model = weakSelf.peopleModelArray[index];
+//
+//            [weakSelf.peopleCode addObject:model.userCode];
+//            [weakSelf.peopleNameTempArray addObject:model.realName];
+//        }
+//
+//        textView.text = [weakSelf.peopleNameTempArray componentsJoinedByString:@","];
+//
+//        weakSelf.eventPeopleString = textView.text;
+//        weakSelf.peopleCodeString = [weakSelf.peopleCode componentsJoinedByString:@","];
+//
+//    };
+//
+//    [_alert show];
+}
+
+// 部门选择
+- (void)departmentClick:(UITextView *)textView with:(UITableView *)tableView{
+    
+    if (self.departNameArray.count <= 0) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"暂无部门对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        return;
+    }
+    
+    ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.departNameArray withTitle:@"选择部门" sureTitle:@"确定" singleSelection:YES];
+    
+    alert.selectItem = ^(NSInteger index) {
+        ZLLog(@"%ld",(long)index);
+        
+        textView.text = self.departNameArray[index];
+        
+        ZLReportPeopleTableViewCell *cell = tableView.visibleCells[1];
+        
+        cell.infoTextView.text = @"";
+        self.isclear = YES;
+        self.eventPeopleString = @"";
+        self.eventDepartString = textView.text;
+        ZLGetDepartDataModel *model = self.departModelArray[index];
+        
+        self.departCodeString = model.departCode;
+        self.peopleCodeString = @"";
+        
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+        
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationNone)];
+        
+    };
+    
+    [alert show];
+    
+    
+//    _alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.departNameArray withTitle:@"选择部门" sureTitle:@"确定" singleSelection:NO];
+//
+//    __weak typeof(self) weakSelf = self;
+//    _alert.selectItemsMuti = ^(NSArray *options) {
+//        ZLLog(@"%@",options);
+//        [weakSelf.departCode removeAllObjects];
+//        [weakSelf.departNameTempArray removeAllObjects];
+//
+//        for (int i = 0; i < options.count; i++) {
+//
+//            NSNumber *number = options[i] ;
+//
+//            NSInteger index = [number integerValue];
+//
+//            ZLGetDepartDataModel *model = weakSelf.departModelArray[index];
+//
+//            [weakSelf.departCode addObject:model.departCode];
+//            [weakSelf.departNameTempArray addObject:model.departName];
+//        }
+//        textView.text = [weakSelf.departNameTempArray componentsJoinedByString:@","];
+//        weakSelf.eventDepartString = textView.text;
+//        weakSelf.departCodeString = [weakSelf.departCode componentsJoinedByString:@","];
+//
+//    };
+//
+//    [_alert show];
+}
+
+
+/**
+ 检测文本框的内容
+ */
+- (BOOL)checkTextFieldContent{
+    
+    if ([self.eventDepartString isEqualToString:@""] && [self.eventPeopleString isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"必须选择接收部门或接收对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        return NO;
+    }
+    
+    if ([self.eventName isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写任务名称" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    if ([self.eventDesc isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写描述内容" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    
+    return YES;
+}
+
+- (void)saveButtonClick{
+    
+    if (![self checkTextFieldContent]) {
+        return;
+    }
+    
+    [self.imageNameArray removeAllObjects];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (int i = 0; i < _imageArray.count; i++) {
+        
+        ACMediaModel *model = _imageArray[i];
+        
+        // 说明是预加载的图片
+        if (model.imageUrlString.length > 0) {
+            [self.imageNameArray addObject:model.imageListModel.toDictionary];
+        }else{
+            // 不是预加载的图片
+            [tempArray addObject:model];
+        }
+        
+    }
+    
+    [SVProgressHUD showWithStatus:@"保存中"];
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    ZLNewFilesUpLoadService *filesService = [[ZLNewFilesUpLoadService alloc]initWithImage:tempArray];
+    
+    dispatch_group_enter(group);
+    
+    [filesService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLUploadImagesModel *imagesModel = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
+        if ([imagesModel.code isEqualToString:@"0"]) {
+            
+            for (ZLTaskInfoImageListModel *model in imagesModel.data) {
+                
+                [self.imageNameArray addObject:model.toDictionary];
+            }
+        }else{
+            [SVProgressHUD showErrorWithStatus:imagesModel.detail];
+            [SVProgressHUD dismissWithDelay:0.3];
+        }
+        
+        
+        ZLLog(@"%@", request.responseString);
+        dispatch_group_leave(group);
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        [SVProgressHUD dismissWithDelay:0.3];
+    }];
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        ZLLog(@"%@", self.imageNameArray);
+        
+        if ([_eventPeopleString isEqualToString:@""]) {
+            
+            self.receiverType = @"2";
+        }else if ([_eventDepartString isEqualToString:@""]){
+            _receiverType = @"1";
+        }
+        
+        ZLOnlyUpdateIncidentService *service = [[ZLOnlyUpdateIncidentService alloc]initWithimgList:self.imageNameArray fileList:self.detailDataModel.fileList incidentName:self.eventName incidentContent:self.eventDesc receiverType:_receiverType receiverDepartCode:self.departCodeString receiverDepartName:self.eventDepartString receiverPersonName:self.eventPeopleString receiverPersonCode:self.peopleCodeString riverCode:@"" patrolCode:@"" longitude:nil latitude:nil positionDesc:nil incidentCode:_detailDataModel.incidentCode];
+        
+        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+            
+            if ([model.code isEqualToString:@"0"]) {
+                
+                [SVProgressHUD showSuccessWithStatus:@"保存成功"];
+                [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:model.detail];
+                [SVProgressHUD dismissWithDelay:0.3];
+            }
+            ZLLog(@"%@",request.responseString);
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            [SVProgressHUD dismissWithDelay:0.3];
+        }];
+    });
+}
+
+
+- (void)reportButtonClick{
+    if (![self checkTextFieldContent]) {
+        return;
+    }
+    [self.imageNameArray removeAllObjects];
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (int i = 0; i < _imageArray.count; i++) {
+        ACMediaModel *model = _imageArray[i];
+        // 说明是预加载的图片
+        if (model.imageUrlString.length > 0) {
+            [self.imageNameArray addObject:model.imageListModel.toDictionary];
+        }else{
+            // 不是预加载的图片
+            [tempArray addObject:model];
+        }
+    }
+    [SVProgressHUD showWithStatus:@"下发中"];
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    ZLNewFilesUpLoadService *filesService = [[ZLNewFilesUpLoadService alloc]initWithImage:tempArray];
+    
+    dispatch_group_enter(group);
+    
+    [filesService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLUploadImagesModel *imagesModel = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
+        if ([imagesModel.code isEqualToString:@"0"]) {
+            
+            for (ZLTaskInfoImageListModel *model in imagesModel.data) {
+                
+                [self.imageNameArray addObject:model.toDictionary];
+            }
+        }else{
+            [SVProgressHUD showErrorWithStatus:imagesModel.detail];
+            [SVProgressHUD dismissWithDelay:0.3];
+        }
+        ZLLog(@"%@", request.responseString);
+        dispatch_group_leave(group);
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        [SVProgressHUD dismissWithDelay:0.3];
+    }];
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        ZLLog(@"%@", self.imageNameArray);
+        
+        if ([_eventPeopleString isEqualToString:@""]) {
+            
+            self.receiverType = @"2";
+        }else if ([_eventDepartString isEqualToString:@""]){
+            _receiverType = @"1";
+        }
+        
+        ZLUpdateAndSentIncidentService *service = [[ZLUpdateAndSentIncidentService alloc]initWithimgList:self.imageNameArray fileList:self.detailDataModel.fileList incidentName:self.eventName incidentContent:self.eventDesc receiverType:_receiverType receiverDepartCode:self.departCodeString receiverDepartName:self.eventDepartString receiverPersonName:self.eventPeopleString receiverPersonCode:self.peopleCodeString riverCode:@"" patrolCode:@"" longitude:nil latitude:nil positionDesc:nil incidentCode:_detailDataModel.incidentCode];
+
+        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+            
+            if ([model.code isEqualToString:@"0"]) {
+                
+                [SVProgressHUD showSuccessWithStatus:@"下发成功"];
+                [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:model.detail];
+                [SVProgressHUD dismissWithDelay:0.3];
+            }
+            ZLLog(@"%@",request.responseString);
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            [SVProgressHUD dismissWithDelay:0.3];
+        }];
+    });
+    
     
 }
+
 
 
 #pragma mark -- 列表的代理
@@ -61,6 +574,74 @@
     return 1;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    
+    UIView *headerView = [[UIView alloc] init];
+    ACSelectMediaView *mediaView = [[ACSelectMediaView alloc] initWithFrame:CGRectMake(0,  0, self.view.frame.size.width, 1)];
+    mediaView.showDelete = YES;
+    mediaView.showAddButton = YES;
+    //png、jpg、gif(本地和网络)
+    if (self.detailDataModel) {
+        if (self.detailDataModel.imgList.count > 0) {
+            self.imageTempArray = [NSMutableArray array];
+            [self.imageArray removeAllObjects];
+            
+            for (int i = 0; i < self.detailDataModel.imgList.count; i++) {
+                ZLTaskInfoImageListModel *imageModel = self.detailDataModel.imgList[i];
+                NSString *urlString = [NSString stringWithFormat:@"%@%@",BaseImage_URL, imageModel.fileAddr];
+                [_imageTempArray addObject:urlString];
+                
+                ACMediaModel *mediaModel = [[ACMediaModel alloc]init];
+                mediaModel.imageUrlString = urlString;
+                
+                mediaModel.imageListModel = imageModel;
+                [self.imageArray addObject:mediaModel];
+                
+                
+            }
+            
+            mediaView.preShowMedias = self.imageArray;
+        }
+    }
+    mediaView.allowMultipleSelection = NO;
+    mediaView.allowPickingVideo = YES;
+    mediaView.rootViewController = self;
+    self.mediaView = mediaView;
+    
+    ZLNewReportBottomView *bottomView = [[ZLNewReportBottomView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(mediaView.frame) + 50, Main_Screen_Width, 50 * kScreenHeightRatio) withTitles:@[@"保存",@"下发"]];
+    [bottomView.saveButton addTarget:self action:@selector(saveButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    [bottomView.reportButton addTarget:self action:@selector(reportButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+    [mediaView observeViewHeight:^(CGFloat mediaHeight) {
+        CGRect btnRect = bottomView.frame;
+        btnRect.origin.y = CGRectGetMaxY(mediaView.frame) + 50;
+        bottomView.frame = btnRect;
+        CGRect rect = headerView.frame;
+        rect.size.height = CGRectGetMaxY(bottomView.frame);
+        headerView.frame = rect;
+        
+        [_mainTableView beginUpdates];
+        [_mainTableView endUpdates];
+    }];
+    [mediaView observeSelectedMediaArray:^(NSArray<ACMediaModel *> *list) {
+        
+        [self.imageArray removeAllObjects];
+        
+        self.imageArray = [NSMutableArray arrayWithArray:list];
+        
+    }];
+    [headerView addSubview:mediaView];
+    
+    [headerView addSubview:bottomView];
+    headerView.frame = CGRectMake(0, 0, Main_Screen_Width, CGRectGetMaxY(bottomView.frame));
+    //    _mainTableView.tableFooterView = headerView;
+    
+    _mainTableView.sectionFooterHeight = headerView.frame.size.height;
+    
+    return headerView;
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
@@ -69,6 +650,23 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.titleLabel.text = self.sourceArray[indexPath.row];
         cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
+        
+        if (self.detailDataModel) {
+            
+            cell.infoTextView.text = self.detailDataModel.incidentName;
+            self.eventName = self.detailDataModel.incidentName;
+        }
+        cell.infoTextView.tag = indexPath.row;
+        
+        cell.getText = ^(NSString *text, NSInteger tag) {
+            
+            switch (0) {
+                case 0:
+                    self.eventName = text;
+                    break;
+            }
+            
+        };
         
         return cell;
     }
@@ -85,9 +683,30 @@
         
         cell.imageV.image = [UIImage imageNamed:@"home_seletPeople"];
         
-        cell.selectInfo = ^(UITextView *infoTextView) {
+        if (self.detailDataModel && !self.isclear) {
             
+            cell.infoTextView.text = self.detailDataModel.receiverPersonName;
+            self.peopleCodeString = _detailDataModel.receiverPersonCode;
+            self.eventPeopleString = _detailDataModel.receiverPersonName;
+        }
+        
+        
+        cell.selectInfo = ^(UITextView *infoTextView) {
+            [self peopleClick:infoTextView with:tableView];
         };
+        cell.infoTextView.tag = indexPath.row;
+        cell.getText = ^(NSString *text, NSInteger tag) {
+            switch (1) {
+                case 1:{
+                    if ([text isEqualToString:@""]) {
+                        self.peopleCodeString = @"";
+                        self.eventPeopleString = @"";
+                    }
+                }
+                    break;
+            }
+        };
+        
         return cell;
     }
     
@@ -100,8 +719,30 @@
         cell.titleLabel.text = self.sourceArray[indexPath.row];
         cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
         cell.imageV.image = [UIImage imageNamed:@"home_seletPeople"];
-        cell.selectInfo = ^(UITextView *infoTextView) {
+        
+        if (self.detailDataModel && !self.isclear) {
             
+            cell.infoTextView.text = self.detailDataModel.receiverDepartName;
+            self.departCodeString = _detailDataModel.receiverDepartCode;
+            self.eventDepartString = _detailDataModel.receiverDepartName;
+        }
+        
+        cell.selectInfo = ^(UITextView *infoTextView) {
+            [self departmentClick:infoTextView with:tableView];
+        };
+        
+        cell.infoTextView.tag = indexPath.row;
+        cell.getText = ^(NSString *text, NSInteger tag) {
+            switch (2) {
+                case 2:{
+                    if ([text isEqualToString:@""]) {
+                        self.departCodeString = @"";
+                        self.eventDepartString = @"";
+                    }
+                    
+                }
+                    break;
+            }
         };
         return cell;
     }
@@ -113,6 +754,12 @@
         cell.titleLabel.text = self.sourceArray[indexPath.row];
         
         cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
+        
+        if (self.detailDataModel) {
+            
+            cell.infoTextView.text = self.detailDataModel.incidentContent;
+            self.eventDesc = self.detailDataModel.incidentContent;
+        }
         
         return cell;
     }
@@ -165,49 +812,6 @@
         _mainTableView.estimatedRowHeight = 100;
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
         _mainTableView.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
-        
-        
-        UIView *headerView = [[UIView alloc] init];
-        ACSelectMediaView *mediaView = [[ACSelectMediaView alloc] initWithFrame:CGRectMake(0,  0, self.view.frame.size.width, 1)];
-        mediaView.showDelete = YES;
-        mediaView.showAddButton = YES;
-        //png、jpg、gif(本地和网络)
-        
-        //        //预展示视频
-        //        ACMediaModel *md = [ACMediaModel new];
-        //        md.mediaURL = [NSURL URLWithString:@"http://baobab.wdjcdn.com/1451897812703c.mp4"];
-        //        md.isVideo = YES;
-        //        //封面
-        //        md.image = [UIImage imageNamed:@"memory"];
-        
-        mediaView.preShowMedias = @[@"http://c.hiphotos.baidu.com/image/h%3D200/sign=ad1c53cd0355b31983f9857573ab8286/279759ee3d6d55fbb02469ea64224f4a21a4dd1f.jpg", @"http://img15.3lian.com/2015/h1/280/d/5.jpg"];
-        mediaView.allowMultipleSelection = NO;
-        mediaView.allowPickingVideo = YES;
-        mediaView.rootViewController = self;
-        self.mediaView = mediaView;
-        
-        
-        ZLNewReportBottomView *bottomView = [[ZLNewReportBottomView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(mediaView.frame) + 50, Main_Screen_Width, 50 * kScreenHeightRatio) withTitles:@[@"保存",@"上报"]];
-        
-        [mediaView observeViewHeight:^(CGFloat mediaHeight) {
-            CGRect btnRect = bottomView.frame;
-            btnRect.origin.y = CGRectGetMaxY(mediaView.frame) + 50;
-            bottomView.frame = btnRect;
-            CGRect rect = headerView.frame;
-            rect.size.height = CGRectGetMaxY(bottomView.frame);
-            headerView.frame = rect;
-            
-            [_mainTableView beginUpdates];
-            [_mainTableView endUpdates];
-        }];
-        [mediaView observeSelectedMediaArray:^(NSArray<ACMediaModel *> *list) {
-            // do something
-        }];
-        [headerView addSubview:mediaView];
-        
-        [headerView addSubview:bottomView];
-        headerView.frame = CGRectMake(0, 0, self.view.frame.size.width, CGRectGetMaxY(bottomView.frame));
-        _mainTableView.tableFooterView = headerView;
     }
     return _mainTableView;
 }

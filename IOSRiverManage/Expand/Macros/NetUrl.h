@@ -14,7 +14,7 @@
 // http://192.168.0.250:8070
 // http://183.207.215.121:18881
 
-#define Base_URL @"http://192.168.0.89:1011"
+#define Base_URL @"http://192.168.0.86:1011"
 
 #define SERVER_NEWS_URL = "http://192.168.0.91:8087";
 
@@ -111,11 +111,19 @@
 // 仅创建(保存)事件
 #define River_OnlyAddIncidentUrl @"/city/incident/onlyAddIncidentForApp"
 
+// 转报事件
+#define River_ContinueReportIncidentForAppUrl @"/city/incident/continueReportIncidentForApp"
+
+
+
 // 仅创建(保存)任务
 #define River_SaveTaskUrl @"/city/appRiverTask/saveTask"
 
 // 修改并保存任务
 #define River_UpdateTaskUrl @"/city/appRiverTask/updateTask"
+
+// 任务修改并下发
+#define River_UpdateAndSentTaskUrl @"/city/appRiverTask/updateAndSentTask"
 
 // 普通下发任务
 #define River_SaveAndSentTaskUrl @"/city/appRiverTask/saveAndSentTask"
@@ -123,6 +131,11 @@
 // 创建并上报事件
 #define River_AddAndSentIncidentUrl @"/city/incident/addAndSentIncidentForApp"
 
+// 修改事件
+#define River_OnlyUpdateIncidentForAppUrl @"/city/incident/onlyUpdateIncidentForApp"
+
+// 修改上报事件
+#define River_UpdateAndSentIncidentForAppUrl @"/city/incident/updateAndSentIncidentForApp"
 
 
 // 获取我创建的任务
@@ -159,6 +172,10 @@
 // 删除任务
 #define River_DeleteTasksUrl @"/city/appRiverTask/deleteTasks"
 
+// 删除事件
+#define River_DelIncidentForAppUrl @"/city/incident/delIncidentForApp"
+
+
 // 任务接收
 #define River_ReceiveTaskUrl @"/city/appRiverTask/receiveTask"
 
@@ -169,9 +186,17 @@
 #define River_CheckOkTaskUrl @"/city/appRiverTask/checkOkTask"
 
 
+// 任务转发
+#define River_ReSentTaskUrl @"/city/appRiverTask/reSentTask"
 
+// 任务反馈--提交
+#define River_FeedbackTaskUrl @"/city/appRiverTask/feedbackTask"
 
+// 反馈事件
+#define River_FeedbackIncidentForAppUrl @"/city/incident/feedbackIncidentForApp"
 
+// 接收事件
+#define River_ReceiveIncidentForAppUrl @"/city/incident/receiveIncidentForApp"
 
 
 

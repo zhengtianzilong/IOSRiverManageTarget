@@ -9,5 +9,5 @@
 #import "ZLBaseCustomNavViewController.h"
 
 @interface ZLMyventDealDetailVC : ZLBaseCustomNavViewController
-
+@property (nonatomic, strong) NSString *eventId;
 @end

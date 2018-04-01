@@ -12,7 +12,7 @@
 #import "ZLNewChangeEventReportVC.h"
 #import "ZLEventManagerReportService.h"
 #import "ZLEventManagerReportModel.h"
-
+#import "ZLDelIncidentService.h"
 @interface ZLEventManagerReportVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSString *incidentName;
@@ -186,9 +186,46 @@
     
     cell.changeClick = ^(ZLEventManagerReportDataModel *dataModel) {
         ZLNewChangeEventReportVC *changeVC = [[ZLNewChangeEventReportVC alloc]init];
+        changeVC.dataModel = dataModel;
         [weakSelf.navigationController pushViewController:changeVC animated:YES];
         
     };
+    
+        cell.deleteClick = ^(ZLEventManagerReportDataModel *model) {
+            
+            DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认删除吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
+            
+            alert.otherButtonAction = ^{
+                
+                ZLDelIncidentService *service = [[ZLDelIncidentService alloc]initWitheventId:model.ID];
+                [SVProgressHUD showWithStatus:@"删除中"];
+                [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                    
+                    ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                    
+                    if ([model.code isEqualToString:@"0"]) {
+                        
+                        [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                        [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                            
+                            [tableView.mj_header beginRefreshing];
+                            
+                        }];
+                        
+                    }else{
+                        [SVProgressHUD showErrorWithStatus:model.detail];
+                        [SVProgressHUD dismissWithDelay:0.3];
+                    }
+                } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                    [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                    [SVProgressHUD dismissWithDelay:0.3];
+                }];
+            };
+            [alert show];
+        
+        
+    };
+    
     return cell;
 }
 

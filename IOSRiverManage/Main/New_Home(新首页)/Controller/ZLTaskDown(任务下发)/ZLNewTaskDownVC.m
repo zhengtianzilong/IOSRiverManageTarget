@@ -545,7 +545,6 @@
             ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
             
             if ([model.code isEqualToString:@"0"]) {
-                
                 [SVProgressHUD showSuccessWithStatus:@"下发成功"];
                 [SVProgressHUD dismissWithDelay:0.3 completion:^{
                     

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
-
+#import "ZLTaskInfoImageListModel.h"
 @interface ACMediaModel : NSObject
 
 /** 媒体名字 */
@@ -33,5 +33,10 @@
 
 /** 视频的URL */
 @property (nonatomic, strong) NSURL *mediaURL;
+
+// 图片模型对象
+@property (nonatomic , copy)  ZLTaskInfoImageListModel *imageListModel;
+
+
 
 @end
