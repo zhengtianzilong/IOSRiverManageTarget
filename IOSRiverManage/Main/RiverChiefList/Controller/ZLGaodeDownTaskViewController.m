@@ -76,8 +76,6 @@
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         
     }];
-    
-    
 }
 
 
@@ -96,9 +94,6 @@
         make.height.mas_equalTo(AdaptedHeight(115));
         
     }];
-    
-    
-    
     self.mainScrollview = [[UIScrollView alloc]init];
     self.mainScrollview.backgroundColor = HEXCOLOR(0xf4f4f4);
     self.mainScrollview.showsVerticalScrollIndicator = NO;
@@ -106,7 +101,6 @@
     
     [self.view addSubview:self.mainScrollview];
     [self.mainScrollview mas_makeConstraints:^(MASConstraintMaker *make) {
-        
         make.left.equalTo(self.view);
         make.bottom.equalTo(self.bottomView.mas_top);
         make.width.mas_equalTo(App_Frame_Width);
@@ -141,9 +135,7 @@
     }];
     
     [_reportView.superview layoutSubviews];
-    
-    
-    
+
     ACSelectMediaView *mediaView =[[ACSelectMediaView alloc]initWithFrame:CGRectMake(0, _reportView.bottom, App_Frame_Width, App_Frame_Width / 4)];
     mediaView.type = ACMediaTypePhotoAndCamera;
     mediaView.maxImageSelected = 8;
@@ -187,7 +179,7 @@
     NSString *riverPeople = loginModel.realName;
     if (riverPeople.length > 0) {
         
-        _reportView.riverPeopleView.eventTextfiled.text = riverPeople;
+        _reportView.riverDepartView.eventTextfiled.text = riverPeople;
         
     }
     //    NSString *address = [[NSUserDefaults standardUserDefaults]objectForKey:@"address"];

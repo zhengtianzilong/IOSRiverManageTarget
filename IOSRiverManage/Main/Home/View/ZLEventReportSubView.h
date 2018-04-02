@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) UIImageView *imageV;
 
+@property (nonatomic, strong) UIView *lineView;
+
 
 - (instancetype)initWithName:(NSString *)name placeHolder:(NSString *)placeHolder haveButton:(BOOL)haveButto;
 @end

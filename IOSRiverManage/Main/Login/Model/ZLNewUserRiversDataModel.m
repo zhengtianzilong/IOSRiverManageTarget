@@ -10,4 +10,9 @@
 
 @implementation ZLNewUserRiversDataModel
 
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id" : @"ID"}];
+}
+
 @end

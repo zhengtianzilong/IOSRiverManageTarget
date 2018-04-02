@@ -53,17 +53,19 @@
             self.eventTextfiled.rightViewMode = UITextFieldViewModeAlways;
             self.eventTextfiled.rightView = rightView;
             
-            //            UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
-            //            [button setImage:[UIImage imageNamed:@"event_object"] forState:(UIControlStateNormal)];
-            //            [self addSubview:button];
-            //            [imageV mas_makeConstraints:^(MASConstraintMaker *make) {
-            //
-            //                make.right.equalTo(self).offset(-AdaptedWidth(30));
-            //                make.centerY.equalTo(self);
-            //                make.height.width.mas_equalTo(AdaptedHeight(35));
-            //
-            //            }];
         }
+        
+        self.lineView = [[UIView alloc]init];
+        self.lineView.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
+        [self addSubview:self.lineView];
+        [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom);
+            make.left.equalTo(self).offset(0);
+            make.height.mas_equalTo(1);
+            make.right.equalTo(self.mas_right);
+            
+            
+        }];
         
         
     }

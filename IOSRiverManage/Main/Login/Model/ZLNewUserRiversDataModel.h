@@ -31,4 +31,9 @@
 @property (nonatomic, strong) NSString<Optional> *riverName;
 
 @property (nonatomic, strong) NSString<Optional> *longitude;
+
+@property (nonatomic, strong) NSString<Optional> *createTime;
+
+@property (nonatomic, strong) NSString<Optional> *ID;
+
 @end

@@ -12,7 +12,6 @@
     NSString *_taskId;
     NSString *_feedbackContent;
     NSArray *_fileListDetail;
-    NSString *_eventId;
     NSString *_eventDetailId;
 }
 
@@ -21,14 +20,12 @@
 
 - (instancetype)initWithimgList:(NSArray *)imgList
                  fileListDetail:(NSArray *)fileListDetail
-                        eventId:(NSString *)eventId
                   eventDetailId:(NSString *)eventDetailId
                 feedbackContent:(NSString *)feedbackContent{
     self = [super init];
     if (self) {
         
         _imgList = imgList;
-        _eventId= eventId;
         _eventDetailId= eventDetailId;
         _fileListDetail= fileListDetail;
         _feedbackContent = feedbackContent;
@@ -57,9 +54,8 @@
 - (id)requestArgument{
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                          _imgList , @"imgList",
-                         _eventDetailId , @"id",
+                         _eventDetailId , @"riverIncidentDetailId",
                          _fileListDetail , @"fileListDetail",
-                         _eventId , @"id",
                          _feedbackContent , @"feedbackContent",
                          
                          nil];

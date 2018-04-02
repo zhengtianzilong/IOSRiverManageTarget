@@ -264,8 +264,11 @@ static const double kMapDistanceFilter = 3.0;
         }else if([[annotation title] isEqualToString:@"终点"]){
             annotationView.image = [UIImage imageNamed:@"map_endPoint.png"];
 //            annotationView.pinColor = BMKPinAnnotationColorRed;
-        }else { // 没有起点旗帜，应放置起点旗帜
-             annotationView.image = [UIImage imageNamed:@"map_startPoint.png"];
+        }else if([[annotation title] isEqualToString:@"上报案件"]){ // 没有起点旗帜，应放置起点旗帜
+             annotationView.image = [UIImage imageNamed:@"GaodeRiverReport.png"];
+            
+        }else if([[annotation title] isEqualToString:@"下发任务"]){ // 没有起点旗帜，应放置起点旗帜
+            annotationView.image = [UIImage imageNamed:@"GaodeRiverDown"];
             
         }
         

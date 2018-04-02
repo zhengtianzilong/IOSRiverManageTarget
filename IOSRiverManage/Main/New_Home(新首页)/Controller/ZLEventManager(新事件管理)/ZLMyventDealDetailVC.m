@@ -65,6 +65,8 @@
     
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
     
+    [self getData];
+    
     [self.view addSubview:self.mainTableView];
     
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -84,7 +86,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    //    return self.sourceData.count;
+//        return self.sourceData.count;
     return 1;
 }
 
@@ -123,6 +125,8 @@
     ZLNewContiEventReportVC *vc = [[ZLNewContiEventReportVC alloc]init];
     
     vc.incidentid = self.dataModel.ID;
+    vc.riverIncidentDetailId = _detailID;
+    vc.contiEventName = self.dataModel.incidentName;
     
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -134,6 +138,8 @@
  */
 - (void)endButtonClick{
     ZLMyEventAdviseVC *vc = [[ZLMyEventAdviseVC alloc]init];
+    
+    vc.eventDetailId = _detailID;
     
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -151,7 +157,7 @@
         //开启自动计算高度
         //【重点】注意千万不要实现行高的代理方法，否则无效：heightForRowAt
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
-        _mainTableView.estimatedRowHeight = 100;
+        _mainTableView.estimatedRowHeight = 180;
         
         UIView *headerView = [[UIView alloc] init];
 

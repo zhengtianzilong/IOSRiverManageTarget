@@ -153,7 +153,7 @@
         ZLLog(@"%@", self.imageNameArray);
         
         
-        ZLFeedbackIncidentForApp *service = [[ZLFeedbackIncidentForApp alloc]initWithimgList:self.imageNameArray fileListDetail:@[] eventId:@"" eventDetailId:@"" feedbackContent:_eventDesc];
+        ZLFeedbackIncidentForApp *service = [[ZLFeedbackIncidentForApp alloc]initWithimgList:self.imageNameArray fileListDetail:@[]  eventDetailId:_eventDetailId feedbackContent:_eventDesc];
         
         [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
             ZLLog(@"%@", request.responseString);

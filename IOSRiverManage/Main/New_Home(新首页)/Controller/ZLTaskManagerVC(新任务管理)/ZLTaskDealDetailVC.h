@@ -9,5 +9,13 @@
 #import "ZLBaseCustomNavViewController.h"
 #import "ZLTaskWaitDataModel.h"
 @interface ZLTaskDealDetailVC : ZLBaseCustomNavViewController
-@property (nonatomic, strong) ZLTaskWaitDataModel *dataModel;
+
+//@property (nonatomic, strong) ZLTaskWaitDataModel *dataModel;
+
+@property (nonatomic, strong) NSString *childCode;
+
+@property (nonatomic, strong) NSString *taskDetailID;
+
+@property (nonatomic, strong) NSString *taskId;
+
 @end

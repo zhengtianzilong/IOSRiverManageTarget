@@ -8,7 +8,7 @@
 
 #import "ZLRiverInfoFiveDetailVC.h"
 #import <JavaScriptCore/JavaScriptCore.h>
-
+#import "ZLGaodeCustomNavBar.h"
 @protocol JSObjectDelegate <JSExport>
 
 -(NSString *)getRiverCode;
@@ -27,9 +27,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    ZLGaodeCustomNavBar *navBar = [[ZLGaodeCustomNavBar alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Height, TopBarHeight)];
+//    navBar.titleLabel.text = @"";
+    [navBar.backButton addTarget:self action:@selector(clickBtn) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:navBar];
+    
+    navBar.backgroundColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
+    
+    
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Height, App_Frame_Width)];
     self.webView.userInteractionEnabled = YES;
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.86:8086/fsTt/fsTt.html"]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:River_FiveAndTwoTableUrl]]];
     self.webView.userInteractionEnabled = YES;
     self.webView.backgroundColor = [UIColor whiteColor];
     [self.webView setScalesPageToFit:YES];
@@ -38,18 +47,18 @@
     self.webView.scrollView.bounces = NO;
     [self.view addSubview:self.webView];
     
-    UIButton *button = [[UIButton alloc]init];
-    button.backgroundColor = [UIColor redColor];
-    [self.view addSubview:button];
-    
-    [button addTarget:self action:@selector(clickBtn) forControlEvents:(UIControlEventTouchUpInside)];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(20);
-        make.top.equalTo(self.view).offset(20);
-        make.width.mas_equalTo(30);
-        make.height.mas_equalTo(30);
-        
-    }];
+//    UIButton *button = [[UIButton alloc]init];
+//    button.backgroundColor = [UIColor redColor];
+//    [self.view addSubview:button];
+//    
+//    [button addTarget:self action:@selector(clickBtn) forControlEvents:(UIControlEventTouchUpInside)];
+//    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.view).offset(20);
+//        make.top.equalTo(self.view).offset(20);
+//        make.width.mas_equalTo(30);
+//        make.height.mas_equalTo(30);
+//        
+//    }];
     
     
     

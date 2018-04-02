@@ -31,7 +31,7 @@
 
 - (void)setUpUI{
     
-    _titleView = [[ZLEventReportSubView alloc]initWithName:@"标题:" placeHolder:@"请输入标题" haveButton:NO];
+    _titleView = [[ZLEventReportSubView alloc]initWithName:@"任务标题:" placeHolder:@"请输入任务标题" haveButton:NO];
     [self addSubview:_titleView];
     [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -41,30 +41,32 @@
         make.height.mas_equalTo(AdaptedHeight(80));
     }];
     
-    _riverPeopleView = [[ZLEventReportSubView alloc]initWithName:@"巡河人:" placeHolder:@"请输入巡河人"haveButton:NO];
-    _riverPeopleView.eventTextfiled.enabled = NO;
-    [self addSubview:_riverPeopleView];
-    [_riverPeopleView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    _reportObjectView = [[ZLEventReportSubView alloc]initWithName:@"接收对象:" placeHolder:@"请选择接收对象"haveButton:YES];
+    [self addSubview:_reportObjectView];
+    [_reportObjectView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self);
         make.width.mas_equalTo(App_Frame_Width);
         make.top.equalTo(_titleView.mas_bottom).offset(1);
         make.height.mas_equalTo(AdaptedHeight(80));
     }];
-    
-    
-    _reportObjectView = [[ZLEventReportSubView alloc]initWithName:@"下发对象:" placeHolder:@"请选择下发对象"haveButton:YES];
-    [self addSubview:_reportObjectView];
-    [_reportObjectView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self);
-        make.width.mas_equalTo(App_Frame_Width);
-        make.top.equalTo(_riverPeopleView.mas_bottom).offset(1);
-        make.height.mas_equalTo(AdaptedHeight(80));
-    }];
     _reportObjectView.eventTextfiled.enabled = NO;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event_objectClick)];
     [_reportObjectView addGestureRecognizer:tapGes];
+    
+    _riverDepartView = [[ZLEventReportSubView alloc]initWithName:@"接收部门:" placeHolder:@"请输入接收部门"haveButton:YES];
+    _riverDepartView.eventTextfiled.enabled = NO;
+    [self addSubview:_riverDepartView];
+    [_riverDepartView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self);
+        make.width.mas_equalTo(App_Frame_Width);
+        make.top.equalTo(_reportObjectView.mas_bottom).offset(1);
+        make.height.mas_equalTo(AdaptedHeight(80));
+    }];
+    
+    
     
     _addressView = [[ZLEventReportSubView alloc]initWithName:@"位  置:" placeHolder:@"请输入位置"haveButton:NO];
     [self addSubview:_addressView];

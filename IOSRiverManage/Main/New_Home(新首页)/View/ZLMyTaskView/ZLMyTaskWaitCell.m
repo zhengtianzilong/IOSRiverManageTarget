@@ -43,7 +43,7 @@
 - (void)deleteBtnClick{
     
     if (_dealClick) {
-        self.dealClick(self.taskId, self.dealBtn);
+        self.dealClick(self.dataModel,self.homeDataModel, self.dealBtn);
     }
     
 }

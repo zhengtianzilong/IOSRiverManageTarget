@@ -17,5 +17,6 @@
              receiverDepartCode:(NSString *)receiverDepartCode
              receiverDepartName:(NSString *)receiverDepartName
              receiverPersonName:(NSString *)receiverPersonName
-             receiverPersonCode:(NSString *)receiverPersonCode;
+             receiverPersonCode:(NSString *)receiverPersonCode
+             riverIncidentDetailId:(NSString *)riverIncidentDetailId;
 @end

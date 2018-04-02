@@ -196,7 +196,7 @@
 - (void)deleteBtnClick{
     
     if (_dealClick) {
-        self.dealClick(self.eventId,self.detailId,self.dealBtn);
+        self.dealClick(self.dataModel,self.homeDataModel,self.dealBtn);
     }
     
 }

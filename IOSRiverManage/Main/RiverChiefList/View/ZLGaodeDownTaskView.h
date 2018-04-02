@@ -11,7 +11,7 @@
 @interface ZLGaodeDownTaskView : UIView
 @property (nonatomic, strong) ZLEventReportSubView *titleView;
 
-@property (nonatomic, strong) ZLEventReportSubView *riverPeopleView;
+@property (nonatomic, strong) ZLEventReportSubView *riverDepartView;
 
 @property (nonatomic, strong) ZLEventReportSubView *reportObjectView;
 

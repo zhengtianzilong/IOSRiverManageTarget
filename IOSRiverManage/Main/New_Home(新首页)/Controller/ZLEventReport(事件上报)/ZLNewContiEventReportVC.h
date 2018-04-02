@@ -12,4 +12,9 @@
 
 @property (nonatomic, strong) NSString *incidentid;
 
+@property (nonatomic, strong) NSString *riverIncidentDetailId;
+
+@property (nonatomic, strong) NSString *contiEventName;
+
+
 @end

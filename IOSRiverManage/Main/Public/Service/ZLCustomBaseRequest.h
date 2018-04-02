@@ -8,7 +8,7 @@
 
 #import <YTKNetwork/YTKNetwork.h>
 #import <CommonCrypto/CommonDigest.h>
-@interface ZLCustomBaseRequest : YTKBaseRequest
+@interface ZLCustomBaseRequest : YTKRequest
 
 
 /**

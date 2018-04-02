@@ -26,6 +26,8 @@
 #import "NSString+UUID.h"
 #import "ZLNewLoginModel.h"
 #import "ZLHomeRiverRunningModel.h"
+#import "ZLGaodeDownTaskVC.h"
+#import "ZLGaodeReportEventVC.h"
 typedef enum : NSUInteger {
     noneRiver,// 没有河段
     endRiver,
@@ -70,6 +72,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString *userId;
 
 @property (nonatomic, strong) NSString *userName;
+
+@property (nonatomic, strong) NSString *patrolCode;
+
 
 @end
 
@@ -205,11 +210,13 @@ typedef enum : NSUInteger {
         
         [_mapView addAnnotation:_startAnnotation];
         
+        [self.manager startLocation];
+        
         [self.bottomButtonView.startAndEndButton setTitle:@"结束巡河" forState:(UIControlStateNormal)];
         [self.bottomButtonView.startAndEndButton setImage:[UIImage imageNamed:@"GaodeEndRiver"] forState:(UIControlStateNormal)];
         [self.bottomButtonView.startAndEndButton setBackgroundColor:HEXCOLOR(0xf29503)];
         
-        
+        self.patrolCode = [self.store getStringById:@"patrolCode" fromTable:DBMapTable];
     }
     
 }
@@ -307,20 +314,35 @@ typedef enum : NSUInteger {
         return;
     }else{
         __weak typeof(self) weakSelf = self;
-        ZLGaodeReportViewController *reportVC = [[ZLGaodeReportViewController alloc]initWithShowFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - App_Frame_Height * 0.9, [UIScreen mainScreen].bounds.size.width, App_Frame_Height * 0.9) ShowStyle:(MYPresentedViewShowStyleFromBottomSpreadStyle) callback:^(id callback) {
+//        ZLGaodeReportViewController *reportVC = [[ZLGaodeReportViewController alloc]initWithShowFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - App_Frame_Height * 0.9, [UIScreen mainScreen].bounds.size.width, App_Frame_Height * 0.9) ShowStyle:(MYPresentedViewShowStyleFromBottomSpreadStyle) callback:^(id callback) {
+//
+//            if ([callback isEqualToString:@"确定"]) {
+//                weakSelf.eventAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"上报案件"];
+//            }
+//        }];
+//        reportVC.clearBack = YES;
+//
+//        reportVC.demandModel = self.riverDataModel;
+//        reportVC.uid = _uid;
+//        reportVC.type = _type;
+//        reportVC.uuid = _uuid;
+//        reportVC.location = _manager.mapView.userLocation.location;
 
+        ZLGaodeReportEventVC *reportVC = [[ZLGaodeReportEventVC alloc]initWithShowFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - App_Frame_Height * 0.7, [UIScreen mainScreen].bounds.size.width, App_Frame_Height * 0.7) ShowStyle:(MYPresentedViewShowStyleFromBottomSpreadStyle) callback:^(id callback) {
+            
             if ([callback isEqualToString:@"确定"]) {
                 weakSelf.eventAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"上报案件"];
             }
         }];
-        reportVC.clearBack = YES;
-
-        reportVC.demandModel = self.riverDataModel;
-        reportVC.uid = _uid;
-        reportVC.type = _type;
-        reportVC.uuid = _uuid;
-        reportVC.location = _manager.mapView.userLocation.location;
-
+        
+        ZLMapLocationModel *location = weakSelf.manager.locationModel;
+        
+        reportVC.locationModel = location;
+        
+        reportVC.userRiverModel = self.riverDataModel;
+        reportVC.patrolCode = self.patrolCode;
+        
+        
         [self presentViewController:reportVC animated:YES completion:nil];
     }
 }
@@ -344,7 +366,21 @@ typedef enum : NSUInteger {
         return;
     }else{
         __weak typeof(self) weakSelf = self;
-        ZLGaodeDownTaskViewController *downVC = [[ZLGaodeDownTaskViewController alloc]initWithShowFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - App_Frame_Height * 0.9, [UIScreen mainScreen].bounds.size.width, App_Frame_Height * 0.9) ShowStyle:(MYPresentedViewShowStyleFromBottomSpreadStyle) callback:^(id callback) {
+//        ZLGaodeDownTaskViewController *downVC = [[ZLGaodeDownTaskViewController alloc]initWithShowFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - App_Frame_Height * 0.9, [UIScreen mainScreen].bounds.size.width, App_Frame_Height * 0.9) ShowStyle:(MYPresentedViewShowStyleFromBottomSpreadStyle) callback:^(id callback) {
+//
+//            if ([callback isEqualToString:@"确定"]) {
+//                weakSelf.eventAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"下发任务"];
+//
+//            }
+//        }];
+        
+//        downVC.demandModel = self.riverDataModel;
+//        downVC.uid = _uid;
+//        downVC.type = _type;
+//        downVC.uuid = _uuid;
+//        downVC.location = self.manager.mapView.userLocation.location;
+        
+        ZLGaodeDownTaskVC *downVC = [[ZLGaodeDownTaskVC alloc]initWithShowFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - App_Frame_Height * 0.7, [UIScreen mainScreen].bounds.size.width, App_Frame_Height * 0.7) ShowStyle:(MYPresentedViewShowStyleFromBottomSpreadStyle) callback:^(id callback) {
             
             if ([callback isEqualToString:@"确定"]) {
                 weakSelf.eventAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"下发任务"];
@@ -352,11 +388,11 @@ typedef enum : NSUInteger {
             }
         }];
         
-        downVC.demandModel = self.riverDataModel;
-        downVC.uid = _uid;
-        downVC.type = _type;
-        downVC.uuid = _uuid;
-        downVC.location = self.manager.mapView.userLocation.location;
+        ZLMapLocationModel *location = weakSelf.manager.locationModel;
+        
+        downVC.locationModel = location;
+        
+        downVC.userRiverModel = self.riverDataModel;
         
         if (self.presentedViewController) {
             //要先dismiss结束后才能重新present否则会出现Warning: Attempt to present <UINavigationController: 0x7fdd22262800> on <UITabBarController: 0x7fdd21c33a60> whose view is not in the window hierarchy!就会present不出来登录页面
@@ -366,8 +402,6 @@ typedef enum : NSUInteger {
         }else {
             [self presentViewController:downVC animated:YES completion:nil];
         }
-        
-//        [self presentViewController:downVC animated:YES completion:nil];
     }
 }
 
@@ -401,6 +435,15 @@ typedef enum : NSUInteger {
                     NSDictionary *startDic = [NSDictionary dictionaryWithObjects:@[@(_startAnnotation.coordinate.latitude), @(_startAnnotation.coordinate.longitude)] forKeys:@[@"latitude",@"longitude"]];
                     
                     [self.store putObject:startDic withId:@"startAnnotation" intoTable:DBMapTable];
+                    
+                    
+                    
+                    self.patrolCode = [NSString stringWithFormat:@"%@%@",[[self getCurrenttTimer] substringWithRange:NSMakeRange(2, 3)],[NSString UUID]];
+                    
+                    
+                     [self.store putString:self.patrolCode withId:@"patrolCode" intoTable:DBMapTable];
+                    
+                    
                 }else{
                     
                     [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
@@ -450,8 +493,6 @@ typedef enum : NSUInteger {
     
     NSDictionary *endDic = self.manager.locationsAndAddress.lastObject;
 
-    NSString *patrolCode = [NSString stringWithFormat:@"%@%@",[[self getCurrenttTimer] substringWithRange:NSMakeRange(2, 3)],[NSString UUID]];
-    
     NSString *runningString = [self.store getStringById:DBRunningModel fromTable:DBMapTable];
     
     if (runningString.length > 0) {
@@ -460,7 +501,7 @@ typedef enum : NSUInteger {
         _startTime = runningModel.time;
     }
     
-    ZLSavepatrolpointService *endService = [[ZLSavepatrolpointService alloc]initWithpatrolCode:patrolCode userCode:self.userId riverCode:_riverDataModel.riverCode startTime:_startTime endTime:_endTime startLongitude:startDic[@"longitude"] startLatitude:startDic[@"latitude"] endLongitude:endDic[@"longitude"] endLatitude:endDic[@"latitude"] list:self.manager.locationsAndAddress];
+    ZLSavepatrolpointService *endService = [[ZLSavepatrolpointService alloc]initWithpatrolCode:self.patrolCode userCode:self.userId riverCode:_riverDataModel.riverCode startTime:_startTime endTime:_endTime startLongitude:startDic[@"longitude"] startLatitude:startDic[@"latitude"] endLongitude:endDic[@"longitude"] endLatitude:endDic[@"latitude"] list:self.manager.locationsAndAddress];
     [SVProgressHUD showWithStatus:@"结束巡河中"];
     
     //    __weak typeof(self) weakSelf = self;
@@ -508,7 +549,7 @@ typedef enum : NSUInteger {
         ZLLog(@"%@",request.responseObject);
         
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-        [self.store putString:patrolCode withId:@"patrolCode" intoTable:DBMapTable];
+        [self.store putString:self.patrolCode withId:@"patrolCode" intoTable:DBMapTable];
         [self.store putString:self.userId withId:@"userCode" intoTable:DBMapTable];
         [self.store putString:_riverDataModel.riverCode withId:@"riverCode" intoTable:DBMapTable];
         [self.store putString:_startTime withId:@"startTime" intoTable:DBMapTable];

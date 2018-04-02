@@ -31,7 +31,7 @@
 
 - (void)getData{
     
-    ZLTaskDetailByIdService *service = [[ZLTaskDetailByIdService alloc]initWithtaskId:_dataModel.taskId];
+    ZLTaskDetailByIdService *service = [[ZLTaskDetailByIdService alloc]initWithtaskId:self.taskId];
     
     [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         
@@ -43,9 +43,6 @@
 
             [self.taskInfoList addObject:detailModel.data];
             [self.sourceArray addObject:self.taskInfoList];
-            
-            self.taskDetailId = detailModel.data.ID;
-            
         }
         [self.mainTableView reloadData];
         //        [self.mainTableView.mj_header endRefreshing];
@@ -134,7 +131,7 @@
     
     ZLNewContiTaskDownVC *vc = [[ZLNewContiTaskDownVC alloc]init];
     
-    vc.taskDetailId = _taskDetailId;
+    vc.taskDetailId = self.taskDetailID;
     
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -149,7 +146,7 @@
     
     ZLMyTaskAdviseVC *vc = [[ZLMyTaskAdviseVC alloc]init];
     
-    vc.taskDetailId = _taskDetailId;
+    vc.taskDetailId = self.taskDetailID;
     
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -178,7 +175,7 @@
         
         ZLMyAdviseBottomView *bottomView = [[ZLMyAdviseBottomView alloc]initWithFrame:CGRectMake(0, 50, Main_Screen_Width, 50 * kScreenHeightRatio)withTitles:@[@"继续下发", @"任务反馈"]];
         
-        if (_dataModel.taskChildCode != nil) {
+        if (self.childCode != nil) {
             [bottomView setStartButtonHidden:YES];
         }
 
@@ -189,9 +186,6 @@
         [headerView addSubview:bottomView];
         headerView.frame = CGRectMake(0, 0, self.view.frame.size.width, CGRectGetMaxY(bottomView.frame));
         _mainTableView.tableFooterView = headerView;
-        
-        
-        
     }
     return _mainTableView;
 }

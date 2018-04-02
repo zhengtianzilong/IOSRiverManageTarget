@@ -94,7 +94,7 @@
 
 
 - (void)configGaoDeSDK{
-    [AMapServices sharedServices].apiKey = @"633d6913a686092e161c8fe6ad5cafa0";
+    [AMapServices sharedServices].apiKey = @"ace2f9b7b111c2ba8bec96781833cb85";
     
 }
 

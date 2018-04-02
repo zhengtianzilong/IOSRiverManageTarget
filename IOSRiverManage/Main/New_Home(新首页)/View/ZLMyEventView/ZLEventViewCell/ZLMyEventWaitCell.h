@@ -9,7 +9,7 @@
 #import "ZLEventManageTableViewCell.h"
 #import "ZLEventManagerReportDataModel.h"
 #import "ZLHomeWaitEventAndTaskDataModel.h"
-typedef void(^dealBtnClick)(NSString *eventId, NSString *detailId, UIButton *dealBtn);
+typedef void(^dealBtnClick)(ZLEventManagerReportDataModel *dataModel, ZLHomeWaitEventAndTaskDataModel *homeDataModel, UIButton *dealBtn);
 @interface ZLMyEventWaitCell : ZLEventManageTableViewCell
 /**
  处理按钮

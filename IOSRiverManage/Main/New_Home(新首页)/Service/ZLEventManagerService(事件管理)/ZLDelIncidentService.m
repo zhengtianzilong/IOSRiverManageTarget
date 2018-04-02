@@ -40,7 +40,7 @@
 
 - (id)requestArgument{
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                         _eventId, @"eventId",
+                         _eventId, @"riverIncidentId",
                          nil];
     return dic;
     

@@ -41,7 +41,7 @@
 - (id)requestArgument{
     
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                         _taskId, @"taskId",
+                         _taskId, @"ids",
                          nil];
     return dic;
     

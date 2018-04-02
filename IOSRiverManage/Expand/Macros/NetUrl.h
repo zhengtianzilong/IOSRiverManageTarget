@@ -8,13 +8,14 @@
 
 #ifndef NetUrl_h
 #define NetUrl_h
-// http://192.168.0.130:8080
-// http://61.177.19.18:8080
-// 39.108.186.130:18081/hzz
-// http://192.168.0.250:8070
-// http://183.207.215.121:18881
 
-#define Base_URL @"http://192.168.0.86:1011"
+// 移动测试环境
+// http://112.4.10.185:86/api/
+
+// 本地测试环境
+// http://192.168.0.89:1011
+
+#define Base_URL @"http://112.4.10.185:86/api"
 
 #define SERVER_NEWS_URL = "http://192.168.0.91:8087";
 
@@ -27,6 +28,9 @@
 
 // 综合统计
 #define River_ComStatisticsUrl @"http://192.168.0.86:8086/comStatistics/index.html"
+
+// 五单两表
+#define River_FiveAndTwoTableUrl @"http://192.168.0.86:8086/fsTt/fsTt.html"
 
 // 查询首页待办数据
 #define River_GetMyToDoTaskAndIncidentListUrl @"/city/appRiverTask/getMyToDoTaskAndIncidentListForApp"
@@ -198,10 +202,14 @@
 // 接收事件
 #define River_ReceiveIncidentForAppUrl @"/city/incident/receiveIncidentForApp"
 
+// 获取任务反馈详情
+#define River_FindTaskFeedbackByIdUrl @"/city/appRiverTask/findTaskFeedbackById"
 
+// 获取任务子任务的id
+#define River_FindByTaskCodeUrl @"/city/riverTask/findByTaskCode"
 
-
-
+// 获取当前区域的河道列表
+#define River_GetNowAreaRiverListForAppUrl @"/base/riverInfoController/getNowAreaRiverListForApp"
 
 
 

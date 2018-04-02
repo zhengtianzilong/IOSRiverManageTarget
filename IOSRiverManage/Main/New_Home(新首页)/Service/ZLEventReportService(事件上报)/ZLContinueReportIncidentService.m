@@ -17,6 +17,7 @@
     NSString *_receiverDepartName;
     NSString *_receiverPersonName;
     NSString *_receiverPersonCode;
+    NSString *_riverIncidentDetailId;
 }
 
 @end
@@ -30,7 +31,8 @@
              receiverDepartCode:(NSString *)receiverDepartCode
              receiverDepartName:(NSString *)receiverDepartName
              receiverPersonName:(NSString *)receiverPersonName
-             receiverPersonCode:(NSString *)receiverPersonCode{
+             receiverPersonCode:(NSString *)receiverPersonCode
+          riverIncidentDetailId:(NSString *)riverIncidentDetailId{
     self = [super init];
     if (self) {
         
@@ -43,6 +45,7 @@
         _receiverDepartName = receiverDepartName;
         _receiverPersonName = receiverPersonName;
         _receiverPersonCode = receiverPersonCode;
+        _riverIncidentDetailId = riverIncidentDetailId;
         
     }
     return self;
@@ -69,14 +72,14 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                          _imgList , @"imgListDetail",
                          _fileList, @"fileListDetail",
-                         _incidentid , @"incidentid",
-                         _incidentContent , @"incidentContent",
+                         _incidentid , @"id",
+                         _incidentContent , @"feedbackContent",
                          _receiverType , @"receiverType",
                          _receiverDepartCode , @"receiverDepartCode",
                          _receiverDepartName , @"receiverDepartName",
                          _receiverPersonName , @"receiverPersonName",
                          _receiverPersonCode , @"receiverPersonCode",
-
+                         _riverIncidentDetailId, @"riverIncidentDetailId",
                          nil];
     return dic;
     

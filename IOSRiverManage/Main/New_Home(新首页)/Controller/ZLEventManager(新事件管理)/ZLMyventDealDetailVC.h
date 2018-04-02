@@ -10,4 +10,7 @@
 
 @interface ZLMyventDealDetailVC : ZLBaseCustomNavViewController
 @property (nonatomic, strong) NSString *eventId;
+
+@property (nonatomic, strong) NSString *detailID;
+
 @end

@@ -75,18 +75,6 @@
 
 }
 
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-
-//    [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-//
-//        make.left.equalTo(self.view);
-//        make.top.equalTo(self.view);
-//        make.bottom.equalTo(self.view.mas_bottom).offset(0);
-//        make.width.mas_equalTo(Main_Screen_Width);
-//    }];
-}
-
 
 - (void)setTabViewHeadView{
     

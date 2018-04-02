@@ -18,7 +18,7 @@
 #import "WJYAlertView.h"
 #import "ZLCheckRejectTaskService.h"
 #import "ZLCheckOkTaskService.h"
-
+#import "ZLTaskFeedBackDetailVC.h"
 @interface ZLTaskDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 
@@ -168,39 +168,11 @@
             cell.dataModel = dataModel;
             
             cell.detailClick = ^(ZLTaskRiverTaskDetailListModel *model) {
-                WJYAlertInputTextView *alertView = [[WJYAlertInputTextView alloc]initPagesViewWithTitle:@"审批意见" leftButtonTitle:@"取消" rightButtonTitle:@"确定" placeholderText:@"请输入审批意见"];
-                WJYAlertView *alert = [[WJYAlertView alloc]initWithCustomView:alertView dismissWhenTouchedBackground:YES];
                 
-                alertView.leftBlock = ^(NSString *text) {
-                    [alert dismissWithCompletion:nil];
-                };
-                
-                alertView.rightBlock = ^(NSString *text) {
-                    
-                    [alert dismissWithCompletion:^{
-                        [SVProgressHUD showWithStatus:@"审批上传中"];
-                        ZLCheckRejectTaskService *service = [[ZLCheckRejectTaskService alloc]initWithtaskDetailId:model.ID approvalOpinion:text];
-                        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-                            
-                            ZLBaseModel *baseModel = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
-                            
-                            if ([baseModel.code isEqualToString:@"0"]) {
-                                [SVProgressHUD showSuccessWithStatus:@"上传成功"];
-                                [SVProgressHUD dismissWithDelay:0.3];
-                            }else{
-                                [SVProgressHUD showErrorWithStatus:baseModel.detail];
-                                [SVProgressHUD dismissWithDelay:0.3];
-                                
-                            }
-                        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-                            
-                            [SVProgressHUD showErrorWithStatus:@"网络错误"];
-                            [SVProgressHUD dismissWithDelay:0.3];
-                            
-                        }];
-                    }];
-                };
-                [alert show];
+                ZLTaskFeedBackDetailVC *vc = [[ZLTaskFeedBackDetailVC alloc]init];
+                vc.code = model.ID;
+                vc.childCode = model.taskChildCode;
+                [self.navigationController pushViewController:vc animated:YES];
                 
                
             };

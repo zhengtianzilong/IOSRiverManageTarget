@@ -11,7 +11,7 @@
 #import "ZLHomeWaitEventAndTaskDataModel.h"
 
 
-typedef void(^dealBtnClickCallBlock)(NSString *taskId, UIButton *dealBtn);
+typedef void(^dealBtnClickCallBlock)(ZLTaskWaitDataModel *dataModel,ZLHomeWaitEventAndTaskDataModel *homeDataModel,  UIButton *dealBtn);
 @interface ZLMyTaskWaitCell : ZLEventManageTableViewCell
 @property (nonatomic, strong) ZLTaskWaitDataModel *dataModel;
 

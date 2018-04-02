@@ -45,7 +45,7 @@
     
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                          _riverIncidentDetailId, @"riverIncidentDetailId",
-                         _eventId, @"eventId",
+                         _eventId, @"id",
                          nil];
     return dic;
     

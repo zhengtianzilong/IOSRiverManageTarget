@@ -9,5 +9,5 @@
 #import "ZLBaseCustomNavViewController.h"
 
 @interface ZLRiverInfoTwoTableVC : ZLBaseCustomNavViewController
-
+@property (nonatomic, strong) NSString *riverCode;
 @end

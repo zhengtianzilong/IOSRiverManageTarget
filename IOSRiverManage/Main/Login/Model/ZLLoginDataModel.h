@@ -7,7 +7,7 @@
 //
 
 #import <JSONModel/JSONModel.h>
-
+#import "ZLFunctionListModel.h"
 @interface ZLLoginDataModel : JSONModel
 @property (nonatomic ,strong) NSString<Optional> *areaCode;
 
@@ -20,4 +20,9 @@
 @property (nonatomic ,strong) NSString<Optional> *userId;
 
 @property (nonatomic ,strong) NSString<Optional> *token;
+
+@property (nonatomic ,strong) NSString<Optional> *fileServerAddr;
+
+@property (nonatomic ,strong) NSArray<Optional, ZLFunctionListModel> *functionList;
+
 @end

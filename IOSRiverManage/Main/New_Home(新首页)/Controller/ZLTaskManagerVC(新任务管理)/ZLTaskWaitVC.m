@@ -174,7 +174,7 @@
     
     __weak typeof(self) weakSelf = self;
     
-    cell.dealClick = ^(NSString *taskId, UIButton *dealBtn) {
+    cell.dealClick = ^(ZLTaskWaitDataModel *dataModel,ZLHomeWaitEventAndTaskDataModel *homeDataModel, UIButton *dealBtn) {
         
         if ([dealBtn.currentTitle isEqualToString:@"接收"]) {
             
@@ -219,9 +219,11 @@
             
         }else if ([dealBtn.currentTitle isEqualToString:@"处理"]){
             ZLTaskDealDetailVC *vc = [[ZLTaskDealDetailVC alloc]init];
-            vc.dataModel = model;
+//            vc.dataModel = dataModel;
             
-            
+            vc.taskDetailID = dataModel.taskDetailId;
+            vc.taskId = dataModel.taskId;
+            vc.childCode = dataModel.taskChildCode;
             
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }

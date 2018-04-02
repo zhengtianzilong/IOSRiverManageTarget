@@ -9,6 +9,7 @@
 #import "ZLRiverInfoTwoTableVC.h"
 #import "ZLPolicyRiverFiveTableViewCell.h"
 #import "ZLPolicyFiveModel.h"
+#include "ZLRiverInfoFiveDetailVC.h"
 @interface ZLRiverInfoTwoTableVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 
@@ -68,10 +69,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //    ZLRiverInfoManagerVC *vc = [[ZLRiverInfoManagerVC alloc]init];
-    //    vc.title = @"呵呵呵";
-    //    [self.navigationController pushViewController:vc animated:YES];
+    ZLRiverInfoFiveDetailVC *vc = [[ZLRiverInfoFiveDetailVC alloc]init];
     
+    NSArray *array = @[self.riverCode,[NSString stringWithFormat:@"%ld",(long)indexPath.row + 5]];
+    
+    vc.riverCodeAndIndex = array;
+    
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 

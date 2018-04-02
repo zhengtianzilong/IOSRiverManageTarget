@@ -12,7 +12,7 @@
 #import "ZLBaseModel.h"
 #import "ZLClearCacheTool.h"
 @interface ZLMySetupTableViewController ()
-
+@property (nonatomic, strong) YTKKeyValueStore *store;
 @end
 
 @implementation ZLMySetupTableViewController
@@ -59,6 +59,12 @@
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             if (buttonIndex == 1) {
                 ZLLoginVC * login =[[ZLLoginVC alloc]init];
+                
+                self.store = [[YTKKeyValueStore alloc]initDBWithName:@"hzz.db"];
+                
+                [self.store clearTable:DBUserTable];
+                [self.store clearTable:DBMapTable];
+                
                 
                 [self presentViewController:login animated:YES completion:^{
                     //                    [self removeFromParentViewController];

@@ -159,6 +159,9 @@
         
         cell.infoTextView.tag = indexPath.row;
         
+        cell.infoTextView.text = self.contiEventName;
+        cell.infoTextView.userInteractionEnabled = NO;
+        self.eventName = self.contiEventName;
         cell.getText = ^(NSString *text, NSInteger tag) {
             
             switch (0) {
@@ -207,7 +210,7 @@
         
         cell.titleLabel.text = self.sourceArray[indexPath.row];
         cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
-        cell.imageV.image = [UIImage imageNamed:@"home_seletPeople"];
+        cell.imageV.image = [UIImage imageNamed:@"departSelect"];
         cell.selectInfo = ^(UITextView *infoTextView) {
             [self departmentClick:infoTextView with:tableView];
         };
@@ -417,8 +420,16 @@
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         ZLLog(@"%@", self.imageNameArray);
-        ZLContinueReportIncidentService *service = [[ZLContinueReportIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentid:self.incidentid incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode];
-
+        
+        if ([self.eventPeople isEqualToString:@""]) {
+            
+            self.receiverType = @"2";
+        }else if ([self.eventDepart isEqualToString:@""]){
+            _receiverType = @"1";
+        }
+        
+        ZLContinueReportIncidentService *service = [[ZLContinueReportIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentid:self.incidentid incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverIncidentDetailId:_riverIncidentDetailId];
+        
         [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request){
             ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
             if ([model.code isEqualToString:@"0"]) {
@@ -439,16 +450,12 @@
     
 }
 
-
-
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
         _sourceArray = @[@"任务名称:",
                          @"接收人:",
                          @"接收部门:",
                          @"事件描述:"];
-        
-        
     }
     return _sourceArray;
 }

@@ -179,14 +179,14 @@
     }
     __weak typeof(self) weakSelf = self;
     
-    cell.dealClick = ^(NSString *eventId, NSString *detailId, UIButton *dealBtn) {
+    cell.dealClick = ^(ZLEventManagerReportDataModel *dataModel, ZLHomeWaitEventAndTaskDataModel *homeDataModel, UIButton *dealBtn) {
         if ([dealBtn.currentTitle isEqualToString:@"接收"]) {
             
             DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认接收吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
             
             alert.otherButtonAction = ^{
                 
-                ZLReceiveIncidentService *service = [[ZLReceiveIncidentService alloc]initWithriverIncidentDetailId:detailId eventId:eventId];
+                ZLReceiveIncidentService *service = [[ZLReceiveIncidentService alloc]initWithriverIncidentDetailId:dataModel.detailId eventId:dataModel.ID];
                 [SVProgressHUD showWithStatus:@"接收中"];
                 [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
                     
@@ -217,7 +217,8 @@
             [alert show];
         }else if ([dealBtn.currentTitle isEqualToString:@"处理"]){
             ZLMyventDealDetailVC *vc = [[ZLMyventDealDetailVC alloc]init];
-            vc.eventId = eventId;
+            vc.eventId = dataModel.ID;
+            vc.detailID = dataModel.detailId;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
 

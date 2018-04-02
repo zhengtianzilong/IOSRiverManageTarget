@@ -86,6 +86,7 @@
         
     }
     
+    
     _tipImageV.image = [UIImage imageNamed:levelImage];
     
     

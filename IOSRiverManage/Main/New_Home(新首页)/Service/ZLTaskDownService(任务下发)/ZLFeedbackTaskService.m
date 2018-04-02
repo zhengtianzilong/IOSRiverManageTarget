@@ -41,7 +41,7 @@
 }
 
 - (YTKRequestSerializerType)requestSerializerType{
-    return YTKRequestSerializerTypeHTTP;
+    return YTKRequestSerializerTypeJSON;
 }
 
 - (YTKResponseSerializerType)responseSerializerType{
@@ -51,7 +51,7 @@
 - (id)requestArgument{
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                          _imgList , @"imgList",
-                         _taskId , @"taskId",
+                         _taskId , @"id",
                          _feedbackContent , @"feedbackContent",
                   
                          nil];

@@ -107,8 +107,6 @@
     [self.mainTableView.mj_header beginRefreshing];
 }
 
-
-
 - (void)setTabViewHeadView{
     
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {

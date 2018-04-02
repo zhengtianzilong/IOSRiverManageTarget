@@ -11,7 +11,6 @@
 @interface ZLFeedbackIncidentForApp : ZLCustomBaseRequest
 - (instancetype)initWithimgList:(NSArray *)imgList
                  fileListDetail:(NSArray *)fileListDetail
-                        eventId:(NSString *)eventId
                   eventDetailId:(NSString *)eventDetailId
                 feedbackContent:(NSString *)feedbackContent;
 @end

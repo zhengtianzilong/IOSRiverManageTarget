@@ -231,7 +231,7 @@
         
         cell.titleLabel.text = self.sourceArray[indexPath.row];
         cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
-        cell.imageV.image = [UIImage imageNamed:@"home_seletPeople"];
+        cell.imageV.image = [UIImage imageNamed:@"departSelect"];
         cell.selectInfo = ^(UITextView *infoTextView) {
             [self departmentClick:infoTextView with:tableView];
         };

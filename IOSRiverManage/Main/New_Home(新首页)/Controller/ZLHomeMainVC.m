@@ -37,6 +37,10 @@
 #import "ZLMyEventDetailVC.h"
 #import "ZLStatisticsVC.h"
 #import "ZLNewLoginModel.h"
+#import "ZLReceiveTaskService.h"
+#import "ZLTaskDealDetailVC.h"
+#import "ZLMyventDealDetailVC.h"
+#import "ZLReceiveIncidentService.h"
 @interface ZLHomeMainVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) ZLHomeHeadView *headView;
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -311,13 +315,106 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.homeDataModel = model;
+        
+         __weak typeof(self) weakSelf = self;
+        
+        cell.dealClick = ^(ZLTaskWaitDataModel *dataModel,ZLHomeWaitEventAndTaskDataModel *homeDataModel, UIButton *dealBtn) {
+            
+            if ([dealBtn.currentTitle isEqualToString:@"接收"]) {
+                
+                DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认接收吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
+                
+                alert.otherButtonAction = ^{
+                    
+                    ZLReceiveTaskService *service = [[ZLReceiveTaskService alloc]initWithtaskDetailId:model.taskDetailId];
+                    [SVProgressHUD showWithStatus:@"接收中"];
+                    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                        
+                        ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                        
+                        if ([model.code isEqualToString:@"0"]) {
+                            
+                            [SVProgressHUD showSuccessWithStatus:@"接收成功"];
+                            [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                                
+                                [tableView.mj_header beginRefreshing];
+                                
+                            }];
+                            
+                        }else{
+                            [SVProgressHUD showErrorWithStatus:model.detail];
+                            [SVProgressHUD dismissWithDelay:0.3];
+                        }
+                        
+                        
+                    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                        [SVProgressHUD dismissWithDelay:0.3];
+                    }];
+                };
+
+                [alert show];
+            }else if ([dealBtn.currentTitle isEqualToString:@"处理"]){
+                ZLTaskDealDetailVC *vc = [[ZLTaskDealDetailVC alloc]init];
+                
+                vc.taskDetailID = homeDataModel.taskDetailId;
+                vc.taskId = homeDataModel.taskId;
+                vc.childCode = homeDataModel.taskChildCode;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+            
+            
+        };
         return cell;
-    }else{
+    }else if([model.type isEqualToString:@"2"]) {
         ZLMyEventWaitCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLMyEventWaitCell" forIndexPath:indexPath];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.homeDataModel = model;
         
+        __weak typeof(self) weakSelf = self;
+        
+        cell.dealClick = ^(ZLEventManagerReportDataModel *dataModel, ZLHomeWaitEventAndTaskDataModel *homeDataModel, UIButton *dealBtn) {
+            if ([dealBtn.currentTitle isEqualToString:@"接收"]) {
+                
+                DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认接收吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
+                
+                alert.otherButtonAction = ^{
+                    
+                    ZLReceiveIncidentService *service = [[ZLReceiveIncidentService alloc]initWithriverIncidentDetailId:homeDataModel.detailId eventId:homeDataModel.ID];
+                    [SVProgressHUD showWithStatus:@"接收中"];
+                    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                        
+                        ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                        
+                        if ([model.code isEqualToString:@"0"]) {
+                            
+                            [SVProgressHUD showSuccessWithStatus:@"接收成功"];
+                            [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                                
+                                [tableView.mj_header beginRefreshing];
+                                
+                            }];
+                            
+                        }else{
+                            [SVProgressHUD showErrorWithStatus:model.detail];
+                            [SVProgressHUD dismissWithDelay:0.3];
+                        }
+                        
+                        
+                    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                        [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                        [SVProgressHUD dismissWithDelay:0.3];
+                    }];
+                };
+                [alert show];
+            }else if ([dealBtn.currentTitle isEqualToString:@"处理"]){
+                ZLMyventDealDetailVC *vc = [[ZLMyventDealDetailVC alloc]init];
+                vc.detailID = homeDataModel.detailId;
+                vc.eventId = homeDataModel.ID;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+        };
         return cell;
     }
     
@@ -336,7 +433,7 @@
         vc.passCode = @"待办任务";
         vc.code = model.taskId;
         [self.navigationController pushViewController:vc animated:YES];
-    }else{
+    }else if([model.type isEqualToString:@"2"]) {
         
         ZLMyEventDetailVC *vc = [[ZLMyEventDetailVC alloc]init];
         vc.eventId = model.ID;

@@ -561,8 +561,6 @@
     
 }
 
-
-
 #pragma mark -- 列表的代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -718,7 +716,7 @@
         
         cell.titleLabel.text = self.sourceArray[indexPath.row];
         cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
-        cell.imageV.image = [UIImage imageNamed:@"home_seletPeople"];
+        cell.imageV.image = [UIImage imageNamed:@"departSelect"];
         
         if (self.detailDataModel && !self.isclear) {
             
