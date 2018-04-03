@@ -7,7 +7,34 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZLGaodeEventAndTaskModel.h"
 @interface ZLRiverRecordPointDetailCollectionViewCell : UICollectionViewCell
-@property (nonatomic, strong) UIButton *titleButton;
+/**
+ 发起人
+ */
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *title;
+
+@property (nonatomic, strong) UILabel *contentLabel;
+/**
+ 内容
+ */
+@property (nonatomic, strong) UILabel *content;
+
+/**
+ 巡河人
+ */
+@property (nonatomic, strong) UILabel *riverPeopleLabel;
+@property (nonatomic, strong) UILabel *riverPeople;
+
+
+/**
+ 时间
+ */
+@property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *time;
+
+
+@property (nonatomic, strong) ZLGaodeEventAndTaskModel *dataModel;
+
 @end

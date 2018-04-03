@@ -139,7 +139,7 @@
     
     if (model.url != nil) {
         
-        NSString *urlString = [NSString stringWithFormat:@"%@%@",Base_URL,model.url];
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",SERVER_NEWS_URL,model.url];
         
         detailVC.url = urlString;
         

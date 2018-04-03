@@ -405,7 +405,7 @@
 - (UIButton *)editBtn{
     if (!_editBtn) {
         _editBtn = [[UIButton alloc]init];
-        [_editBtn setBackgroundImage:[UIImage imageNamed:@"info_edit"] forState:UIControlStateNormal];
+        [_editBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
         
     }
     return _editBtn;

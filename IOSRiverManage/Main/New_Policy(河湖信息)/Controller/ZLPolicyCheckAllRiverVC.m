@@ -25,7 +25,7 @@
 @implementation ZLPolicyCheckAllRiverVC
 
 - (void)getData{
-    ZLGetNowAreaRiverListService *service = [[ZLGetNowAreaRiverListService alloc]initWithpageSize:10 appPageCreateTime:@""];
+    ZLGetNowAreaRiverListService *service = [[ZLGetNowAreaRiverListService alloc]initWithpageSize:2 appPageCreateTime:_lastCreateTime];
     
     [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         
@@ -63,7 +63,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.lastCreateTime = @"";
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
     self.riversModelArray = [NSMutableArray array];
     

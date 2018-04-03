@@ -68,8 +68,8 @@
 }
 
 - (void)configPGYSDK {
-    [[PgyManager sharedPgyManager] startManagerWithAppId:@"878a2d57feb96649ae8b8fb3813fb09e"];
-    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"878a2d57feb96649ae8b8fb3813fb09e"];
+    [[PgyManager sharedPgyManager] startManagerWithAppId:@"f06f925116be13fb5d740af0ff399b46"];
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"f06f925116be13fb5d740af0ff399b46"];
     
     [[PgyUpdateManager sharedPgyManager] checkUpdate];
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
@@ -94,7 +94,7 @@
 
 
 - (void)configGaoDeSDK{
-    [AMapServices sharedServices].apiKey = @"ace2f9b7b111c2ba8bec96781833cb85";
+    [AMapServices sharedServices].apiKey = @"633d6913a686092e161c8fe6ad5cafa0";
     
 }
 

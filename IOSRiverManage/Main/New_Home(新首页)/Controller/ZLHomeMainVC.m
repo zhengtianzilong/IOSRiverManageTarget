@@ -551,25 +551,44 @@
     
     [_maskView dismissView];
     
-    ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡河" singleSelection:YES];
-    
-    alert.selectItem = ^(NSInteger index) {
+    if (self.riversTitleArray.count <= 0) {
         
-        ZLLog(@"%ld",(long)index);
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+        } title:@"提示" message:@"当前并无河道" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
-        ZLGaodeViewController *gaode = [[ZLGaodeViewController alloc]init];
+    }else{
         
-        if (_riversModelArray.count > 0) {
-            ZLNewUserRiversDataModel *riverDataModel = self.riversModelArray[index];
+        if (self.headView.isHideRunningView) {
+            ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡河" singleSelection:YES];
             
-            gaode.riverDataModel = riverDataModel;
+            alert.selectItem = ^(NSInteger index) {
+                
+                ZLLog(@"%ld",(long)index);
+                
+                ZLGaodeViewController *gaode = [[ZLGaodeViewController alloc]init];
+                
+                if (_riversModelArray.count > 0) {
+                    ZLNewUserRiversDataModel *riverDataModel = self.riversModelArray[index];
+                    
+                    gaode.riverDataModel = riverDataModel;
+                    
+                    [self presentViewController:gaode animated:YES completion:nil];
+                }
+            };
             
-            [self presentViewController:gaode animated:YES completion:nil];
+            [alert show];
+            
+            
+        }else{
+            
+            [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            } title:@"提示" message:@"当前已经在巡河中" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+            
         }
-    };
-    
-    [alert show];
-    
+        
+        
+        
+    }
 
     
 }

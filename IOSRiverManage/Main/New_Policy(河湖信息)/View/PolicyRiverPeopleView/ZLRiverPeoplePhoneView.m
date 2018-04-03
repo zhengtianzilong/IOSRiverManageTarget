@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) UIView *verticLineView;
 
+@property (nonatomic, strong) NSString *phoneString;
+
 @end
 
 
@@ -43,7 +45,7 @@
     _titleLabel.text = _dataModel.dutyName;
     
     _nameLable.text = _dataModel.realName;
-    
+    self.phoneString = _dataModel.phone;
     
 }
 
@@ -54,6 +56,7 @@
     _titleLabel.text = _lowerModel.duty;
     
     _nameLable.text = _lowerModel.realName;
+    self.phoneString = _lowerModel.phone;
 }
 
 - (void)layoutSubviews{
@@ -119,8 +122,18 @@
     if (!_phoneBtn) {
         _phoneBtn = [[UIButton alloc]initWithFrame:CGRectZero];
         [_phoneBtn setImage:[UIImage imageNamed:@"phone"] forState:(UIControlStateNormal)];
+        [_phoneBtn addTarget:self action:@selector(call) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _phoneBtn;
 }
+
+-(void)call{
+    if (self.phoneString.length > 0) {
+        NSMutableString *str = [[NSMutableString alloc] initWithFormat:@"tel:%@",self.phoneString];
+        // ZLLog(@"str======%@",str);
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
+}
+
 
 @end

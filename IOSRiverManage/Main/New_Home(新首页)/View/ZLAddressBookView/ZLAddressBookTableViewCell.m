@@ -95,14 +95,11 @@
 
 
 -(void)call{
-    
     if (_phoneLabel.text.length > 0) {
         NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"tel:%@",_phoneLabel.text];
         // ZLLog(@"str======%@",str);
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }
-    
-   
 }
 
 - (UILabel *)detailLabel{

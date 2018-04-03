@@ -15,5 +15,5 @@
 @property (nonatomic, strong) UIButton *queryButton;
 @property (nonatomic, strong) ZLSelectInfoView *selectInfoView;
 
-@property (nonatomic, strong) ZLThreeButtonView *threeButton;
+//@property (nonatomic, strong) ZLThreeButtonView *threeButton;
 @end

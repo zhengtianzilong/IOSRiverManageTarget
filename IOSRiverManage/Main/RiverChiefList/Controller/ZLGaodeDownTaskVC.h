@@ -15,4 +15,6 @@
 
 @property (nonatomic, strong) ZLMapLocationModel *locationModel;
 
+@property (nonatomic, strong) NSString *patrolCode;
+
 @end

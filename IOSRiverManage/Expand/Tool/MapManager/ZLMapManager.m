@@ -91,27 +91,26 @@ static const double kMapDistanceFilter = 3.0;
 
 // 得到定位信息,并添加到数组中
 - (void)getLocationdDetailAddress:(NSString *)latitude location:(CLLocation *)location longitude:(NSString *)longitude withCreateTime:(NSString *)createTime {
-//    [self.geoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-//
-//        if (error||placemarks.count==0) {
-//
-//        }else//编码成功
-//        {
-//            //显示最前面的地标信息
-//            CLPlacemark *firstPlacemark=[placemarks firstObject];
-//
-//            NSString *address = ABCreateStringWithAddressDictionary(firstPlacemark.addressDictionary, YES);
-//
-//            NSString *detailAddress = [[address stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
-//            ZLLog(@"%@",detailAddress);
-            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 longitude,@"longitude",latitude,@"latitude",createTime,@"createTime", nil];
-            [self.locationsAndAddress addObject:dic];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         longitude,@"longitude",latitude,@"latitude",createTime,@"createTime", nil];
+    [self.locationsAndAddress addObject:dic];
+    if (self.startSavePoint) {
+        
+        NSMutableArray *addressArray = [[self.store getObjectById:DBAddress fromTable:DBMapTable] mutableCopy];
+        
+        if (addressArray.count > 0) {
             
+            [addressArray addObjectsFromArray:self.locationsAndAddress];
+            [self.store putObject:addressArray withId:DBAddress intoTable:DBMapTable];
+            
+            [self.locationsAndAddress removeAllObjects];
+            
+        }else{
             [self.store putObject:self.locationsAndAddress withId:DBAddress intoTable:DBMapTable];
-//        }
-//    }];
+        }
+        
+        
+    }
 }
 
 // 只得到定位信息
@@ -150,9 +149,15 @@ static const double kMapDistanceFilter = 3.0;
     NSString *latitude = [NSString stringWithFormat:@"%f",annotation.coordinate.latitude];
     
     NSString *createTime = [self getCurrenttTimer];
-    
-    [self getLocationdDetailAddress:latitude location:location longitude:longitude withCreateTime:createTime];
     [self.annotationRecordArray addObject:annotation];
+    
+    if (_annotationRecordArray.count > 2) {
+        [self getLocationdDetailAddress:latitude location:location longitude:longitude withCreateTime:createTime];
+    }
+    
+    
+    
+    
     
 }
 
@@ -204,12 +209,12 @@ static const double kMapDistanceFilter = 3.0;
         NSString *latitude = [NSString stringWithFormat:@"%f",userLocation.coordinate.latitude];
         [self getLocationdDetail:latitude location:userLocation.location longitude:longitude];
         
-        [self addLocationCoordinate:userLocation.coordinate location:userLocation.location];
+//        [self addLocationCoordinate:userLocation.coordinate location:userLocation.location];
         
         self.updateLocationTimes++;
         NSInteger ignoreTimes = 5;
         if (self.updateLocationTimes <= ignoreTimes) {
-//            return;
+            return;
         }
         // 滤波在处理慢速运行时，会出现路径端点与定位点连接不上的情况，所以在绘制路径时，将未处理过的当前点添加到数组的末尾，每次有新位置进行计算时，先将上一次数组末尾的点移除。
         if (self.annotationRecordArray.count > 0) {
@@ -219,9 +224,16 @@ static const double kMapDistanceFilter = 3.0;
         CLLocationCoordinate2D coordinate = userLocation.coordinate;
         // 卡尔曼滤波器
         CLLocationCoordinate2D filteredCoordinate =  [self.processer processWithCoordinate:coordinate speed:userLocation.location.speed timestamp:CFAbsoluteTimeGetCurrent()];
-//        [self addLocationCoordinate:filteredCoordinate location:userLocation.location];
-//        [self addLocationCoordinate:coordinate location:userLocation.location];
-        [self updateRoute];
+        
+        if (self.startSavePoint) {
+            
+            [self addLocationCoordinate:filteredCoordinate location:userLocation.location];
+            //        [self addLocationCoordinate:coordinate location:userLocation.location];
+            [self updateRoute];
+
+            
+        }
+        
         
         
     }

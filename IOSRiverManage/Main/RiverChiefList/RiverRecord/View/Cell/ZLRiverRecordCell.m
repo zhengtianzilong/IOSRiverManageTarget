@@ -23,106 +23,26 @@
     
     [self.contentView addSubview:self.titleLabel];
     
-    [self.contentView addSubview:self.kilometresLabel];
-    [self.contentView addSubview:self.kilometres];
-    [self.contentView addSubview:self.totalTimeLabel];
-    [self.contentView addSubview:self.totalTime];
-    
     [self.contentView addSubview:self.startLabel];
     [self.contentView addSubview:self.startTime];
     
+    [self.contentView addSubview:self.endTimeLabel];
+    [self.contentView addSubview:self.endTime];
     
-}
-
-- (void)setListDataModel:(ZLRiverRecordDataModel *)listDataModel{
-    
-    _listDataModel = listDataModel;
-    
-    NSInteger startTime = [ZLUtility getTimestampByDate:_listDataModel.START_TIME type:4];
-    
-    NSInteger endTime = [ZLUtility getTimestampByDate:_listDataModel.END_TIME type:4];
-    
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    NSDate *date1 = [formatter dateFromString:_listDataModel.START_TIME];
-    
-    NSDate *date2 = [formatter dateFromString:_listDataModel.END_TIME];
-    
-    NSTimeInterval aTimer = [date2 timeIntervalSinceDate:date1];
-    
-    
-    
-    int hour = (int)(aTimer/3600);
-    
-    int minute = (int)(aTimer)/60;
-    
-    int second = aTimer - hour*3600 - minute*60;
-    
-    NSString *dural = [NSString stringWithFormat:@"%d分", minute];
-    
-    
-    self.kilometres.text = @"10公里";
-    self.totalTime.text = dural;
-    self.startTime.text = _listDataModel.START_TIME;
-    self.titleLabel.text = _listDataModel.riverName;
-    
-    
-}
-
-- (void)layoutSubviews{
-    [super layoutSubviews];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-       
+        
         make.left.equalTo(self.contentView).offset(10);
         make.top.equalTo(self.contentView.mas_top);
         make.right.equalTo(self.contentView.mas_right).offset(-20);
-        make.height.mas_equalTo(self.mas_height).multipliedBy(0.4);
-        
-    }];
-    
-    [self.kilometresLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.titleLabel);
-        make.top.equalTo(self.titleLabel.mas_bottom);
-//        make.right.equalTo(self.contentView.mas_right).offset(-20);
-        make.height.mas_equalTo(self.mas_height).multipliedBy(0.25);
-        
-    }];
-    
-    [self.kilometres mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.kilometresLabel.mas_right).offset(0);
-        make.top.equalTo(self.kilometresLabel);
-        make.width.mas_equalTo(80);
-        make.height.equalTo(self.kilometresLabel);
-        
-    }];
-    
-    [self.totalTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.kilometres.mas_right).offset(0);
-        make.top.equalTo(self.kilometresLabel);
-        make.height.equalTo(self.kilometresLabel);
-        
-    }];
-    
-    [self.totalTime mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.totalTimeLabel.mas_right).offset(0);
-        make.top.equalTo(self.kilometresLabel);
-        make.width.mas_equalTo(100);
-        make.height.equalTo(self.kilometresLabel);
+        make.height.mas_equalTo(35);
         
     }];
     
     [self.startLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.kilometresLabel);
-        make.top.equalTo(self.kilometresLabel.mas_bottom);
-        make.height.equalTo(self.kilometresLabel);
+        make.left.equalTo(self.titleLabel).offset(0);
+        make.top.equalTo(self.titleLabel.mas_bottom);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(20);
         
     }];
     
@@ -130,10 +50,48 @@
         
         make.left.equalTo(self.startLabel.mas_right).offset(0);
         make.top.equalTo(self.startLabel);
-        make.right.equalTo(self.contentView.mas_right).offset(50);
-        make.height.equalTo(self.kilometresLabel);
+        make.right.equalTo(self.contentView.mas_right).offset(-20);
+        
+        make.height.equalTo(self.startLabel);
         
     }];
+    
+    
+    [self.endTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.startLabel);
+        make.top.equalTo(self.startLabel.mas_bottom);
+        make.height.equalTo(self.startLabel);
+        make.width.mas_equalTo(80);
+    }];
+    
+    [self.endTime mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.endTimeLabel.mas_right).offset(0);
+        make.top.equalTo(self.endTimeLabel);
+        make.right.equalTo(self.contentView.mas_right).offset(-20);
+        make.height.equalTo(self.endTimeLabel);
+        
+    }];
+    
+    
+    
+}
+
+- (void)setListDataModel:(ZLRiverRecordDataModel *)listDataModel{
+    
+    _listDataModel = listDataModel;
+    self.startTime.text = _listDataModel.START_TIME;
+    self.titleLabel.text = _listDataModel.riverName;
+    self.endTime.text = _listDataModel.END_TIME;
+    
+    
+    
+    
+}
+
+- (void)layoutSubviews{
+    [super layoutSubviews];
+
     
 }
 
@@ -144,44 +102,6 @@
         
     }
     return _titleLabel;
-}
-
-- (UILabel *)kilometresLabel{
-    if (!_kilometresLabel) {
-        _kilometresLabel = [[UILabel alloc]init];
-        [_kilometresLabel setText:@"公里数:"];
-        _kilometresLabel.font = CHINESE_SYSTEM(16);
-        
-    }
-    return _kilometresLabel;
-}
-
-- (UILabel *)kilometres{
-    if (!_kilometres) {
-        _kilometres = [[UILabel alloc]init];
-        _kilometres.font = CHINESE_SYSTEM(16);
-        
-    }
-    return _kilometres;
-}
-
-- (UILabel *)totalTimeLabel{
-    if (!_totalTimeLabel) {
-        _totalTimeLabel = [[UILabel alloc]init];
-        [_totalTimeLabel setText:@"时长:"];
-        _totalTimeLabel.font = CHINESE_SYSTEM(16);
-        
-    }
-    return _totalTimeLabel;
-}
-
-- (UILabel *)totalTime{
-    if (!_totalTime) {
-        _totalTime = [[UILabel alloc]init];
-        _totalTime.font = CHINESE_SYSTEM(16);
-        
-    }
-    return _totalTime;
 }
 
 - (UILabel *)startLabel{
@@ -201,5 +121,24 @@
     }
     return _startTime;
 }
+
+- (UILabel *)endTimeLabel{
+    if (!_endTimeLabel) {
+        _endTimeLabel = [[UILabel alloc]init];
+        [_endTimeLabel setText:@"结束时间:"];
+        _endTimeLabel.font = CHINESE_SYSTEM(16);
+    }
+    return _endTimeLabel;
+}
+
+- (UILabel *)endTime{
+    if (!_endTime) {
+        _endTime = [[UILabel alloc]init];
+        _endTime.font = CHINESE_SYSTEM(16);
+        
+    }
+    return _endTime;
+}
+
 
 @end

@@ -140,7 +140,7 @@
 
 - (ZLLabelAndTextFieldWithImageV *)state{
     if (!_state) {
-        _state = [[ZLLabelAndTextFieldWithImageV alloc]initWithFrame:CGRectZero title:@"当前状态" placeHolder:@"请选择当前状态" imageString:@"home_seletPeople"];
+        _state = [[ZLLabelAndTextFieldWithImageV alloc]initWithFrame:CGRectZero title:@"当前状态" placeHolder:@"请选择当前状态" imageString:@"currentState"];
     }
     return _state;
 }

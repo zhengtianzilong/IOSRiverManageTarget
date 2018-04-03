@@ -299,7 +299,7 @@
 - (UIButton *)deleteBtn{
     if (!_deleteBtn) {
         _deleteBtn = [[UIButton alloc]init];
-        [_deleteBtn setBackgroundImage:[UIImage imageNamed:@"info_edit"] forState:UIControlStateNormal];
+        [_deleteBtn setBackgroundImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
         
         [_deleteBtn addTarget:self action:@selector(deletePublicClick) forControlEvents:(UIControlEventTouchUpInside)];
         

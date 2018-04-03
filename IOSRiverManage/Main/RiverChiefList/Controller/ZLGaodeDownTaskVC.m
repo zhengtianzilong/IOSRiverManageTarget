@@ -518,8 +518,6 @@
         }else{
             [SVProgressHUD showErrorWithStatus:imagesModel.detail];
             [SVProgressHUD dismissWithDelay:0.3];
-            
-            
         }
         
         ZLLog(@"%@", request.responseString);
@@ -535,7 +533,7 @@
         
         ZLLog(@"%@", self.imageNameArray);
         
-        ZLRiverSaveAndSentTaskService *service = [[ZLRiverSaveAndSentTaskService alloc]initWithimgList:self.imageNameArray taskName:self.taskName taskContent:self.taskDesc receiverDepartmentNames:self.taskDepartString receiverDepartmentCodes:self.departCodeString receiverPersonIds:self.peopleCodeString receiverPersonNames:self.taskPeopleString riverCode:_userRiverModel.riverCode longitude:_locationModel.longitude latitude:_locationModel.latitude positionDesc:self.address];
+        ZLRiverSaveAndSentTaskService *service = [[ZLRiverSaveAndSentTaskService alloc]initWithimgList:self.imageNameArray taskName:self.taskName taskContent:self.taskDesc receiverDepartmentNames:self.taskDepartString receiverDepartmentCodes:self.departCodeString receiverPersonIds:self.peopleCodeString receiverPersonNames:self.taskPeopleString riverCode:_userRiverModel.riverCode longitude:_locationModel.longitude latitude:_locationModel.latitude positionDesc:self.address patrolCode:_patrolCode];
         
         //        [SVProgressHUD showWithStatus:@"保存中"];
         
@@ -610,7 +608,7 @@
         
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
-        
+        _mainTableView.bounces = NO;
         _mainTableView.showsVerticalScrollIndicator = NO;
         
         //开启自动计算高度

@@ -12,17 +12,13 @@
 
 @property (nonatomic, strong) UILabel *titleLabel;
 
-@property (nonatomic, strong) UILabel *kilometresLabel;
-
-@property (nonatomic, strong) UILabel *kilometres;
-
-@property (nonatomic, strong) UILabel *totalTimeLabel;
-
-@property (nonatomic, strong) UILabel *totalTime;
-
 @property (nonatomic, strong) UILabel *startLabel;
 
 @property (nonatomic, strong) UILabel *startTime;
+
+@property (nonatomic, strong) UILabel *endTimeLabel;
+
+@property (nonatomic, strong) UILabel *endTime;
 
 @property (nonatomic, strong) ZLRiverRecordDataModel *listDataModel;
 

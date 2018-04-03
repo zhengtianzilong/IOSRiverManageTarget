@@ -29,7 +29,7 @@
     [super viewDidLoad];
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Width, App_Frame_Height)];
     self.webView.userInteractionEnabled = YES;
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.86:8086/fsTt/fsTt.html"]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:River_ComStatisticsUrl]]];
     self.webView.userInteractionEnabled = YES;
     self.webView.backgroundColor = [UIColor whiteColor];
     [self.webView setScalesPageToFit:YES];

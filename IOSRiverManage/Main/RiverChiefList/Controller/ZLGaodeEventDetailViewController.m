@@ -18,7 +18,7 @@
 @property (nonatomic, strong) ZLGaodeDetailView *gaodeDetailView;
 
 
-@property (nonatomic, strong) UICollectionView *mainCollectionView;
+
 
 
 @end
@@ -87,27 +87,21 @@
 //
 //}
 
-
-
-
-
 #pragma mark -- collection的代理方法
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     ZLRiverRecordPointDetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZLRiverRecordPointDetailCollectionViewCell" forIndexPath:indexPath];
-//    ZLPolicyAllRiverAreaModel *model = self.itemArray[indexPath.row];
-//    cell.areaModel = model;
-    
-    cell.backgroundColor = [UIColor yellowColor];
+    ZLGaodeEventAndTaskModel *model = self.sourceArray[indexPath.row];
+    cell.dataModel = model;
     
     return cell;
     
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 2;
+    return self.sourceArray.count;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

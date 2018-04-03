@@ -20,6 +20,7 @@
     NSString *_longitude;
     NSString *_latitude;
     NSString *_positionDesc;
+    NSString *_patrolCode;
 }
 
 @end
@@ -35,7 +36,8 @@
                       riverCode:(NSString *)riverCode
                       longitude:(NSString *)longitude
                        latitude:(NSString *)latitude
-                   positionDesc:(NSString *)positionDesc{
+                   positionDesc:(NSString *)positionDesc
+                     patrolCode:(NSString *)patrolCode{
     self = [super init];
     if (self) {
         
@@ -51,7 +53,7 @@
         _longitude = longitude;
         _latitude = latitude;
         _positionDesc = positionDesc;
-        
+        _patrolCode = patrolCode;
         
     }
     return self;
@@ -87,6 +89,7 @@
                          _longitude , @"longitude",
                          _latitude , @"latitude",
                          _positionDesc , @"positionDesc",
+                         _patrolCode, @"patrolCode",
                          nil];
     return dic;
     

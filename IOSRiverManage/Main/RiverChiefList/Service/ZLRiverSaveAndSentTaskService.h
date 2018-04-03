@@ -19,5 +19,6 @@
                       riverCode:(NSString *)riverCode
                       longitude:(NSString *)longitude
                        latitude:(NSString *)latitude
-                   positionDesc:(NSString *)positionDesc;
+                   positionDesc:(NSString *)positionDesc
+                     patrolCode:(NSString *)patrolCode;
 @end

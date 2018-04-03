@@ -16,4 +16,8 @@ typedef void(^ZLScrollBlcok)(NSInteger index);
 
 @property (nonatomic, assign) NSInteger index;
 
+@property (nonatomic, strong) NSArray *sourceArray;
+
+@property (nonatomic, strong) UICollectionView *mainCollectionView;
+
 @end

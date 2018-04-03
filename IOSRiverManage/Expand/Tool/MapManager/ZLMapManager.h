@@ -19,6 +19,8 @@
 // 得到定位的信息
 @property (nonatomic, strong) ZLMapLocationModel *locationModel;
 
+@property (nonatomic, assign) BOOL startSavePoint;
+
 
 
 - (void)setupMapView;

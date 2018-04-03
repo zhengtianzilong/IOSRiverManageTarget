@@ -62,8 +62,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZLRiverRecordCell *cell = (ZLRiverRecordCell *)[tableView dequeueReusableCellWithIdentifier:@"ZLRiverRecordCell" forIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.kilometres.text = @"10公里";
-    cell.totalTime.text = @"60分钟";
     cell.startTime.text = @"2017-10-13 09:20";
     cell.titleLabel.text = @"莫愁湖河段";
     return cell;

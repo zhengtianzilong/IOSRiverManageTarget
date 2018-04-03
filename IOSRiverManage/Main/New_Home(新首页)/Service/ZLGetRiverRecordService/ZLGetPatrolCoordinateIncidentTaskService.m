@@ -30,10 +30,11 @@
 }
 
 - (YTKRequestMethod)requestMethod {
-    return YTKRequestMethodPOST;
+    return YTKRequestMethodGET;
 }
 
 - (YTKRequestSerializerType)requestSerializerType{
+    
     return YTKRequestSerializerTypeHTTP;
 }
 
@@ -43,7 +44,7 @@
 
 - (id)requestArgument{
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
-                         _partolCode,@"partolCode",
+                         _partolCode,@"patrolCode",
                          nil];
     return dic;
     

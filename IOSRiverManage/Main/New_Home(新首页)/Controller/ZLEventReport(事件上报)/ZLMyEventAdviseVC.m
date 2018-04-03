@@ -160,7 +160,9 @@
             ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
             if ([model.code isEqualToString:@"0"]) {
                 [SVProgressHUD showSuccessWithStatus:@"反馈成功"];
-                [SVProgressHUD dismissWithDelay:0.3];
+                [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
             }else{
                 [SVProgressHUD showErrorWithStatus:model.detail];
                 [SVProgressHUD dismissWithDelay:0.3];

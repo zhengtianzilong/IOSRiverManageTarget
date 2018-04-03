@@ -75,6 +75,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) NSString *patrolCode;
 
+@property (nonatomic, strong) NSMutableArray *eventAndTaskArray;
 
 @end
 
@@ -171,6 +172,7 @@ typedef enum : NSUInteger {
     
     self.manager = [[ZLMapManager alloc]init];
     [self setUpUI];
+    self.manager.startSavePoint = NO;
     [self.manager startLocation];
 
     [self getDBData];
@@ -182,6 +184,7 @@ typedef enum : NSUInteger {
  */
 - (void)getDBData{
     
+    self.eventAndTaskArray = [NSMutableArray array];
     
 //    [self.store putObject:_manager.locationsAndAddress withId:DBAddress intoTable:DBMapTable];
     NSArray *addressArray = [self.store getObjectById:DBAddress fromTable:DBMapTable];
@@ -210,6 +213,7 @@ typedef enum : NSUInteger {
         
         [_mapView addAnnotation:_startAnnotation];
         
+        self.manager.startSavePoint = YES;
         [self.manager startLocation];
         
         [self.bottomButtonView.startAndEndButton setTitle:@"结束巡河" forState:(UIControlStateNormal)];
@@ -221,7 +225,19 @@ typedef enum : NSUInteger {
     
 }
 
+// 创建上报的点
+- (void)createStart:(NSString *)latitude AndEndPoint:(NSString *)longitude withTitle:(NSString *)title withTag:(NSString *)tag{
 
+    MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
+    pointAnnotation.coordinate = CLLocationCoordinate2DMake([latitude doubleValue], [longitude doubleValue]);
+    pointAnnotation.title = title;
+    pointAnnotation.subtitle = tag;
+
+    [self.eventAndTaskArray addObject:pointAnnotation];
+
+
+    //    [_mapView addAnnotation:pointAnnotation];
+}
 
 /**
  修改项
@@ -276,19 +292,13 @@ typedef enum : NSUInteger {
     if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡河"]){
         [deleage.floatWindow close];
         [deleage.floatWindow resignKeyWindow];
-        
         [[NSNotificationCenter defaultCenter]postNotificationName:@"RiverRunningEnd" object:nil];
-        
         [self dismissViewControllerAnimated:YES completion:^{
-            
         }];
-        
     }else{
         [deleage.floatWindow startWithTime:0 presentview:self.view inRect:CGRectMake(0, Main_Screen_Height, 0, 0) withRiverTitle:self.riverDataModel.riverName];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"RiverRunning" object:nil];
-        
         [self dismissViewControllerAnimated:NO completion:^{
-            
         }];
     }
 }
@@ -297,8 +307,6 @@ typedef enum : NSUInteger {
  上报案件
  */
 - (void)reportClick:(UIButton *)button{
-    
-    
     if (_status == endRiver) {
 
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
@@ -385,13 +393,16 @@ typedef enum : NSUInteger {
             if ([callback isEqualToString:@"确定"]) {
                 weakSelf.eventAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"下发任务"];
                 
+//                self.store putObject:<#(id)#> withId:<#(NSString *)#> intoTable:<#(NSString *)#>
+//                
+                
             }
         }];
         
         ZLMapLocationModel *location = weakSelf.manager.locationModel;
         
         downVC.locationModel = location;
-        
+        downVC.patrolCode = self.patrolCode;
         downVC.userRiverModel = self.riverDataModel;
         
         if (self.presentedViewController) {
@@ -424,6 +435,7 @@ typedef enum : NSUInteger {
                 
                 // 放置起点旗帜
                 if (!_startAnnotation) {
+                    self.manager.startSavePoint = YES;
                     [self.manager startLocation];
                     _startAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"起点"];
                     _status = rivering;
@@ -514,6 +526,7 @@ typedef enum : NSUInteger {
         
         if ([baseModel.code isEqualToString:@"0"]) {
             _isEndRiver = YES;
+            self.manager.startSavePoint = NO;
             [self.manager endLocation];
             _status = endRiver;
             [SVProgressHUD showSuccessWithStatus:@"结束巡河成功"];
@@ -524,20 +537,24 @@ typedef enum : NSUInteger {
                     
                     [button setTitle:@"开始巡河" forState:(UIControlStateNormal)];
                     [button setImage:[UIImage imageNamed:@"GaodeStartRiver"] forState:(UIControlStateNormal)];
-                    [button setBackgroundColor:HEXCOLOR(KNavBarBG_color_blue)];
+                    [button setBackgroundColor:[UIColor grayColor]];
+                    button.enabled = NO;
                     
-                    [self.store deleteObjectsByIdArray:@[@"patrolCode",
-                                                         @"userCode",
-                                                         @"riverCode",
-                                                         @"startTime",
-                                                         @"endTime",
-                                                         @"startLongitude",
-                                                         @"startLatitude",
-                                                         @"endLongitude",
-                                                         @"endLatitude",
-                                                         DBAddress,
-                                                         DBRunningModel
-                                                         ] fromTable:DBMapTable];
+//                    [self.store deleteObjectsByIdArray:@[@"patrolCode",
+//                                                         @"userCode",
+//                                                         @"riverCode",
+//                                                         @"startTime",
+//                                                         @"endTime",
+//                                                         @"startLongitude",
+//                                                         @"startLatitude",
+//                                                         @"endLongitude",
+//                                                         @"endLatitude",
+//                                                         DBAddress,
+//                                                         DBRunningModel
+//                                                         ] fromTable:DBMapTable];
+                    
+                    [self.store clearTable:DBMapTable];
+                    
                 }
             }];
         }else{

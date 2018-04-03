@@ -10,14 +10,16 @@
 #import "ZLRiverIncidentDetailModel.h"
 #import "ZLRiverTaskModel.h"
 #import "ZLPatrolCoordinateModel.h"
+#import "ZLRiverPatrolInfoModel.h"
 @interface ZLRiverRecordAllPointDataModel : JSONModel
 
 @property (nonatomic, strong) NSArray<Optional, ZLRiverIncidentDetailModel> *RiverIncident;
 
-@property (nonatomic, strong) NSArray<Optional, ZLRiverTaskModel> *PatrolCoordinate;
+@property (nonatomic, strong) NSArray<Optional, ZLRiverTaskModel> *RiverTask;
 
 
-@property (nonatomic, strong) NSArray<Optional, ZLPatrolCoordinateModel> *RiverTask;
+@property (nonatomic, strong) NSArray<Optional, ZLPatrolCoordinateModel> *PatrolCoordinate;
 
+@property (nonatomic, strong) ZLRiverPatrolInfoModel<Optional> *RiverPatrolInfo;
 
 @end
