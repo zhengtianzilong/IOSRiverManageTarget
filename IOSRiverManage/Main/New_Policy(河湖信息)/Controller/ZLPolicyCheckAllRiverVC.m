@@ -129,10 +129,6 @@
     
 }
 
-
-
-
-
 - (UITableView *)mainTableView{
     if (!_mainTableView) {
         _mainTableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStylePlain)];
@@ -151,6 +147,8 @@
             [self getData];
             
         }];
+        
+        _mainTableView.tableFooterView = [UIView new];
         
         
 //        ZLPolicyAllRiverHeadView *headView = [[ZLPolicyAllRiverHeadView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 220)];

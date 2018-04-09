@@ -121,7 +121,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"XXXXX";
         _titleLabel.backgroundColor = [UIColor whiteColor];
-        _titleLabel.font = CHINESE_SYSTEM(17);
+        _titleLabel.font = CHINESE_SYSTEM(15);
         
     }
     return _titleLabel;
@@ -132,7 +132,7 @@
         _infoTextView = [[UITextView alloc]init];
         _infoTextView.backgroundColor = [UIColor whiteColor];
         
-        _infoTextView.font = CHINESE_SYSTEM(17);
+        _infoTextView.font = CHINESE_SYSTEM(15);
 //        _infoTextView.text = @"sssduashdiasuhdiuashdshuashaosuidiosajxzcjkzxbcmkdsgiosdijdsfibvjidshbiofdjiosfodi";
         _infoTextView.scrollEnabled = NO;
         _infoTextView.delegate = self;

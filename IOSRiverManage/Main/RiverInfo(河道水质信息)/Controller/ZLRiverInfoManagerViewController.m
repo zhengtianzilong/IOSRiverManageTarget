@@ -12,7 +12,6 @@
 #import "ZLRiverInfoFiveTableVC.h"
 #import "ZLRiverInfoTwoTableVC.h"
 #import "ZLRiverInfoTwoPictureVC.h"
-#import "ZLRiverInfoQualityVC.h"
 #import "NinaPagerView.h"
 @interface ZLRiverInfoManagerViewController ()
 
@@ -33,8 +32,7 @@
     ZLRiverInfoFiveTableVC *fiveVC = [[ZLRiverInfoFiveTableVC alloc]init];
     ZLRiverInfoTwoTableVC *twoTableVC = [[ZLRiverInfoTwoTableVC alloc]init];
     ZLRiverInfoTwoPictureVC *twoPictureVC = [[ZLRiverInfoTwoPictureVC alloc]init];
-    ZLRiverInfoQualityVC *qualityVC = [[ZLRiverInfoQualityVC alloc]init];
-    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, TopBarHeight, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"基本信息",@"河长信息",@"五个清单",@"两张表",@"两张图",@"河道水质"] WithVCs:@[baseVC,peopleVC,fiveVC,twoTableVC,twoPictureVC,qualityVC]];
+    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, TopBarHeight, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"基本信息",@"河长信息",@"五个清单",@"两张表",@"两张图"] WithVCs:@[baseVC,peopleVC,fiveVC,twoTableVC,twoPictureVC]];
     pageView.ninaPagerStyles = NinaPagerStyleBottomLine;
     pageView.nina_navigationBarHidden = NO;
     pageView.selectTitleColor = selectColor;

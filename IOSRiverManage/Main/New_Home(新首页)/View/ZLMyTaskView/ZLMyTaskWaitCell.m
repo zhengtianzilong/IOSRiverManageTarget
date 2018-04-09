@@ -27,8 +27,8 @@
     
     self.colorIndicator.image = [UIImage imageNamed:@"task_point"];
     
-    self.initiatorLabel.text = @"创建人:";
-    self.receivedLabel.text = @"接收人:";
+    self.initiatorLabel.text = @"创建人：";
+    self.receivedLabel.text = @"接收人：";
     self.state.textColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
 }
 
@@ -194,9 +194,4 @@
     self.taskId = _homeDataModel.taskId;
     
 }
-
-
-
-
-
 @end

@@ -77,6 +77,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) NSMutableArray *eventAndTaskArray;
 
+@property (nonatomic, strong) NSMutableArray *eventPointArray;
+@property (nonatomic, strong) NSMutableArray *taskPointArray;
 @end
 
 @implementation ZLGaodeViewController
@@ -186,6 +188,40 @@ typedef enum : NSUInteger {
     
     self.eventAndTaskArray = [NSMutableArray array];
     
+//    self.eventPointArray = [NSMutableArray array];
+    NSMutableArray *taskArray = [self.store getObjectById:@"taskPointArray" fromTable:DBMapTable];
+    
+    NSMutableArray *eventArray = [self.store getObjectById:@"eventPointArray" fromTable:DBMapTable];
+    
+    if (taskArray.count > 0) {
+        self.taskPointArray = taskArray;
+        
+        for (int i = 0; i < taskArray.count; i++) {
+            
+            NSDictionary *dic = taskArray[i];
+            
+            [self createStart:dic[@"latitude"] AndEndPoint:dic[@"longitude"] withTitle:@"下发任务"];
+            
+        }
+    }else{
+        self.taskPointArray = [NSMutableArray array];
+    }
+    if (eventArray.count > 0) {
+        self.eventPointArray = eventArray;
+        
+        for (int i = 0; i < eventArray.count; i++) {
+            
+            NSDictionary *dic = eventArray[i];
+            
+            [self createStart:dic[@"latitude"] AndEndPoint:dic[@"longitude"] withTitle:@"上报案件"];
+        }
+    }else{
+        self.eventPointArray = [NSMutableArray array];
+    }
+    
+    [_mapView addAnnotations:self.eventAndTaskArray];
+    
+    
 //    [self.store putObject:_manager.locationsAndAddress withId:DBAddress intoTable:DBMapTable];
     NSArray *addressArray = [self.store getObjectById:DBAddress fromTable:DBMapTable];
     NSDictionary *startDic = [self.store getObjectById:@"startAnnotation" fromTable:DBMapTable];
@@ -226,12 +262,11 @@ typedef enum : NSUInteger {
 }
 
 // 创建上报的点
-- (void)createStart:(NSString *)latitude AndEndPoint:(NSString *)longitude withTitle:(NSString *)title withTag:(NSString *)tag{
+- (void)createStart:(NSString *)latitude AndEndPoint:(NSString *)longitude withTitle:(NSString *)title{
 
     MAPointAnnotation *pointAnnotation = [[MAPointAnnotation alloc] init];
     pointAnnotation.coordinate = CLLocationCoordinate2DMake([latitude doubleValue], [longitude doubleValue]);
     pointAnnotation.title = title;
-    pointAnnotation.subtitle = tag;
 
     [self.eventAndTaskArray addObject:pointAnnotation];
 
@@ -340,6 +375,14 @@ typedef enum : NSUInteger {
             
             if ([callback isEqualToString:@"确定"]) {
                 weakSelf.eventAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"上报案件"];
+                
+                NSDictionary *pointDic = [NSDictionary dictionaryWithObjects:@[@(weakSelf.eventAnnotation.coordinate.latitude), @(weakSelf.eventAnnotation.coordinate.longitude), @"上报案件"] forKeys:@[@"latitude",@"longitude", @"type"]];
+                
+                [self.eventPointArray addObject:pointDic];
+                
+                [self.store putObject:self.eventPointArray withId:@"eventPointArray" intoTable:DBMapTable];
+                
+                
             }
         }];
         
@@ -392,9 +435,12 @@ typedef enum : NSUInteger {
             
             if ([callback isEqualToString:@"确定"]) {
                 weakSelf.eventAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"下发任务"];
+
+                NSDictionary *pointDic = [NSDictionary dictionaryWithObjects:@[@(weakSelf.eventAnnotation.coordinate.latitude), @(weakSelf.eventAnnotation.coordinate.longitude), @"下发任务"] forKeys:@[@"latitude",@"longitude", @"type"]];
                 
-//                self.store putObject:<#(id)#> withId:<#(NSString *)#> intoTable:<#(NSString *)#>
-//                
+                [self.taskPointArray addObject:pointDic];
+                
+                [self.store putObject:self.eventPointArray withId:@"taskPointArray" intoTable:DBMapTable];
                 
             }
         }];
@@ -447,15 +493,8 @@ typedef enum : NSUInteger {
                     NSDictionary *startDic = [NSDictionary dictionaryWithObjects:@[@(_startAnnotation.coordinate.latitude), @(_startAnnotation.coordinate.longitude)] forKeys:@[@"latitude",@"longitude"]];
                     
                     [self.store putObject:startDic withId:@"startAnnotation" intoTable:DBMapTable];
-                    
-                    
-                    
                     self.patrolCode = [NSString stringWithFormat:@"%@%@",[[self getCurrenttTimer] substringWithRange:NSMakeRange(2, 3)],[NSString UUID]];
-                    
-                    
                      [self.store putString:self.patrolCode withId:@"patrolCode" intoTable:DBMapTable];
-                    
-                    
                 }else{
                     
                     [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
@@ -466,9 +505,6 @@ typedef enum : NSUInteger {
             }
             
         } title:@"提示" message: [NSString stringWithFormat:@"当前已选择%@,是否确定开始巡河", _riverDataModel.riverName] cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
-        
-        
-        
     }else if ([[button currentTitle] isEqualToString:@"结束巡河"]){
 //        __weak typeof(self) weakSelf = self;
         
@@ -501,9 +537,13 @@ typedef enum : NSUInteger {
  */
 - (void)endRiverService:(UIButton *)button{
     
-    NSDictionary *startDic = self.manager.locationsAndAddress.firstObject;
+    NSArray *addressArray = [self.store getObjectById:DBAddress fromTable:DBMapTable];
+//    NSDictionary *startDics = [self.store getObjectById:@"startAnnotation" fromTable:DBMapTable];
     
-    NSDictionary *endDic = self.manager.locationsAndAddress.lastObject;
+    
+    NSDictionary *startDic = addressArray.firstObject;
+    
+    NSDictionary *endDic = addressArray.lastObject;
 
     NSString *runningString = [self.store getStringById:DBRunningModel fromTable:DBMapTable];
     
@@ -513,7 +553,7 @@ typedef enum : NSUInteger {
         _startTime = runningModel.time;
     }
     
-    ZLSavepatrolpointService *endService = [[ZLSavepatrolpointService alloc]initWithpatrolCode:self.patrolCode userCode:self.userId riverCode:_riverDataModel.riverCode startTime:_startTime endTime:_endTime startLongitude:startDic[@"longitude"] startLatitude:startDic[@"latitude"] endLongitude:endDic[@"longitude"] endLatitude:endDic[@"latitude"] list:self.manager.locationsAndAddress];
+    ZLSavepatrolpointService *endService = [[ZLSavepatrolpointService alloc]initWithpatrolCode:self.patrolCode userCode:self.userId riverCode:_riverDataModel.riverCode startTime:_startTime endTime:_endTime startLongitude:startDic[@"longitude"] startLatitude:startDic[@"latitude"] endLongitude:endDic[@"longitude"] endLatitude:endDic[@"latitude"] list:addressArray];
     [SVProgressHUD showWithStatus:@"结束巡河中"];
     
     //    __weak typeof(self) weakSelf = self;
@@ -575,7 +615,7 @@ typedef enum : NSUInteger {
         [self.store putString:startDic[@"latitude"] withId:@"startLatitude" intoTable:DBMapTable];
         [self.store putString:endDic[@"longitude"] withId:@"endLongitude" intoTable:DBMapTable];
         [self.store putString:endDic[@"latitude"] withId:@"endLatitude" intoTable:DBMapTable];
-        [self.store putObject:_manager.locationsAndAddress withId:DBAddress intoTable:DBMapTable];
+//        [self.store putObject:_manager.locationsAndAddress withId:DBAddress intoTable:DBMapTable];
         
         [SVProgressHUD showErrorWithStatus:@"结束巡河失败 请检查网络"];
         [SVProgressHUD dismissWithDelay:0.3];

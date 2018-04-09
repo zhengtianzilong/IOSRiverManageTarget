@@ -59,7 +59,7 @@
     
     _initiatorLabel = [[UILabel alloc]init];
     _initiatorLabel.font = CHINESE_SYSTEM(14);
-    _initiatorLabel.text = @"发起人:";
+    _initiatorLabel.text = @"发起人：";
     [self.contentView addSubview:_initiatorLabel];
 
     _initiatorName = [[UILabel alloc]init];
@@ -70,7 +70,7 @@
     
     
     _receivedLabel = [[UILabel alloc]init];
-    _receivedLabel.text = @"接收人:";
+    _receivedLabel.text = @"接收人：";
     _receivedLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_receivedLabel];
 
@@ -82,7 +82,7 @@
 
 
     _contentLabel = [[UILabel alloc]init];
-    _contentLabel.text = @"内 容:";
+    _contentLabel.text = @"内 容：";
     _contentLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_contentLabel];
 

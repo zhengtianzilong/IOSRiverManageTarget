@@ -16,7 +16,13 @@
 // http://192.168.0.89:1011
 
 // 图片查看地址
-// http://112.4.10.186:86/
+// http://112.4.10.185:86/file/
+
+// 新闻查看地址 综合统计 五单两表
+// http://112.4.10.185:86
+
+// 测试 新闻
+// http://192.168.0.232:8086
 
 #define Base_URL @"http://112.4.10.185:86/api/"
 
@@ -107,6 +113,10 @@
 
 // 交办任务列表
 #define River_GetAssignTaskListUrl @"city/assign/getAssignTaskList"
+
+// 我的交办任务列表
+#define River_GetMyAssignTaskListUrl @"city/assign/getMyAssignTaskList"
+
 // 督办任务列表
 #define River_GetSuperviseTaskListUrl @"city/supervise/getSuperviseTaskList"
 // 交办详情信息

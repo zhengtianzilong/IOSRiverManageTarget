@@ -204,12 +204,12 @@
 
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
-        _sourceArray = @[@"取水口名称:",
-                         @"取水口编码:",
-                         @"位置:",
-                         @"联系人:",
-                         @"联系电话:",
-                         @"取水用途:"];
+        _sourceArray = @[@"取水口名称：",
+                         @"取水口编码：",
+                         @"位置：",
+                         @"联系人：",
+                         @"联系电话：",
+                         @"取水用途："];
     }
     return _sourceArray;
 }

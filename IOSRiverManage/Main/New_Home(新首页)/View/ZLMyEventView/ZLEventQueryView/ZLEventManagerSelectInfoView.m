@@ -70,7 +70,7 @@
 - (ZLLabelAndTextFieldView *)eventName{
     if (!_eventName) {
         
-        _eventName = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"事件名称:" placeHolder:@"请输入事件名称"];
+        _eventName = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"事件名称：" placeHolder:@"请输入事件名称"];
         
     }
     return _eventName;
@@ -79,7 +79,7 @@
 - (ZLLabelAndTextFieldView *)people{
     if (!_people) {
         
-        _people = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"创建人:" placeHolder:@"请输入创建人"];
+        _people = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"创建人：" placeHolder:@"请输入创建人"];
         
     }
     return _people;
@@ -88,7 +88,7 @@
     if (!_startTimeView) {
         
         _startTimeView = [[ZLTimeSelectView alloc]init];
-        _startTimeView.timeLabel.text = @"创建时间:";
+        _startTimeView.timeLabel.text = @"创建时间：";
     }
     return _startTimeView;
 }

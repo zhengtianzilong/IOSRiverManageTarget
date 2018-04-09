@@ -19,6 +19,10 @@
 
 #import "ZLLoginVC.h"
 
+#import "ZLSimpleMainTapBarVCConfig.h"
+
+#import "VwtIMLib.h"
+
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
@@ -32,6 +36,34 @@
 
 @implementation AppDelegate
 
+- (void)chinaMobile{
+    VwtUserInfo * vUserinfo = [[VwtUserInfo alloc] init] ;
+    vUserinfo.appId = @"10000019";//注册时的appId;
+    vUserinfo.appSecret = @"s8wBf22QXIOBeTFMzmyYJylGBtm80W7t1lqVt2MW8017Wes49clQtIevEcs9963a";//注册时的安全码;例如://@"IEb5QvSfabT2RImcu5DvFedkwJtfwp5HnWIgq3RI4Hq7CdkwIk5hrFwg6m579Aix" ;
+    vUserinfo.userId = @"123456";//用户 ID ;
+    [[VwtIMLib sharedInstance] loginWithUserInfo:vUserinfo success:^(id value) {
+        //登录成功
+        
+        ZLLog(@"%@",value);
+        
+    } error:^(VwtError * error) {
+        //登录失败
+        
+        ZLLog(@"%@",error);
+        
+    }] ;
+    
+    vUserinfo.receivedMessageBlock = ^(VwtIMMessage *message) {
+        
+        
+        
+        
+    };
+    
+    
+    
+    
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -42,6 +74,8 @@
     self.floatWindow = [[FloatingWindow alloc] initWithFrame:CGRectMake(0, Main_Screen_Height, 0, 0) imageName:@"av_call"];
     [self.floatWindow makeKeyAndVisible];
     self.floatWindow.hidden = YES;
+    
+    [self chinaMobile];
     
     [self configBaiDuSDK];
     // 配置信鸽
@@ -61,6 +95,8 @@
     [self customizeTabbarItem];
     
     [[FLEXManager sharedManager] showExplorer];
+    
+    
     
     
     
@@ -94,7 +130,7 @@
 
 
 - (void)configGaoDeSDK{
-    [AMapServices sharedServices].apiKey = @"633d6913a686092e161c8fe6ad5cafa0";
+    [AMapServices sharedServices].apiKey = @"f06f925116be13fb5d740af0ff399b46";
     
 }
 
@@ -177,7 +213,7 @@
 - (void)customizeTabbarItem{
     
     NSMutableDictionary *selectedAttrs = [NSMutableDictionary dictionary];
-    selectedAttrs[NSForegroundColorAttributeName] = HEXCOLOR(0x11ccf9);
+    selectedAttrs[NSForegroundColorAttributeName] = HEXCOLOR(CNAVGATIONBAR_COLOR);
     
     NSMutableDictionary *normalAttrs = [NSMutableDictionary dictionary];
     normalAttrs[NSForegroundColorAttributeName] = HEXCOLOR(0xa5a5a5);
@@ -189,8 +225,8 @@
     [tabBar setBarTintColor:[UIColor whiteColor]];
     tabBar.translucent = NO;
     
-    [tabBar setShadowImage:[self imageWithColor:HEXCOLORAndAlpha(0x11ccf9, 0.2) size:CGSizeMake(Main_Screen_Width,0.5)]];
-    [tabBar setBackgroundImage:[[UIImage alloc]init]];
+//    [tabBar setShadowImage:[self imageWithColor:HEXCOLORAndAlpha(0x11ccf9, 0.2) size:CGSizeMake(Main_Screen_Width,0.5)]];
+//    [tabBar setBackgroundImage:[[UIImage alloc]init]];
     
     [tabBarItem setTitleTextAttributes:selectedAttrs forState:(UIControlStateSelected)];
     
@@ -253,7 +289,10 @@
     
 //    ZLBaseNavViewController *loginNav = [[ZLBaseNavViewController alloc]initWithRootViewController:logInVc];
     
-    ZLMainTabBarControllerConfig *tabBarVCConfig = [[ZLMainTabBarControllerConfig alloc]init];
+//    ZLMainTabBarControllerConfig *tabBarVCConfig = [[ZLMainTabBarControllerConfig alloc]init];
+    
+    ZLSimpleMainTapBarVCConfig *tabBarVCConfig = [[ZLSimpleMainTapBarVCConfig alloc]init];
+    
     
     CYLTabBarController *tabBarVC = tabBarVCConfig.tabBarController;
     tabBarVC.delegate = self;

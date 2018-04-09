@@ -43,7 +43,7 @@
     }
     if ([assignModel.assignStatus isEqualToString:@"9"]) {
         
-        status = @"已完成";
+        status = @"完成";
         
     }
     if ([assignModel.assignStatus isEqualToString:@"3"]) {
@@ -61,12 +61,26 @@
         status = @"交办中";
         
     }
-    if ([assignModel.isExpire isEqualToString:@"1"]) {
+    
+    if ([self.assignType isEqualToString:@"交办事项"]) {
         
-        status = @"超时";
+        if ([assignModel.isExpire isEqualToString:@"1"] && [assignModel.assignStatus isEqualToString:@"1"]) {
+            
+            status = @"超时";
+            
+        }
         
+    }else{
+        if ([assignModel.isExpire isEqualToString:@"1"]) {
+            
+            status = @"超时";
+            
+        }else if ([assignModel.assignStatus isEqualToString:@"1"]) {
+            
+            status = @"交办中";
+            
+        }
     }
-
     self.state.text = status;
     
     self.title.text = assignModel.assignCode;
@@ -104,7 +118,7 @@
     
     _nameLabel = [[UILabel alloc]init];
     _nameLabel.font = CHINESE_SYSTEM(14);
-    _nameLabel.text = @"事项名称:";
+    _nameLabel.text = @"事项名称：";
     [self.contentView addSubview:_nameLabel];
     
     _name = [[UILabel alloc]init];
@@ -115,7 +129,7 @@
     
     
     _departmentLabel = [[UILabel alloc]init];
-    _departmentLabel.text = @"责任单位:";
+    _departmentLabel.text = @"责任单位：";
     _departmentLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_departmentLabel];
     
@@ -127,7 +141,7 @@
     
     
     _peopleLabel = [[UILabel alloc]init];
-    _peopleLabel.text = @"责任人:";
+    _peopleLabel.text = @"责任人：";
     _peopleLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_peopleLabel];
     
@@ -140,7 +154,7 @@
     
     
     _assignedTimeLabel = [[UILabel alloc]init];
-    _assignedTimeLabel.text = @"交办时间:";
+    _assignedTimeLabel.text = @"交办时间：";
     _assignedTimeLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_assignedTimeLabel];
     
@@ -152,7 +166,7 @@
     [self.contentView addSubview:_assignedTime];
     
     _completeTimeLabel = [[UILabel alloc]init];
-    _completeTimeLabel.text = @"完成时限:";
+    _completeTimeLabel.text = @"完成时限：";
     _completeTimeLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_completeTimeLabel];
     

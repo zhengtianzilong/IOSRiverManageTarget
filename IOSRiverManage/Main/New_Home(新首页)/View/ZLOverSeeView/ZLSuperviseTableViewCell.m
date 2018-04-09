@@ -94,7 +94,7 @@
     
     _nameLabel = [[UILabel alloc]init];
     _nameLabel.font = CHINESE_SYSTEM(14);
-    _nameLabel.text = @"事项名称:";
+    _nameLabel.text = @"事项名称：";
     [self.contentView addSubview:_nameLabel];
     
     _name = [[UILabel alloc]init];
@@ -103,17 +103,17 @@
     [self.contentView addSubview:_name];
     
     _supDepartmentLabel = [[UILabel alloc]init];
-    _supDepartmentLabel.text = @"督办单位:";
+    _supDepartmentLabel.text = @"督办单位：";
     _supDepartmentLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_supDepartmentLabel];
     
     _supDepartment = [[UILabel alloc]init];
-    _supDepartment.text = @"江苏啊啊啊:";
+    _supDepartment.text = @"江苏啊啊啊：";
     _supDepartment.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_supDepartment];
     
     _codeLabel = [[UILabel alloc]init];
-    _codeLabel.text = @"交办单编号:";
+    _codeLabel.text = @"交办单编号：";
     _codeLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_codeLabel];
     
@@ -126,7 +126,7 @@
     
     
     _departmentLabel = [[UILabel alloc]init];
-    _departmentLabel.text = @"责任单位:";
+    _departmentLabel.text = @"责任单位：";
     _departmentLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_departmentLabel];
     
@@ -138,7 +138,7 @@
     
     
     _peopleLabel = [[UILabel alloc]init];
-    _peopleLabel.text = @"责任人:";
+    _peopleLabel.text = @"责任人：";
     _peopleLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_peopleLabel];
     
@@ -151,7 +151,7 @@
     
     
     _superviseTimeLabel = [[UILabel alloc]init];
-    _superviseTimeLabel.text = @"督办时间:";
+    _superviseTimeLabel.text = @"督办时间：";
     _superviseTimeLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_superviseTimeLabel];
     

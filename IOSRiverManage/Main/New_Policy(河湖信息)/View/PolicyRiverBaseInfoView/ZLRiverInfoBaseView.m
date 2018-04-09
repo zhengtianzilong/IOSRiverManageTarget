@@ -229,6 +229,17 @@
 //    return self;
 //}
 
+
+- (void)checkAddressBtnClick{
+    
+    if (_infoBaseView) {
+        
+        self.infoBaseView(self.infoBaseModel);
+        
+    }
+    
+}
+
 - (void)layoutSubviews{
     [super layoutSubviews];
 //    [_riverCountLabel changeAlignmentRightandLeft];
@@ -397,7 +408,7 @@
         [_checkAddressBtn setImage:[UIImage imageNamed:@"info_positioning"] forState:(UIControlStateNormal)];
         
         [_checkAddressBtn setImagePosition:(LXMImagePositionLeft) spacing:10];
-        
+        [_checkAddressBtn addTarget:self action:@selector(checkAddressBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _checkAddressBtn;
 }

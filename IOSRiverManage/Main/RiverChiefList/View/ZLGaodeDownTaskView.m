@@ -31,7 +31,7 @@
 
 - (void)setUpUI{
     
-    _titleView = [[ZLEventReportSubView alloc]initWithName:@"任务标题:" placeHolder:@"请输入任务标题" haveButton:NO];
+    _titleView = [[ZLEventReportSubView alloc]initWithName:@"任务标题：" placeHolder:@"请输入任务标题" haveButton:NO];
     [self addSubview:_titleView];
     [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -42,7 +42,7 @@
     }];
     
 
-    _reportObjectView = [[ZLEventReportSubView alloc]initWithName:@"接收对象:" placeHolder:@"请选择接收对象"haveButton:YES];
+    _reportObjectView = [[ZLEventReportSubView alloc]initWithName:@"接收对象：" placeHolder:@"请选择接收对象"haveButton:YES];
     [self addSubview:_reportObjectView];
     [_reportObjectView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -55,7 +55,7 @@
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event_objectClick)];
     [_reportObjectView addGestureRecognizer:tapGes];
     
-    _riverDepartView = [[ZLEventReportSubView alloc]initWithName:@"接收部门:" placeHolder:@"请输入接收部门"haveButton:YES];
+    _riverDepartView = [[ZLEventReportSubView alloc]initWithName:@"接收部门：" placeHolder:@"请输入接收部门"haveButton:YES];
     _riverDepartView.eventTextfiled.enabled = NO;
     [self addSubview:_riverDepartView];
     [_riverDepartView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -68,7 +68,7 @@
     
     
     
-    _addressView = [[ZLEventReportSubView alloc]initWithName:@"位  置:" placeHolder:@"请输入位置"haveButton:NO];
+    _addressView = [[ZLEventReportSubView alloc]initWithName:@"位  置：" placeHolder:@"请输入位置"haveButton:NO];
     [self addSubview:_addressView];
     [_addressView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -80,7 +80,7 @@
     
     
     
-    ZLEventReportSubView *feedBack = [[ZLEventReportSubView alloc]initWithName:@"任务描述:" placeHolder:@""haveButton:NO];
+    ZLEventReportSubView *feedBack = [[ZLEventReportSubView alloc]initWithName:@"任务描述：" placeHolder:@""haveButton:NO];
     [self addSubview:feedBack];
     [feedBack mas_makeConstraints:^(MASConstraintMaker *make) {
         

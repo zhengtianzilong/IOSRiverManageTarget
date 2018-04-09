@@ -11,6 +11,8 @@
 
 typedef void(^deletePumpClick)(ZLPumpingPortModel *pumpModel);
 
+typedef void(^checkAddressBlock)(ZLPumpingPortModel *pumpModel);
+
 @interface ZLRiverIntakeInfoTableViewCell : UITableViewCell
 // 取水口信息
 @property (nonatomic, strong) UILabel *title;
@@ -48,5 +50,7 @@ typedef void(^deletePumpClick)(ZLPumpingPortModel *pumpModel);
 @property (nonatomic, strong) ZLPumpingPortModel *pumpingPortModel;
 
 @property (nonatomic, strong) deletePumpClick deletepump;
+
+@property (nonatomic, strong) checkAddressBlock checkAddress;
 
 @end

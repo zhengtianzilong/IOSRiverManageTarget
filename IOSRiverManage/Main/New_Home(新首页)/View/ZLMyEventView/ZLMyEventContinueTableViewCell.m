@@ -188,7 +188,7 @@
 - (UILabel *)stateLable{
     if (!_stateLable) {
         _stateLable = [[UILabel alloc]init];
-        _stateLable.text = @"状态:";
+        _stateLable.text = @"状态：";
         _stateLable.font = CHINESE_SYSTEM(14);
     }
     return _stateLable;
@@ -205,7 +205,7 @@
 - (UILabel *)originatorLabel{
     if (!_originatorLabel) {
         _originatorLabel = [[UILabel alloc]init];
-        _originatorLabel.text = @"发起人:";
+        _originatorLabel.text = @"发起人：";
         _originatorLabel.font = CHINESE_SYSTEM(14);
     }
     return _originatorLabel;
@@ -223,7 +223,7 @@
 - (UILabel *)receiveLabel{
     if (!_receiveLabel) {
         _receiveLabel = [[UILabel alloc]init];
-        _receiveLabel.text = @"接收人:";
+        _receiveLabel.text = @"接收人：";
         _receiveLabel.font = CHINESE_SYSTEM(14);
     }
     return _receiveLabel;
@@ -241,7 +241,7 @@
 - (UILabel *)timeLabel{
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
-        _timeLabel.text = @"时间:";
+        _timeLabel.text = @"时间：";
         _timeLabel.font = CHINESE_SYSTEM(14);
     }
     return _timeLabel;
@@ -261,7 +261,7 @@
 - (UILabel *)describeLabel{
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
-        _describeLabel.text = @"反馈:";
+        _describeLabel.text = @"反馈：";
         _describeLabel.font = CHINESE_SYSTEM(14);
     }
     return _describeLabel;

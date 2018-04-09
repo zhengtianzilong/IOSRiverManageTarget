@@ -76,7 +76,7 @@
     if (!_riverLabel) {
         
         _riverLabel = [[UILabel alloc]init];
-        [_riverLabel setText:@"河 道:"];
+        [_riverLabel setText:@"河 道："];
         _riverLabel.font = SYSTEMFONT(20);
         
     }

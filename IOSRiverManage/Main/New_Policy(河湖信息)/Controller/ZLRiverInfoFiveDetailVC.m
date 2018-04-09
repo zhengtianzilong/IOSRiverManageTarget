@@ -28,13 +28,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    ZLGaodeCustomNavBar *navBar = [[ZLGaodeCustomNavBar alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Height, TopBarHeight)];
+    ZLGaodeCustomNavBar *navBar = [[ZLGaodeCustomNavBar alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Height + 44, TopBarHeight)];
 //    navBar.titleLabel.text = @"";
     [navBar.backButton addTarget:self action:@selector(clickBtn) forControlEvents:(UIControlEventTouchUpInside)];
     [self.view addSubview:navBar];
     
     navBar.backgroundColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
-    
     
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, TopBarHeight, App_Frame_Height, App_Frame_Width)];
     self.webView.userInteractionEnabled = YES;

@@ -108,7 +108,7 @@
     
     cell.detailModel = dataModel;
     
-    if ([self.status isEqualToString:@"1"]) {
+    if ([self.status isEqualToString:@"1"] && [dataModel.assignStatus isEqualToString:@"1"]) {
         
         cell.state.text = @"超时";
         
@@ -120,7 +120,7 @@
         }
         if ([dataModel.assignStatus isEqualToString:@"9"]) {
             
-            cell.state.text = @"已完成";
+            cell.state.text = @"完成";
             
         }
         if ([dataModel.assignStatus isEqualToString:@"3"]) {

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ZLRiverInfoBaseModel.h"
+
+typedef void(^riverInfoBaseViewBlock)(ZLRiverInfoBaseModel *infoBaseModel);
+
 @interface ZLRiverInfoBaseView : UITableViewCell
 // 河道编号
 @property (nonatomic, strong) UILabel *riverCountLabel;
@@ -48,5 +51,7 @@
 @property (nonatomic, strong) UIButton *checkAddressBtn;
 
 @property (nonatomic, strong) ZLRiverInfoBaseModel *infoBaseModel;
+
+@property (nonatomic, strong) riverInfoBaseViewBlock infoBaseView;
 
 @end

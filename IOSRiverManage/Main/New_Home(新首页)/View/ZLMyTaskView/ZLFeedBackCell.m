@@ -243,7 +243,7 @@
 - (UILabel *)originatorLabel{
     if (!_originatorLabel) {
         _originatorLabel = [[UILabel alloc]init];
-        _originatorLabel.text = @"执行人:";
+        _originatorLabel.text = @"执行人：";
         _originatorLabel.font = CHINESE_SYSTEM(14);
     }
     return _originatorLabel;
@@ -263,7 +263,7 @@
 - (UILabel *)timeLabel{
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
-        _timeLabel.text = @"创建时间:";
+        _timeLabel.text = @"创建时间：";
         _timeLabel.font = CHINESE_SYSTEM(14);
     }
     return _timeLabel;
@@ -283,7 +283,7 @@
 - (UILabel *)describeLabel{
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
-        _describeLabel.text = @"反馈描述:";
+        _describeLabel.text = @"反馈描述：";
         _describeLabel.font = CHINESE_SYSTEM(14);
     }
     return _describeLabel;

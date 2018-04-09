@@ -224,7 +224,7 @@
 - (UILabel *)peopleLabel{
     if (!_peopleLabel) {
         _peopleLabel = [[UILabel alloc]init];
-        _peopleLabel.text = @"执行人:";
+        _peopleLabel.text = @"执行人：";
         _peopleLabel.font = CHINESE_SYSTEM(14);
     }
     return _peopleLabel;
@@ -241,7 +241,7 @@
 - (UILabel *)stateLabel{
     if (!_stateLabel) {
         _stateLabel = [[UILabel alloc]init];
-        _stateLabel.text = @"状态:";
+        _stateLabel.text = @"状态：";
         _stateLabel.font = CHINESE_SYSTEM(14);
     }
     return _stateLabel;
@@ -276,7 +276,7 @@
 - (UILabel *)timeLabel{
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
-        _timeLabel.text = @"完成时间:";
+        _timeLabel.text = @"完成时间：";
         _timeLabel.font = CHINESE_SYSTEM(14);
     }
     return _timeLabel;

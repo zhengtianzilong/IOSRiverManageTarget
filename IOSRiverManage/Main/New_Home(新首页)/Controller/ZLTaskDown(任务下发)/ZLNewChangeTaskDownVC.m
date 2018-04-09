@@ -673,10 +673,10 @@
 
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
-        _sourceArray = @[@"任务名称:",
-                         @"接收人:",
-                         @"接收部门:",
-                         @"任务描述:"];
+        _sourceArray = @[@"任务名称：",
+                         @"接收人：",
+                         @"接收部门：",
+                         @"任务描述："];
         
         
     }
@@ -703,7 +703,7 @@
         [_mainTableView registerClass:[ZLReportPeopleTableViewCell class] forCellReuseIdentifier:@"ZLReportPeopleTableViewCell"];
         [_mainTableView registerClass:[ZLReprotEventBaseTableViewCell class] forCellReuseIdentifier:@"ZLReprotEventBaseTableViewCell"];
         [_mainTableView registerClass:[ZLReportEventDesTableViewCell class] forCellReuseIdentifier:@"ZLReportEventDesTableViewCell"];
-        
+        _mainTableView.bounces = NO;
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
         

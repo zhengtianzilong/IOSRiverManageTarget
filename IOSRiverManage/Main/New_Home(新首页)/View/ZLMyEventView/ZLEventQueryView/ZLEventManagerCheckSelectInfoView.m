@@ -114,7 +114,7 @@
 - (ZLLabelAndTextFieldView *)eventName{
     if (!_eventName) {
         
-        _eventName = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"事件名称:" placeHolder:@"请输入事件名称"];
+        _eventName = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"事件名称：" placeHolder:@"请输入事件名称"];
         
     }
     return _eventName;
@@ -123,7 +123,7 @@
 - (ZLLabelAndTextFieldView *)people{
     if (!_people) {
         
-        _people = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"创建人:" placeHolder:@"请输入创建人"];
+        _people = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"创建人：" placeHolder:@"请输入创建人"];
         
     }
     return _people;
@@ -132,7 +132,7 @@
 - (ZLLabelAndTextFieldView *)executorPeople{
     
     if (!_executorPeople) {
-        _executorPeople = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"执行人" placeHolder:@"请输入执行人"];
+        _executorPeople = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"执行人：" placeHolder:@"请输入执行人"];
     }
     return _executorPeople;
     
@@ -140,7 +140,7 @@
 
 - (ZLLabelAndTextFieldWithImageV *)state{
     if (!_state) {
-        _state = [[ZLLabelAndTextFieldWithImageV alloc]initWithFrame:CGRectZero title:@"当前状态" placeHolder:@"请选择当前状态" imageString:@"currentState"];
+        _state = [[ZLLabelAndTextFieldWithImageV alloc]initWithFrame:CGRectZero title:@"当前状态：" placeHolder:@"请选择当前状态" imageString:@"currentState"];
     }
     return _state;
 }
@@ -149,7 +149,7 @@
     if (!_createStartTimeView) {
         
         _createStartTimeView = [[ZLTimeSelectView alloc]init];
-        _createStartTimeView.timeLabel.text = @"创建时间:";
+        _createStartTimeView.timeLabel.text = @"创建时间：";
     }
     return _createStartTimeView;
 }
@@ -172,7 +172,7 @@
     if (!_completeStartTimeView) {
         
         _completeStartTimeView = [[ZLTimeSelectView alloc]init];
-        _completeStartTimeView.timeLabel.text = @"完成时间:";
+        _completeStartTimeView.timeLabel.text = @"完成时间：";
     }
     return _completeStartTimeView;
 }

@@ -193,9 +193,6 @@
 
 - (void)runningClick{
     AppDelegate *deleage = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    if (deleage.floatWindow != nil) {
-//        deleage.floatWindow = nil;
-//    }
     
     if (deleage.floatWindow.presentView != nil) {
          [deleage.floatWindow click:nil];

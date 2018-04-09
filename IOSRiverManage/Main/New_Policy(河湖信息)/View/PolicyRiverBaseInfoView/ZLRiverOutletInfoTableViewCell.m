@@ -198,6 +198,17 @@
     
 }
 
+- (void)checkAddressBtnClick{
+    
+    if (_sewageOutletAddress) {
+        
+        self.sewageOutletAddress(self.outletModel);
+        
+    }
+    
+}
+
+
 - (UILabel *)title{
     if (!_title) {
         _title = [[UILabel alloc]init];
@@ -353,7 +364,7 @@
         [_checkAddressBtn setImage:[UIImage imageNamed:@"info_positioning"] forState:(UIControlStateNormal)];
         
         [_checkAddressBtn setImagePosition:(LXMImagePositionLeft) spacing:10];
-        
+        [_checkAddressBtn addTarget:self action:@selector(checkAddressBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _checkAddressBtn;
 }

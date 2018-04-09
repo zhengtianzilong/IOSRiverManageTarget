@@ -575,11 +575,11 @@
 
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
-        _sourceArray = @[@"任务名称:",
-                         @"接收人:",
-                         @"接收部门:",
-                         @"位置",
-                         @"任务描述:"];
+        _sourceArray = @[@"任务名称：",
+                         @"接收人：",
+                         @"接收部门：",
+                         @"位置：",
+                         @"任务描述："];
     }
     return _sourceArray;
 }

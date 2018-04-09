@@ -81,7 +81,7 @@
     
     _reportView = [[ZLBaiduDownTaskView alloc]initWithFrame:CGRectZero riverId:_demandModel.riverId];
     _reportView.backgroundColor = [UIColor whiteColor];
-    _reportView.reportObjectView.nameLabel.text = @"下发对象:";
+    _reportView.reportObjectView.nameLabel.text = @"下发对象：";
     [self.mainScrollview addSubview:_reportView];
     [_reportView mas_makeConstraints:^(MASConstraintMaker *make) {
         

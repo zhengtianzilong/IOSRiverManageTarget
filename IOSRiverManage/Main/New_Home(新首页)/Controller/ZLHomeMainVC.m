@@ -82,9 +82,6 @@
 
     [nc addObserver:self selector:@selector(handleHide) name:@"RiverRunningEnd" object:nil];
     
-    
-//    [_mainTableView reloadData];
-    
 }
 
 - (void)handleHide{
@@ -555,42 +552,24 @@
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
         } title:@"提示" message:@"当前并无河道" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
-        
     }else{
-        
         if (self.headView.isHideRunningView) {
             ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡河" singleSelection:YES];
-            
             alert.selectItem = ^(NSInteger index) {
-                
                 ZLLog(@"%ld",(long)index);
-                
                 ZLGaodeViewController *gaode = [[ZLGaodeViewController alloc]init];
-                
                 if (_riversModelArray.count > 0) {
                     ZLNewUserRiversDataModel *riverDataModel = self.riversModelArray[index];
-                    
                     gaode.riverDataModel = riverDataModel;
-                    
                     [self presentViewController:gaode animated:YES completion:nil];
                 }
             };
-            
             [alert show];
-            
-            
         }else{
-            
             [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             } title:@"提示" message:@"当前已经在巡河中" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
-            
         }
-        
-        
-        
     }
-
-    
 }
 
 @end

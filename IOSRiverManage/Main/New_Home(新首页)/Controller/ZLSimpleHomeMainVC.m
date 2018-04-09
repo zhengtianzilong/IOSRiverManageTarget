@@ -1,0 +1,280 @@
+//
+//  ZLSimpleHomeMainVC.m
+//  IOSRiverManage
+//
+//  Created by 蔡紫龙 on 2018/4/9.
+//  Copyright © 2018年 caizilong. All rights reserved.
+//
+
+#import "ZLSimpleHomeMainVC.h"
+#import "ZLSimpleHomeView.h"
+#import "ZLRiverRecordVC.h"
+#import "ZLEventManagerVC.h"
+#import "ZLTaskManagerVC.h"
+#import "ZLNewLoginModel.h"
+#import "ZLAlertSelectionView.h"
+#import "ZLNewUserRiversModel.h"
+#import "ZLGaodeViewController.h"
+#import "AppDelegate.h"
+#import "ZLHomeRiverRunningModel.h"
+#import "ZLNewUserRiversDataModel.h"
+@interface ZLSimpleHomeMainVC ()
+
+@property (nonatomic, strong) UIScrollView *mainScrollView;
+
+@property (nonatomic, strong) ZLSimpleHomeView *simpleHomeView;
+@property (nonatomic, strong) YTKKeyValueStore *store;
+
+@property (nonatomic, strong) NSMutableArray *riversTitleArray;
+
+@property (nonatomic, strong) NSMutableArray *riversModelArray;
+@property (nonatomic, strong) ZLNewLoginModel *loginModel;
+
+@property (nonatomic, assign) BOOL isHideRunningView;
+
+@end
+
+@implementation ZLSimpleHomeMainVC
+
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:@"RiverRunning"];
+    [[NSNotificationCenter defaultCenter] removeObserver:@"RiverRunningEnd"];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    [nc addObserver:self selector:@selector(handleShow) name:@"RiverRunning" object:nil];
+    
+    [nc addObserver:self selector:@selector(handleHide) name:@"RiverRunningEnd" object:nil];
+    
+}
+
+- (void)handleHide{
+    
+    self.isHideRunningView = YES;
+    
+}
+
+
+- (void)handleShow{
+    
+    self.isHideRunningView = NO;
+    
+}
+
+
+
+/**
+ 得到河道数据
+ */
+- (void)getRiversData{
+    
+    self.riversTitleArray = [NSMutableArray array];
+    
+    self.riversModelArray = [NSMutableArray array];
+    
+    self.store = [[YTKKeyValueStore alloc]initDBWithName:@"hzz.db"];
+    
+    NSString *tableName = DBUserTable;
+    
+    [self.store createTableWithName:tableName];
+    NSString *rivers = [self.store getStringById:DBUserRivers fromTable:DBUserTable];
+    
+    ZLNewUserRiversModel *riversModel = [[ZLNewUserRiversModel alloc]initWithString:rivers error:nil];
+    
+    NSString *userModel = [self.store getStringById:DBLoginModel fromTable:DBUserTable];
+    
+    _loginModel = [[ZLNewLoginModel alloc]initWithString:userModel error:nil];
+    
+    if (riversModel.data.count > 0) {
+        
+        for (ZLNewUserRiversDataModel *riverDataModel in riversModel.data ) {
+            
+            [self.riversTitleArray addObject:riverDataModel.riverName];
+            
+            [self.riversModelArray addObject:riverDataModel];
+            
+        }
+        
+    }
+    
+}
+
+
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    [self getRiversData];
+    
+    self.isHideRunningView = YES;
+    
+    [self.view addSubview:self.mainScrollView];
+    
+    [self.mainScrollView addSubview:self.simpleHomeView];
+    
+    [self.mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view.mas_right);
+        make.top.equalTo(self.view);
+        make.bottom.equalTo(self.view.mas_bottom);
+        
+    }];
+    
+    [self.simpleHomeView mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.left.equalTo(self.mainScrollView);
+        make.top.equalTo(self.mainScrollView);
+        make.width.mas_equalTo(Main_Screen_Width);
+        make.height.mas_equalTo(Main_Screen_Height - TopBarHeight - BottomBarHeight);
+        
+    }];
+    
+    [self.mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.bottom.equalTo(self.simpleHomeView.mas_bottom);
+
+    }];
+    
+    [self.store createTableWithName:DBMapTable];
+    NSString *runningString = [self.store getStringById:DBRunningModel fromTable:DBMapTable];
+    
+    if (runningString.length > 0) {
+        
+        [self handleShow];
+    }
+    
+
+}
+
+
+/**
+ 开始巡河
+ */
+- (void)startRiverBtnClick{
+    
+    if (self.riversTitleArray.count <= 0) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+        } title:@"提示" message:@"当前并无河道" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+    }else{
+        if (self.isHideRunningView) {
+            ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡河" singleSelection:YES];
+            alert.selectItem = ^(NSInteger index) {
+                ZLLog(@"%ld",(long)index);
+                ZLGaodeViewController *gaode = [[ZLGaodeViewController alloc]init];
+                if (_riversModelArray.count > 0) {
+                    ZLNewUserRiversDataModel *riverDataModel = self.riversModelArray[index];
+                    gaode.riverDataModel = riverDataModel;
+                    [self presentViewController:gaode animated:YES completion:nil];
+                }
+            };
+            [alert show];
+        }else{
+//            [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+//            } title:@"提示" message:@"当前已经在巡河中" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+            
+            AppDelegate *deleage = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            
+            if (deleage.floatWindow.presentView != nil) {
+                [deleage.floatWindow click:nil];
+                
+                
+            }else{
+                
+                NSString *runningString = [self.store getStringById:DBRunningModel fromTable:DBMapTable];
+                
+                if (runningString.length > 0) {
+                    ZLHomeRiverRunningModel *runningModel = [[ZLHomeRiverRunningModel alloc]initWithString:runningString error:nil];
+                    
+                    ZLNewUserRiversDataModel *riverModel = [[ZLNewUserRiversDataModel alloc]initWithString:runningModel.riverData error:nil];
+                
+                    ZLGaodeViewController *vc = [[ZLGaodeViewController alloc]init];
+                    vc.riverDataModel = riverModel;
+                    [self presentViewController:vc animated:YES completion:nil];
+                }
+              
+                
+            }
+            
+        }
+    }
+    
+    
+}
+
+/**
+ 巡河记录
+ */
+- (void)riverRecordBtnClick{
+    ZLRiverRecordVC *vc = [[ZLRiverRecordVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+/**
+ 事件管理
+ */
+- (void)eventManageBtnClick{
+    ZLEventManagerVC *vc = [[ZLEventManagerVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+/**
+ 任务管理
+ */
+- (void)taskManageBtnClick{
+    ZLTaskManagerVC *vc = [[ZLTaskManagerVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (ZLSimpleHomeView *)simpleHomeView{
+    
+    if (!_simpleHomeView) {
+        _simpleHomeView = [[ZLSimpleHomeView alloc]init];
+        
+        [_simpleHomeView.startRiverBtn addTarget:self action:@selector(startRiverBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        [_simpleHomeView.riverRecordBtn addTarget:self action:@selector(riverRecordBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        [_simpleHomeView.eventManageBtn addTarget:self action:@selector(eventManageBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        [_simpleHomeView.taskManageBtn addTarget:self action:@selector(taskManageBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        
+    }
+    
+    return _simpleHomeView;
+    
+}
+
+- (UIScrollView *)mainScrollView{
+    if (!_mainScrollView) {
+        
+        _mainScrollView = [[UIScrollView alloc]init];
+        _mainScrollView.backgroundColor = HEXCOLOR(0xf4f4f4);
+        _mainScrollView.showsVerticalScrollIndicator = NO;
+    }
+    return _mainScrollView;
+}
+
+- (NSMutableAttributedString *)setTitle{
+    
+    NSDictionary *dic = @{NSFontAttributeName:AdaptedFontBoldSize(26),
+                          NSForegroundColorAttributeName:[UIColor whiteColor]
+                          };
+    
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"江苏河长通" attributes:dic];
+    
+    return title;
+    
+}
+
+- (UIButton *)set_leftButton{
+    return  nil;
+}
+
+@end

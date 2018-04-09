@@ -71,7 +71,7 @@
 - (ZLLabelAndTextFieldView *)nameAndTextField{
     if (!_nameAndTextField) {
         
-        _nameAndTextField = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"河道:" placeHolder:@"请输入河道名称"];
+        _nameAndTextField = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"河道：" placeHolder:@"请输入河道名称"];
         
     }
     return _nameAndTextField;
@@ -82,7 +82,7 @@
     if (!_startTimeView) {
         
         _startTimeView = [[ZLTimeSelectView alloc]init];
-        _startTimeView.timeLabel.text = @"开始时间:";
+        _startTimeView.timeLabel.text = @"开始时间：";
     }
     return _startTimeView;
 }
@@ -92,7 +92,7 @@
         
         _endTimeView = [[ZLTimeSelectView alloc]init];
         
-        _endTimeView.timeLabel.text = @"结束时间:";
+        _endTimeView.timeLabel.text = @"结束时间：";
         
     }
     return _endTimeView;

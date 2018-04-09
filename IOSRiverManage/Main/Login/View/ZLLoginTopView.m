@@ -25,9 +25,7 @@
     [self.logoImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
         make.centerX.equalTo(self);
-        make.width.height.mas_equalTo(90);
-        make.height.height.mas_equalTo(90);
-        
+//        make.width.height.mas_equalTo(90);
     }];
     
     [self.titleImageV mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -35,7 +33,6 @@
         make.centerX.equalTo(self);
         make.top.equalTo(self.logoImageV.mas_bottom).offset(15);
         make.height.mas_equalTo(35);
-        
         make.bottom.equalTo(self.mas_bottom) ;
         
     }];

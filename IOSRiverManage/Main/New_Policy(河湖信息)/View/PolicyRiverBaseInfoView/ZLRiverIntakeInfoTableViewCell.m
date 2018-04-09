@@ -206,6 +206,16 @@
     
 }
 
+- (void)checkAddressBtnClick{
+    
+    if (_checkAddress) {
+        
+        self.checkAddress(self.pumpingPortModel);
+        
+    }
+    
+}
+
 
 - (UILabel *)title{
     if (!_title) {
@@ -359,8 +369,9 @@
         [_checkAddressBtn setTitleColor:HEXCOLOR(CNAVGATIONBAR_COLOR) forState:(UIControlStateNormal)];
         _checkAddressBtn.titleLabel.font = SYSTEMFONT(14);
         [_checkAddressBtn setImage:[UIImage imageNamed:@"info_positioning"] forState:(UIControlStateNormal)];
-        
         [_checkAddressBtn setImagePosition:(LXMImagePositionLeft) spacing:10];
+        
+        [_checkAddressBtn addTarget:self action:@selector(checkAddressBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
         
     }
     return _checkAddressBtn;

@@ -157,6 +157,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     ZLAssignTaskRowDetailModel *detailModel = self.sourceArray[indexPath.section];
+    cell.assignType = @"交办事项";
     cell.assignModel = detailModel;
     
     if (indexPath.section == _sourceArray.count - 1) {

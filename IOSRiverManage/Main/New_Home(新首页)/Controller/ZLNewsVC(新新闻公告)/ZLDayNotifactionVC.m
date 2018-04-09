@@ -27,14 +27,6 @@
 
 @implementation ZLDayNotifactionVC
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    [self.mainTableView.mj_header beginRefreshing];
-    
-    
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,7 +58,7 @@
         
     }];
     
-//    [self getData];
+    [self getData];
     
 }
 
@@ -167,7 +159,7 @@
     
     if (model.url != nil) {
         
-        NSString *urlString = [NSString stringWithFormat:@"%@%@",Base_URL,model.url];
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",SERVER_NEWS_URL,model.url];
         
         detailVC.url = urlString;
         

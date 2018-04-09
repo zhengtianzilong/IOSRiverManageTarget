@@ -95,9 +95,9 @@
 
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
-        _sourceArray = @[@"公示牌名:",
-                         @"所在区县:",
-                         @"位置:"];
+        _sourceArray = @[@"公示牌名：",
+                         @"所在区县：",
+                         @"位置："];
     }
     return _sourceArray;
 }

@@ -12,7 +12,6 @@
 #import "ZLRiverInfoFiveTableVC.h"
 #import "ZLRiverInfoTwoTableVC.h"
 #import "ZLRiverInfoTwoPictureVC.h"
-#import "ZLRiverInfoQualityVC.h"
 #import "NinaPagerView.h"
 #import "ZLNewLoginModel.h"
 @interface ZLRiverInfoManagerVC ()
@@ -83,9 +82,9 @@
         
     }
     
-    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"基本信息",@"河长信息",@"五个清单",@"两张表",@"两张图"] WithVCs:@[baseVC,peopleVC,fiveVC,twoTableVC,twoPictureVC]];
+//    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"基本信息",@"河长信息",@"五个清单",@"两张表",@"两张图"] WithVCs:@[baseVC,peopleVC,fiveVC,twoTableVC,twoPictureVC]];
     
-//        NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:nameArray WithVCs:vcArray];
+    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:nameArray WithVCs:vcArray];
     
     pageView.ninaPagerStyles = NinaPagerStyleBottomLine;
     pageView.nina_navigationBarHidden = NO;

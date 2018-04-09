@@ -92,11 +92,6 @@
             make.height.mas_equalTo(41);
             make.bottom.equalTo(self.mas_bottom);
         }];
-        
-
-      
-        
-        
     
     }
     
@@ -112,7 +107,7 @@
 - (ZLLabelAndTextFieldView *)eventName{
     if (!_eventName) {
         
-        _eventName = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"事项名称:" placeHolder:@"请输入事项名称"];
+        _eventName = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"事项名称：" placeHolder:@"请输入事项名称"];
         
     }
     return _eventName;
@@ -120,7 +115,7 @@
 - (ZLLabelAndTextFieldView *)department{
     if (!_department) {
         
-        _department = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"责任单位:" placeHolder:@"请输入督办单位"];
+        _department = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"责任单位：" placeHolder:@"请输入督办单位"];
         
     }
     return _department;
@@ -129,7 +124,7 @@
 - (ZLLabelAndTextFieldView *)people{
     if (!_people) {
         
-        _people = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"责任人:" placeHolder:@"请输入责任人"];
+        _people = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"责任人：" placeHolder:@"请输入责任人"];
         
     }
     return _people;
@@ -140,7 +135,7 @@
     if (!_createStartTimeView) {
         
         _createStartTimeView = [[ZLTimeSelectView alloc]init];
-        _createStartTimeView.timeLabel.text = @"交办时间:";
+        _createStartTimeView.timeLabel.text = @"交办时间：";
     }
     return _createStartTimeView;
 }
@@ -163,7 +158,7 @@
     if (!_completeStartTimeView) {
         
         _completeStartTimeView = [[ZLTimeSelectView alloc]init];
-        _completeStartTimeView.timeLabel.text = @"完成时限:";
+        _completeStartTimeView.timeLabel.text = @"完成时限：";
     }
     return _completeStartTimeView;
 }
@@ -178,9 +173,4 @@
     }
     return _completeEndTimeView;
 }
-
-
-
-
-
 @end

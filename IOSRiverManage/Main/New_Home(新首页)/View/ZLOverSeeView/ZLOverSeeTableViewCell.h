@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ZLAssignTaskRowDetailModel.h"
 @interface ZLOverSeeTableViewCell : UITableViewCell
+
+
 /**
  颜色指示器
  */
@@ -40,6 +42,9 @@
 @property (nonatomic, strong) UIView *lineViewTop;
 
 @property (nonatomic, strong) ZLAssignTaskRowDetailModel *assignModel;
+
+// 交办的类型
+@property (nonatomic, strong) NSString *assignType;
 
 
 @end

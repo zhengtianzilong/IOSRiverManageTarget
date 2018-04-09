@@ -25,14 +25,6 @@
 
 @implementation ZLDayNesVC
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    [self.mainTableView.mj_header beginRefreshing];
-    
-    
-}
 - (void)setEmpty{
     if (self.sourceArray.count > 0) {
         [self.mainTableView ly_hideEmptyView];
@@ -71,6 +63,8 @@
         [weakSelf.mainTableView.mj_header beginRefreshing];
         
     }];
+    
+    [self getData];
 }
 - (void)getData {
     

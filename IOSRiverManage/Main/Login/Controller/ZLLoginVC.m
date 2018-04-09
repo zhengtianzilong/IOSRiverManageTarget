@@ -22,6 +22,7 @@
 #import "ZLGetUserListByTaskNormalService.h"
 #import "ZLGetDepartmentListByTaskService.h"
 #import "ZLGetEventUserListModel.h"
+#import "ZLSimpleMainTapBarVCConfig.h"
 @interface ZLLoginVC ()<YTKChainRequestDelegate>
 
 @property (nonatomic, strong) ZLLoginTopView *topView;
@@ -148,15 +149,24 @@
 /**
  跳到主控制器
  */
-- (void)goToMainController {
+- (void)goToMainControllerWithVersion:(NSString *)version {
     [self removeFromParentViewController];
     self.view = nil;
     
-    ZLMainTabBarControllerConfig *tabBarVCConfig = [[ZLMainTabBarControllerConfig alloc]init];
-    
-    CYLTabBarController *tabBarVC = tabBarVCConfig.tabBarController;
-    
-    [UIApplication sharedApplication].keyWindow.rootViewController = tabBarVC;
+    if ([version isEqualToString:@"1"]) {
+        // 基础版
+        ZLSimpleMainTapBarVCConfig *tabBarVCConfig = [[ZLSimpleMainTapBarVCConfig alloc]init];
+        CYLTabBarController *tabBarVC = tabBarVCConfig.tabBarController;
+        
+        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarVC;
+        
+    }else if ([version isEqualToString:@"2"]){
+        
+        ZLMainTabBarControllerConfig *tabBarVCConfig = [[ZLMainTabBarControllerConfig alloc]init];
+        CYLTabBarController *tabBarVC = tabBarVCConfig.tabBarController;
+        
+        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarVC;
+    }
 }
 
 - (void)chainRequestFinished:(YTKChainRequest *)chainRequest{
@@ -232,7 +242,7 @@
         [SVProgressHUD dismissWithDelay:0.3];
         
         
-        [self goToMainController];
+        [self goToMainControllerWithVersion:model.data.version];
         
         
         

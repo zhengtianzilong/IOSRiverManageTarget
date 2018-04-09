@@ -9,6 +9,7 @@
 #import "ZLOverSeeManagerVC.h"
 #import "ZLOverSeeVC.h"
 #import "ZLAssignedVC.h"
+#import "ZLMyAssignedVC.h"
 #import "NinaPagerView.h"
 @interface ZLOverSeeManagerVC ()
 
@@ -26,7 +27,8 @@
     UIColor *topTabColor = [UIColor whiteColor];
     ZLAssignedVC *assignedVC = [[ZLAssignedVC alloc]init];
     ZLOverSeeVC *overSeeVC = [[ZLOverSeeVC alloc]init];
-    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"交办事项",@"督办事项"] WithVCs:@[assignedVC,overSeeVC]];
+    ZLMyAssignedVC *myAssignedVC = [[ZLMyAssignedVC alloc]init];
+    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"交办事项",@"督办事项", @"我的交办"] WithVCs:@[assignedVC,overSeeVC, myAssignedVC]];
     pageView.ninaPagerStyles = NinaPagerStyleBottomLine;
     pageView.nina_navigationBarHidden = NO;
     pageView.selectTitleColor = selectColor;

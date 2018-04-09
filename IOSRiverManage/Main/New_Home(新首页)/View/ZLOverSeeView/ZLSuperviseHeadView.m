@@ -163,7 +163,7 @@
     
     self.state.text = status;
     self.count.text = detailModel.superviseCode;
-    self.supTime.text = [ZLUtility getDateByTimestamp:[detailModel.superviseTime longLongValue] type:4];
+    self.supTime.text = [ZLUtility getDateByTimestamp:[detailModel.superviseTime longLongValue] / 1000 type:4];
     self.supDepartment.text = detailModel.superviseUnit;
 }
 
@@ -182,7 +182,7 @@
 - (UILabel *)stateLable{
     if (!_stateLable) {
         _stateLable = [[UILabel alloc]init];
-        _stateLable.text = @"状态:";
+        _stateLable.text = @"状态：";
         _stateLable.font = CHINESE_SYSTEM(14);
     }
     return _stateLable;
@@ -199,7 +199,7 @@
 - (UILabel *)countLabel{
     if (!_countLabel) {
         _countLabel = [[UILabel alloc]init];
-        _countLabel.text = @"编号:";
+        _countLabel.text = @"编号：";
         _countLabel.font = CHINESE_SYSTEM(14);
     }
     return _countLabel;
@@ -217,7 +217,7 @@
 - (UILabel *)supDepartmentLabel{
     if (!_supDepartmentLabel) {
         _supDepartmentLabel = [[UILabel alloc]init];
-        _supDepartmentLabel.text = @"督办单位:";
+        _supDepartmentLabel.text = @"督办单位：";
         _supDepartmentLabel.font = CHINESE_SYSTEM(14);
     }
     return _supDepartmentLabel;
@@ -236,7 +236,7 @@
 - (UILabel *)supTimeLabel{
     if (!_supTimeLabel) {
         _supTimeLabel = [[UILabel alloc]init];
-        _supTimeLabel.text = @"督办时间:";
+        _supTimeLabel.text = @"督办时间：";
         _supTimeLabel.font = CHINESE_SYSTEM(14);
     }
     return _supTimeLabel;
@@ -254,7 +254,7 @@
 - (UILabel *)assignedLabel{
     if (!_assignedLabel) {
         _assignedLabel = [[UILabel alloc]init];
-        _assignedLabel.text = @"交办单:";
+        _assignedLabel.text = @"交办单：";
         _assignedLabel.font = CHINESE_SYSTEM(14);
     }
     return _assignedLabel;

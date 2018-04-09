@@ -99,7 +99,7 @@
 - (UILabel *)describeLabel{
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
-        _describeLabel.text = @"交办工作内容:";
+        _describeLabel.text = @"交办工作内容：";
         _describeLabel.font = CHINESE_SYSTEM(14);
     }
     return _describeLabel;
@@ -119,7 +119,7 @@
 - (UILabel *)noteLabel{
     if (!_noteLabel) {
         _noteLabel = [[UILabel alloc]init];
-        _noteLabel.text = @"备注:";
+        _noteLabel.text = @"备注：";
         _noteLabel.font = CHINESE_SYSTEM(14);
         
     }

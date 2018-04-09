@@ -179,7 +179,7 @@
 - (UILabel *)countLabel{
     if (!_countLabel) {
         _countLabel = [[UILabel alloc]init];
-        _countLabel.text = @"编号:";
+        _countLabel.text = @"编号：";
         _countLabel.font = CHINESE_SYSTEM(14);
     }
     return _countLabel;
@@ -197,7 +197,7 @@
 - (UILabel *)departmentLabel{
     if (!_departmentLabel) {
         _departmentLabel = [[UILabel alloc]init];
-        _departmentLabel.text = @"责任单位:";
+        _departmentLabel.text = @"责任单位：";
         _departmentLabel.font = CHINESE_SYSTEM(14);
     }
     return _departmentLabel;
@@ -215,7 +215,7 @@
 - (UILabel *)peopleLabel{
     if (!_peopleLabel) {
         _peopleLabel = [[UILabel alloc]init];
-        _peopleLabel.text = @"责任人:";
+        _peopleLabel.text = @"责任人：";
         _peopleLabel.font = CHINESE_SYSTEM(14);
     }
     return _peopleLabel;
@@ -233,7 +233,7 @@
 - (UILabel *)assignedTimeLabel{
     if (!_assignedTimeLabel) {
         _assignedTimeLabel = [[UILabel alloc]init];
-        _assignedTimeLabel.text = @"交办时间:";
+        _assignedTimeLabel.text = @"交办时间：";
         _assignedTimeLabel.font = CHINESE_SYSTEM(14);
     }
     return _assignedTimeLabel;
@@ -251,7 +251,7 @@
 - (UILabel *)completeTimeLabel{
     if (!_completeTimeLabel) {
         _completeTimeLabel = [[UILabel alloc]init];
-        _completeTimeLabel.text = @"完成时限:";
+        _completeTimeLabel.text = @"完成时限：";
         _completeTimeLabel.font = CHINESE_SYSTEM(14);
     }
     return _completeTimeLabel;

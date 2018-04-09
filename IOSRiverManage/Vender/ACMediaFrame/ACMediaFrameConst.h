@@ -17,7 +17,7 @@
 #define ACMediaRatio ACMedia_ScreenWidth/375.0
 
 /** cell上删除按钮的宽 */
-#define ACMediaDeleteButtonWidth ACMediaRatio * 18
+#define ACMediaDeleteButtonWidth ACMediaRatio * 25
 
 #define ACMediaWeakSelf      __weak __typeof__(self) weakSelf = self;
 

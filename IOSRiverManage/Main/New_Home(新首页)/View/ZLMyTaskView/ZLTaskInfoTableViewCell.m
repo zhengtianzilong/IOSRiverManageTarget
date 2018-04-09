@@ -147,7 +147,7 @@
         make.left.equalTo(self.contentView).offset(10);
         make.top.equalTo(self.lineView.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -165,7 +165,7 @@
         make.left.equalTo(self.eventLabel);
         make.top.equalTo(self.eventLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -183,7 +183,7 @@
         make.left.equalTo(self.eventLabel);
         make.top.equalTo(self.stateLable.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -202,7 +202,7 @@
         make.left.equalTo(self.eventLabel);
         make.top.equalTo(self.originatorLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
     }];
     
     [self.receive mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -218,7 +218,7 @@
         make.left.equalTo(self.eventLabel);
         make.top.equalTo(self.receiveLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -238,7 +238,7 @@
         make.left.equalTo(self.eventLabel);
         make.top.equalTo(self.departLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -256,7 +256,7 @@
         make.left.equalTo(self.eventLabel);
         make.top.equalTo(self.timeLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -403,7 +403,7 @@
 - (UILabel *)eventLabel{
     if (!_eventLabel) {
         _eventLabel = [[UILabel alloc]init];
-        _eventLabel.text = @"任务名称:";
+        _eventLabel.text = @"任务名称：";
         _eventLabel.font = CHINESE_SYSTEM(14);
     }
     return _eventLabel;
@@ -420,7 +420,7 @@
 - (UILabel *)stateLable{
     if (!_stateLable) {
         _stateLable = [[UILabel alloc]init];
-        _stateLable.text = @"状态:";
+        _stateLable.text = @"状态：";
         _stateLable.font = CHINESE_SYSTEM(14);
     }
     return _stateLable;
@@ -437,7 +437,7 @@
 - (UILabel *)originatorLabel{
     if (!_originatorLabel) {
         _originatorLabel = [[UILabel alloc]init];
-        _originatorLabel.text = @"创建人:";
+        _originatorLabel.text = @"创建人：";
         _originatorLabel.font = CHINESE_SYSTEM(14);
     }
     return _originatorLabel;
@@ -455,7 +455,7 @@
 - (UILabel *)receiveLabel{
     if (!_receiveLabel) {
         _receiveLabel = [[UILabel alloc]init];
-        _receiveLabel.text = @"接收人:";
+        _receiveLabel.text = @"接收人：";
         _receiveLabel.font = CHINESE_SYSTEM(14);
     }
     return _receiveLabel;
@@ -473,7 +473,7 @@
 - (UILabel *)departLabel{
     if (!_departLabel) {
         _departLabel = [[UILabel alloc]init];
-        _departLabel.text = @"接收部门:";
+        _departLabel.text = @"接收部门：";
         _departLabel.font = CHINESE_SYSTEM(14);
     }
     return _departLabel;
@@ -492,7 +492,7 @@
 - (UILabel *)timeLabel{
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
-        _timeLabel.text = @"创建时间:";
+        _timeLabel.text = @"创建时间：";
         _timeLabel.font = CHINESE_SYSTEM(14);
     }
     return _timeLabel;
@@ -512,7 +512,7 @@
 - (UILabel *)describeLabel{
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
-        _describeLabel.text = @"内容:";
+        _describeLabel.text = @"内容：";
         _describeLabel.font = CHINESE_SYSTEM(14);
     }
     return _describeLabel;
@@ -531,7 +531,7 @@
 - (UILabel *)attachmentLabel{
     if (!_attachmentLabel) {
         _attachmentLabel = [[UILabel alloc]init];
-        _attachmentLabel.text = @"附件";
+        _attachmentLabel.text = @"附件：";
         _attachmentLabel.font = CHINESE_SYSTEM(14);
         
     }

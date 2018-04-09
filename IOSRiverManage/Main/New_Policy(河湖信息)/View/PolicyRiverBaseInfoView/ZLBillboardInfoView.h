@@ -10,6 +10,7 @@
 #import "ZLPublicityBrandModel.h"
 
 typedef void(^deletePub)(ZLPublicityBrandModel *model);
+typedef void(^billboardInfoAddressBlock)(ZLPublicityBrandModel *publicBrandModel);
 
 @interface ZLBillboardInfoView : UITableViewCell
 
@@ -40,5 +41,5 @@ typedef void(^deletePub)(ZLPublicityBrandModel *model);
 @property (nonatomic, strong) ZLPublicityBrandModel *publicBrandModel;
 
 @property (nonatomic, strong) deletePub deletePublic;
-
+@property (nonatomic, strong) billboardInfoAddressBlock billboardInfoAddress;
 @end

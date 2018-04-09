@@ -38,7 +38,7 @@
 
 - (void)setUpUI{
     _titleLabel = [[UILabel alloc]init];
-    _titleLabel.text = @"标题:";
+    _titleLabel.text = @"标题：";
     _titleLabel.font = CHINESE_SYSTEM(15);
     [self.contentView addSubview:_titleLabel];
     
@@ -51,7 +51,7 @@
     [self.contentView addSubview:_title];
     
     _contentLabel = [[UILabel alloc]init];
-    _contentLabel.text = @"内容:";
+    _contentLabel.text = @"内容：";
     _contentLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_contentLabel];
     
@@ -63,7 +63,7 @@
     [self.contentView addSubview:_content];
     
     _riverPeopleLabel = [[UILabel alloc]init];
-    _riverPeopleLabel.text = @"巡河人:";
+    _riverPeopleLabel.text = @"巡河人：";
     _riverPeopleLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_riverPeopleLabel];
     
@@ -75,7 +75,7 @@
     [self.contentView addSubview:_riverPeople];
     
     _timeLabel = [[UILabel alloc]init];
-    _timeLabel.text = @"上报时间:";
+    _timeLabel.text = @"创建时间：";
     _timeLabel.font = CHINESE_SYSTEM(14);
     [self.contentView addSubview:_timeLabel];
     
@@ -162,6 +162,16 @@
     NSString *time = [ZLUtility getDateByTimestamp:[dataModel.time longLongValue] / 1000 type:4];
     
     self.time.text = time;
+    
+    if ([dataModel.type isEqualToString:@"上报"]) {
+        
+        self.timeLabel.text = @"上报时间";
+        
+    }else if ([dataModel.type isEqualToString:@"下发"]){
+        
+        self.timeLabel.text = @"下发时间";
+        
+    }
     
     
 }

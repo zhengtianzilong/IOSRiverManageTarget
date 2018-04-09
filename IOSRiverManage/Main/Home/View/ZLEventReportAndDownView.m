@@ -43,7 +43,7 @@
     
     if (hasName) {
         
-        _firstView = [[ZLEventReportSubView alloc]initWithName:@"事件名称:" placeHolder:@"请输入事件名称" haveButton:NO];
+        _firstView = [[ZLEventReportSubView alloc]initWithName:@"事件名称：" placeHolder:@"请输入事件名称" haveButton:NO];
         [self addSubview:_firstView];
         [_firstView mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -55,7 +55,7 @@
     }
     
     
-    _secondView = [[ZLEventReportSubView alloc]initWithName:@"发起类型:" placeHolder:@"请选择发起类型"haveButton:YES];
+    _secondView = [[ZLEventReportSubView alloc]initWithName:@"发起类型：" placeHolder:@"请选择发起类型"haveButton:YES];
     _secondView.imageV.image = [UIImage imageNamed:@"selectType"];
     [self addSubview:_secondView];
     [_secondView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,7 +73,7 @@
     
     
     if (hasLeader) {
-        _thirdView = [[ZLEventReportSubView alloc]initWithName:@"事件对象:" placeHolder:@"请选择事件对象"haveButton:YES];
+        _thirdView = [[ZLEventReportSubView alloc]initWithName:@"事件对象：" placeHolder:@"请选择事件对象"haveButton:YES];
         [self addSubview:_thirdView];
         [_thirdView mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -89,7 +89,7 @@
     }
     
     
-    ZLEventReportSubView *forthView = [[ZLEventReportSubView alloc]initWithName:@"事件描述:" placeHolder:@""haveButton:NO];
+    ZLEventReportSubView *forthView = [[ZLEventReportSubView alloc]initWithName:@"事件描述：" placeHolder:@""haveButton:NO];
     [self addSubview:forthView];
     [forthView mas_makeConstraints:^(MASConstraintMaker *make) {
         

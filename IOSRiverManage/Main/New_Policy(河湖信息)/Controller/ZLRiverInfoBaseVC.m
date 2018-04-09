@@ -26,6 +26,8 @@
 
 #import "ZLOutletDeleteService.h"
 
+#import "ZLRiverInfoMapVC.h"
+
 @interface ZLRiverInfoBaseVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) ZLHomeLoopTopView *loopTopView;
 
@@ -37,19 +39,20 @@
 
 @implementation ZLRiverInfoBaseVC
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    [self.mainTableView.mj_header beginRefreshing];
-    
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//
+//    [self.mainTableView.mj_header beginRefreshing];
+//
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.sourceArray = [NSMutableArray array];
+    [self getData];
     [self.view addSubview:self.mainTableView];
     
-//    [self getData];
+    
     
 }
 
@@ -171,12 +174,34 @@
         cell.infoBaseModel = (ZLRiverInfoBaseModel *)model;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        cell.infoBaseView = ^(ZLRiverInfoBaseModel *infoBaseModel) {
+            ZLRiverInfoMapVC *mapVC = [[ZLRiverInfoMapVC alloc]init];
+            
+            mapVC.riverInfoBaseModel = infoBaseModel;
+            mapVC.publicityBrandModel = nil;
+            mapVC.sewageOutletModel = nil;
+            mapVC.pumpingPortModel = nil;
+            
+            [self.navigationController pushViewController:mapVC animated:YES];
+        };
+        
         return cell;
         
     }else{
         
         if ([model.class isEqual:[ZLPublicityBrandModel class]] ) {
             ZLBillboardInfoView *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLBillboardInfoView" forIndexPath:indexPath];
+            
+            cell.billboardInfoAddress = ^(ZLPublicityBrandModel *publicBrandModel) {
+                ZLRiverInfoMapVC *mapVC = [[ZLRiverInfoMapVC alloc]init];
+                
+                mapVC.publicityBrandModel = publicBrandModel;
+                mapVC.riverInfoBaseModel = nil;
+                mapVC.sewageOutletModel = nil;
+                mapVC.pumpingPortModel = nil;
+                
+                [self.navigationController pushViewController:mapVC animated:YES];
+            };
             
             cell.deletePublic = ^(ZLPublicityBrandModel *model) {
                 [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
@@ -206,11 +231,6 @@
                     
                     
                 } title:@"提示" message:@"确定删除此公示牌吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
-                
-                
-                
-                
-                
             };
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -221,6 +241,19 @@
         if ([model.class isEqual:[ZLPumpingPortModel class]] ) {
             
             ZLRiverIntakeInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLRiverIntakeInfoTableViewCell" forIndexPath:indexPath];
+            
+            cell.checkAddress = ^(ZLPumpingPortModel *pumpModel) {
+                ZLRiverInfoMapVC *mapVC = [[ZLRiverInfoMapVC alloc]init];
+                
+                mapVC.publicityBrandModel = nil;
+                mapVC.riverInfoBaseModel = nil;
+                mapVC.sewageOutletModel = nil;
+                mapVC.pumpingPortModel = pumpModel;
+                
+                [self.navigationController pushViewController:mapVC animated:YES];
+                
+                
+            };
             
             cell.deletepump = ^(ZLPumpingPortModel *pumpModel) {
               
@@ -270,6 +303,20 @@
         if ([model.class isEqual:[ZLSewageOutletModel class]] ) {
             ZLRiverOutletInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLRiverOutletInfoTableViewCell" forIndexPath:indexPath];
             cell.outletModel = (ZLSewageOutletModel *)model;
+            
+            cell.sewageOutletAddress = ^(ZLSewageOutletModel *outletModel) {
+                ZLRiverInfoMapVC *mapVC = [[ZLRiverInfoMapVC alloc]init];
+                
+                mapVC.publicityBrandModel = nil;
+                mapVC.riverInfoBaseModel = nil;
+                mapVC.sewageOutletModel = outletModel;
+                mapVC.pumpingPortModel = nil;
+                
+                [self.navigationController pushViewController:mapVC animated:YES];
+                
+                
+            };
+            
             cell.outletDelete = ^(ZLSewageOutletModel *model) {
               
                 [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {

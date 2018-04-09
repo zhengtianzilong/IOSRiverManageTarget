@@ -9,7 +9,6 @@ pod 'JSONModel', '~> 1.0.1'
 pod 'Masonry','~>0.6.1'
 pod 'FLEX', '~> 2.0', :configurations => ['Debug']
 pod 'ActionSheetPicker-3.0'
-pod 'XAspect'
 pod 'CYLTabBarController'
 pod 'IQKeyboardManager', '~> 3.3.7'  #兼容IOS7
 pod 'LBXScan','~> 1.1.1'
@@ -20,7 +19,6 @@ pod 'WebViewJavascriptBridge', '~> 5.0'
 pod 'YYText'
 pod 'TZImagePickerController'  #照片选择浏览器
 pod 'UITableView+FDTemplateLayoutCell'
-pod 'SnapKit', '~> 3.2.0'
 pod 'YTKNetwork'
 pod 'BaiduMapKit' #百度地图SDK
 pod 'ACAlertController'

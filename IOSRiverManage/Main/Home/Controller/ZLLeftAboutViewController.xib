@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,31 +18,31 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="34h-GE-DZF">
-                    <rect key="frame" x="0.0" y="198.66666666666663" width="414" height="236"/>
+                    <rect key="frame" x="0.0" y="188.5" width="320" height="236"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="236" id="rM6-Wo-T9z"/>
                     </constraints>
                 </tableView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo" translatesAutoresizingMaskIntoConstraints="NO" id="19L-gl-YSd">
-                    <rect key="frame" x="160" y="50" width="95" height="80"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_logo" translatesAutoresizingMaskIntoConstraints="NO" id="19L-gl-YSd">
+                    <rect key="frame" x="125" y="50" width="70" height="70"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="95" id="4wW-aW-ykg"/>
-                        <constraint firstAttribute="height" constant="80" id="d6m-rP-ubT"/>
+                        <constraint firstAttribute="width" constant="70" id="4wW-aW-ykg"/>
+                        <constraint firstAttribute="height" constant="70" id="d6m-rP-ubT"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="江苏河长通" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5r-pd-QwA">
-                    <rect key="frame" x="0.0" y="138" width="414" height="21.666666666666657"/>
+                    <rect key="frame" x="0.0" y="128" width="320" height="21.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGB-IV-ZGD">
-                    <rect key="frame" x="0.0" y="167.66666666666666" width="414" height="21"/>
+                    <rect key="frame" x="0.0" y="157.5" width="320" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="goj-N1-Tfc"/>
                     </constraints>
@@ -72,6 +72,6 @@
         </view>
     </objects>
     <resources>
-        <image name="login_logo" width="96" height="85"/>
+        <image name="about_logo" width="61" height="61"/>
     </resources>
 </document>

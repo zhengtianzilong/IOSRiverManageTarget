@@ -82,7 +82,7 @@
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
         _sourceArray = @[
-                         @"反馈:"];
+                         @"反馈："];
         
         
     }
@@ -201,7 +201,7 @@
         
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
-        
+        _mainTableView.bounces = NO;
         _mainTableView.showsVerticalScrollIndicator = NO;
         
         //开启自动计算高度

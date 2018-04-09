@@ -167,31 +167,11 @@
     ///初始化地图
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     _mapView.delegate = self;
+    _mapView.zoomLevel = 14;
     ///把地图添加至view
     [self.view addSubview:_mapView];
     
-//    //构造折线数据对象
-//    CLLocationCoordinate2D commonPolylineCoords[4];
-//    commonPolylineCoords[0].latitude = 39.832136;
-//    commonPolylineCoords[0].longitude = 116.34095;
-//
-//    commonPolylineCoords[1].latitude = 39.832136;
-//    commonPolylineCoords[1].longitude = 116.42095;
-//
-//    commonPolylineCoords[2].latitude = 39.902136;
-//    commonPolylineCoords[2].longitude = 116.42095;
-//
-//    commonPolylineCoords[3].latitude = 39.902136;
-//    commonPolylineCoords[3].longitude = 116.44095;
-//
-//    //构造折线对象
-//    MAPolyline *commonPolyline = [MAPolyline polylineWithCoordinates:commonPolylineCoords count:4];
-//
-//    //在地图上添加折线对象
-//    [_mapView addOverlay: commonPolyline];
-    
-//    [self createStartAndEndPoint];
-    
+
     
     
 }
@@ -231,7 +211,7 @@
         MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc] initWithPolyline:overlay];
         
         polylineRenderer.lineWidth    = 8.f;
-        polylineRenderer.strokeColor  = [UIColor redColor];
+        polylineRenderer.strokeColor  = HEXCOLOR(0x00ff00);
         polylineRenderer.lineJoinType = kMALineJoinRound;
         polylineRenderer.lineCapType  = kMALineCapRound;
         
@@ -287,6 +267,11 @@
     MAPinAnnotationView  *annotationView = (MAPinAnnotationView *)tap.view;
     
     ZLLog(@"%@,%@", annotationView.annotation.title, annotationView.annotation.subtitle);
+    
+    if ([annotationView.annotation.title isEqualToString:@"起点"] || [annotationView.annotation.title isEqualToString:@"终点"] ) {
+        return;
+    }
+    
     
     ZLGaodeEventDetailViewController *vc = [[ZLGaodeEventDetailViewController alloc]initWithShowFrame:CGRectMake(0, Main_Screen_Height - 200, Main_Screen_Width, 200) ShowStyle:(MYPresentedViewShowStyleFromBottomSpreadStyle) callback:nil];
     

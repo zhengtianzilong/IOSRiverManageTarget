@@ -107,7 +107,7 @@
 - (UILabel *)startLabel{
     if (!_startLabel) {
         _startLabel = [[UILabel alloc]init];
-        [_startLabel setText:@"开始时间:"];
+        [_startLabel setText:@"开始时间："];
         _startLabel.font = CHINESE_SYSTEM(16);
     }
     return _startLabel;
@@ -125,7 +125,7 @@
 - (UILabel *)endTimeLabel{
     if (!_endTimeLabel) {
         _endTimeLabel = [[UILabel alloc]init];
-        [_endTimeLabel setText:@"结束时间:"];
+        [_endTimeLabel setText:@"结束时间："];
         _endTimeLabel.font = CHINESE_SYSTEM(16);
     }
     return _endTimeLabel;

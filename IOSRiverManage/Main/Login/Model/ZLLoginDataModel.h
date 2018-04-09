@@ -23,6 +23,8 @@
 
 @property (nonatomic ,strong) NSString<Optional> *fileServerAddr;
 
+@property (nonatomic ,strong) NSString<Optional> *version;
+
 @property (nonatomic ,strong) NSArray<Optional, ZLFunctionListModel> *functionList;
 
 @end

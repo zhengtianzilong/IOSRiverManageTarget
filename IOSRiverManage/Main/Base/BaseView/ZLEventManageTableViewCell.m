@@ -37,6 +37,7 @@
     _state = [[UILabel alloc]init];
     _state.text = @"已发起";
     _state.font = CHINESE_SYSTEM(15);
+    _state.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_state];
     
     _colorIndicator = [[UIImageView alloc]init];
@@ -110,6 +111,7 @@
         make.right.equalTo(self.contentView.mas_right).offset(-5);
         make.top.equalTo(self.contentView).offset(5);
         make.height.mas_equalTo(20);
+        make.width.mas_equalTo(60);
     }];
     
     [_colorIndicator mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -123,6 +125,7 @@
         
         make.left.equalTo(_colorIndicator.mas_right).offset(5);
 //        make.top.equalTo(self.contentView).offset(5);
+        make.right.equalTo(_state.mas_left).offset(-5);
         make.centerY.equalTo(_colorIndicator);
         
         make.height.mas_equalTo(20);

@@ -162,7 +162,9 @@
                     [SVProgressHUD showSuccessWithStatus:@"删除成功"];
                     [SVProgressHUD dismissWithDelay:0.3 completion:^{
                         
-                        [tableView.mj_header beginRefreshing];
+                        [self.sourceArray removeObjectAtIndex:indexPath.section];
+                        
+                        [tableView reloadData];
                         
                     }];
                     

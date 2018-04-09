@@ -542,6 +542,9 @@
             PHFetchResult *result = [PHAsset fetchAssetsWithALAssetURLs:@[imageAssetURL] options:nil];
             asset = [result firstObject];
         }
+        
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:),  (__bridge void *)self);
+        
         [[ACMediaManager manager] getImageInfoFromImage:image PHAsset:asset completion:^(NSString *name, NSData *data) {
             ACMediaModel *model = [[ACMediaModel alloc] init];
             model.image = image;
@@ -554,6 +557,13 @@
         }];
     }
 }
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    
+    ZLLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
+}
+
 
 #pragma mark - private methods
 

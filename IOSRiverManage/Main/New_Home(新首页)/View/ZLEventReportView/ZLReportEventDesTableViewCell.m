@@ -66,7 +66,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(10);
-        make.width.mas_equalTo(90);
+        make.width.mas_equalTo(100);
         make.top.equalTo(self.contentView).offset(10);
 //        make.centerY.equalTo(self.bgView);
         make.height.mas_equalTo(45);
@@ -102,7 +102,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"XXXXX";
         _titleLabel.backgroundColor = [UIColor whiteColor];
-        _titleLabel.font = CHINESE_SYSTEM(17);
+        _titleLabel.font = CHINESE_SYSTEM(15);
         
     }
     return _titleLabel;

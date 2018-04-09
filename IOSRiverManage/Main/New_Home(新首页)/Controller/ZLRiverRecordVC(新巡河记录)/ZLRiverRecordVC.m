@@ -73,12 +73,6 @@
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    [self.mainTableView.mj_header beginRefreshing];
-}
 
 - (void)setEmpty{
     if (self.sourceArray.count > 0) {
@@ -117,6 +111,7 @@
         
     }];
     
+    [self getData];
     
 }
 

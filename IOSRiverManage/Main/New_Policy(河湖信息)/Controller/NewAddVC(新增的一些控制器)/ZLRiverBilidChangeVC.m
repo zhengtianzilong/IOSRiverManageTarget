@@ -227,8 +227,8 @@
 
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
-        _sourceArray = @[@"公示牌名:",
-                         @"位置:"];
+        _sourceArray = @[@"公示牌名：",
+                         @"位置："];
     }
     return _sourceArray;
 }
@@ -274,7 +274,7 @@
         
         UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width, 30)];
         lab.text = @"公示牌照片:";
-        lab.font = CHINESE_SYSTEM(17);
+        lab.font = CHINESE_SYSTEM(15);
         [headerView addSubview:lab];
         
         

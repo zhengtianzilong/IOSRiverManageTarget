@@ -492,10 +492,10 @@
 
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
-        _sourceArray = @[@"任务名称:",
-                         @"接收人:",
-                         @"接收部门:",
-                         @"任务描述:"];
+        _sourceArray = @[@"任务名称：",
+                         @"接收人：",
+                         @"接收部门：",
+                         @"任务描述："];
         
         
     }
@@ -523,7 +523,7 @@
         
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
-        
+        _mainTableView.bounces = NO;
         _mainTableView.showsVerticalScrollIndicator = NO;
         
         //开启自动计算高度

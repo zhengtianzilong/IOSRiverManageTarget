@@ -32,7 +32,7 @@
 
 - (void)setUpUI{
     
-    _titleView = [[ZLEventReportSubView alloc]initWithName:@"标题:" placeHolder:@"请输入标题" haveButton:NO];
+    _titleView = [[ZLEventReportSubView alloc]initWithName:@"标题：" placeHolder:@"请输入标题" haveButton:NO];
     [self addSubview:_titleView];
     [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -42,7 +42,7 @@
         make.height.mas_equalTo(AdaptedHeight(80));
     }];
     
-    _riverPeopleView = [[ZLEventReportSubView alloc]initWithName:@"巡河人:" placeHolder:@"请输入巡河人"haveButton:NO];
+    _riverPeopleView = [[ZLEventReportSubView alloc]initWithName:@"巡河人：" placeHolder:@"请输入巡河人"haveButton:NO];
     _riverPeopleView.eventTextfiled.enabled = NO;
     [self addSubview:_riverPeopleView];
     [_riverPeopleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -54,7 +54,7 @@
     }];
     
     
-    _reportObjectView = [[ZLEventReportSubView alloc]initWithName:@"下发对象:" placeHolder:@"请选择下发对象"haveButton:YES];
+    _reportObjectView = [[ZLEventReportSubView alloc]initWithName:@"下发对象：" placeHolder:@"请选择下发对象"haveButton:YES];
     [self addSubview:_reportObjectView];
     [_reportObjectView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -67,7 +67,7 @@
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(event_objectClick)];
     [_reportObjectView addGestureRecognizer:tapGes];
     
-    _addressView = [[ZLEventReportSubView alloc]initWithName:@"位  置:" placeHolder:@"请输入位置"haveButton:NO];
+    _addressView = [[ZLEventReportSubView alloc]initWithName:@"位  置：" placeHolder:@"请输入位置"haveButton:NO];
     [self addSubview:_addressView];
     [_addressView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -79,7 +79,7 @@
     
     
     
-    ZLEventReportSubView *feedBack = [[ZLEventReportSubView alloc]initWithName:@"任务描述:" placeHolder:@""haveButton:NO];
+    ZLEventReportSubView *feedBack = [[ZLEventReportSubView alloc]initWithName:@"任务描述：" placeHolder:@""haveButton:NO];
     [self addSubview:feedBack];
     [feedBack mas_makeConstraints:^(MASConstraintMaker *make) {
         

@@ -11,6 +11,8 @@
 
 typedef void(^selectOutletDelete)(ZLSewageOutletModel *model);
 
+typedef void(^sewageOutletAddressBlock)(ZLSewageOutletModel *outletModel);
+
 @interface ZLRiverOutletInfoTableViewCell : UITableViewCell
 @property (nonatomic, strong) UILabel *title;
 
@@ -48,5 +50,7 @@ typedef void(^selectOutletDelete)(ZLSewageOutletModel *model);
 @property (nonatomic, strong) ZLSewageOutletModel *outletModel;
 
 @property (nonatomic, strong) selectOutletDelete outletDelete;
+@property (nonatomic, strong) sewageOutletAddressBlock sewageOutletAddress;
+
 
 @end

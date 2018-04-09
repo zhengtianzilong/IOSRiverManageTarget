@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B5B52A20E3BCBEE3CB686CBDB2191D1A"
+               BlueprintIdentifier = "3CB74FD2B45F220185436DA5123E3698"
                BuildableName = "Pods_ABC_IOSRiverManageTouBiao.framework"
                BlueprintName = "Pods-ABC-IOSRiverManageTouBiao"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B5B52A20E3BCBEE3CB686CBDB2191D1A"
+            BlueprintIdentifier = "3CB74FD2B45F220185436DA5123E3698"
             BuildableName = "Pods_ABC_IOSRiverManageTouBiao.framework"
             BlueprintName = "Pods-ABC-IOSRiverManageTouBiao"
             ReferencedContainer = "container:Pods.xcodeproj">

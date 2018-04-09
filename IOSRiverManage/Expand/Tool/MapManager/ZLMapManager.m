@@ -108,8 +108,6 @@ static const double kMapDistanceFilter = 3.0;
         }else{
             [self.store putObject:self.locationsAndAddress withId:DBAddress intoTable:DBMapTable];
         }
-        
-        
     }
 }
 
@@ -183,7 +181,7 @@ static const double kMapDistanceFilter = 3.0;
 }
 - (void)addUpdateRoute{
     [ZLMapCalculateFunc addAnnotationArray:self.annotationRecordArray toMapView:self.mapView];
-    [self removePreviousRoute];
+//    [self removePreviousRoute];
     // 绘制最新的路径
     ZLMapAnnotation *annotation = [self.annotationRecordArray lastObject];
     [self.mapView setCenterCoordinate:annotation.coordinate animated:YES];
@@ -217,9 +215,9 @@ static const double kMapDistanceFilter = 3.0;
             return;
         }
         // 滤波在处理慢速运行时，会出现路径端点与定位点连接不上的情况，所以在绘制路径时，将未处理过的当前点添加到数组的末尾，每次有新位置进行计算时，先将上一次数组末尾的点移除。
-        if (self.annotationRecordArray.count > 0) {
-            [self.annotationRecordArray removeLastObject];
-        }
+//        if (self.annotationRecordArray.count > 0) {
+//            [self.annotationRecordArray removeLastObject];
+//        }
         
         CLLocationCoordinate2D coordinate = userLocation.coordinate;
         // 卡尔曼滤波器
@@ -244,14 +242,11 @@ static const double kMapDistanceFilter = 3.0;
         
         MAPolylineRenderer *polylineRenderer = [[MAPolylineRenderer alloc]initWithOverlay:overlay];
         polylineRenderer.lineWidth = 8.f;
-        polylineRenderer.strokeColor = [UIColor redColor];
+        polylineRenderer.strokeColor = HEXCOLOR(0x00ff00);
         return polylineRenderer;
         
     }
-    
     return nil;
-    
-    
 }
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id<MAAnnotation>)annotation{
