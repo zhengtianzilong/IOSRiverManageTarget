@@ -22,6 +22,7 @@
 #import "ZLOnlyUpdateIncidentService.h"
 #import "ZLUpdateAndSentIncidentService.h"
 #import "ZLUploadImagesModel.h"
+#import "ZLGetUserListByIncidentService.h"
 @interface ZLNewChangeEventReportVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 
@@ -114,11 +115,6 @@
                     self.detailDataModel.receiverPersonName = @"";
                     self.detailDataModel.receiverPersonCode = @"";
                 }
-                
-                
-                
-                
-                
             }
             
         }
@@ -162,11 +158,6 @@
     NSString *departs = [self.store getStringById:DBEventDepartListRivers fromTable:DBUserTable];
     
     ZLGetDepartModel *departsModel = [[ZLGetDepartModel alloc]initWithString:departs error:nil];
-    
-    NSString *users = [self.store getStringById:DBEventPeopleListRivers fromTable:DBUserTable];
-    
-    ZLGetEventUserListModel *taskUserListModel = [[ZLGetEventUserListModel alloc]initWithString:users error:nil];
-    
     if (departsModel.data.count > 0) {
         
         for (ZLGetDepartDataModel *dataModel in departsModel.data ) {
@@ -179,12 +170,42 @@
         
     }
     
+    if (_detailDataModel.riverCode.length > 0) {
+        
+        [self getuserListData];
+        
+    }else{
+        [self getNoRiverUserListData];
+    }
+    
+    
+
+    
+}
+
+- (void)getNoRiverUserListData{
+    NSString *users = [self.store getStringById:DBEventPeopleListRivers fromTable:DBUserTable];
+    ZLGetEventUserListModel *taskUserListModel = [[ZLGetEventUserListModel alloc]initWithString:users error:nil];
     if (taskUserListModel.data.count > 0) {
         
         for (ZLGetEventUserListDataModel *dataModel in taskUserListModel.data ) {
+            NSString *riverNames = @"";
+            NSString *areaName = @"";
+            if (dataModel.riverNames.length > 0) {
+                
+                riverNames = [NSString stringWithFormat:@"(%@)",dataModel.riverNames];
+                
+            }
             
-            [self.peopleNameArray addObject:dataModel.realName];
+            if (dataModel.areaName.length > 0) {
+                
+                areaName = [NSString stringWithFormat:@"%@-",dataModel.areaName];
+                
+            }
             
+            NSString *peopleName = [NSString stringWithFormat:@"%@%@%@",areaName,dataModel.realName,riverNames];
+            
+            [self.peopleNameArray addObject:peopleName];
             [self.peopleModelArray addObject:dataModel];
             
         }
@@ -192,6 +213,51 @@
     }
     
 }
+
+- (void)getuserListData{
+    
+    self.peopleModelArray = [NSMutableArray array];
+    self.peopleNameArray = [NSMutableArray array];
+    
+    ZLGetUserListByIncidentService *service = [[ZLGetUserListByIncidentService alloc]initWithriverCode:_dataModel.riverCode];
+    
+    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLGetEventUserListModel *taskUserList = [[ZLGetEventUserListModel alloc]initWithString:request.responseString error:nil];
+        
+        if ([taskUserList.code isEqualToString:@"0"]) {
+            
+            for (ZLGetEventUserListDataModel *dataModel in taskUserList.data) {
+                
+                NSString *riverNames = @"";
+                NSString *areaName = @"";
+                if (dataModel.riverNames.length > 0) {
+                    
+                    riverNames = [NSString stringWithFormat:@"(%@)",dataModel.riverNames];
+                    
+                }
+                
+                if (dataModel.areaName.length > 0) {
+                    
+                    areaName = [NSString stringWithFormat:@"%@-",dataModel.areaName];
+                    
+                }
+                
+                NSString *peopleName = [NSString stringWithFormat:@"%@%@%@",areaName,dataModel.realName,riverNames];
+                
+                [self.peopleNameArray addObject:peopleName];
+                
+                [self.peopleModelArray addObject:dataModel];
+                
+            }
+        }
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+    }];
+}
+
+
 
 
 - (void)viewDidLoad {
@@ -237,17 +303,17 @@
         ZLLog(@"%ld",(long)index);
         
         textView.text = self.peopleNameArray[index];
-        
+        ZLGetEventUserListDataModel *model = self.peopleModelArray[index];
         ZLReportPeopleTableViewCell *cell = tableView.visibleCells[2];
         
         cell.infoTextView.text = @"";
         
         self.isclear = YES;
         
-        self.eventPeopleString = textView.text;
+        self.eventPeopleString = model.realName;
         self.eventDepartString = @"";
         
-        ZLGetEventUserListDataModel *model = self.peopleModelArray[index];
+        
         
         self.departCodeString = @"";
         self.peopleCodeString = model.userCode;
@@ -259,36 +325,6 @@
     
     [alert show];
     
-    
-//    _alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.peopleNameArray withTitle:@"选择接收人" sureTitle:@"确定" singleSelection:NO];
-//    __weak typeof(self) weakSelf = self;
-//    _alert.selectItemsMuti = ^(NSArray *options) {
-//
-//        ZLLog(@"%ld",(long)index);
-//
-//        [weakSelf.peopleNameTempArray removeAllObjects];
-//        [weakSelf.peopleCode removeAllObjects];
-//
-//        for (int i = 0; i < options.count; i++) {
-//
-//            NSNumber *number = options[i] ;
-//
-//            NSInteger index = [number integerValue];
-//
-//            ZLGetEventUserListDataModel *model = weakSelf.peopleModelArray[index];
-//
-//            [weakSelf.peopleCode addObject:model.userCode];
-//            [weakSelf.peopleNameTempArray addObject:model.realName];
-//        }
-//
-//        textView.text = [weakSelf.peopleNameTempArray componentsJoinedByString:@","];
-//
-//        weakSelf.eventPeopleString = textView.text;
-//        weakSelf.peopleCodeString = [weakSelf.peopleCode componentsJoinedByString:@","];
-//
-//    };
-//
-//    [_alert show];
 }
 
 // 部门选择
@@ -298,7 +334,7 @@
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"暂无部门对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"暂无部门数据" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return;
     }
@@ -329,34 +365,6 @@
     };
     
     [alert show];
-    
-    
-//    _alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.departNameArray withTitle:@"选择部门" sureTitle:@"确定" singleSelection:NO];
-//
-//    __weak typeof(self) weakSelf = self;
-//    _alert.selectItemsMuti = ^(NSArray *options) {
-//        ZLLog(@"%@",options);
-//        [weakSelf.departCode removeAllObjects];
-//        [weakSelf.departNameTempArray removeAllObjects];
-//
-//        for (int i = 0; i < options.count; i++) {
-//
-//            NSNumber *number = options[i] ;
-//
-//            NSInteger index = [number integerValue];
-//
-//            ZLGetDepartDataModel *model = weakSelf.departModelArray[index];
-//
-//            [weakSelf.departCode addObject:model.departCode];
-//            [weakSelf.departNameTempArray addObject:model.departName];
-//        }
-//        textView.text = [weakSelf.departNameTempArray componentsJoinedByString:@","];
-//        weakSelf.eventDepartString = textView.text;
-//        weakSelf.departCodeString = [weakSelf.departCode componentsJoinedByString:@","];
-//
-//    };
-//
-//    [_alert show];
 }
 
 
@@ -369,7 +377,7 @@
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"必须选择接收部门或接收对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"请选择接收人或接收部门" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return NO;
     }
@@ -497,7 +505,7 @@
             [tempArray addObject:model];
         }
     }
-    [SVProgressHUD showWithStatus:@"下发中"];
+    [SVProgressHUD showWithStatus:@"上报中"];
     
     dispatch_group_t group = dispatch_group_create();
     
@@ -535,14 +543,14 @@
             _receiverType = @"1";
         }
         
-        ZLUpdateAndSentIncidentService *service = [[ZLUpdateAndSentIncidentService alloc]initWithimgList:self.imageNameArray fileList:self.detailDataModel.fileList incidentName:self.eventName incidentContent:self.eventDesc receiverType:_receiverType receiverDepartCode:self.departCodeString receiverDepartName:self.eventDepartString receiverPersonName:self.eventPeopleString receiverPersonCode:self.peopleCodeString riverCode:@"" patrolCode:@"" longitude:nil latitude:nil positionDesc:nil incidentCode:_detailDataModel.incidentCode];
+        ZLUpdateAndSentIncidentService *service = [[ZLUpdateAndSentIncidentService alloc]initWithimgList:self.imageNameArray fileList:self.detailDataModel.fileList incidentName:self.eventName incidentContent:self.eventDesc receiverType:_receiverType receiverDepartCode:self.departCodeString receiverDepartName:self.eventDepartString receiverPersonName:self.eventPeopleString receiverPersonCode:self.peopleCodeString riverCode:_detailDataModel.riverCode patrolCode:@"" longitude:nil latitude:nil positionDesc:nil incidentCode:_detailDataModel.incidentCode];
 
         [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
             ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
             
             if ([model.code isEqualToString:@"0"]) {
                 
-                [SVProgressHUD showSuccessWithStatus:@"下发成功"];
+                [SVProgressHUD showSuccessWithStatus:@"上报成功"];
                 [SVProgressHUD dismissWithDelay:0.3 completion:^{
                     [self.navigationController popViewControllerAnimated:YES];
                 }];
@@ -594,19 +602,18 @@
                 
                 mediaModel.imageListModel = imageModel;
                 [self.imageArray addObject:mediaModel];
-                
-                
             }
             
             mediaView.preShowMedias = self.imageArray;
         }
     }
     mediaView.allowMultipleSelection = NO;
-    mediaView.allowPickingVideo = YES;
+    mediaView.allowPickingVideo = NO;
     mediaView.rootViewController = self;
+    mediaView.maxImageSelected = 8;
     self.mediaView = mediaView;
     
-    ZLNewReportBottomView *bottomView = [[ZLNewReportBottomView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(mediaView.frame) + 50, Main_Screen_Width, 50 * kScreenHeightRatio) withTitles:@[@"保存",@"下发"]];
+    ZLNewReportBottomView *bottomView = [[ZLNewReportBottomView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(mediaView.frame) + 50, Main_Screen_Width, 50 * kScreenHeightRatio) withTitles:@[@"保存",@"上报"]];
     [bottomView.saveButton addTarget:self action:@selector(saveButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
     
     [bottomView.reportButton addTarget:self action:@selector(reportButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
@@ -617,7 +624,7 @@
         CGRect rect = headerView.frame;
         rect.size.height = CGRectGetMaxY(bottomView.frame);
         headerView.frame = rect;
-        
+//        _mainTableView.sectionFooterHeight = headerView.frame.size.height;
         [_mainTableView beginUpdates];
         [_mainTableView endUpdates];
     }];
@@ -632,13 +639,27 @@
     
     [headerView addSubview:bottomView];
     headerView.frame = CGRectMake(0, 0, Main_Screen_Width, CGRectGetMaxY(bottomView.frame));
-    //    _mainTableView.tableFooterView = headerView;
+    _mainTableView.tableFooterView = headerView;
     
-    _mainTableView.sectionFooterHeight = headerView.frame.size.height;
+//    _mainTableView.sectionFooterHeight = headerView.frame.size.height;
+//
+//    _mainTableView.contentInset =UIEdgeInsetsMake(-35,0,0,0);
+//
+//    _mainTableView.contentSize = CGSizeMake(Main_Screen_Width, 3* Main_Screen_Height);
     
-    return headerView;
+    
+    return nil;
     
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.0001f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.0001f;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -810,6 +831,9 @@
         _mainTableView.estimatedRowHeight = 100;
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
         _mainTableView.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
+        
+//        _mainTableView.contentInset = UIEdgeInsetsMake(-35, 0, 0, 0);
+        
     }
     return _mainTableView;
 }

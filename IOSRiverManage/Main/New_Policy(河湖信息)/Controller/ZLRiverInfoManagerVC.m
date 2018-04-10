@@ -59,14 +59,14 @@
     for (ZLFunctionListModel *funcModel in newLoginModel.data.functionList) {
         
 
-        if ([funcModel.functionName isEqualToString:@"五个清单"] && [funcModel.functionCode isEqualToString:@"100207"]) {
+        if ([funcModel.functionName isEqualToString:@"五个清单"] && [funcModel.functionCode isEqualToString:@"1207"]) {
             
             [nameArray addObject:funcModel.functionName];
             [vcArray addObject:fiveVC];
             
         }
         
-        if ([funcModel.functionName isEqualToString:@"两张表"] && [funcModel.functionCode isEqualToString:@"100208"]) {
+        if ([funcModel.functionName isEqualToString:@"两张表"] && [funcModel.functionCode isEqualToString:@"1208"]) {
             
             [nameArray addObject:funcModel.functionName];
             [vcArray addObject:twoTableVC];

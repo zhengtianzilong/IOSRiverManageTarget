@@ -190,7 +190,7 @@
     if ([reportObject isEqualToString:@""]) {
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"必须选择上报对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"请选择接收人对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         return;
     }
     

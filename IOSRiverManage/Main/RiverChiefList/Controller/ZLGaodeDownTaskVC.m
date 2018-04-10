@@ -63,6 +63,8 @@
 
 @property (nonatomic, strong) NSMutableArray *peopleNameArray;
 @property (nonatomic, strong) NSMutableArray *peopleNameTempArray;
+// 只存放人名字
+@property (nonatomic, strong) NSMutableArray *peopleRealNameArray;
 @property (nonatomic, strong) NSMutableArray *peopleModelArray;
 
 
@@ -96,7 +98,24 @@
             
             for (ZLGetEventUserListDataModel *dataModel in taskUserList.data) {
                 
-                [self.peopleNameArray addObject:dataModel.realName];
+                NSString *riverNames = @"";
+                NSString *areaName = @"";
+                if (dataModel.riverNames.length > 0) {
+                    
+                    riverNames = [NSString stringWithFormat:@"(%@)",dataModel.riverNames];
+                    
+                }
+                
+                if (dataModel.areaName.length > 0) {
+                    
+                    areaName = [NSString stringWithFormat:@"%@-",dataModel.areaName];
+                    
+                }
+                
+                NSString *peopleName = [NSString stringWithFormat:@"%@%@%@",areaName,dataModel.realName,riverNames];
+                
+                [self.peopleNameArray addObject:peopleName];
+
                 [self.peopleModelArray addObject:dataModel];
                 
             }
@@ -119,7 +138,7 @@
     self.peopleModelArray = [NSMutableArray array];
     self.peopleNameTempArray = [NSMutableArray array];
     self.departNameTempArray = [NSMutableArray array];
-    
+    self.peopleRealNameArray = [NSMutableArray array];
     self.taskDesc = @"";
     self.taskDepartString = @"";
     self.taskDepart = [NSMutableArray array];
@@ -367,6 +386,7 @@
         ZLLog(@"%ld",(long)index);
         
         [weakSelf.peopleNameTempArray removeAllObjects];
+        [weakSelf.peopleRealNameArray removeAllObjects];
         [weakSelf.peopleCode removeAllObjects];
         
         for (int i = 0; i < options.count; i++) {
@@ -378,12 +398,21 @@
             ZLGetEventUserListDataModel *model = weakSelf.peopleModelArray[index];
             
             [weakSelf.peopleCode addObject:model.userCode];
-            [weakSelf.peopleNameTempArray addObject:model.realName];
+            NSString *areaName = @"";
+            if (model.areaName.length > 0) {
+                
+                areaName = [NSString stringWithFormat:@"%@-",model.areaName];
+                
+            }
+            
+            NSString *peopleName = [NSString stringWithFormat:@"%@%@",areaName,model.realName];
+            [weakSelf.peopleNameTempArray addObject:peopleName];
+            [weakSelf.peopleRealNameArray addObject:model.realName];
         }
         
         textView.text = [weakSelf.peopleNameTempArray componentsJoinedByString:@","];
         
-        weakSelf.taskPeopleString = textView.text;
+        weakSelf.taskPeopleString = [weakSelf.peopleRealNameArray componentsJoinedByString:@","];
         weakSelf.peopleCodeString = [weakSelf.peopleCode componentsJoinedByString:@","];
         
     };
@@ -401,7 +430,7 @@
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"暂无部门对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"暂无部门数据" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return;
     }
@@ -451,7 +480,7 @@
     if ([self.taskDepartString isEqualToString:@""] && [self.taskPeopleString isEqualToString:@""]) {
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"必须选择接收部门或接收对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"请选择下发对象或部门" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return NO;
     }
@@ -623,7 +652,7 @@
         mediaView.showDelete = YES;
         mediaView.showAddButton = YES;
         mediaView.allowMultipleSelection = NO;
-        mediaView.allowPickingVideo = YES;
+        mediaView.allowPickingVideo = NO;
         mediaView.rootViewController = self;
         self.mediaView = mediaView;
         

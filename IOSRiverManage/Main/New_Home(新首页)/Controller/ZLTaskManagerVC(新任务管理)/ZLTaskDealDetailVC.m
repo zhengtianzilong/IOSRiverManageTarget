@@ -24,6 +24,8 @@
 
 @property (nonatomic, strong) NSString *taskDetailId;
 
+@property (nonatomic, strong) ZLTaskInfoDetailModel *detailModel;
+
 
 @end
 
@@ -40,7 +42,9 @@
         ZLTaskInfoDetailModel *detailModel = [[ZLTaskInfoDetailModel alloc]initWithString:request.responseString error:nil];
         
         if ([detailModel.code isEqualToString:@"0"]) {
-
+            
+            self.detailModel = detailModel;
+            
             [self.taskInfoList addObject:detailModel.data];
             [self.sourceArray addObject:self.taskInfoList];
         }
@@ -132,6 +136,8 @@
     ZLNewContiTaskDownVC *vc = [[ZLNewContiTaskDownVC alloc]init];
     
     vc.taskDetailId = self.taskDetailID;
+    
+    vc.riverCode = self.detailModel.data.riverCode;
     
     [self.navigationController pushViewController:vc animated:YES];
     

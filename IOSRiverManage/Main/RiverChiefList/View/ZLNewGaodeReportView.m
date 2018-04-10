@@ -144,7 +144,7 @@
         mediaView.showAddButton = YES;
         mediaView.preShowMedias = @[@"http://c.hiphotos.baidu.com/image/h%3D200/sign=ad1c53cd0355b31983f9857573ab8286/279759ee3d6d55fbb02469ea64224f4a21a4dd1f.jpg", @"http://img15.3lian.com/2015/h1/280/d/5.jpg"];
         mediaView.allowMultipleSelection = NO;
-        mediaView.allowPickingVideo = YES;
+        mediaView.allowPickingVideo = NO;
         mediaView.rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
         self.mediaView = mediaView;
         

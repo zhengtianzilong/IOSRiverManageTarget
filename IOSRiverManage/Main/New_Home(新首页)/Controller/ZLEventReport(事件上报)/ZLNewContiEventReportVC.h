@@ -16,5 +16,7 @@
 
 @property (nonatomic, strong) NSString *contiEventName;
 
+@property (nonatomic, strong) NSString *riverCode;
+
 
 @end

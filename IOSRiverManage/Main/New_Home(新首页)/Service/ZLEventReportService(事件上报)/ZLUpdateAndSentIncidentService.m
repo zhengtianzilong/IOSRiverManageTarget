@@ -85,6 +85,7 @@
 
 - (id)requestArgument{
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         _incidentCode , @"incidentCode",
                          _imgList , @"imgList",
                          _fileList, @"fileList",
                          _incidentName , @"incidentName",
@@ -95,11 +96,12 @@
                          _receiverPersonName , @"receiverPersonName",
                          _receiverPersonCode , @"receiverPersonCode",
                          _riverCode , @"riverCode",
+                         _positionDesc , @"positionDesc",
                          _patrolCode , @"patrolCode",
                          _longitude , @"longitude",
                          _latitude , @"latitude",
-                         _positionDesc , @"positionDesc",
-                         _incidentCode , @"incidentCode",
+                         
+                         
                          nil];
     return dic;
     

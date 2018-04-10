@@ -28,10 +28,27 @@
 @property (nonatomic, strong) NSMutableArray *stateNameArray;
 
 @property (nonatomic, strong) NSMutableArray *stateIdArray;
-
+@property (nonatomic, assign) BOOL isPush;
 @end
 
 @implementation ZLEventManagerCheckVC
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (_isPush) {
+        //push
+    }else{
+        //pop
+        [self getData];
+        
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    _isPush = NO;
+    
+}
 
 - (void)getData{
     ZLEventManagerCheckService *service = [[ZLEventManagerCheckService alloc]initWithpageSize:10 incidentName:self.incidentName createUserName:self.createUserName createBeginTime:self.createStartTime createEndTime:self.createEndTime appPageCreateTime:self.lastCreateTime updateBeginTime:_updateBeginTime updateEndTime:_updateEndTime userName:self.userName detailStatus:self.detailStatus];
@@ -69,7 +86,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
-    
+    _isPush = YES;
     self.createEndTime = @"";
     self.createStartTime = @"";
     self.incidentName = @"";

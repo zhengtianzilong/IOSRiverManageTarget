@@ -45,7 +45,7 @@
         make.left.equalTo(self.colorIndicator.mas_right).offset(5);
         make.centerY.equalTo(self.colorIndicator);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -80,7 +80,7 @@
         make.left.equalTo(self.peopleLabel);
         make.top.equalTo(self.peopleLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
     }];
     
     [self.time mas_makeConstraints:^(MASConstraintMaker *make) {

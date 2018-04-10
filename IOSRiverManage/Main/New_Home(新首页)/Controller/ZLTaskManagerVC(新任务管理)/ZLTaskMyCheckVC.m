@@ -36,10 +36,29 @@
 @property (nonatomic, strong) NSMutableArray *stateNameArray;
 
 @property (nonatomic, strong) NSMutableArray *stateIdArray;
+
+@property (nonatomic, assign) BOOL isPush;
+
 @end
 
 @implementation ZLTaskMyCheckVC
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (_isPush) {
+        //push
+    }else{
+        //pop
+        [self getData];
+        
+    }
+}
 
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    _isPush = NO;
+    
+}
 - (void)getData{
     ZLFindTaskListService *service = [[ZLFindTaskListService alloc]initWithpageSize:10 createTimeFormat:_lastCreateTime taskName:_taskName createName:_createName createStartTime:_createStartTime createEndTime:_createEndTime completeStartTime:_completeStartTime completeEndTime:_completeEndTime userName:_userName taskStatus:_taskStatus];
     
@@ -75,7 +94,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
-    
+    _isPush = YES;
     self.createEndTime = @"";
     self.createStartTime = @"";
     self.taskName = @"";

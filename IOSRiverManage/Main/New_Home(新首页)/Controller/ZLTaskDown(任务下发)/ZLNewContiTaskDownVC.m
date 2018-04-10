@@ -19,6 +19,7 @@
 #import "ZLGetDepartModel.h"
 #import "ZLGetEventUserListModel.h"
 #import "ZLAlertSelectionView.h"
+#import "ZLGetUserListByTaskNormalService.h"
 @interface ZLNewContiTaskDownVC ()<UITableViewDelegate, UITableViewDataSource>
 
 
@@ -58,7 +59,10 @@
 @property (nonatomic, strong) NSMutableArray *departModelArray;
 
 @property (nonatomic, strong) NSMutableArray *peopleNameArray;
+// 存放的是区域-人
 @property (nonatomic, strong) NSMutableArray *peopleNameTempArray;
+// 只存放人名字
+@property (nonatomic, strong) NSMutableArray *peopleRealNameArray;
 @property (nonatomic, strong) NSMutableArray *peopleModelArray;
 
 
@@ -71,6 +75,40 @@
 
 @implementation ZLNewContiTaskDownVC
 
+- (void)getNormalUserList {
+    NSString *users = [self.store getStringById:DBTaskPeopleListRivers fromTable:DBUserTable];
+    
+    ZLGetEventUserListModel *taskUserListModel = [[ZLGetEventUserListModel alloc]initWithString:users error:nil];
+    if (taskUserListModel.data.count > 0) {
+        
+        for (ZLGetEventUserListDataModel *dataModel in taskUserListModel.data ) {
+            
+            NSString *riverNames = @"";
+            NSString *areaName = @"";
+            if (dataModel.riverNames.length > 0) {
+                
+                riverNames = [NSString stringWithFormat:@"(%@)",dataModel.riverNames];
+                
+            }
+            
+            if (dataModel.areaName.length > 0) {
+                
+                areaName = [NSString stringWithFormat:@"%@-",dataModel.areaName];
+                
+            }
+            
+            NSString *peopleName = [NSString stringWithFormat:@"%@%@%@",areaName,dataModel.realName,riverNames];
+            
+            [self.peopleNameArray addObject:peopleName];
+            
+            
+            [self.peopleModelArray addObject:dataModel];
+            
+        }
+        
+    }
+}
+
 /**
  得到数据
  */
@@ -81,6 +119,8 @@
     self.peopleNameArray = [NSMutableArray array];
     self.peopleModelArray = [NSMutableArray array];
     self.peopleNameTempArray = [NSMutableArray array];
+    self.peopleRealNameArray = [NSMutableArray array];
+    
     self.departNameTempArray = [NSMutableArray array];
     
     self.taskDesc = @"";
@@ -103,9 +143,7 @@
     
     ZLGetDepartModel *departsModel = [[ZLGetDepartModel alloc]initWithString:departs error:nil];
     
-    NSString *users = [self.store getStringById:DBTaskPeopleListRivers fromTable:DBUserTable];
-    
-    ZLGetEventUserListModel *taskUserListModel = [[ZLGetEventUserListModel alloc]initWithString:users error:nil];
+
     
     if (departsModel.data.count > 0) {
         
@@ -119,18 +157,56 @@
         
     }
     
-    if (taskUserListModel.data.count > 0) {
+    if (_riverCode.length > 0) {
         
-        for (ZLGetEventUserListDataModel *dataModel in taskUserListModel.data ) {
+        [self getuserListData];
+        
+    }else{
+        
+        [self getNormalUserList];
+    }
+}
+- (void)getuserListData{
+    
+    self.peopleModelArray = [NSMutableArray array];
+    self.peopleNameArray = [NSMutableArray array];
+    
+    ZLGetUserListByTaskNormalService *service = [[ZLGetUserListByTaskNormalService alloc]initWithriverCode:_riverCode];
+    
+    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+        ZLGetEventUserListModel *taskUserList = [[ZLGetEventUserListModel alloc]initWithString:request.responseString error:nil];
+        
+        if ([taskUserList.code isEqualToString:@"0"]) {
             
-            [self.peopleNameArray addObject:dataModel.realName];
-            
-            [self.peopleModelArray addObject:dataModel];
-            
+            for (ZLGetEventUserListDataModel *dataModel in taskUserList.data) {
+                
+                NSString *riverNames = @"";
+                NSString *areaName = @"";
+                if (dataModel.riverNames.length > 0) {
+                    
+                    riverNames = [NSString stringWithFormat:@"(%@)",dataModel.riverNames];
+                    
+                }
+                
+                if (dataModel.areaName.length > 0) {
+                    
+                    areaName = [NSString stringWithFormat:@"%@-",dataModel.areaName];
+                    
+                }
+                
+                NSString *peopleName = [NSString stringWithFormat:@"%@%@%@",areaName,dataModel.realName,riverNames];
+                
+                [self.peopleNameArray addObject:peopleName];
+                
+                [self.peopleModelArray addObject:dataModel];
+                
+            }
         }
         
-    }
-    
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+        
+    }];
 }
 
 
@@ -282,7 +358,7 @@
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"暂无接收对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"暂无下发对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return;
     }
@@ -295,6 +371,8 @@
         ZLLog(@"%ld",(long)index);
         
         [weakSelf.peopleNameTempArray removeAllObjects];
+        [weakSelf.peopleRealNameArray removeAllObjects];
+        
         [weakSelf.peopleCode removeAllObjects];
         
         for (int i = 0; i < options.count; i++) {
@@ -306,12 +384,22 @@
             ZLGetEventUserListDataModel *model = weakSelf.peopleModelArray[index];
             
             [weakSelf.peopleCode addObject:model.userCode];
-            [weakSelf.peopleNameTempArray addObject:model.realName];
+            NSString *areaName = @"";
+            if (model.areaName.length > 0) {
+                
+                areaName = [NSString stringWithFormat:@"%@-",model.areaName];
+                
+            }
+            
+            NSString *peopleName = [NSString stringWithFormat:@"%@%@",areaName,model.realName];
+            [weakSelf.peopleNameTempArray addObject:peopleName];
+            [weakSelf.peopleRealNameArray addObject:model.realName];
+            
         }
         
         textView.text = [weakSelf.peopleNameTempArray componentsJoinedByString:@","];
         
-        weakSelf.taskPeopleString = textView.text;
+        weakSelf.taskPeopleString = [weakSelf.peopleRealNameArray componentsJoinedByString:@","];
         weakSelf.peopleCodeString = [weakSelf.peopleCode componentsJoinedByString:@","];
         
     };
@@ -329,7 +417,7 @@
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"暂无部门对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"暂无部门数据" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return;
     }
@@ -379,7 +467,7 @@
     if ([self.taskDepartString isEqualToString:@""] && [self.taskPeopleString isEqualToString:@""]) {
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"必须选择接收部门或接收对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"请选择下发对象或部门" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return NO;
     }
@@ -540,7 +628,7 @@
         
 
         mediaView.allowMultipleSelection = NO;
-        mediaView.allowPickingVideo = YES;
+        mediaView.allowPickingVideo = NO;
         mediaView.rootViewController = self;
         self.mediaView = mediaView;
         
@@ -562,7 +650,7 @@
             CGRect rect = headerView.frame;
             rect.size.height = CGRectGetMaxY(bottomView.frame);
             headerView.frame = rect;
-            
+            _mainTableView.sectionFooterHeight = headerView.frame.size.height;
             [_mainTableView beginUpdates];
             [_mainTableView endUpdates];
         }];

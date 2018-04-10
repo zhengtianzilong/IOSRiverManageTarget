@@ -218,7 +218,7 @@
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"暂无上报对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"暂无接收人" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
     }
 }

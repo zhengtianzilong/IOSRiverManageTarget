@@ -81,7 +81,24 @@
             
             for (ZLGetEventUserListDataModel *dataModel in taskUserList.data) {
                 
-                [self.peopleNameArray addObject:dataModel.realName];
+                NSString *riverNames = @"";
+                NSString *areaName = @"";
+                if (dataModel.riverNames.length > 0) {
+                    
+                    riverNames = [NSString stringWithFormat:@"(%@)",dataModel.riverNames];
+                    
+                }
+                
+                if (dataModel.areaName.length > 0) {
+                    
+                    areaName = [NSString stringWithFormat:@"%@-",dataModel.areaName];
+                    
+                }
+                
+                NSString *peopleName = [NSString stringWithFormat:@"%@%@%@",areaName,dataModel.realName,riverNames];
+                
+                [self.peopleNameArray addObject:peopleName];
+
                 [self.peopleModelArray addObject:dataModel];
                 
             }
@@ -296,7 +313,7 @@
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"暂无接收人对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"暂无接收人" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return;
     }
@@ -310,13 +327,13 @@
         textView.text = self.peopleNameArray[index];
         
         ZLReportPeopleTableViewCell *cell = tableView.visibleCells[2];
-        
+        ZLGetEventUserListDataModel *model = self.peopleModelArray[index];
         cell.infoTextView.text = @"";
         
-        self.eventPeople = textView.text;
+        self.eventPeople = model.realName;
         self.eventDepart = @"";
         
-        ZLGetEventUserListDataModel *model = self.peopleModelArray[index];
+        
         
         self.departCode = @"";
         self.peopleCode = model.userCode;
@@ -339,7 +356,7 @@
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"暂无部门对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"暂无部门数据" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return;
     }
@@ -408,7 +425,7 @@
     if ([self.eventDepart isEqualToString:@""] && [self.eventPeople isEqualToString:@""]) {
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"必须选择接收部门或接收对象" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"请选择接收人或接收部门" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return NO;
     }
@@ -548,7 +565,7 @@
         mediaView.showDelete = YES;
         mediaView.showAddButton = YES;
         mediaView.allowMultipleSelection = NO;
-        mediaView.allowPickingVideo = YES;
+        mediaView.allowPickingVideo = NO;
         mediaView.rootViewController = self;
         self.mediaView = mediaView;
         

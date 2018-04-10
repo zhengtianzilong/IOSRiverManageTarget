@@ -127,7 +127,7 @@
     vc.incidentid = self.dataModel.ID;
     vc.riverIncidentDetailId = _detailID;
     vc.contiEventName = self.dataModel.incidentName;
-    
+    vc.riverCode = self.dataModel.riverCode;
     [self.navigationController pushViewController:vc animated:YES];
     
     

@@ -21,19 +21,29 @@
 @property (nonatomic, strong) NSString *lastCreateTime;
 
 @property (nonatomic, strong) NSMutableArray *sourceArray;
-
+@property (nonatomic, assign) BOOL isPush;
 @end
 
 @implementation ZLTaskWaitVC
 
-//- (void)viewWillAppear:(BOOL)animated{
-//
-//    [super viewWillAppear:animated];
-//
-//    [self.mainTableView.mj_header beginRefreshing];
-//
-//
-//}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (_isPush) {
+        //push
+    }else{
+        //pop
+        [self getData];
+        
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    _isPush = NO;
+    
+}
+
 
 - (void)getData{
     ZLFindMyToDoTaskListService *service = [[ZLFindMyToDoTaskListService alloc]initWithpageSize:10 createTimeFormat:_lastCreateTime taskName:_taskName createName:_createName createStartTime:_createStartTime createEndTime:_createEndTime];
@@ -77,7 +87,7 @@
     _sourceArray = [NSMutableArray array];
     
     _lastCreateTime = @"";
-    
+    _isPush = YES;
     [self getData];
     
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);

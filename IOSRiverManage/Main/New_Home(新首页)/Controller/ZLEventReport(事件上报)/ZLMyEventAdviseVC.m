@@ -165,7 +165,9 @@
                 }];
             }else{
                 [SVProgressHUD showErrorWithStatus:model.detail];
-                [SVProgressHUD dismissWithDelay:0.3];
+                [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
             }
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
             [SVProgressHUD showErrorWithStatus:@"网络错误"];
@@ -215,7 +217,7 @@
         mediaView.showDelete = YES;
         mediaView.showAddButton = YES;
         mediaView.allowMultipleSelection = NO;
-        mediaView.allowPickingVideo = YES;
+        mediaView.allowPickingVideo = NO;
         mediaView.rootViewController = self;
         self.mediaView = mediaView;
         
@@ -237,7 +239,7 @@
             CGRect rect = headerView.frame;
             rect.size.height = CGRectGetMaxY(bottomView.frame);
             headerView.frame = rect;
-            
+            _mainTableView.sectionFooterHeight = headerView.frame.size.height;
             [_mainTableView beginUpdates];
             [_mainTableView endUpdates];
         }];

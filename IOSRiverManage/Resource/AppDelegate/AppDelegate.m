@@ -13,9 +13,11 @@
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
 #import "ZLBadgeZeroService.h"
-#import <FLEX/FLEX.h>
+//#import <FLEX/FLEX.h>
 #import "XGPush.h"
-#import "ZLHomeWebViewViewController.h"
+//#import "ZLHomeWebViewViewController.h"
+
+#import "ZLNewLoginModel.h"
 
 #import "ZLLoginVC.h"
 
@@ -75,9 +77,9 @@
     [self.floatWindow makeKeyAndVisible];
     self.floatWindow.hidden = YES;
     
-    [self chinaMobile];
+//    [self chinaMobile];
     
-    [self configBaiDuSDK];
+//    [self configBaiDuSDK];
     // 配置信鸽
     [self xgConfigWithOptions:launchOptions];
     
@@ -94,11 +96,7 @@
     
     [self customizeTabbarItem];
     
-    [[FLEXManager sharedManager] showExplorer];
-    
-    
-    
-    
+//    [[FLEXManager sharedManager] showExplorer];
     
     return YES;
 }
@@ -284,17 +282,22 @@
     
     NSString *tokenCreateTime = [self.store getStringById:DBLoginTokenCreateTime fromTable:DBUserTable];
     
+    NSString *userModel = [self.store getStringById:DBLoginModel fromTable:DBUserTable];
+    
+    ZLNewLoginModel *loginModel = [[ZLNewLoginModel alloc]initWithString:userModel error:nil];
     
     ZLLoginVC *logInVc = [[ZLLoginVC alloc]init];
-    
+    CYLTabBarController *tabBarVC = nil;
+    if ([loginModel.data.version isEqualToString:@"1"]) {
+        ZLSimpleMainTapBarVCConfig *tabBarVCConfig = [[ZLSimpleMainTapBarVCConfig alloc]init];
+        tabBarVC = tabBarVCConfig.tabBarController;
+        
+    }else if([loginModel.data.version isEqualToString:@"2"]){
+        ZLMainTabBarControllerConfig *tabBarVCConfig = [[ZLMainTabBarControllerConfig alloc]init];
+        tabBarVC = tabBarVCConfig.tabBarController;
+    }
 //    ZLBaseNavViewController *loginNav = [[ZLBaseNavViewController alloc]initWithRootViewController:logInVc];
-    
-//    ZLMainTabBarControllerConfig *tabBarVCConfig = [[ZLMainTabBarControllerConfig alloc]init];
-    
-    ZLSimpleMainTapBarVCConfig *tabBarVCConfig = [[ZLSimpleMainTapBarVCConfig alloc]init];
-    
-    
-    CYLTabBarController *tabBarVC = tabBarVCConfig.tabBarController;
+
     tabBarVC.delegate = self;
     if (tokenCreateTime.length > 0) {
          NSInteger day = [self getDifferenceByDate:tokenCreateTime];

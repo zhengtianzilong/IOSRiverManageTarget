@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) NSString *taskDetailId;
 
+@property (nonatomic, strong) NSString *riverCode;
+
 @end

@@ -18,6 +18,9 @@
 #import "AppDelegate.h"
 #import "ZLHomeRiverRunningModel.h"
 #import "ZLNewUserRiversDataModel.h"
+#import "ZLHomeAddButtonMaskView.h"
+#import "ZLNewEventReportVC.h"
+#import "ZLNewTaskDownVC.h"
 @interface ZLSimpleHomeMainVC ()
 
 @property (nonatomic, strong) UIScrollView *mainScrollView;
@@ -31,6 +34,8 @@
 @property (nonatomic, strong) ZLNewLoginModel *loginModel;
 
 @property (nonatomic, assign) BOOL isHideRunningView;
+
+@property (nonatomic, strong) ZLHomeAddButtonMaskView *maskView;
 
 @end
 
@@ -235,6 +240,43 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)right_button_event:(UIButton *)sender{
+    
+    _maskView = [[ZLHomeAddButtonMaskView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Width, Main_Screen_Height)];
+    
+    _maskView.riverBtn.hidden = YES;
+    
+    [_maskView.eventReportBtn addTarget:self action:@selector(eventReportBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    [_maskView.taskDownBtn addTarget:self action:@selector(taskDownBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:_maskView];
+    
+    
+}
+
+// 事件上报
+- (void)eventReportBtnClick{
+    [_maskView dismissView];
+    //    ZLEventReportViewController *vc = [[ZLEventReportViewController alloc]init];
+    
+    ZLNewEventReportVC *vc = [[ZLNewEventReportVC alloc]init];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+    
+}
+// 任务下发
+- (void)taskDownBtnClick{
+    [_maskView dismissView];
+    ZLNewTaskDownVC *vc = [[ZLNewTaskDownVC alloc]init];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+
 - (ZLSimpleHomeView *)simpleHomeView{
     
     if (!_simpleHomeView) {
@@ -276,5 +318,17 @@
 - (UIButton *)set_leftButton{
     return  nil;
 }
+
+- (UIButton *)set_rightButton{
+    
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    
+    [button setImage:[UIImage imageNamed:@"home_right"] forState:(UIControlStateNormal)];
+    
+    return button;
+    
+    
+}
+
 
 @end

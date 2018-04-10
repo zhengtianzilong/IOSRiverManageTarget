@@ -76,7 +76,7 @@
     _showDelete = YES;
     _showAddButton = YES;
     _allowMultipleSelection = YES;
-    _maxImageSelected = 9;
+    _maxImageSelected = 8;
     _videoMaximumDuration = 60;
     _backgroundColor = [UIColor whiteColor];
     _rowImageCount = 4;

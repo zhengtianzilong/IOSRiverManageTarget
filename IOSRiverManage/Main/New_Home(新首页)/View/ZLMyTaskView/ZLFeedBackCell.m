@@ -137,7 +137,7 @@
         make.left.equalTo(self.contentView).offset(10);
         make.top.equalTo(self.lineView.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -155,7 +155,7 @@
         make.left.equalTo(self.originatorLabel);
         make.top.equalTo(self.originatorLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -173,7 +173,7 @@
         make.left.equalTo(self.originatorLabel);
         make.top.equalTo(self.timeLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+        make.width.mas_equalTo(75);
         
     }];
     

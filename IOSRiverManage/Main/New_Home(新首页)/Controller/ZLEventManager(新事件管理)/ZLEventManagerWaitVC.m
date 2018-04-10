@@ -24,10 +24,31 @@
 @property (nonatomic, strong) NSString *lastCreateTime;
 
 @property (nonatomic, strong) NSMutableArray *sourceArray;
-
+@property (nonatomic, assign) BOOL isPush;
 @end
 
 @implementation ZLEventManagerWaitVC
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (_isPush) {
+        //push
+    }else{
+        //pop
+        [self getData];
+        
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    _isPush = NO;
+    
+}
+
+
 - (void)getData{
     ZLEventManagerWaitService *service = [[ZLEventManagerWaitService alloc]initWithpageSize:10      incidentName:self.incidentName createUserName:self.createUserName createBeginTime:self.createStartTime createEndTime:self.createEndTime appPageCreateTime:self.lastCreateTime];
     
@@ -63,7 +84,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
-    
+    _isPush = YES;
     self.createEndTime = @"";
     self.createStartTime = @"";
     self.incidentName = @"";

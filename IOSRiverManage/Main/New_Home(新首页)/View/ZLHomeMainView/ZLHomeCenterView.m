@@ -7,12 +7,15 @@
 //
 
 #import "ZLHomeCenterView.h"
+#import "ZLNewLoginModel.h"
 @interface ZLHomeCenterView()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
 
 // cell数据
 @property (nonatomic, strong) NSMutableArray *itemArray;;
+
+@property (nonatomic, strong) YTKKeyValueStore *store;
 
 @end
 
@@ -67,7 +70,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 8;
+    return self.itemArray.count;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -113,8 +116,43 @@
 - (NSMutableArray *)itemArray{
     if (!_itemArray) {
         _itemArray = @[].mutableCopy;
-        NSArray *titleArray = @[@"事件管理", @"任务管理", @"巡河记录", @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"更多"];
-        NSArray *imageTitle = @[@"home_eventManager", @"home_taskManager", @"home_riverRecord", @"home_statistical", @"home_news", @"home_addressbook", @"home_ oversee",@"home_more"];
+        
+        self.store = [[YTKKeyValueStore alloc]initDBWithName:@"hzz.db"];
+        
+        NSString *tableName = DBUserTable;
+        
+        [self.store createTableWithName:tableName];
+        NSString *userModel = [self.store getStringById:DBLoginModel fromTable:DBUserTable];
+        
+        ZLNewLoginModel *newLoginModel = [[ZLNewLoginModel alloc]initWithString:userModel error:nil];
+        
+        NSArray *titleArray = nil;
+        NSArray *imageTitle = nil;
+        
+        
+        if (newLoginModel.data.areaCode.length >= 4) {
+            
+            NSString *subString = [newLoginModel.data.areaCode substringWithRange:NSMakeRange(0, 4)];
+            
+            if ([subString isEqualToString:@"3211"]) {
+                
+                titleArray = @[@"事件管理", @"任务管理", @"巡河记录", @"综合统计", @"新闻公告", @"通讯录",@"更多"];
+                imageTitle = @[@"home_eventManager", @"home_taskManager", @"home_riverRecord", @"home_statistical", @"home_news", @"home_addressbook",@"home_more"];
+                
+            }else{
+                titleArray = @[@"事件管理", @"任务管理", @"巡河记录", @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"更多"];
+                imageTitle = @[@"home_eventManager", @"home_taskManager", @"home_riverRecord", @"home_statistical", @"home_news", @"home_addressbook", @"home_ oversee",@"home_more"];
+            }
+            
+            
+        }else{
+            titleArray = @[@"事件管理", @"任务管理", @"巡河记录", @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"更多"];
+            imageTitle = @[@"home_eventManager", @"home_taskManager", @"home_riverRecord", @"home_statistical", @"home_news", @"home_addressbook", @"home_ oversee",@"home_more"];
+        }
+        
+        
+        
+        
         for (NSInteger i = 0; i < titleArray.count; i++)
         {
             ZLHomeCenterCollectionModel *model = [ZLHomeCenterCollectionModel new];

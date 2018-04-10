@@ -25,10 +25,31 @@
 
 @property (nonatomic, strong) NSMutableArray *sourceArray;
 
+@property (nonatomic, assign) BOOL isPush;
 
 @end
 
 @implementation ZLTaskMyDownVC
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (_isPush) {
+        //push
+    }else{
+        //pop
+        [self getData];
+        
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    _isPush = NO;
+    
+}
+
+
 
 - (void)getData{
     ZLFindMyCreatedTaskListService *service = [[ZLFindMyCreatedTaskListService alloc]initWithpageSize:10 createTimeFormat:_lastCreateTime taskName:self.taskName createStartTime:self.createStartTime createEndTime:self.createEndTime];
@@ -64,7 +85,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
-    
+    _isPush = YES;
     self.createEndTime = @"";
     self.createStartTime = @"";
     self.taskName = @"";

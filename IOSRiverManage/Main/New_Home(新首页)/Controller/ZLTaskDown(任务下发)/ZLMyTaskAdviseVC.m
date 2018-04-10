@@ -216,7 +216,7 @@
         mediaView.showDelete = YES;
         mediaView.showAddButton = YES;
         mediaView.allowMultipleSelection = NO;
-        mediaView.allowPickingVideo = YES;
+        mediaView.allowPickingVideo = NO;
         mediaView.rootViewController = self;
         self.mediaView = mediaView;
         
@@ -239,7 +239,7 @@
             CGRect rect = headerView.frame;
             rect.size.height = CGRectGetMaxY(bottomView.frame);
             headerView.frame = rect;
-            
+            _mainTableView.sectionFooterHeight = headerView.frame.size.height;
             [_mainTableView beginUpdates];
             [_mainTableView endUpdates];
         }];
