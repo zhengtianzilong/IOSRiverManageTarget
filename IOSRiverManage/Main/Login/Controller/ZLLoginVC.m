@@ -107,32 +107,26 @@
             
             [[NSUserDefaults standardUserDefaults] synchronize];
             
-            //             ZLNewAreaService *areaService = [[ZLNewAreaService alloc]init];
-            //
-            //            [chainRequest addRequest:areaService callback:nil];
-            
             ZLNewGetUserRiversService *getUserRiversService = [[ZLNewGetUserRiversService alloc]init];
-            
+
             [chainRequest addRequest:getUserRiversService callback:nil];
-            
-            ZLGetUserListByIncidentService *getUserListService = [[ZLGetUserListByIncidentService alloc]initWithriverCode:@""];
-            [chainRequest addRequest:getUserListService callback:nil];
-            
-            ZLGetDepartmentListByIncidentService *getDepartListService = [[ZLGetDepartmentListByIncidentService alloc]init];
-            [chainRequest addRequest:getDepartListService callback:nil];
-            
-            ZLGetUserListByTaskNormalService *getTaskNormalService = [[ZLGetUserListByTaskNormalService alloc]initWithriverCode:nil];
-            [chainRequest addRequest:getTaskNormalService callback:nil];
-            
-            ZLGetDepartmentListByTaskService *getDepartListTaskService = [[ZLGetDepartmentListByTaskService alloc]init];
-            [chainRequest addRequest:getDepartListTaskService callback:nil];
-            
+//
+//            ZLGetUserListByIncidentService *getUserListService = [[ZLGetUserListByIncidentService alloc]initWithriverCode:@""];
+//            [chainRequest addRequest:getUserListService callback:nil];
+//
+//            ZLGetDepartmentListByIncidentService *getDepartListService = [[ZLGetDepartmentListByIncidentService alloc]init];
+//            [chainRequest addRequest:getDepartListService callback:nil];
+//
+//            ZLGetUserListByTaskNormalService *getTaskNormalService = [[ZLGetUserListByTaskNormalService alloc]initWithriverCode:nil];
+//            [chainRequest addRequest:getTaskNormalService callback:nil];
+//
+//            ZLGetDepartmentListByTaskService *getDepartListTaskService = [[ZLGetDepartmentListByTaskService alloc]init];
+//            [chainRequest addRequest:getDepartListTaskService callback:nil];
+//
         }else{
             [SVProgressHUD showErrorWithStatus:model.detail];
             [SVProgressHUD dismissWithDelay:0.3];
         }
-        
-        //               {"code":0,"detail":"成功","data":{"areaCode":"32","userName":"admin","userId":"10000","token":"6605b805-4efc-45b6-ae7e-26271c963fe0"}}
         
     }];
     
@@ -176,84 +170,57 @@
     ZLNewLoginModel *model = [[ZLNewLoginModel alloc]initWithString:request.responseString error:nil];
     
     if ([model.code isEqualToString:@"0"]) {
-        
-        //        ZLNewAreaService *getObject = (ZLNewAreaService *)chainRequest.requestArray[1];
-        //
-        //        NSString *getObjectDic = getObject.responseString;
-        //
-        //        ZLNewAreaModel *areaModel = [[ZLNewAreaModel alloc]initWithString:getObjectDic error:nil];
-        
-        
         ZLNewGetUserRiversService *getUserRivers = (ZLNewGetUserRiversService *)chainRequest.requestArray[1];
         NSString *getUserString = getUserRivers.responseString;
         ZLNewUserRiversModel *riversModel = [[ZLNewUserRiversModel alloc]initWithString:getUserString error:nil];
-        
+
         [self.store putString:getUserString withId:DBUserRivers intoTable:DBUserTable];
-        //        ZLLog(@"%@",areaModel);
-        
-        
-        //        if (![areaModel.code isEqualToString:@"0"]) {
-        
-        //            [SVProgressHUD showErrorWithStatus:@"登录失败"];
-        //            [SVProgressHUD dismissWithDelay:0.3];
-        
-        //        }else{
         
         [self.store putString:request.responseString withId:DBLoginModel intoTable:DBUserTable];
         [self.store putString:[ZLUtility getDateByTimestamp:[ZLUtility getNowTimestampSec] type:4] withId:DBLoginTokenCreateTime intoTable:DBUserTable];
-        
-        ZLGetUserListByIncidentService *getUserList = (ZLGetUserListByIncidentService *)chainRequest.requestArray[2];
-        
-        ZLGetEventUserListModel *eventUserList = [[ZLGetEventUserListModel alloc]initWithString:getUserList.responseString error:nil];
-        
-        if ([eventUserList.code isEqualToString:@"0"]) {
-            
-           [self.store putString:getUserList.responseString withId:DBEventPeopleListRivers intoTable:DBUserTable];
-            
-        }
-        
-        ZLGetDepartmentListByIncidentService *getDepartList = (ZLGetDepartmentListByIncidentService *)chainRequest.requestArray[3];
-        
-        ZLGetDepartModel *departModel = [[ZLGetDepartModel alloc]initWithString:getDepartList.responseString error:nil];
-        
-        if ([departModel.code isEqualToString:@"0"]) {
-            [self.store putString:getDepartList.responseString withId:DBEventDepartListRivers intoTable:DBUserTable];
-        }
-        
-        ZLGetUserListByTaskNormalService *getTaskUsersList = (ZLGetUserListByTaskNormalService *)chainRequest.requestArray[4];
-        
-        ZLGetEventUserListModel *taskUserList = [[ZLGetEventUserListModel alloc]initWithString:getTaskUsersList.responseString error:nil];
-        
-        if ([taskUserList.code isEqualToString:@"0"]) {
-            
-            [self.store putString:getTaskUsersList.responseString withId:DBTaskPeopleListRivers intoTable:DBUserTable];
-            
-        }
-
-        ZLGetDepartmentListByTaskService *getDepartTaskList = (ZLGetDepartmentListByTaskService *)chainRequest.requestArray[5];
-        
-        ZLGetDepartModel *taskDepartModel = [[ZLGetDepartModel alloc]initWithString:getDepartTaskList.responseString error:nil];
-        
-        if ([taskDepartModel.code isEqualToString:@"0"]) {
-            [self.store putString:getDepartTaskList.responseString withId:DBTaskDepartListRivers intoTable:DBUserTable];
-        }
+//
+//        ZLGetUserListByIncidentService *getUserList = (ZLGetUserListByIncidentService *)chainRequest.requestArray[2];
+//
+//        ZLGetEventUserListModel *eventUserList = [[ZLGetEventUserListModel alloc]initWithString:getUserList.responseString error:nil];
+//
+//        if ([eventUserList.code isEqualToString:@"0"]) {
+//
+//           [self.store putString:getUserList.responseString withId:DBEventPeopleListRivers intoTable:DBUserTable];
+//
+//        }
+//
+//        ZLGetDepartmentListByIncidentService *getDepartList = (ZLGetDepartmentListByIncidentService *)chainRequest.requestArray[3];
+//
+//        ZLGetDepartModel *departModel = [[ZLGetDepartModel alloc]initWithString:getDepartList.responseString error:nil];
+//
+//        if ([departModel.code isEqualToString:@"0"]) {
+//            [self.store putString:getDepartList.responseString withId:DBEventDepartListRivers intoTable:DBUserTable];
+//        }
+//
+//        ZLGetUserListByTaskNormalService *getTaskUsersList = (ZLGetUserListByTaskNormalService *)chainRequest.requestArray[4];
+//
+//        ZLGetEventUserListModel *taskUserList = [[ZLGetEventUserListModel alloc]initWithString:getTaskUsersList.responseString error:nil];
+//
+//        if ([taskUserList.code isEqualToString:@"0"]) {
+//            [self.store putString:getTaskUsersList.responseString withId:DBTaskPeopleListRivers intoTable:DBUserTable];
+//        }
+//
+//        ZLGetDepartmentListByTaskService *getDepartTaskList = (ZLGetDepartmentListByTaskService *)chainRequest.requestArray[5];
+//
+//        ZLGetDepartModel *taskDepartModel = [[ZLGetDepartModel alloc]initWithString:getDepartTaskList.responseString error:nil];
+//
+//        if ([taskDepartModel.code isEqualToString:@"0"]) {
+//            [self.store putString:getDepartTaskList.responseString withId:DBTaskDepartListRivers intoTable:DBUserTable];
+//        }
         
         [SVProgressHUD showSuccessWithStatus:@"登录成功"];
         [SVProgressHUD dismissWithDelay:0.3];
-        
-        
         [self goToMainControllerWithVersion:model.data.version];
-        
-        
-        
-        //        }
     }else{
         [SVProgressHUD showErrorWithStatus:model.detail];
         [SVProgressHUD dismissWithDelay:0.3];
     }
 }
-
-
 
 - (void)chainRequestFailed:(YTKChainRequest *)chainRequest failedBaseRequest:(YTKBaseRequest *)request{
     

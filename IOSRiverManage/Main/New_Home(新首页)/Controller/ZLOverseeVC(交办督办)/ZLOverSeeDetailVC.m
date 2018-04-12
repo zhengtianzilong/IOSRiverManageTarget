@@ -108,37 +108,43 @@
     
     cell.detailModel = dataModel;
     
-    if ([self.status isEqualToString:@"1"] && [dataModel.assignStatus isEqualToString:@"1"]) {
+    if (self.status) {
         
-        cell.state.text = @"超时";
+        cell.state.text = self.status;
         
-    }else{
-        if ([dataModel.assignStatus isEqualToString:@"2"]) {
-            
-            cell.state.text = @"已反馈";
-            
-        }
-        if ([dataModel.assignStatus isEqualToString:@"9"]) {
-            
-            cell.state.text = @"完成";
-            
-        }
-        if ([dataModel.assignStatus isEqualToString:@"3"]) {
-            
-            cell.state.text = @"督办中";
-            
-        }
-        if ([dataModel.assignStatus isEqualToString:@"0"]) {
-            
-            cell.state.text = @"未交办";
-            
-        }
-        if ([dataModel.assignStatus isEqualToString:@"1"]) {
-            
-            cell.state.text = @"交办中";
-            
-        }
     }
+    
+//    if ([self.status isEqualToString:@"1"] && [dataModel.assignStatus isEqualToString:@"1"]) {
+//
+//        cell.state.text = @"超时";
+//
+//    }else{
+//        if ([dataModel.assignStatus isEqualToString:@"2"]) {
+//
+//            cell.state.text = @"已反馈";
+//
+//        }
+//        if ([dataModel.assignStatus isEqualToString:@"9"]) {
+//
+//            cell.state.text = @"完成";
+//
+//        }
+//        if ([dataModel.assignStatus isEqualToString:@"3"]) {
+//
+//            cell.state.text = @"督办中";
+//
+//        }
+//        if ([dataModel.assignStatus isEqualToString:@"0"]) {
+//
+//            cell.state.text = @"未交办";
+//
+//        }
+//        if ([dataModel.assignStatus isEqualToString:@"1"]) {
+//
+//            cell.state.text = @"交办中";
+//
+//        }
+//    }
     
     
     

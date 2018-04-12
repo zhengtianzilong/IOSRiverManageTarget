@@ -273,7 +273,6 @@ typedef NS_ENUM(SInt32, VwtGroupType) {
 
 
 @interface VwtUserInfo : NSObject
-
 @property (nonatomic, copy) NSString* appId;
 @property (nonatomic, copy) NSString* appSecret;
 @property (nonatomic, copy) NSString* userId;

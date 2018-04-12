@@ -15,7 +15,7 @@
 }
 
 - (NSTimeInterval)requestTimeoutInterval{
-    return 5;
+    return 15;
 }
 
 -(void)getTime{

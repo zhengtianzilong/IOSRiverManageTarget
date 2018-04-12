@@ -122,7 +122,19 @@
         _searchController.dimsBackgroundDuringPresentation = NO;
         _searchController.hidesNavigationBarDuringPresentation = YES;
         _searchController.searchBar.placeholder = @"姓名";
-        _searchController.searchBar.backgroundColor = [UIColor redColor];
+        _searchController.searchBar.barTintColor = HEXCOLOR(CVIEW_GRAY_COLOR);
+        _searchController.searchBar.tintColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
+        
+        UITextField *searchField = [_searchController.searchBar valueForKey:@"searchField"];
+        if (searchField) {
+            [searchField setBackgroundColor:[UIColor whiteColor]];
+            searchField.layer.cornerRadius = 8.0f;
+            searchField.layer.borderColor = HEXCOLOR(CNAVGATIONBAR_COLOR).CGColor;
+            searchField.layer.borderWidth = 1;
+            searchField.layer.masksToBounds = YES;
+        }
+        
+        
 //        _searchController.definesPresentationContext = YES;
         self.definesPresentationContext = YES;
         [_searchController.searchBar sizeToFit];

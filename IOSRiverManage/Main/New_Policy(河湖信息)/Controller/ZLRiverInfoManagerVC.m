@@ -59,26 +59,20 @@
     for (ZLFunctionListModel *funcModel in newLoginModel.data.functionList) {
         
 
-        if ([funcModel.functionName isEqualToString:@"五个清单"] && [funcModel.functionCode isEqualToString:@"1207"]) {
+        if ( [funcModel.functionCode isEqualToString:@"1207"]) {
             
             [nameArray addObject:funcModel.functionName];
             [vcArray addObject:fiveVC];
             
         }
         
-        if ([funcModel.functionName isEqualToString:@"两张表"] && [funcModel.functionCode isEqualToString:@"1208"]) {
+        if ([funcModel.functionCode isEqualToString:@"1208"]) {
             
             [nameArray addObject:funcModel.functionName];
             [vcArray addObject:twoTableVC];
             
         }
-        
-        if ([funcModel.functionName isEqualToString:@"两张图"]) {
-            
-            [nameArray addObject:funcModel.functionName];
-            [vcArray addObject:twoPictureVC];
-            
-        }
+    
         
     }
     

@@ -13,6 +13,9 @@
 #import "ZLMySetupVC.h"
 #import "ZLLeftAboutViewController.h"
 #import "ZLNewLoginModel.h"
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
+
 @interface ZLMyVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) ZLMyHeadView *headView;
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -43,7 +46,7 @@
     
     self.headView.nameLabel.text = newLoginModel.data.userName;
     self.headView.identityLabel.text = newLoginModel.data.duty;
-    self.contentArr = @[@{@"content":@"常见问题",@"image":@"my_question"},@{@"content":@"关于系统",@"image":@"my_about"},@{@"content":@"系统设置",@"image":@"my_set"}];
+    self.contentArr = @[@{@"content":@"常见问题",@"image":@"my_question"},@{@"content":@"关于系统",@"image":@"my_about"},@{@"content":@"系统设置",@"image":@"my_set"},@{@"content":@"版本更新",@"image":@"my_set"}];
     
     [self.view addSubview:self.mainTableView];
     
@@ -127,9 +130,14 @@
         
         //        ZLMeSetupViewController *vc=[[ZLMeSetupViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if ([self.contentArr[indexPath.row][@"content"] isEqualToString:@"版本更新"]) {
         
+        [[PgyUpdateManager sharedPgyManager] checkUpdate];
         
     }
+    
     
 }
 

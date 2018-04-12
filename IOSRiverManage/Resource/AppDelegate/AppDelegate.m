@@ -39,22 +39,24 @@
 @implementation AppDelegate
 
 - (void)chinaMobile{
-    VwtUserInfo * vUserinfo = [[VwtUserInfo alloc] init] ;
+    
+    VwtUserInfo * vUserinfo = [[VwtUserInfo alloc] init];
     vUserinfo.appId = @"10000019";//注册时的appId;
     vUserinfo.appSecret = @"s8wBf22QXIOBeTFMzmyYJylGBtm80W7t1lqVt2MW8017Wes49clQtIevEcs9963a";//注册时的安全码;例如://@"IEb5QvSfabT2RImcu5DvFedkwJtfwp5HnWIgq3RI4Hq7CdkwIk5hrFwg6m579Aix" ;
-    vUserinfo.userId = @"123456";//用户 ID ;
+    vUserinfo.userId = @"1005625";//用户 ID ;
+
+    NSDictionary*dic =@{@"appId":@"10000019",@"appSecret":@"s8wBf22QXIOBeTFMzmyYJylGBtm80W7t1lqVt2MW8017Wes49clQtIevEcs9963a"};
+    
+    NSData *data =  [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
+    [[VwtIMLib sharedInstance] registerForRemoteNotificationsWithDeviceToken:data];
+    
     [[VwtIMLib sharedInstance] loginWithUserInfo:vUserinfo success:^(id value) {
         //登录成功
-        
         ZLLog(@"%@",value);
-        
     } error:^(VwtError * error) {
         //登录失败
-        
         ZLLog(@"%@",error);
-        
     }] ;
-    
     vUserinfo.receivedMessageBlock = ^(VwtIMMessage *message) {
         
         
@@ -77,11 +79,11 @@
     [self.floatWindow makeKeyAndVisible];
     self.floatWindow.hidden = YES;
     
-//    [self chinaMobile];
+    [self chinaMobile];
     
 //    [self configBaiDuSDK];
     // 配置信鸽
-    [self xgConfigWithOptions:launchOptions];
+//    [self xgConfigWithOptions:launchOptions];
     
     [self configPGYSDK];
     

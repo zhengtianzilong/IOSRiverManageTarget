@@ -156,6 +156,7 @@
         make.left.equalTo(self.eventLabel.mas_right);
         make.top.equalTo(self.eventLabel);
         make.height.mas_equalTo(20);
+        make.right.equalTo(self.contentView.mas_right).offset(-5);
         //        make.width.mas_equalTo(50);
         
     }];

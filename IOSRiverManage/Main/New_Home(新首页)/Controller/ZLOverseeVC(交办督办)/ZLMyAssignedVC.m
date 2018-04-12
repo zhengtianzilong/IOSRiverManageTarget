@@ -166,7 +166,9 @@
     ZLOverSeeDetailVC *vc = [[ZLOverSeeDetailVC alloc]init];
     vc.code = detailModel.ID;
     
-    vc.status = detailModel.isExpire;
+    ZLOverSeeTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    vc.status = cell.state;
     
     [self.navigationController pushViewController:vc animated:YES];
 }

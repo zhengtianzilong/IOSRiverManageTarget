@@ -41,6 +41,14 @@
 #import "ZLTaskDealDetailVC.h"
 #import "ZLMyventDealDetailVC.h"
 #import "ZLReceiveIncidentService.h"
+
+#import "ZLNewGetUserRiversService.h"
+#import "ZLGetUserListByIncidentService.h"
+#import "ZLGetDepartmentListByIncidentService.h"
+#import "ZLGetUserListByTaskNormalService.h"
+#import "ZLGetDepartmentListByTaskService.h"
+#import "ZLGetEventUserListModel.h"
+#import "ZLGetDepartModel.h"
 @interface ZLHomeMainVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) ZLHomeHeadView *headView;
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -173,17 +181,119 @@
     }];
 }
 
+- (void)getAllData{
+    ZLGetUserListByIncidentService *getUserListService = [[ZLGetUserListByIncidentService alloc]initWithriverCode:@""];
+    
+    ZLGetDepartmentListByIncidentService *getDepartListService = [[ZLGetDepartmentListByIncidentService alloc]init];
+    
+    ZLGetUserListByTaskNormalService *getTaskNormalService = [[ZLGetUserListByTaskNormalService alloc]initWithriverCode:nil];
+    
+    ZLGetDepartmentListByTaskService *getDepartListTaskService = [[ZLGetDepartmentListByTaskService alloc]init];
+    
+    YTKBatchRequest *batchRequest = [[YTKBatchRequest alloc]initWithRequestArray:@[getUserListService,getDepartListService,getTaskNormalService,getDepartListTaskService]];
+    
+    [batchRequest startWithCompletionBlockWithSuccess:^(YTKBatchRequest * _Nonnull batchRequest) {
+        
+        ZLGetUserListByIncidentService *getUserList = (ZLGetUserListByIncidentService *)batchRequest.requestArray[0];
+        
+        ZLGetEventUserListModel *eventUserList = [[ZLGetEventUserListModel alloc]initWithString:getUserList.responseString error:nil];
+        
+        if ([eventUserList.code isEqualToString:@"0"]) {
+            
+            [self.store putString:getUserList.responseString withId:DBEventPeopleListRivers intoTable:DBUserTable];
+            
+        }
+        
+        ZLGetDepartmentListByIncidentService *getDepartList = (ZLGetDepartmentListByIncidentService *)batchRequest.requestArray[1];
+        
+        ZLGetDepartModel *departModel = [[ZLGetDepartModel alloc]initWithString:getDepartList.responseString error:nil];
+        
+        if ([departModel.code isEqualToString:@"0"]) {
+            [self.store putString:getDepartList.responseString withId:DBEventDepartListRivers intoTable:DBUserTable];
+        }
+        ZLGetUserListByTaskNormalService *getTaskUsersList = (ZLGetUserListByTaskNormalService *)batchRequest.requestArray[2];
+        ZLGetEventUserListModel *taskUserList = [[ZLGetEventUserListModel alloc]initWithString:getTaskUsersList.responseString error:nil];
+        
+        if ([taskUserList.code isEqualToString:@"0"]) {
+            [self.store putString:getTaskUsersList.responseString withId:DBTaskPeopleListRivers intoTable:DBUserTable];
+        }
+        
+        ZLGetDepartmentListByTaskService *getDepartTaskList = (ZLGetDepartmentListByTaskService *)batchRequest.requestArray[3];
+        
+        ZLGetDepartModel *taskDepartModel = [[ZLGetDepartModel alloc]initWithString:getDepartTaskList.responseString error:nil];
+        
+        if ([taskDepartModel.code isEqualToString:@"0"]) {
+            [self.store putString:getDepartTaskList.responseString withId:DBTaskDepartListRivers intoTable:DBUserTable];
+        }
+        
+        
+    } failure:^(YTKBatchRequest * _Nonnull batchRequest) {
+        
+        ZLGetUserListByIncidentService *getUserList = (ZLGetUserListByIncidentService *)batchRequest.requestArray[0];
+        
+        if (getUserList.responseStatusCode == 200) {
+            ZLGetEventUserListModel *eventUserList = [[ZLGetEventUserListModel alloc]initWithString:getUserList.responseString error:nil];
+            
+            if ([eventUserList.code isEqualToString:@"0"]) {
+                
+                [self.store putString:getUserList.responseString withId:DBEventPeopleListRivers intoTable:DBUserTable];
+                
+            }
+        }
+        ZLGetDepartmentListByIncidentService *getDepartList = (ZLGetDepartmentListByIncidentService *)batchRequest.requestArray[1];
+        
+        if (getDepartList.responseStatusCode == 200) {
+            ZLGetDepartModel *departModel = [[ZLGetDepartModel alloc]initWithString:getDepartList.responseString error:nil];
+            
+            if ([departModel.code isEqualToString:@"0"]) {
+                [self.store putString:getDepartList.responseString withId:DBEventDepartListRivers intoTable:DBUserTable];
+            }
+        }
+        
+        
+       
+        ZLGetUserListByTaskNormalService *getTaskUsersList = (ZLGetUserListByTaskNormalService *)batchRequest.requestArray[2];
+        
+        if (getTaskUsersList.responseStatusCode == 200) {
+            ZLGetEventUserListModel *taskUserList = [[ZLGetEventUserListModel alloc]initWithString:getTaskUsersList.responseString error:nil];
+            
+            if ([taskUserList.code isEqualToString:@"0"]) {
+                [self.store putString:getTaskUsersList.responseString withId:DBTaskPeopleListRivers intoTable:DBUserTable];
+            }
+        
+        }
+        
+
+        ZLGetDepartmentListByTaskService *getDepartTaskList = (ZLGetDepartmentListByTaskService *)batchRequest.requestArray[3];
+        
+        if (getDepartTaskList.responseStatusCode == 200) {
+            ZLGetDepartModel *taskDepartModel = [[ZLGetDepartModel alloc]initWithString:getDepartTaskList.responseString error:nil];
+            
+            if ([taskDepartModel.code isEqualToString:@"0"]) {
+                [self.store putString:getDepartTaskList.responseString withId:DBTaskDepartListRivers intoTable:DBUserTable];
+            }
+        }
+        ZLLog(@"错误");
+        
+    }];
+    
+    
+}
+
+
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getRiversData];
     
+    [self getRiversData];
     self.automaticallyAdjustsScrollViewInsets = NO;
     _sourceArray = [NSMutableArray array];
     _lastCreateTime = @"";
     
     [self getData];
+    
+    [self getAllData];
     
     [self setUpUI];
     
