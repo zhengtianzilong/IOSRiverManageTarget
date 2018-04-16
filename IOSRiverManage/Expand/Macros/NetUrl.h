@@ -24,19 +24,18 @@
 // 图片查看地址
 // http://183.207.103.139:86/file/
 
-
 // 新闻查看地址 综合统计 五单两表
 // http://112.4.10.185:86
 
 // 测试 新闻
 // http://192.168.0.232:8086
 
-#define Base_URL @"http://183.207.103.139:86/api/"
+#define Base_URL @"http://112.4.10.185:86/api/"
 
 #define SERVER_NEWS_URL @"http://183.207.103.139:86"
 
 // 基础图片地址
-#define BaseImage_URL @"http://183.207.103.139:86/file/"
+#define BaseImage_URL @"http://112.4.10.185:86/file/"
 // 登录接口
 #define River_LoginUrl @"soa/mobile/login"
 // 登出接口

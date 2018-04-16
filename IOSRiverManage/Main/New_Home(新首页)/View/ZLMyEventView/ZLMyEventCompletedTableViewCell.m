@@ -171,7 +171,7 @@
     if (!_stateLable) {
         _stateLable = [[UILabel alloc]init];
         _stateLable.text = @"状态:";
-        _stateLable.font = CHINESE_SYSTEM(14);
+        _stateLable.font = Font(14);
     }
     return _stateLable;
 }
@@ -188,7 +188,7 @@
     if (!_completeLabel) {
         _completeLabel = [[UILabel alloc]init];
         _completeLabel.text = @"处理人:";
-        _completeLabel.font = CHINESE_SYSTEM(14);
+        _completeLabel.font = Font(14);
     }
     return _completeLabel;
 }
@@ -206,7 +206,7 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.text = @"时间:";
-        _timeLabel.font = CHINESE_SYSTEM(14);
+        _timeLabel.font = Font(14);
     }
     return _timeLabel;
 }
@@ -226,7 +226,7 @@
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
         _describeLabel.text = @"反馈:";
-        _describeLabel.font = CHINESE_SYSTEM(14);
+        _describeLabel.font = Font(14);
     }
     return _describeLabel;
 }

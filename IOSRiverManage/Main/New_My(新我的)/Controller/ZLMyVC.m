@@ -51,11 +51,6 @@
     [self.view addSubview:self.mainTableView];
     
     
-    
-}
-
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
     [self.headView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
         make.height.mas_equalTo(AdaptedHeight(190));
@@ -68,6 +63,14 @@
         make.width.mas_equalTo(Main_Screen_Width);
         make.top.equalTo(self.headView.mas_bottom);
     }];
+    
+    
+    
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+
     
 }
 
@@ -134,11 +137,27 @@
     
     if ([self.contentArr[indexPath.row][@"content"] isEqualToString:@"版本更新"]) {
         
-        [[PgyUpdateManager sharedPgyManager] checkUpdate];
+        [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(checkUpdateClick:)];
         
     }
     
     
+}
+
+- (void)checkUpdateClick:(NSDictionary *)dic{
+    
+    if (dic) {
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dic[@"downloadURL"]]];
+        [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
+        
+    }else{
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"当前已是最新版本" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+    }
 }
 
 - (UITableView *)mainTableView{

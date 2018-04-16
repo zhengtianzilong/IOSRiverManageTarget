@@ -25,7 +25,7 @@
 @implementation ZLPolicyCheckAllRiverVC
 
 - (void)getData{
-    ZLGetNowAreaRiverListService *service = [[ZLGetNowAreaRiverListService alloc]initWithpageSize:2 appPageCreateTime:_lastCreateTime];
+    ZLGetNowAreaRiverListService *service = [[ZLGetNowAreaRiverListService alloc]initWithpageSize:10 appPageCreateTime:_lastCreateTime];
     
     [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         
@@ -45,10 +45,9 @@
             
             [self.mainTableView reloadData];
             
-        }else{
-            [self.mainTableView.mj_header endRefreshing];
-            [self.mainTableView.mj_footer endRefreshing];
         }
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
         
         
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -88,16 +87,14 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     ZLLog(@"点击了搜索");
-    
     return YES;
-    
 }
 
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 50;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.riversModelArray.count;
@@ -147,6 +144,9 @@
             [self getData];
             
         }];
+        
+        _mainTableView.rowHeight = UITableViewAutomaticDimension;
+        _mainTableView.estimatedRowHeight = 450.0f;
         
         _mainTableView.tableFooterView = [UIView new];
         

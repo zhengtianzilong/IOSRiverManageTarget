@@ -54,7 +54,7 @@
         [self.photosArray addObject:photo];
         
         
-        [imageV sd_setImageWithURL:url];
+        [imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"event_placeImage"]];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
         
@@ -417,7 +417,7 @@
     if (!_eventLabel) {
         _eventLabel = [[UILabel alloc]init];
         _eventLabel.text = @"任务名称：";
-        _eventLabel.font = CHINESE_SYSTEM(14);
+        _eventLabel.font = Font(14);
     }
     return _eventLabel;
 }
@@ -434,7 +434,7 @@
     if (!_stateLable) {
         _stateLable = [[UILabel alloc]init];
         _stateLable.text = @"状态：";
-        _stateLable.font = CHINESE_SYSTEM(14);
+        _stateLable.font = Font(14);
     }
     return _stateLable;
 }
@@ -451,7 +451,7 @@
     if (!_originatorLabel) {
         _originatorLabel = [[UILabel alloc]init];
         _originatorLabel.text = @"创建人：";
-        _originatorLabel.font = CHINESE_SYSTEM(14);
+        _originatorLabel.font = Font(14);
     }
     return _originatorLabel;
 }
@@ -469,7 +469,7 @@
     if (!_receiveLabel) {
         _receiveLabel = [[UILabel alloc]init];
         _receiveLabel.text = @"接收人：";
-        _receiveLabel.font = CHINESE_SYSTEM(14);
+        _receiveLabel.font = Font(14);
     }
     return _receiveLabel;
 }
@@ -487,7 +487,7 @@
     if (!_departLabel) {
         _departLabel = [[UILabel alloc]init];
         _departLabel.text = @"接收部门：";
-        _departLabel.font = CHINESE_SYSTEM(14);
+        _departLabel.font = Font(14);
     }
     return _departLabel;
 }
@@ -506,7 +506,7 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.text = @"创建时间：";
-        _timeLabel.font = CHINESE_SYSTEM(14);
+        _timeLabel.font = Font(14);
     }
     return _timeLabel;
 }
@@ -526,7 +526,7 @@
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
         _describeLabel.text = @"内容：";
-        _describeLabel.font = CHINESE_SYSTEM(14);
+        _describeLabel.font = Font(14);
     }
     return _describeLabel;
 }
@@ -545,7 +545,7 @@
     if (!_attachmentLabel) {
         _attachmentLabel = [[UILabel alloc]init];
         _attachmentLabel.text = @"附件：";
-        _attachmentLabel.font = CHINESE_SYSTEM(14);
+        _attachmentLabel.font = Font(14);
         
     }
     return _attachmentLabel;

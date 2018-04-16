@@ -53,7 +53,7 @@
         make.left.equalTo(self.describeLabel);
         make.top.equalTo(self.describe.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -100,7 +100,7 @@
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
         _describeLabel.text = @"交办工作内容：";
-        _describeLabel.font = CHINESE_SYSTEM(14);
+        _describeLabel.font = Font(14);
     }
     return _describeLabel;
 }
@@ -120,7 +120,7 @@
     if (!_noteLabel) {
         _noteLabel = [[UILabel alloc]init];
         _noteLabel.text = @"备注：";
-        _noteLabel.font = CHINESE_SYSTEM(14);
+        _noteLabel.font = Font(14);
         
     }
     return _noteLabel;

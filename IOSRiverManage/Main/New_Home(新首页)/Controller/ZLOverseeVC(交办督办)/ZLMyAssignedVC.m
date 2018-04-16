@@ -168,7 +168,7 @@
     
     ZLOverSeeTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    vc.status = cell.state;
+    vc.status = cell.state.text;
     
     [self.navigationController pushViewController:vc animated:YES];
 }

@@ -57,7 +57,7 @@
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -66,7 +66,7 @@
         make.left.equalTo(self.stateLable.mas_right);
         make.top.equalTo(self.stateLable);
         make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(65);
+        //        make.width.mas_equalTo(75);
         
     }];
     
@@ -75,7 +75,7 @@
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.stateLable.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -84,7 +84,7 @@
         make.left.equalTo(self.countLabel.mas_right);
         make.top.equalTo(self.countLabel);
         make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(65);
+        //        make.width.mas_equalTo(75);
         
     }];
     
@@ -94,7 +94,7 @@
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.countLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
     }];
     
     [self.department mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -110,7 +110,7 @@
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.departmentLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -119,7 +119,7 @@
         make.left.equalTo(self.peopleLabel.mas_right);
         make.top.equalTo(self.peopleLabel);
         make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(65);
+        //        make.width.mas_equalTo(75);
         
     }];
     
@@ -129,7 +129,7 @@
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.peopleLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -138,7 +138,7 @@
         make.left.equalTo(self.assignedTimeLabel.mas_right);
         make.top.equalTo(self.assignedTimeLabel);
         make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(65);
+        //        make.width.mas_equalTo(75);
         
     }];
     
@@ -147,7 +147,7 @@
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.assignedTimeLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -156,7 +156,7 @@
         make.left.equalTo(self.completeTimeLabel.mas_right);
         make.top.equalTo(self.completeTimeLabel);
         make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(65);
+        //        make.width.mas_equalTo(75);
         
     }];
     
@@ -166,7 +166,7 @@
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.completeTimeLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -176,7 +176,7 @@
         make.right.equalTo(self.contentView.mas_right).offset(-10);
         make.top.equalTo(self.describeLabel).offset(0);
         //        make.height.mas_equalTo(80);
-        //        make.width.mas_equalTo(65);
+        //        make.width.mas_equalTo(75);
         
     }];
     
@@ -186,7 +186,7 @@
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.describe.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
         
     }];
     
@@ -196,7 +196,7 @@
         make.right.equalTo(self.contentView.mas_right).offset(-10);
         make.top.equalTo(self.noteLabel).offset(0);
         //        make.height.mas_equalTo(80);
-        //        make.width.mas_equalTo(65);
+        //        make.width.mas_equalTo(75);
         make.bottom.equalTo(self.contentView.mas_bottom);
     }];
     
@@ -288,7 +288,7 @@
     if (!_stateLable) {
         _stateLable = [[UILabel alloc]init];
         _stateLable.text = @"状态：";
-        _stateLable.font = CHINESE_SYSTEM(14);
+        _stateLable.font = Font(14);
     }
     return _stateLable;
 }
@@ -305,7 +305,7 @@
     if (!_countLabel) {
         _countLabel = [[UILabel alloc]init];
         _countLabel.text = @"编号：";
-        _countLabel.font = CHINESE_SYSTEM(14);
+        _countLabel.font = Font(14);
     }
     return _countLabel;
 }
@@ -323,7 +323,7 @@
     if (!_departmentLabel) {
         _departmentLabel = [[UILabel alloc]init];
         _departmentLabel.text = @"责任单位：";
-        _departmentLabel.font = CHINESE_SYSTEM(14);
+        _departmentLabel.font = Font(14);
     }
     return _departmentLabel;
 }
@@ -341,7 +341,7 @@
     if (!_peopleLabel) {
         _peopleLabel = [[UILabel alloc]init];
         _peopleLabel.text = @"责任人：";
-        _peopleLabel.font = CHINESE_SYSTEM(14);
+        _peopleLabel.font = Font(14);
     }
     return _peopleLabel;
 }
@@ -359,7 +359,7 @@
     if (!_assignedTimeLabel) {
         _assignedTimeLabel = [[UILabel alloc]init];
         _assignedTimeLabel.text = @"交办时间：";
-        _assignedTimeLabel.font = CHINESE_SYSTEM(14);
+        _assignedTimeLabel.font = Font(14);
     }
     return _assignedTimeLabel;
 }
@@ -377,7 +377,7 @@
     if (!_completeTimeLabel) {
         _completeTimeLabel = [[UILabel alloc]init];
         _completeTimeLabel.text = @"完成时限：";
-        _completeTimeLabel.font = CHINESE_SYSTEM(14);
+        _completeTimeLabel.font = Font(14);
     }
     return _completeTimeLabel;
 }
@@ -397,7 +397,7 @@
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
         _describeLabel.text = @"描述：";
-        _describeLabel.font = CHINESE_SYSTEM(14);
+        _describeLabel.font = Font(14);
     }
     return _describeLabel;
 }
@@ -417,7 +417,7 @@
     if (!_noteLabel) {
         _noteLabel = [[UILabel alloc]init];
         _noteLabel.text = @"备注：";
-        _noteLabel.font = CHINESE_SYSTEM(14);
+        _noteLabel.font = Font(14);
         
     }
     return _noteLabel;

@@ -233,7 +233,7 @@
     if (!_riverLabel) {
         _riverLabel = [[UILabel alloc]init];
         _riverLabel.text = @"巡河人：";
-        _riverLabel.font = CHINESE_SYSTEM(15);
+        _riverLabel.font = Font(15);
 //        _riverLabel.attributedText = [self setTextString:@"巡河人:"];
         
     }
@@ -254,7 +254,7 @@
     if (!_reportObjectLabel) {
         _reportObjectLabel = [[UILabel alloc]init];
         _reportObjectLabel.text = @"上报对象：";
-        _reportObjectLabel.font = CHINESE_SYSTEM(15);
+        _reportObjectLabel.font = Font(15);
     }
     return _reportObjectLabel;
     
@@ -273,7 +273,7 @@
     if (!_reportTimeLabel) {
         _reportTimeLabel = [[UILabel alloc]init];
         _reportTimeLabel.text = @"上报时间：";
-        _reportTimeLabel.font = CHINESE_SYSTEM(15);
+        _reportTimeLabel.font = Font(15);
     }
     return _reportTimeLabel;
     
@@ -292,7 +292,7 @@
     if (!_addressLabel) {
         _addressLabel = [[UILabel alloc]init];
         _addressLabel.text = @"位置：";
-        _addressLabel.font = CHINESE_SYSTEM(15);
+        _addressLabel.font = Font(15);
     }
     return _addressLabel;
     
@@ -312,7 +312,7 @@
     if (!_feedBackLabel) {
         _feedBackLabel = [[UILabel alloc]init];
         _feedBackLabel.text = @"反馈内容：";
-        _feedBackLabel.font = CHINESE_SYSTEM(15);;
+        _feedBackLabel.font = Font(15);;
     }
     return _feedBackLabel;
     

@@ -83,11 +83,11 @@
             levelImage = @"home_level1";
             
         }
-        
+         _tipImageV.image = [UIImage imageNamed:levelImage];
     }
     
     
-    _tipImageV.image = [UIImage imageNamed:levelImage];
+   
     
     
     if ([_detailModel.isStandard isEqualToString:@"1"]) {
@@ -128,6 +128,8 @@
         make.left.equalTo(self.contentView).offset(10);
         make.top.equalTo(self.contentView).offset(5);
         make.height.mas_equalTo(20);
+        
+        
         //        make.width.mas_equalTo(100);
         
     }];
@@ -137,6 +139,7 @@
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.titleLabel.mas_bottom);
         make.height.mas_equalTo(20);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-5);
         //        make.width.mas_equalTo(50);
         
     }];
@@ -149,10 +152,6 @@
 //        //        make.width.mas_equalTo(50);
 //
 //    }];
-    
-    
-    
-  
 }
 
 - (UILabel *)titleLabel{
@@ -167,7 +166,7 @@
 
 - (UIImageView *)tipImageV{
     if (!_tipImageV) {
-        _tipImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"home_level4"]];
+        _tipImageV = [[UIImageView alloc]init];
     }
     return _tipImageV;
 }

@@ -244,7 +244,7 @@
     if (!_originatorLabel) {
         _originatorLabel = [[UILabel alloc]init];
         _originatorLabel.text = @"执行人：";
-        _originatorLabel.font = CHINESE_SYSTEM(14);
+        _originatorLabel.font = Font(14);
     }
     return _originatorLabel;
 }
@@ -264,7 +264,7 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.text = @"创建时间：";
-        _timeLabel.font = CHINESE_SYSTEM(14);
+        _timeLabel.font = Font(14);
     }
     return _timeLabel;
 }
@@ -284,7 +284,7 @@
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
         _describeLabel.text = @"反馈描述：";
-        _describeLabel.font = CHINESE_SYSTEM(14);
+        _describeLabel.font = Font(14);
     }
     return _describeLabel;
 }

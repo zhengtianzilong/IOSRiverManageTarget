@@ -194,7 +194,7 @@
         make.left.equalTo(self.contentView).offset(5);
         make.top.equalTo(self.lineViewTop.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
     }];
     
     [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -208,7 +208,7 @@
         make.left.equalTo(self.nameLabel);
         make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
     }];
     [self.supDepartment mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -239,7 +239,7 @@
         make.left.equalTo(self.nameLabel);
         make.top.equalTo(self.codeLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
     }];
     [self.department mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -255,7 +255,7 @@
         make.left.equalTo(self.nameLabel);
         make.top.equalTo(self.departmentLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
     }];
     [self.people mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -271,7 +271,7 @@
         make.left.equalTo(self.nameLabel);
         make.top.equalTo(self.peopleLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(65);
+        make.width.mas_equalTo(75);
     }];
     [self.superviseTime mas_makeConstraints:^(MASConstraintMaker *make) {
         

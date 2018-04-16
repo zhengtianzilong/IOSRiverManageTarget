@@ -52,7 +52,7 @@
     
     _contentLabel = [[UILabel alloc]init];
     _contentLabel.text = @"内容：";
-    _contentLabel.font = CHINESE_SYSTEM(14);
+    _contentLabel.font = Font(14);
     [self.contentView addSubview:_contentLabel];
     
     
@@ -64,19 +64,19 @@
     
     _riverPeopleLabel = [[UILabel alloc]init];
     _riverPeopleLabel.text = @"巡河人：";
-    _riverPeopleLabel.font = CHINESE_SYSTEM(14);
+    _riverPeopleLabel.font = Font(14);
     [self.contentView addSubview:_riverPeopleLabel];
     
     
     
     _riverPeople = [[UILabel alloc]init];
     _riverPeople.text = @"接收人";
-    _riverPeople.font = CHINESE_SYSTEM(14);
+    _riverPeople.font = Font(14);
     [self.contentView addSubview:_riverPeople];
     
     _timeLabel = [[UILabel alloc]init];
     _timeLabel.text = @"创建时间：";
-    _timeLabel.font = CHINESE_SYSTEM(14);
+    _timeLabel.font = Font(14);
     [self.contentView addSubview:_timeLabel];
     
     

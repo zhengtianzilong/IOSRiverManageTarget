@@ -274,14 +274,8 @@
             }
         }
         ZLLog(@"错误");
-        
     }];
-    
-    
 }
-
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -444,8 +438,8 @@
                             [SVProgressHUD showSuccessWithStatus:@"接收成功"];
                             [SVProgressHUD dismissWithDelay:0.3 completion:^{
                                 
-                                [tableView.mj_header beginRefreshing];
-                                
+//                                [tableView.mj_header beginRefreshing];
+                                [self getData];
                             }];
                             
                         }else{
@@ -499,7 +493,8 @@
                             [SVProgressHUD showSuccessWithStatus:@"接收成功"];
                             [SVProgressHUD dismissWithDelay:0.3 completion:^{
                                 
-                                [tableView.mj_header beginRefreshing];
+                                [self getData];
+//                                [tableView.mj_header beginRefreshing];
                                 
                             }];
                             
@@ -548,9 +543,6 @@
         [self.navigationController pushViewController:vc animated:YES];
         
     }
-    
-   
-    
 }
 
 

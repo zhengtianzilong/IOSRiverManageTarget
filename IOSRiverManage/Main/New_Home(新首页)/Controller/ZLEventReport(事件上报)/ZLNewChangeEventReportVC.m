@@ -115,8 +115,10 @@
                     self.detailDataModel.receiverPersonName = @"";
                     self.detailDataModel.receiverPersonCode = @"";
                 }
+                
+                
             }
-            
+            self.detailDataModel.isFirst = @"NO";
         }
         [self.mainTableView reloadData];
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -664,16 +666,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
+        static NSString *CellIdentifier = @"ZLReprotEventBaseTableViewCell";
+        ZLReprotEventBaseTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+        if (cell == nil) {
+            cell = [[ZLReprotEventBaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
         
-        ZLReprotEventBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReprotEventBaseTableViewCell" forIndexPath:indexPath];
+//        ZLReprotEventBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReprotEventBaseTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.titleLabel.text = self.sourceArray[indexPath.row];
         cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
         
-        if (self.detailDataModel) {
-            
+        if ([self.detailDataModel.isFirst isEqualToString:@"NO"]) {
             cell.infoTextView.text = self.detailDataModel.incidentName;
             self.eventName = self.detailDataModel.incidentName;
+            
         }
         cell.infoTextView.tag = indexPath.row;
         
@@ -682,6 +689,7 @@
             switch (0) {
                 case 0:
                     self.eventName = text;
+//                    self.detailDataModel.incidentName = text;
                     break;
             }
             
@@ -691,9 +699,13 @@
     }
     
     if (indexPath.row == 1) {
+        static NSString *CellIdentifier = @"ZLReportPeopleTableViewCell";
+        ZLReportPeopleTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+        if (cell == nil) {
+            cell = [[ZLReportPeopleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
         
-        
-        ZLReportPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportPeopleTableViewCell" forIndexPath:indexPath];
+//        ZLReportPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportPeopleTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.titleLabel.text = self.sourceArray[indexPath.row];
@@ -702,7 +714,7 @@
         
         cell.imageV.image = [UIImage imageNamed:@"home_seletPeople"];
         
-        if (self.detailDataModel && !self.isclear) {
+        if ([self.detailDataModel.isFirst isEqualToString:@"NO"]) {
             
             cell.infoTextView.text = self.detailDataModel.receiverPersonName;
             self.peopleCodeString = _detailDataModel.receiverPersonCode;
@@ -720,7 +732,10 @@
                     if ([text isEqualToString:@""]) {
                         self.peopleCodeString = @"";
                         self.eventPeopleString = @"";
+                        
                     }
+                    
+//                    self.detailDataModel.receiverPersonName = text;
                 }
                     break;
             }
@@ -731,15 +746,21 @@
     
     if (indexPath.row == 2) {
         
+        static NSString *CellIdentifier = @"ZLReportPeopleTableViewCell";
+        ZLReportPeopleTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+        if (cell == nil) {
+            cell = [[ZLReportPeopleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
         
-        ZLReportPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportPeopleTableViewCell" forIndexPath:indexPath];
+        
+//        ZLReportPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportPeopleTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.titleLabel.text = self.sourceArray[indexPath.row];
         cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
         cell.imageV.image = [UIImage imageNamed:@"departSelect"];
         
-        if (self.detailDataModel && !self.isclear) {
+        if ([self.detailDataModel.isFirst isEqualToString:@"NO"]) {
             
             cell.infoTextView.text = self.detailDataModel.receiverDepartName;
             self.departCodeString = _detailDataModel.receiverDepartCode;
@@ -758,7 +779,9 @@
                         self.departCodeString = @"";
                         self.eventDepartString = @"";
                     }
-                    
+//                    self.detailDataModel.receiverDepartName = text;
+//                    _detailDataModel.receiverDepartCode = self.departCodeString;
+//                    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:(UITableViewRowAnimationNone)];
                 }
                     break;
             }
@@ -767,14 +790,20 @@
     }
     if (indexPath.row == 3) {
         
+        static NSString *CellIdentifier = @"ZLReportEventDesTableViewCell";
+        ZLReportEventDesTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath]; //根据indexPath准确地取出一行，而不是从cell重用队列中取出
+        if (cell == nil) {
+            cell = [[ZLReportEventDesTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
         
-        ZLReportEventDesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportEventDesTableViewCell" forIndexPath:indexPath];
+        
+//        ZLReportEventDesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportEventDesTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.titleLabel.text = self.sourceArray[indexPath.row];
         
         cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
         
-        if (self.detailDataModel) {
+        if ([self.detailDataModel.isFirst isEqualToString:@"NO"]) {
             
             cell.infoTextView.text = self.detailDataModel.incidentContent;
             self.eventDesc = self.detailDataModel.incidentContent;
@@ -782,6 +811,8 @@
         
         return cell;
     }
+    
+    
     
     
     return nil;

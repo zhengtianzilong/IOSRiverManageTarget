@@ -276,7 +276,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.textColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
         _titleLabel.text = @"事件信息";
-        _titleLabel.font = CHINESE_SYSTEM(18);
+        _titleLabel.font = Font(18);
     }
     return _titleLabel;
 }
@@ -294,7 +294,7 @@
     if (!_eventLabel) {
         _eventLabel = [[UILabel alloc]init];
         _eventLabel.text = @"事件名称：";
-        _eventLabel.font = CHINESE_SYSTEM(14);
+        _eventLabel.font = Font(14);
     }
     return _eventLabel;
 }
@@ -311,7 +311,7 @@
     if (!_stateLable) {
         _stateLable = [[UILabel alloc]init];
         _stateLable.text = @"状态：";
-        _stateLable.font = CHINESE_SYSTEM(14);
+        _stateLable.font = Font(14);
     }
     return _stateLable;
 }
@@ -328,7 +328,7 @@
     if (!_originatorLabel) {
         _originatorLabel = [[UILabel alloc]init];
         _originatorLabel.text = @"创建人：";
-        _originatorLabel.font = CHINESE_SYSTEM(14);
+        _originatorLabel.font = Font(14);
     }
     return _originatorLabel;
 }
@@ -346,7 +346,7 @@
     if (!_receiveLabel) {
         _receiveLabel = [[UILabel alloc]init];
         _receiveLabel.text = @"接收人：";
-        _receiveLabel.font = CHINESE_SYSTEM(14);
+        _receiveLabel.font = Font(14);
     }
     return _receiveLabel;
 }
@@ -364,7 +364,7 @@
     if (!_departLabel) {
         _departLabel = [[UILabel alloc]init];
         _departLabel.text = @"接收部门：";
-        _departLabel.font = CHINESE_SYSTEM(14);
+        _departLabel.font = Font(14);
     }
     return _departLabel;
 }
@@ -383,7 +383,7 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.text = @"时间：";
-        _timeLabel.font = CHINESE_SYSTEM(14);
+        _timeLabel.font = Font(14);
     }
     return _timeLabel;
 }
@@ -403,7 +403,7 @@
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
         _describeLabel.text = @"内容：";
-        _describeLabel.font = CHINESE_SYSTEM(14);
+        _describeLabel.font = Font(14);
     }
     return _describeLabel;
 }
@@ -422,7 +422,7 @@
     if (!_attachmentLabel) {
         _attachmentLabel = [[UILabel alloc]init];
         _attachmentLabel.text = @"附件：";
-        _attachmentLabel.font = CHINESE_SYSTEM(14);
+        _attachmentLabel.font = Font(14);
         
     }
     return _attachmentLabel;

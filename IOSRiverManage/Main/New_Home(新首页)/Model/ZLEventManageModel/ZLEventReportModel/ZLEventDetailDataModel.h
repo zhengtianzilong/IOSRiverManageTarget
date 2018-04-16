@@ -41,6 +41,9 @@
 @property (nonatomic , copy) NSString<Optional>              * receiverPersonCode;
 @property (nonatomic , copy) NSString<Optional>              * receiverDepartCode;
 
+@property (nonatomic, strong)NSString<Optional> *isFirst;
+
+
 
 @end
 
