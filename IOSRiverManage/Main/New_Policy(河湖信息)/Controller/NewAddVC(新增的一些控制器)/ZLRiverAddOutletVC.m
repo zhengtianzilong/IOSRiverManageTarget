@@ -237,7 +237,7 @@
         _mainTableView.dataSource = self;
         
         _mainTableView.showsVerticalScrollIndicator = NO;
-        
+        _mainTableView.bounces = NO;
         //开启自动计算高度
         //【重点】注意千万不要实现行高的代理方法，否则无效：heightForRowAt
         _mainTableView.estimatedRowHeight = 100;

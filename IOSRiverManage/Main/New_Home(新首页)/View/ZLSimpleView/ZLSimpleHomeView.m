@@ -41,7 +41,7 @@
     
     [_startRiverBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self).offset(15);
+        make.left.equalTo(self).offset(10);
         make.top.equalTo(self.homeLoopImageView.mas_bottom).offset(15);
         make.width.mas_equalTo((Main_Screen_Width - 30)/2);
         make.bottom.equalTo(self.mas_bottom).offset(-15);

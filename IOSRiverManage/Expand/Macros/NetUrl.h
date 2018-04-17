@@ -30,22 +30,22 @@
 // 测试 新闻
 // http://192.168.0.232:8086
 
-#define Base_URL @"http://112.4.10.185:86/api/"
+#define Base_URL [[NSUserDefaults standardUserDefaults] objectForKey:@"Server"]
 
-#define SERVER_NEWS_URL @"http://183.207.103.139:86"
+#define SERVER_NEWS_URL [[NSUserDefaults standardUserDefaults] objectForKey:@"ComStatistics"]
 
 // 基础图片地址
-#define BaseImage_URL @"http://112.4.10.185:86/file/"
+#define BaseImage_URL [[NSUserDefaults standardUserDefaults] objectForKey:@"File"]
 // 登录接口
 #define River_LoginUrl @"soa/mobile/login"
 // 登出接口
 #define River_LoginOutUrl @"soa/mobile/logout"
 
-// 综合统计
-#define River_ComStatisticsUrl @"http://183.207.103.139:86/comStatistics/index.html"
+// 综合统计 五单两表
+#define River_ComStatisticsUrl [[NSUserDefaults standardUserDefaults] objectForKey:@"ComStatistics"]
 
-// 五单两表
-#define River_FiveAndTwoTableUrl @"http://183.207.103.139:86/fsTt/fsTt.html"
+//// 五单两表
+//#define River_FiveAndTwoTableUrl @"http://183.207.103.139:86/"
 
 // 查询首页待办数据
 #define River_GetMyToDoTaskAndIncidentListUrl @"city/appRiverTask/getMyToDoTaskAndIncidentListForApp"

@@ -7,11 +7,34 @@
 //
 
 #import "ZLLoginTopView.h"
+#import "ZLAlertSelectionView.h"
+
+#define kProduct @"http://183.207.103.139:86/api/"
+#define kcomStatisticsProduct @"http://183.207.103.139:86"
+#define kfileProduct @"http://183.207.103.139:86/file/"
+
+#define kDebug @"http://112.4.10.185:86/api/"
+#define kcomStatisticsDebug @"http://112.4.10.185:86"
+#define kfileDebug @"http://112.4.10.185:86/file/"
+@interface ZLLoginTopView()
+
+@property (nonatomic, strong) NSArray *titleArray;
+
+@property (nonatomic, strong) NSArray *addressArray;
+
+@end
 
 @implementation ZLLoginTopView
 - (instancetype)initWithFrame:(CGRect)frame{
     
     if (self = [super initWithFrame:frame]) {
+        
+        [[NSUserDefaults standardUserDefaults] setObject:kProduct forKey:@"Server"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:kcomStatisticsProduct forKey:@"ComStatistics"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:kfileProduct forKey:@"File"];
+        
         [self setUpUI];
     }
     return self;
@@ -43,12 +66,58 @@
     
 }
 
+- (void)longPressClick{
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"选择接口环境" preferredStyle:(UIAlertControllerStyleActionSheet)];
+    
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"生产环境" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[NSUserDefaults standardUserDefaults] setObject:kProduct forKey:@"Server"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:kcomStatisticsProduct forKey:@"ComStatistics"];
+       
+        [[NSUserDefaults standardUserDefaults] setObject:kfileProduct forKey:@"File"];
+        
+    }];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"测试环境" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[NSUserDefaults standardUserDefaults] setObject:kDebug forKey:@"Server"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:kcomStatisticsDebug forKey:@"ComStatistics"];
+        [[NSUserDefaults standardUserDefaults] setObject:kfileDebug forKey:@"File"];
+        
+        
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self.viewController dismissViewControllerAnimated:YES completion:nil];
+        
+    }];
+    
+    [alertController addAction:action1];
+    [alertController addAction:action2];
+    [alertController addAction:cancelAction];
+    
+    [self.viewController presentViewController:alertController animated:YES completion:nil];
+    
+
+}
+
+
 
 - (UIImageView *)logoImageV{
     
     if (!_logoImageV) {
         
         _logoImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"new_login_logo"]];
+        
+        _logoImageV.userInteractionEnabled = YES;
+        
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressClick)];
+        
+        [_logoImageV addGestureRecognizer:longPress];
+        
+        
+        
+        
         
         
     }

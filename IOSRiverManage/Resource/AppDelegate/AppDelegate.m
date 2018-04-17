@@ -34,6 +34,8 @@
 
 @property (nonatomic, strong) YTKKeyValueStore *store;
 
+@property (nonatomic, strong) ZLNewLoginModel *loginModel;
+
 @end
 
 @implementation AppDelegate
@@ -43,13 +45,7 @@
     VwtUserInfo * vUserinfo = [[VwtUserInfo alloc] init];
     vUserinfo.appId = @"10000019";//注册时的appId;
     vUserinfo.appSecret = @"s8wBf22QXIOBeTFMzmyYJylGBtm80W7t1lqVt2MW8017Wes49clQtIevEcs9963a";//注册时的安全码;例如://@"IEb5QvSfabT2RImcu5DvFedkwJtfwp5HnWIgq3RI4Hq7CdkwIk5hrFwg6m579Aix" ;
-    vUserinfo.userId = @"1005625";//用户 ID ;
-
-    NSDictionary*dic =@{@"appId":@"10000019",@"appSecret":@"s8wBf22QXIOBeTFMzmyYJylGBtm80W7t1lqVt2MW8017Wes49clQtIevEcs9963a"};
-    
-    NSData *data =  [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
-    [[VwtIMLib sharedInstance] registerForRemoteNotificationsWithDeviceToken:data];
-    
+    vUserinfo.userId = @"10020442214" ;//用户 ID ;
     [[VwtIMLib sharedInstance] loginWithUserInfo:vUserinfo success:^(id value) {
         //登录成功
         ZLLog(@"%@",value);
@@ -76,7 +72,7 @@
     [self.floatWindow makeKeyAndVisible];
     self.floatWindow.hidden = YES;
     
-    [self chinaMobile];
+    
     
 //    [self configBaiDuSDK];
     // 配置信鸽
@@ -94,6 +90,9 @@
     [self setupLoginViewControllerWithUserInfo:userInfo];
     
     [self customizeTabbarItem];
+    
+    [self chinaMobile];
+    
     
 //    [[FLEXManager sharedManager] showExplorer];
     
@@ -283,15 +282,15 @@
     
     NSString *userModel = [self.store getStringById:DBLoginModel fromTable:DBUserTable];
     
-    ZLNewLoginModel *loginModel = [[ZLNewLoginModel alloc]initWithString:userModel error:nil];
+    self.loginModel = [[ZLNewLoginModel alloc]initWithString:userModel error:nil];
     
     ZLLoginVC *logInVc = [[ZLLoginVC alloc]init];
     CYLTabBarController *tabBarVC = nil;
-    if ([loginModel.data.version isEqualToString:@"1"]) {
+    if ([self.loginModel.data.version isEqualToString:@"1"]) {
         ZLSimpleMainTapBarVCConfig *tabBarVCConfig = [[ZLSimpleMainTapBarVCConfig alloc]init];
         tabBarVC = tabBarVCConfig.tabBarController;
         
-    }else if([loginModel.data.version isEqualToString:@"2"]){
+    }else if([self.loginModel.data.version isEqualToString:@"2"]){
         ZLMainTabBarControllerConfig *tabBarVCConfig = [[ZLMainTabBarControllerConfig alloc]init];
         tabBarVC = tabBarVCConfig.tabBarController;
     }
@@ -403,8 +402,19 @@
 
 // 调用注册设备token
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-//    a542c8524356c3d089986dc8bed00415afc5454c25cbf6763a79baf2c89b6ee9
-    [[XGPushTokenManager defaultTokenManager]registerDeviceToken:deviceToken];
+
+    [[VwtIMLib sharedInstance] registerForRemoteNotificationsWithDeviceToken:deviceToken];
+    
+    
+    
+    
+    
+//    [[XGPushTokenManager defaultTokenManager]registerDeviceToken:deviceToken];
+    
+    
+    
+    
+    
     
     
     // 绑定标签和账号

@@ -95,7 +95,7 @@
         
         _nameTextField.borderStyle = UITextBorderStyleRoundedRect;
         _nameTextField.placeholder = @"请输入用户名";
-        UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, 20 * kScreenWidthRatio, 20 * kScreenWidthRatio)];
+        UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, 30 * kScreenWidthRatio, 20 * kScreenWidthRatio)];
         imageV.image = [UIImage imageNamed:@"new_login_name"];
         _nameTextField.leftViewMode = UITextFieldViewModeAlways;
         _nameTextField.leftView = imageV;
@@ -108,7 +108,7 @@
         _passTextField = [[UITextField alloc]init];
         _passTextField.placeholder = @"请输入密码";
         _passTextField.borderStyle = UITextBorderStyleRoundedRect;
-        UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, 20 * kScreenWidthRatio, 20 * kScreenWidthRatio)];
+        UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, 30 * kScreenWidthRatio, 20 * kScreenWidthRatio)];
         imageV.image = [UIImage imageNamed:@"new_login_password"];
         _passTextField.leftViewMode = UITextFieldViewModeAlways;
         _passTextField.secureTextEntry = YES;

@@ -37,7 +37,11 @@
     
     self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, TopBarHeight, App_Frame_Height, App_Frame_Width)];
     self.webView.userInteractionEnabled = YES;
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:River_FiveAndTwoTableUrl]]];
+    
+    NSString *uriStr = [NSString stringWithFormat:@"%@/%@",River_ComStatisticsUrl,@"fsTt/fsTt.html"];
+
+    
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:uriStr]]];
     self.webView.userInteractionEnabled = YES;
     self.webView.backgroundColor = [UIColor whiteColor];
     [self.webView setScalesPageToFit:YES];

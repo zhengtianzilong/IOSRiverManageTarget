@@ -2110,6 +2110,9 @@
 		D5B6877C204FF6B900347AA8 /* ZLRiverChangeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B6877B204FF6B900347AA8 /* ZLRiverChangeCollectionView.m */; };
 		D5B6877D204FF6B900347AA8 /* ZLRiverChangeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B6877B204FF6B900347AA8 /* ZLRiverChangeCollectionView.m */; };
 		D5B6877E204FF6B900347AA8 /* ZLRiverChangeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B6877B204FF6B900347AA8 /* ZLRiverChangeCollectionView.m */; };
+		D5BA2BF32085ED0300E15C4D /* ZLReportDepartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BA2BF22085ED0300E15C4D /* ZLReportDepartTableViewCell.m */; };
+		D5BA2BF42085ED0300E15C4D /* ZLReportDepartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BA2BF22085ED0300E15C4D /* ZLReportDepartTableViewCell.m */; };
+		D5BA2BF52085ED0300E15C4D /* ZLReportDepartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BA2BF22085ED0300E15C4D /* ZLReportDepartTableViewCell.m */; };
 		D5C023952056715F0049BCDF /* new_guodu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5C023942056715E0049BCDF /* new_guodu.jpg */; };
 		D5C023962056715F0049BCDF /* new_guodu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5C023942056715E0049BCDF /* new_guodu.jpg */; };
 		D5C023972056715F0049BCDF /* new_guodu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5C023942056715E0049BCDF /* new_guodu.jpg */; };
@@ -3710,6 +3713,8 @@
 		D5B68776204FF4E700347AA8 /* ZLRiverChangePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLRiverChangePopView.m; sourceTree = "<group>"; };
 		D5B6877A204FF6B900347AA8 /* ZLRiverChangeCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLRiverChangeCollectionView.h; sourceTree = "<group>"; };
 		D5B6877B204FF6B900347AA8 /* ZLRiverChangeCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLRiverChangeCollectionView.m; sourceTree = "<group>"; };
+		D5BA2BF12085ED0300E15C4D /* ZLReportDepartTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLReportDepartTableViewCell.h; sourceTree = "<group>"; };
+		D5BA2BF22085ED0300E15C4D /* ZLReportDepartTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLReportDepartTableViewCell.m; sourceTree = "<group>"; };
 		D5C023942056715E0049BCDF /* new_guodu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = new_guodu.jpg; sourceTree = "<group>"; };
 		D5C0239920567FBA0049BCDF /* ACMediaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMediaModel.h; sourceTree = "<group>"; };
 		D5C0239A20567FBA0049BCDF /* ACMediaManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACMediaManager.h; sourceTree = "<group>"; };
@@ -7309,6 +7314,8 @@
 				D5B35DC1205CE1B600369469 /* ZLReprotEventBaseTableViewCell.m */,
 				D5B35DC5205CE21300369469 /* ZLReportPeopleTableViewCell.h */,
 				D5B35DC6205CE21300369469 /* ZLReportPeopleTableViewCell.m */,
+				D5BA2BF12085ED0300E15C4D /* ZLReportDepartTableViewCell.h */,
+				D5BA2BF22085ED0300E15C4D /* ZLReportDepartTableViewCell.m */,
 				D5B35DCA205CE37B00369469 /* ZLReportEventDesTableViewCell.h */,
 				D5B35DCB205CE37B00369469 /* ZLReportEventDesTableViewCell.m */,
 				D5B35DD5205CFB2E00369469 /* ZLNewReportBottomView.h */,
@@ -8755,6 +8762,7 @@
 				D581016F20478D5100F7D08C /* ZLRiverPeopleNameAndEditBtnView.m in Sources */,
 				D51ACEC72048E164006C283D /* ZLSelectInfoView.m in Sources */,
 				D51D3E1C1F69398900CA0903 /* UITableViewCell+TS_delaysContentTouches.m in Sources */,
+				D5BA2BF32085ED0300E15C4D /* ZLReportDepartTableViewCell.m in Sources */,
 				D51D3E3A1F69398900CA0903 /* UIViewController+MJPopupViewController.m in Sources */,
 				D51D3D611F69398900CA0903 /* NSManagedObject+DictionaryExport.m in Sources */,
 				D51D3DB61F69398900CA0903 /* NSURLRequest+ParamsFromDictionary.m in Sources */,
@@ -9488,6 +9496,7 @@
 				D581017020478D5100F7D08C /* ZLRiverPeopleNameAndEditBtnView.m in Sources */,
 				D51ACEC82048E164006C283D /* ZLSelectInfoView.m in Sources */,
 				D57668D51FEB9B3D00470A3F /* UITableViewCell+TS_delaysContentTouches.m in Sources */,
+				D5BA2BF42085ED0300E15C4D /* ZLReportDepartTableViewCell.m in Sources */,
 				D57668D61FEB9B3D00470A3F /* UIViewController+MJPopupViewController.m in Sources */,
 				D57668D71FEB9B3D00470A3F /* NSManagedObject+DictionaryExport.m in Sources */,
 				D57668D81FEB9B3D00470A3F /* NSURLRequest+ParamsFromDictionary.m in Sources */,
@@ -10205,6 +10214,7 @@
 				D581017120478D5100F7D08C /* ZLRiverPeopleNameAndEditBtnView.m in Sources */,
 				D51ACEC92048E164006C283D /* ZLSelectInfoView.m in Sources */,
 				D585103F1FF08CC8001B8165 /* UITableViewCell+TS_delaysContentTouches.m in Sources */,
+				D5BA2BF52085ED0300E15C4D /* ZLReportDepartTableViewCell.m in Sources */,
 				D58510401FF08CC8001B8165 /* UIViewController+MJPopupViewController.m in Sources */,
 				D58510411FF08CC8001B8165 /* NSManagedObject+DictionaryExport.m in Sources */,
 				D58510421FF08CC8001B8165 /* NSURLRequest+ParamsFromDictionary.m in Sources */,

@@ -255,6 +255,8 @@
         
         _mainTableView.showsVerticalScrollIndicator = NO;
         
+        _mainTableView.bounces = NO;
+        
         //开启自动计算高度
         //【重点】注意千万不要实现行高的代理方法，否则无效：heightForRowAt
         _mainTableView.estimatedRowHeight = 100;
@@ -292,7 +294,7 @@
         
         [sureBtn addTarget:self action:@selector(sureBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
         
-        [sureBtn setTitle:@"登录" forState:(UIControlStateNormal)];
+        [sureBtn setTitle:@"确定" forState:(UIControlStateNormal)];
         
         [mediaView observeViewHeight:^(CGFloat mediaHeight) {
             CGRect btnRect = sureBtn.frame;

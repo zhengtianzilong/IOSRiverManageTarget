@@ -1,19 +1,21 @@
 //
-//  ZLReportPeopleTableViewCell.m
+//  ZLReportDepartTableViewCell.m
 //  IOSRiverManage
 //
-//  Created by 蔡紫龙 on 2018/3/17.
+//  Created by 蔡紫龙 on 2018/4/17.
 //  Copyright © 2018年 caizilong. All rights reserved.
 //
 
-#import "ZLReportPeopleTableViewCell.h"
-@interface ZLReportPeopleTableViewCell()<UITextViewDelegate>
+#import "ZLReportDepartTableViewCell.h"
+
+@interface ZLReportDepartTableViewCell()<UITextViewDelegate>
 
 //@property (nonatomic, strong) UIView *bgView;
 
 @end
 
-@implementation ZLReportPeopleTableViewCell
+@implementation ZLReportDepartTableViewCell
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -70,9 +72,9 @@
         
         make.left.equalTo(self.contentView).offset(10);
         make.width.mas_equalTo(100);
-//        make.right.equalTo(self.bgView.mas_right);
-                make.top.equalTo(self.contentView).offset(0);
-//        make.centerY.equalTo(self.bgView);
+        //        make.right.equalTo(self.bgView.mas_right);
+        make.top.equalTo(self.contentView).offset(0);
+        //        make.centerY.equalTo(self.bgView);
         make.height.mas_equalTo(45);
         
     }];
@@ -98,7 +100,7 @@
         
     }];
     
-
+    
     
 }
 
@@ -127,7 +129,7 @@
                 if (buttonIndex == 1) {
                     [_infoTextView setText:@""];
                     
-//                    [self textViewDidChange:_infoTextView];
+                    //                    [self textViewDidChange:_infoTextView];
                     
                 }
                 
@@ -174,7 +176,7 @@
         
         [_infoTextView addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
         
-//        [_infoTextView addTarget:self action:@selector(tapClick) forControlEvents:(UIControlEventTouchUpInside)];
+        //        [_infoTextView addTarget:self action:@selector(tapClick) forControlEvents:(UIControlEventTouchUpInside)];
         
         
     }
@@ -189,5 +191,4 @@
     
     return _imageV;
 }
-
 @end
