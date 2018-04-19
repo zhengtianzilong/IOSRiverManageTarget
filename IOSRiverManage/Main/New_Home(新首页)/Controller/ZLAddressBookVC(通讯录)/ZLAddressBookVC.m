@@ -18,25 +18,9 @@
 
 #define kColor          [UIColor colorWithRed:230.0/255.0 green:230.0/255.0 blue:230.0/255.0 alpha:1];
 
-//@implementation Student
-//
-//+ (NSMutableArray *)getModelData {
-//    NSMutableArray *ary = [NSMutableArray new];
-//    NSArray *ary1 = @[@"张三",@"李四",@"托马斯",@"angel",@"12-谈",@"520",@"****",@"Linda",@"九寨沟",@"鼓浪屿",@"香格里拉",@"千岛湖",@"西双版纳",@"+-*/",@"故宫",@"上海科技馆",@"东方明珠",@"外滩",@"CapeTown",@"The Grand Canyon",@"4567.com",@"长江",@"长江1号",@"&*>?",@"弯弯月亮",@"that is it ?",@"山水之间",@"倩女幽魂",@"疆土无边",@"荡秋千"];
-//
-//    for (NSInteger index = 0; index < ary1.count;index++){
-//        Student *stu = [Student new];
-//        stu.name = ary1[index];
-//        [ary addObject:stu];
-//    }
-//    return ary;
-//}
-//
-//@end
 
 @interface ZLAddressBookVC ()<UISearchResultsUpdating, UITableViewDelegate,UITableViewDataSource>
 
-//@property (strong, nonatomic) Student *student;
 @property (strong, nonatomic) UISearchController *searchController;
 @property (strong, nonatomic) NSArray *ary;
 @property (strong, nonatomic) NSMutableArray *dataSource;/**<排序前的整个数据源*/
@@ -46,6 +30,8 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, strong) NSArray *phoneArray;
+
 @end
 
 @implementation ZLAddressBookVC
@@ -54,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _dataSource = [NSMutableArray array];
-    
+    self.phoneArray = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"0"];
     [self getData];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStylePlain)];
@@ -104,9 +90,14 @@
             }
         }
         
-        _allDataSource = [HCSortString sortAndGroupForArray:_dataSource PropertyName:@"realName"];
-        _indexDataSource = [HCSortString sortForStringAry:[_allDataSource allKeys]];
+//        _allDataSource = [HCSortString sortAndGroupForArray:_dataSource PropertyName:@"realName"];
+//        _indexDataSource = [HCSortString sortForStringAry:[_allDataSource allKeys]];
+//        _searchDataSource = [NSMutableArray new];
+        
+//        _allDataSource = _dataSource;
         _searchDataSource = [NSMutableArray new];
+        
+        
         
         [self.tableView reloadData];
         [SVProgressHUD dismiss];
@@ -121,7 +112,7 @@
         _searchController.searchResultsUpdater = self;
         _searchController.dimsBackgroundDuringPresentation = NO;
         _searchController.hidesNavigationBarDuringPresentation = YES;
-        _searchController.searchBar.placeholder = @"姓名";
+        _searchController.searchBar.placeholder = @"快速搜索联系人";
         _searchController.searchBar.barTintColor = HEXCOLOR(CVIEW_GRAY_COLOR);
         _searchController.searchBar.tintColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
         
@@ -144,11 +135,15 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (!self.searchController.active) {
-        return _indexDataSource.count;
-    }else {
-        return 1;
-    }
+//    if (!self.searchController.active) {
+//        return _indexDataSource.count;
+//    }else {
+//        return 1;
+//    }
+    
+    return 1;
+    
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -158,12 +153,22 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    if (!self.searchController.active) {
+//        NSArray *value = [_allDataSource objectForKey:_indexDataSource[section]];
+//        return value.count;
+//    }else {
+//        return _searchDataSource.count;
+//    }
+    
     if (!self.searchController.active) {
-        NSArray *value = [_allDataSource objectForKey:_indexDataSource[section]];
+        NSArray *value = _dataSource;
         return value.count;
     }else {
         return _searchDataSource.count;
     }
+
+    
+    
 }
 ////头部索引标题
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -174,26 +179,47 @@
 //    }
 //}
 //右侧索引列表
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    if (!self.searchController.active) {
-        return _indexDataSource;
-    }else {
-        return nil;
-    }
-}
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+//    if (!self.searchController.active) {
+//        return _indexDataSource;
+//    }else {
+//        return nil;
+//    }
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    ZLAddressBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLAddressBookTableViewCell" forIndexPath:indexPath];
+//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+//    ZLNewAddressBookDataModel *model;
+//
+//    if (!self.searchController.active) {
+//        NSArray *value = [_allDataSource objectForKey:_indexDataSource[indexPath.section]];
+//
+//       model  = value[indexPath.row];
+//
+//    }else{
+//         model = _searchDataSource[indexPath.row];
+//    }
+//
+//    cell.titleLabel.text = model.realName;
+//
+//    cell.phoneLabel.text = model.phone;
+//
+//    cell.detailLabel.text = model.dutyName;
+    
+    
+    
     ZLAddressBookTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLAddressBookTableViewCell" forIndexPath:indexPath];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     ZLNewAddressBookDataModel *model;
     
     if (!self.searchController.active) {
-        NSArray *value = [_allDataSource objectForKey:_indexDataSource[indexPath.section]];
+        NSArray *value = _dataSource;
         
-       model  = value[indexPath.row];
-
+        model  = value[indexPath.row];
+        
     }else{
-         model = _searchDataSource[indexPath.row];
+        model = _searchDataSource[indexPath.row];
     }
     
     cell.titleLabel.text = model.realName;
@@ -203,21 +229,38 @@
     cell.detailLabel.text = model.dutyName;
     
     
-//    [cell configCellWithModel:_student];
+    
+    
+    
+    
     return cell;
 }
 //索引点击事件
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    return index;
-}
+//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+//    [tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//    return index;
+//}
 
 #pragma mark - Table View Delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+//    ZLNewAddressBookDataModel *model;
+//    if (!self.searchController.active) {
+//        NSArray *value = [_allDataSource objectForKey:_indexDataSource[indexPath.section]];
+//        model = value[indexPath.row];
+//    }else{
+//        model = _searchDataSource[indexPath.row];
+//    }
+//    self.searchController.active = NO;
+//
+//    ZLAddressBookDetailVC *detailVC = [[ZLAddressBookDetailVC alloc]init];
+//    detailVC.addressModelDataModel = model;
+//    [self.navigationController pushViewController:detailVC animated:YES];
+    
+    
     ZLNewAddressBookDataModel *model;
     if (!self.searchController.active) {
-        NSArray *value = [_allDataSource objectForKey:_indexDataSource[indexPath.section]];
+        NSArray *value = self.dataSource;
         model = value[indexPath.row];
     }else{
         model = _searchDataSource[indexPath.row];
@@ -229,6 +272,7 @@
     [self.navigationController pushViewController:detailVC animated:YES];
     
     
+    
 }
 
 #pragma mark - UISearchDelegate
@@ -236,12 +280,21 @@
     [_searchDataSource removeAllObjects];
     NSArray *ary = [NSArray new];
     //对排序好的数据进行搜索
-    ary = [HCSortString getAllValuesFromDict:_allDataSource];
+//    ary = [HCSortString getAllValuesFromDict:_allDataSource];
+    
+    ary = _dataSource;
     
     if (searchController.searchBar.text.length == 0) {
         [_searchDataSource addObjectsFromArray:ary];
     }else {
-        ary = [ZYPinYinSearch searchWithOriginalArray:ary andSearchText:searchController.searchBar.text andSearchByPropertyName:@"realName"];
+        
+        if ([self.phoneArray containsObject:[searchController.searchBar.text substringWithRange:NSMakeRange(0, 1)]]) {
+            
+            ary = [ZYPinYinSearch searchWithOriginalArray:ary andSearchText:searchController.searchBar.text andSearchByPropertyName:@"phone"];
+        }else{
+            
+            ary = [ZYPinYinSearch searchWithOriginalArray:ary andSearchText:searchController.searchBar.text andSearchByPropertyName:@"realName"];
+        }
         [_searchDataSource addObjectsFromArray:ary];
     }
     [self.tableView reloadData];

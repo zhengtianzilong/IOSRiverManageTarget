@@ -215,9 +215,7 @@
     [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
         
         if (buttonIndex == 1) {
-            
-            
-            
+
         }
         
     } title:@"提醒" message:@"是否反馈" cancelButtonName:@"取消" otherButtonTitles:@"反馈", nil];

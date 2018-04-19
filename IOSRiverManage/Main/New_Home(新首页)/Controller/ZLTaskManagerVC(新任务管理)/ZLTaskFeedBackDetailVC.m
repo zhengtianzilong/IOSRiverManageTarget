@@ -247,7 +247,9 @@
                             
                             if ([baseModel.code isEqualToString:@"0"]) {
                                 [SVProgressHUD showSuccessWithStatus:@"上传成功"];
-                                [SVProgressHUD dismissWithDelay:0.3];
+                                [SVProgressHUD dismissWithDelay:0.3 completion:^{
+                                    [self getData];
+                                }];
                             }else{
                                 [SVProgressHUD showErrorWithStatus:baseModel.detail];
                                 [SVProgressHUD dismissWithDelay:0.3];
@@ -289,7 +291,7 @@
                                 if ([baseModel.code isEqualToString:@"0"]) {
                                     [SVProgressHUD showSuccessWithStatus:@"上传成功"];
                                     [SVProgressHUD dismissWithDelay:0.3 completion:^{
-                                        [self.mainTableView reloadData];
+                                        [self getData];
                                     }];
                                 }else{
                                     [SVProgressHUD showErrorWithStatus:baseModel.detail];
@@ -331,7 +333,7 @@
                                 if ([baseModel.code isEqualToString:@"0"]) {
                                     [SVProgressHUD showSuccessWithStatus:@"上传成功"];
                                     [SVProgressHUD dismissWithDelay:0.3 completion:^{
-                                        [self.mainTableView reloadData];
+                                        [self getData];
                                     }];
                                 }else{
                                     [SVProgressHUD showErrorWithStatus:baseModel.detail];

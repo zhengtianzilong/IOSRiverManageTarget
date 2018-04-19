@@ -108,7 +108,7 @@
     }
     if ([_dataModel.taskDetailStatus isEqualToString:@"7"]) {
         status = @"已驳回";
-        [self.dealBtn setTitle:@"处理" forState:(UIControlStateNormal)];
+        [self.dealBtn setTitle:@"重做" forState:(UIControlStateNormal)];
     }
     if ([_dataModel.taskDetailStatus isEqualToString:@"8"]) {
         status = @"已完成";
@@ -174,7 +174,7 @@
     }
     if ([_homeDataModel.taskDetailStatus isEqualToString:@"7"]) {
         status = @"已驳回";
-        [self.dealBtn setTitle:@"处理" forState:(UIControlStateNormal)];
+        [self.dealBtn setTitle:@"重做" forState:(UIControlStateNormal)];
     }
     if ([_homeDataModel.taskDetailStatus isEqualToString:@"8"]) {
         status = @"已完成";

@@ -12,4 +12,6 @@
 #define CNAVGATIONBAR_COLOR 0x439aff
 #define CVIEW_GRAY_COLOR 0xf2f0f3
 
+#define CVIEW_EVENT_TIPS_COLOR 0xff9310
+
 #endif /* Colors_h */

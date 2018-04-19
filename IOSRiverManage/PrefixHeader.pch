@@ -43,6 +43,8 @@
 #import "ZLUtility.h"
 #import "DQAlertView.h"
 
+#import "UITextView+ZWLimitCounter.h"
+
 #ifdef Suqian
 #import "IOSRiverManageSuqian-Swift.h"
 #elif TouBiao

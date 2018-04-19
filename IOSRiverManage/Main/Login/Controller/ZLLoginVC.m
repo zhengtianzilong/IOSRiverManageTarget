@@ -78,9 +78,23 @@
     //     [self goToMainController];
     
     if (_inputView.nameTextField.text.length <= 0 || _inputView.passTextField.text.length <= 0) {
-        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-            
-        } title:@"提示" message:@"请填写正确的用户名或密码" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        _inputView.nameTextField.layer.borderColor = [UIColor redColor].CGColor;
+        _inputView.nameTextField.layer.borderWidth = 1;
+        _inputView.nameTextField.layer.cornerRadius = 8;
+        _inputView.nameTextField.clipsToBounds = YES;
+        _inputView.passTextField.layer.borderColor = [UIColor redColor].CGColor;
+        _inputView.passTextField.layer.borderWidth = 1;
+        _inputView.passTextField.layer.cornerRadius = 6;
+        _inputView.passTextField.clipsToBounds = YES;
+//        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+//
+//        } title:@"提示" message:@"请输入用户名密码" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        [SVProgressHUD showErrorWithStatus:@"请输入用户名密码"];
+        [SVProgressHUD dismissWithDelay:0.5];
+        
+        
         return;
     }
     
@@ -125,7 +139,7 @@
 //
         }else{
             [SVProgressHUD showErrorWithStatus:model.detail];
-            [SVProgressHUD dismissWithDelay:0.3];
+            [SVProgressHUD dismissWithDelay:0.5];
         }
         
     }];
@@ -214,11 +228,13 @@
 //        }
         
         [SVProgressHUD showSuccessWithStatus:@"登录成功"];
-        [SVProgressHUD dismissWithDelay:0.3];
-        [self goToMainControllerWithVersion:model.data.version];
+        [SVProgressHUD dismissWithDelay:0.5 completion:^{
+            [self goToMainControllerWithVersion:model.data.version];
+        }];
+        
     }else{
         [SVProgressHUD showErrorWithStatus:model.detail];
-        [SVProgressHUD dismissWithDelay:0.3];
+        [SVProgressHUD dismissWithDelay:0.5];
     }
 }
 
@@ -227,7 +243,7 @@
     ZLLog(@"%@",request.response);
     [SVProgressHUD dismiss];
     [SVProgressHUD showInfoWithStatus:@"网络错误"];
-    [SVProgressHUD dismissWithDelay:0.3];
+    [SVProgressHUD dismissWithDelay:0.5];
     
     
 }

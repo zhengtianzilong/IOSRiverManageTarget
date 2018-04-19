@@ -53,8 +53,8 @@
 
         if ([userRiversModel.code isEqualToString:@"0"]) {
             _dataArray = @[
-                           @"河长职务",
-                           @"行政职务",
+                           @"姓名",
+                           @"职务",
                            @"电话",
                            @"座机",
                            @"所管河道"
@@ -76,7 +76,7 @@
                 _addressModelDataModel.rivers = @"";
             }
             _sourceArray = @[
-                             _addressModelDataModel.dutyName,
+                             _addressModelDataModel.realName,
                              _addressModelDataModel.job,
                              _addressModelDataModel.phone,
                              _addressModelDataModel.telephone,
@@ -107,11 +107,6 @@
     
 }
 #pragma mark -- 列表的代理
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 55;
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _dataArray.count;
 }
@@ -149,7 +144,7 @@
                           NSForegroundColorAttributeName:[UIColor whiteColor]
                           };
     
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:_addressModelDataModel.realName attributes:dic];
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"通讯录详情" attributes:dic];
     
     return title;
     

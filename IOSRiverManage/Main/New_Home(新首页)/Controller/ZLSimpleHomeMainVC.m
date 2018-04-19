@@ -408,6 +408,7 @@
         _mainScrollView = [[UIScrollView alloc]init];
         _mainScrollView.backgroundColor = HEXCOLOR(0xf4f4f4);
         _mainScrollView.showsVerticalScrollIndicator = NO;
+        _mainScrollView.bounces = NO;
     }
     return _mainScrollView;
 }

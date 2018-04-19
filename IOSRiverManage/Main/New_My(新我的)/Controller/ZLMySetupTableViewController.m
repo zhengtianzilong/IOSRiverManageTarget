@@ -28,7 +28,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 0) {
         if (indexPath.row == 1) {
             
             [SVProgressHUD show];
@@ -37,7 +37,7 @@
                 [SVProgressHUD showSuccessWithStatus:@"清除成功"];
                 [SVProgressHUD dismissWithDelay:0.3];
             }else{
-                [SVProgressHUD showErrorWithStatus:@"清除失败"];
+                [SVProgressHUD showErrorWithStatus:@"无需清理"];
                 [SVProgressHUD dismissWithDelay:0.3];
             }
         }
@@ -55,7 +55,7 @@
     }
     
     
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             if (buttonIndex == 1) {
                 ZLLoginVC * login =[[ZLLoginVC alloc]init];
@@ -67,7 +67,7 @@
                 
                 
                 [self presentViewController:login animated:YES completion:^{
-                    //                    [self removeFromParentViewController];
+                    [self removeFromParentViewController];
                     [UIApplication sharedApplication].keyWindow.rootViewController = login;
                 }];
                 

@@ -120,7 +120,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"请查看公告通知!";
-        _titleLabel.font = CHINESE_SYSTEM(17);
+        _titleLabel.font = Font(17);
     }
     return _titleLabel;
 }

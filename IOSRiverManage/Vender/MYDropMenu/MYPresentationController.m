@@ -47,7 +47,7 @@
     if (!_coverView) {
         
         _coverView = [[UIControl alloc]initWithFrame:my_Screen_Bounds];
-        [_coverView addTarget:self action:@selector(coverViewTouch) forControlEvents:UIControlEventTouchUpInside];
+//        [_coverView addTarget:self action:@selector(coverViewTouch) forControlEvents:UIControlEventTouchUpInside];
     }
     return _coverView;
 }

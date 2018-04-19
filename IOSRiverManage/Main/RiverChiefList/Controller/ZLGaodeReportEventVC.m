@@ -559,6 +559,12 @@
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
         _mainTableView.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
         
+        if (@available(iOS 11.0, *)) {
+            _mainTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        
         
         UIView *headerView = [[UIView alloc] init];
         ACSelectMediaView *mediaView = [[ACSelectMediaView alloc] initWithFrame:CGRectMake(0,  0, self.view.frame.size.width, 1)];

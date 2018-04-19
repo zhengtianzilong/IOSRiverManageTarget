@@ -40,6 +40,12 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    self.name = @"";
+    self.code = @"";
+    self.contactPeople = @"";
+    self.phone = @"";
+    self.note = @"";
+    
     ZLGaodeCustomNavBar *navBar = [[ZLGaodeCustomNavBar alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, TopBarHeight)];
     navBar.titleLabel.text = @"新增排污口";
     [navBar.backButton addTarget:self action:@selector(backClick) forControlEvents:(UIControlEventTouchUpInside)];
@@ -72,6 +78,62 @@
     
 }
 
+/**
+ 检测文本框的内容
+ */
+- (BOOL)checkTextFieldContent{
+    
+    if ([self.name isEqualToString:@""]) {
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写排污口名称" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        return NO;
+    }
+    
+    if ([self.code isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写排污口编码" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    if ([self.address isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写位置信息" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    if ([self.contactPeople isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写联系人" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    if ([self.phone isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写联系人电话" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    if ([self.note  isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写污染物" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    return YES;
+}
+
 
 /**
  确定按钮
@@ -84,31 +146,44 @@
         
     }
     
-    ZLNewAddOutletService *service = [[ZLNewAddOutletService alloc]initWithriverCode:_riverDataModel.riverCode code:self.code name:self.name longitude:self.locationModel.longitude latitude:self.locationModel.latitude contant:self.note contactPerson:self.contactPeople phone:self.phone address:self.address ];
-    [SVProgressHUD showWithStatus:@"正在添加"];
-    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-        
-        ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:request.responseString error:nil];
-        
-        if ([baseModel.code isEqualToString:@"0"]) {
+    if (![self checkTextFieldContent]) {
+        return;
+    }
+    
+    DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认提交吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
+    
+    alert.otherButtonAction = ^{
+        ZLNewAddOutletService *service = [[ZLNewAddOutletService alloc]initWithriverCode:_riverDataModel.riverCode code:self.code name:self.name longitude:self.locationModel.longitude latitude:self.locationModel.latitude contant:self.note contactPerson:self.contactPeople phone:self.phone address:self.address ];
+        [SVProgressHUD showWithStatus:@"正在添加"];
+        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
             
-            [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+            ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:request.responseString error:nil];
             
-            [SVProgressHUD dismissWithDelay:0.4 completion:^{
+            if ([baseModel.code isEqualToString:@"0"]) {
                 
-                [self backClick];
+                [SVProgressHUD showSuccessWithStatus:@"添加成功"];
                 
-            }];
-        }else{
-            [SVProgressHUD showErrorWithStatus:baseModel.detail];
+                [SVProgressHUD dismissWithDelay:0.4 completion:^{
+                    
+                    [self backClick];
+                    
+                }];
+            }else{
+                [SVProgressHUD showErrorWithStatus:baseModel.detail];
+                [SVProgressHUD dismissWithDelay:0.6];
+                
+            }
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+            [SVProgressHUD showErrorWithStatus:@"添加失败"];
             [SVProgressHUD dismissWithDelay:0.6];
-            
-        }
-    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-        
-        [SVProgressHUD showErrorWithStatus:@"添加失败"];
-        [SVProgressHUD dismiss];
-    }];
+        }];
+    };
+    [alert show];
+    
+    
+    
+    
     
     
 }
@@ -243,6 +318,12 @@
         _mainTableView.estimatedRowHeight = 100;
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
         _mainTableView.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
+        
+        if (@available(iOS 11.0, *)) {
+            _mainTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
         
         ZLSureBtnFooterView *footerView = [[ZLSureBtnFooterView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 100)];
         

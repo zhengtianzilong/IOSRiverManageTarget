@@ -7,6 +7,7 @@
 //
 
 #import "ZLReportEventDesTableViewCell.h"
+
 @interface ZLReportEventDesTableViewCell()<UITextViewDelegate>
 
 //@property (nonatomic, strong) UIView *bgView;
@@ -113,7 +114,11 @@
         _infoTextView = [[UITextView alloc]init];
         _infoTextView.backgroundColor = [UIColor whiteColor];
         _infoTextView.font = CHINESE_SYSTEM(15);
+        _infoTextView.zw_limitCount = 140;
+        //设置整个控件文字的上下距离
+        _infoTextView.textContainerInset = UIEdgeInsetsMake(5, 0, 5, 0);
         _infoTextView.scrollEnabled = NO;
+        [_infoTextView scrollRangeToVisible:_infoTextView.selectedRange];
         _infoTextView.delegate = self;
         
     }

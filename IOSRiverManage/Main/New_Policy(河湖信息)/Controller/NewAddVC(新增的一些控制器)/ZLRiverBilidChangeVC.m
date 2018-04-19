@@ -39,6 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.name = @"";
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.imageArray = [NSArray array];
@@ -75,6 +76,34 @@
     
 }
 
+/**
+ 检测文本框的内容
+ */
+- (BOOL)checkTextFieldContent{
+    if ([self.name isEqualToString:@""]) {
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写公示牌名" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        
+        return NO;
+    }
+    
+  
+    
+    if ([self.address isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请填写位置信息" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
+    
+    return YES;
+}
+
+
+
 
 /**
  点击确定按钮
@@ -84,35 +113,47 @@
         self.address = self.locationModel.addressDetail;
     }
 
-    YTKChainRequest *chain = [[YTKChainRequest alloc]init];
-    ZLNewFilesUpLoadService *fileService = [[ZLNewFilesUpLoadService alloc]initWithImage:self.imageArray];
+    if (![self checkTextFieldContent]) {
+        return;
+    }
+    DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认提交吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
     
-    [chain addRequest:fileService callback:^(YTKChainRequest * _Nonnull chainRequest, YTKBaseRequest * _Nonnull baseRequest) {
+    alert.otherButtonAction = ^{
+        YTKChainRequest *chain = [[YTKChainRequest alloc]init];
+        ZLNewFilesUpLoadService *fileService = [[ZLNewFilesUpLoadService alloc]initWithImage:self.imageArray];
         
-        ZLNewFilesUpLoadService *fileService = (ZLNewFilesUpLoadService *)baseRequest;
-        
-        ZLLog(@"%@",fileService.responseString);
-        
-        ZLUploadImagesModel *model = [[ZLUploadImagesModel alloc]initWithString:fileService.responseString error:nil];
-        
-        if ([model.code isEqualToString:@"0"]) {
+        [chain addRequest:fileService callback:^(YTKChainRequest * _Nonnull chainRequest, YTKBaseRequest * _Nonnull baseRequest) {
             
-            ZLTaskInfoImageListModel *imageModel = model.data.firstObject;
+            ZLNewFilesUpLoadService *fileService = (ZLNewFilesUpLoadService *)baseRequest;
             
-             ZLNewAddPublicBrandService *service = [[ZLNewAddPublicBrandService alloc]initWithriverCode:_riverDataModel.riverCode imgUrl:imageModel.fileAddr name:self.name longitude:self.locationModel.longitude latitude:self.locationModel.latitude detail:self.address];
-
-            [chainRequest addRequest:service callback:nil];
-
-        }else{
-            [SVProgressHUD showErrorWithStatus:model.detail];
-            [SVProgressHUD dismissWithDelay:0.3];
-        }
+            ZLLog(@"%@",fileService.responseString);
+            
+            ZLUploadImagesModel *model = [[ZLUploadImagesModel alloc]initWithString:fileService.responseString error:nil];
+            
+            if ([model.code isEqualToString:@"0"]) {
+                
+                ZLTaskInfoImageListModel *imageModel = model.data.firstObject;
+                
+                ZLNewAddPublicBrandService *service = [[ZLNewAddPublicBrandService alloc]initWithriverCode:_riverDataModel.riverCode imgUrl:imageModel.fileAddr name:self.name longitude:self.locationModel.longitude latitude:self.locationModel.latitude detail:self.address];
+                
+                [chainRequest addRequest:service callback:nil];
+                
+            }else{
+                [SVProgressHUD showErrorWithStatus:model.detail];
+                [SVProgressHUD dismissWithDelay:0.3];
+            }
+            
+            
+        }];
         
-        
-    }];
+        chain.delegate = self;
+        [chain start];
+    };
+    [alert show];
     
-    chain.delegate = self;
-    [chain start];
+    
+    
+   
 }
 - (void)chainRequestFinished:(YTKChainRequest *)chainRequest{
     
@@ -263,6 +304,11 @@
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
         _mainTableView.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
         
+        if (@available(iOS 11.0, *)) {
+            _mainTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
         
         UIView *headerView = [[UIView alloc] init];
         
@@ -306,6 +352,10 @@
             rect.size.height = CGRectGetMaxY(sureBtn.frame);
             headerView.frame = rect;
             
+            _mainTableView.sectionFooterHeight = headerView.frame.size.height;
+            [_mainTableView beginUpdates];
+            [_mainTableView endUpdates];
+            
 //            CGRect rect = headerView.frame;
 //            rect.size.height = CGRectGetMaxY(mediaView.frame);
 //            headerView.frame = rect;
@@ -326,7 +376,7 @@
         
         [headerView addSubview:sureBtn];
          [sureBtn jm_setCornerRadius:6 withBackgroundColor:HEXCOLOR(CNAVGATIONBAR_COLOR)];
-        headerView.frame = CGRectMake(0, 0, self.view.frame.size.width, CGRectGetMaxY(mediaView.frame));
+        headerView.frame = CGRectMake(0, 0, self.view.frame.size.width, CGRectGetMaxY(sureBtn.frame));
         _mainTableView.tableFooterView = headerView;
    
     }

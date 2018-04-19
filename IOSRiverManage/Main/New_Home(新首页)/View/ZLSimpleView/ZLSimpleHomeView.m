@@ -35,7 +35,7 @@
         make.left.equalTo(self);
         make.top.equalTo(self).offset(0);
         make.width.mas_equalTo(Main_Screen_Width);
-        make.height.mas_equalTo(AdaptedHeight(220));
+        make.height.mas_equalTo(170);
     }];
     
     
@@ -82,7 +82,7 @@
     if (!_startRiverBtn) {
         UIButton *button = [[UIButton alloc]init];
         [button setTitle:@"开始巡河" forState:(UIControlStateNormal)];
-        [button setBackgroundColor:HEXCOLOR(0xff9310)];
+        [button setBackgroundColor:HEXCOLOR(CVIEW_EVENT_TIPS_COLOR)];
         [button setImage:[UIImage imageNamed:@"simple_startRiver"] forState:(UIControlStateNormal)];
         button.layer.cornerRadius = 8;
         button.layer.masksToBounds = YES;

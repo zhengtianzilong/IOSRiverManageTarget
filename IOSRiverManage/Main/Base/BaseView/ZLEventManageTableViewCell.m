@@ -36,7 +36,8 @@
     
     _state = [[UILabel alloc]init];
     _state.text = @"已发起";
-    _state.font = CHINESE_SYSTEM(15);
+    _state.font = Font(15);
+    _state.textColor = HEXCOLOR(CVIEW_EVENT_TIPS_COLOR);
     _state.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_state];
     
@@ -45,7 +46,7 @@
     [self.contentView addSubview:_colorIndicator];
     
     _title = [[UILabel alloc]init];
-    _title.font = CHINESE_SYSTEM(16);
+    _title.font = Font(16);
     _title.text = @"河面脏乱差";
     [self.contentView addSubview:_title];
     
@@ -60,7 +61,7 @@
     
     
     _initiatorLabel = [[UILabel alloc]init];
-    _initiatorLabel.font = CHINESE_SYSTEM(14);
+    _initiatorLabel.font = Font(14);
     _initiatorLabel.text = @"发起人:";
     [self.contentView addSubview:_initiatorLabel];
     
@@ -73,7 +74,7 @@
     
     _receivedLabel = [[UILabel alloc]init];
     _receivedLabel.text = @"接收人:";
-    _receivedLabel.font = CHINESE_SYSTEM(14);
+    _receivedLabel.font = Font(14);
     [self.contentView addSubview:_receivedLabel];
     
     
@@ -84,8 +85,8 @@
     
     
     _contentLabel = [[UILabel alloc]init];
-    _contentLabel.text = @"内 容:";
-    _contentLabel.font = CHINESE_SYSTEM(14);
+    _contentLabel.text = @"内  容:";
+    _contentLabel.font = Font(14);
     [self.contentView addSubview:_contentLabel];
     
     
@@ -127,7 +128,6 @@
 //        make.top.equalTo(self.contentView).offset(5);
         make.right.equalTo(_state.mas_left).offset(-5);
         make.centerY.equalTo(_colorIndicator);
-        
         make.height.mas_equalTo(20);
         
     }];
@@ -151,12 +151,14 @@
         make.left.equalTo(_imageV.mas_right).offset(10);
         make.top.equalTo(_imageV.mas_top);
         make.height.mas_equalTo(20);
+        make.width.mas_equalTo(60);
     }];
     
     [_initiatorName mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_initiatorLabel.mas_right).offset(0);
         make.top.equalTo(_initiatorLabel);
+        make.right.equalTo(self.contentView.mas_right).offset(-5);
         make.height.mas_equalTo(_initiatorLabel);
     }];
     
@@ -164,13 +166,15 @@
         
         make.left.equalTo(_initiatorLabel);
         make.top.equalTo(_initiatorLabel.mas_bottom);
-       make.height.mas_equalTo(_initiatorLabel);
+        make.height.mas_equalTo(_initiatorLabel);
+        make.width.mas_equalTo(60);
     }];
     
     [_receivedName mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_receivedLabel.mas_right).offset(0);
         make.top.equalTo(_receivedLabel);
+        make.right.equalTo(self.contentView.mas_right).offset(-5);
         make.height.mas_equalTo(_initiatorLabel);
     }];
     
@@ -179,7 +183,7 @@
         make.left.equalTo(_initiatorLabel);
         make.top.equalTo(_receivedLabel.mas_bottom);
         make.height.mas_equalTo(_initiatorLabel);
-        make.width.mas_equalTo(45);
+        make.width.mas_equalTo(60);
     }];
 //    [_contentLabel setContentCompressionResistancePriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
     

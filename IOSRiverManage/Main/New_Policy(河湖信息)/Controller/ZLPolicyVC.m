@@ -191,19 +191,6 @@
     return _mainTableView;
 }
 
-//- (ZLPolicyRiverHeadView *)headView{
-//    if (!_headView) {
-//
-//        _headView = [[ZLPolicyRiverHeadView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 230)];
-//
-//        [_headView.riverInfoView.watchAllButton addTarget:self action:@selector(checkAllRiver) forControlEvents:(UIControlEventTouchUpInside)];
-//
-//        [_headView.riverCategoryView.riverInfoButton addTarget:self action:@selector(riverQualityDescriptionClick) forControlEvents:(UIControlEventTouchUpInside)];
-//
-//    }
-//    return _headView;
-//
-//}
 
 
 - (NSMutableAttributedString *)setTitle{

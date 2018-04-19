@@ -30,8 +30,8 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.width.mas_equalTo(AdaptedWidth(130));
-        make.left.equalTo(self).offset(AdaptedWidth(30));
+//        make.height.width.mas_equalTo(AdaptedWidth(130));
+        make.left.equalTo(self).offset(15);
 //        make.bottom.equalTo(self).offset(-AdaptedHeight(30));
         make.centerY.equalTo(self);
     }];

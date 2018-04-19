@@ -98,6 +98,7 @@
         UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(5, 0, 30 * kScreenWidthRatio, 20 * kScreenWidthRatio)];
         imageV.image = [UIImage imageNamed:@"new_login_name"];
         _nameTextField.leftViewMode = UITextFieldViewModeAlways;
+        _nameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _nameTextField.leftView = imageV;
     }
     return _nameTextField;
@@ -112,6 +113,7 @@
         imageV.image = [UIImage imageNamed:@"new_login_password"];
         _passTextField.leftViewMode = UITextFieldViewModeAlways;
         _passTextField.secureTextEntry = YES;
+        _passTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passTextField.leftView = imageV;
     }
     return _passTextField;

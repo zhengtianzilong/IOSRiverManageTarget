@@ -7,6 +7,7 @@
 //
 
 #import <JSONModel/JSONModel.h>
+#import "ZLFunctionListModel.h"
 @protocol ZLNewUserRiversDataModel
 
 @end

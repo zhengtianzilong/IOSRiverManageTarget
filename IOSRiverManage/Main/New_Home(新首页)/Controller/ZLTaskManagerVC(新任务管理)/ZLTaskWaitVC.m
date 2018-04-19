@@ -11,9 +11,11 @@
 #import "ZLMyventDealDetailVC.h"
 #import "ZLFindMyToDoTaskListService.h"
 #import "ZLTaskWaitModel.h"
-
 #import "ZLReceiveTaskService.h"
 #import "ZLTaskDealDetailVC.h"
+
+#import "ZLNewContiTaskDownVC.h"
+
 @interface ZLTaskWaitVC ()
 @property (nonatomic, strong) NSString *createName;
 
@@ -203,7 +205,7 @@
                         [SVProgressHUD showSuccessWithStatus:@"接收成功"];
                         [SVProgressHUD dismissWithDelay:0.3 completion:^{
                             
-                            [tableView.mj_header beginRefreshing];
+                            [self getData];
                             
                         }];
                         
@@ -217,19 +219,23 @@
                     [SVProgressHUD showErrorWithStatus:@"网络错误"];
                     [SVProgressHUD dismissWithDelay:0.3];
                 }];
-                
-                
-
             };
 
 
             [alert show];
-            
-            
-            
         }else if ([dealBtn.currentTitle isEqualToString:@"处理"]){
             ZLTaskDealDetailVC *vc = [[ZLTaskDealDetailVC alloc]init];
 //            vc.dataModel = dataModel;
+            
+            vc.taskDetailID = dataModel.taskDetailId;
+            vc.taskId = dataModel.taskId;
+            vc.childCode = dataModel.taskChildCode;
+            
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        
+        }else if ([dealBtn.currentTitle isEqualToString:@"重做"]){
+            ZLTaskDealDetailVC *vc = [[ZLTaskDealDetailVC alloc]init];
+            //            vc.dataModel = dataModel;
             
             vc.taskDetailID = dataModel.taskDetailId;
             vc.taskId = dataModel.taskId;

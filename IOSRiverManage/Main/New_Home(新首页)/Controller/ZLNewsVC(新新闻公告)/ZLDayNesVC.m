@@ -35,8 +35,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view addSubview:self.mainTableView];
-    
     _sourceArray = [NSMutableArray array];
     
     _lastCreateTime = @"";
@@ -69,7 +67,7 @@
 - (void)getData {
     
     [self.mainTableView ly_hideEmptyView];
-    ZLNewListService *newsService = [[ZLNewListService alloc]initWithpageSize:@"10" createTime:_lastCreateTime type:@"2" areaCode:_areaCode];
+    ZLNewListService *newsService = [[ZLNewListService alloc]initWithpageSize:@"10" createTime:_lastCreateTime type:@"1" areaCode:_areaCode];
     
     [newsService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         
@@ -108,8 +106,8 @@
     [super viewDidLayoutSubviews];
     
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(10);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-50);
+        make.top.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-40);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view.mas_right);
     }];
@@ -118,7 +116,7 @@
 #pragma mark -- 列表的代理
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
+    return 90;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -126,13 +124,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     ZLNewsDetaiVC *detailVC = [[ZLNewsDetaiVC alloc]init];
-    
     ZLNewListDataModel *model = self.sourceArray[indexPath.row];
-    
     if (model.url != nil) {
-        
         NSString *urlString = [NSString stringWithFormat:@"%@%@",SERVER_NEWS_URL,model.url];
         
         detailVC.url = urlString;
@@ -166,6 +160,12 @@
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
         _mainTableView.tableFooterView = [UIView new];
+        
+
+        
+//        _mainTableView.estimatedRowHeight = 150;
+//        _mainTableView.rowHeight = UITableViewAutomaticDimension;
+        
         _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             _lastCreateTime = @"";
             [self getData];

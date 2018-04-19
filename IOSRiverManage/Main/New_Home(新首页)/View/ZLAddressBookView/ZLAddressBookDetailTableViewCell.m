@@ -56,11 +56,6 @@
     
 }
 
-- (void)updateConstraints{
-    
-    [super updateConstraints];
-    
-}
 
 
 - (void)layoutSubviews{

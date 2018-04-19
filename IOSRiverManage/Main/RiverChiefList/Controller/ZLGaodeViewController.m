@@ -309,6 +309,9 @@ typedef enum : NSUInteger {
             [weakSelf presentViewController:vc animated:YES completion:nil];
         }
         
+//        ZLRiverChangePopView *popView = (ZLRiverChangePopView *)weakSelf.view.subviews.lastObject;
+//        [popView dismissView];
+        
     };
     
     [self.view addSubview:popView];

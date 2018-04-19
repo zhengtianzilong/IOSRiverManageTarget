@@ -2032,6 +2032,9 @@
 		D5AC9ED92079E60C003B15D8 /* ZLQueryMyAssignedView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AC9ED82079E60C003B15D8 /* ZLQueryMyAssignedView.m */; };
 		D5AC9EDA2079E60C003B15D8 /* ZLQueryMyAssignedView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AC9ED82079E60C003B15D8 /* ZLQueryMyAssignedView.m */; };
 		D5AC9EDB2079E60C003B15D8 /* ZLQueryMyAssignedView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AC9ED82079E60C003B15D8 /* ZLQueryMyAssignedView.m */; };
+		D5AEF41A20882C8C00BC17E7 /* UITextView+ZWLimitCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AEF41820882C8B00BC17E7 /* UITextView+ZWLimitCounter.m */; };
+		D5AEF41B20882C8C00BC17E7 /* UITextView+ZWLimitCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AEF41820882C8B00BC17E7 /* UITextView+ZWLimitCounter.m */; };
+		D5AEF41C20882C8C00BC17E7 /* UITextView+ZWLimitCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AEF41820882C8B00BC17E7 /* UITextView+ZWLimitCounter.m */; };
 		D5AF55B2206DC7D8000F3BAB /* ZLRiverIncidentDetailListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AF55B1206DC7D8000F3BAB /* ZLRiverIncidentDetailListModel.m */; };
 		D5AF55B3206DC7D8000F3BAB /* ZLRiverIncidentDetailListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AF55B1206DC7D8000F3BAB /* ZLRiverIncidentDetailListModel.m */; };
 		D5AF55B4206DC7D8000F3BAB /* ZLRiverIncidentDetailListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5AF55B1206DC7D8000F3BAB /* ZLRiverIncidentDetailListModel.m */; };
@@ -3661,6 +3664,8 @@
 		D5AC9ED32079E546003B15D8 /* ZLMyAssignedSelectInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLMyAssignedSelectInfoView.m; sourceTree = "<group>"; };
 		D5AC9ED72079E60C003B15D8 /* ZLQueryMyAssignedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLQueryMyAssignedView.h; sourceTree = "<group>"; };
 		D5AC9ED82079E60C003B15D8 /* ZLQueryMyAssignedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLQueryMyAssignedView.m; sourceTree = "<group>"; };
+		D5AEF41820882C8B00BC17E7 /* UITextView+ZWLimitCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+ZWLimitCounter.m"; sourceTree = "<group>"; };
+		D5AEF41920882C8B00BC17E7 /* UITextView+ZWLimitCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+ZWLimitCounter.h"; sourceTree = "<group>"; };
 		D5AF55B0206DC7D8000F3BAB /* ZLRiverIncidentDetailListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLRiverIncidentDetailListModel.h; sourceTree = "<group>"; };
 		D5AF55B1206DC7D8000F3BAB /* ZLRiverIncidentDetailListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLRiverIncidentDetailListModel.m; sourceTree = "<group>"; };
 		D5AF55B5206DC983000F3BAB /* ZLEventDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventDetailModel.h; sourceTree = "<group>"; };
@@ -5587,6 +5592,7 @@
 		D51D405E1F6939AE00CA0903 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				D5AEF41720882C8B00BC17E7 /* ZWLimitCounter */,
 				D5B35DCF205CF94F00369469 /* ZWPlaceHolder */,
 				D59BBA39205A591E00B3DB4C /* LYEmptyView */,
 				D5C0239820567FBA0049BCDF /* ACMediaFrame */,
@@ -7283,6 +7289,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		D5AEF41720882C8B00BC17E7 /* ZWLimitCounter */ = {
+			isa = PBXGroup;
+			children = (
+				D5AEF41820882C8B00BC17E7 /* UITextView+ZWLimitCounter.m */,
+				D5AEF41920882C8B00BC17E7 /* UITextView+ZWLimitCounter.h */,
+			);
+			path = ZWLimitCounter;
+			sourceTree = "<group>";
+		};
 		D5AF55C9206E060F000F3BAB /* NewStatistics(综合统计) */ = {
 			isa = PBXGroup;
 			children = (
@@ -8646,6 +8661,7 @@
 				D51D3DDC1F69398900CA0903 /* UIButton+MiddleAligning.m in Sources */,
 				D51D3E131F69398900CA0903 /* UIScreen+Frame.m in Sources */,
 				D5866BEB1F73A11600225268 /* ZLBaiduiImportanceViewController.mm in Sources */,
+				D5AEF41A20882C8C00BC17E7 /* UITextView+ZWLimitCounter.m in Sources */,
 				D51D3E5D1F69398900CA0903 /* SDCollectionViewCell.m in Sources */,
 				D59BBA182059FE4100B3DB4C /* ZLNewUserRiversDataModel.m in Sources */,
 				D59BBA6C205A809200B3DB4C /* ZLNewListDataModel.m in Sources */,
@@ -9380,6 +9396,7 @@
 				D57668961FEB9B3D00470A3F /* UIButton+MiddleAligning.m in Sources */,
 				D57668971FEB9B3D00470A3F /* UIScreen+Frame.m in Sources */,
 				D57668981FEB9B3D00470A3F /* ZLBaiduiImportanceViewController.mm in Sources */,
+				D5AEF41B20882C8C00BC17E7 /* UITextView+ZWLimitCounter.m in Sources */,
 				D57668991FEB9B3D00470A3F /* SDCollectionViewCell.m in Sources */,
 				D59BBA192059FE4100B3DB4C /* ZLNewUserRiversDataModel.m in Sources */,
 				D59BBA6D205A809200B3DB4C /* ZLNewListDataModel.m in Sources */,
@@ -10098,6 +10115,7 @@
 				D58510001FF08CC8001B8165 /* UIButton+MiddleAligning.m in Sources */,
 				D58510011FF08CC8001B8165 /* UIScreen+Frame.m in Sources */,
 				D58510021FF08CC8001B8165 /* ZLBaiduiImportanceViewController.mm in Sources */,
+				D5AEF41C20882C8C00BC17E7 /* UITextView+ZWLimitCounter.m in Sources */,
 				D58510031FF08CC8001B8165 /* SDCollectionViewCell.m in Sources */,
 				D59BBA1A2059FE4100B3DB4C /* ZLNewUserRiversDataModel.m in Sources */,
 				D59BBA6E205A809200B3DB4C /* ZLNewListDataModel.m in Sources */,

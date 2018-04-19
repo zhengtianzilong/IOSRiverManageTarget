@@ -23,14 +23,14 @@
     [super layoutSubviews];
     [self.icon mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.contentView).offset(AdaptedWidth(30));
+        make.left.equalTo(self.contentView).offset(15);
         make.centerY.equalTo(self.contentView);
-        make.width.height.mas_equalTo(AdaptedWidth(50));
+//        make.width.height.mas_equalTo(AdaptedWidth(50));
     }];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self.icon.mas_right).offset(AdaptedWidth(25));
+        make.left.equalTo(self.icon.mas_right).offset(10);
         make.centerY.equalTo(self.contentView);
         make.height.equalTo(self.icon);
         

@@ -815,6 +815,12 @@
         
         _mainTableView.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
         
+        if (@available(iOS 11.0, *)) {
+            _mainTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = NO;
+        }
+        
 //        _mainTableView.estimatedSectionFooterHeight = 180;
 //        _mainTableView.sectionFooterHeight = UITableViewAutomaticDimension;
 

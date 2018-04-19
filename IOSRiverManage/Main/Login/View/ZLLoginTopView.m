@@ -16,6 +16,12 @@
 #define kDebug @"http://112.4.10.185:86/api/"
 #define kcomStatisticsDebug @"http://112.4.10.185:86"
 #define kfileDebug @"http://112.4.10.185:86/file/"
+
+#define kPre @"http://112.4.10.187:86/api/"
+#define kcomStatisticsPre @"http://112.4.10.187:86"
+#define kfilePre @"http://112.4.10.187:86/file/"
+
+
 @interface ZLLoginTopView()
 
 @property (nonatomic, strong) NSArray *titleArray;
@@ -86,14 +92,26 @@
         
         
     }];
+    
+    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"预生产环境" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[NSUserDefaults standardUserDefaults] setObject:kPre forKey:@"Server"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:kcomStatisticsPre forKey:@"ComStatistics"];
+        [[NSUserDefaults standardUserDefaults] setObject:kfilePre forKey:@"File"];
+        
+        
+    }];
+    
+    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
-        [self.viewController dismissViewControllerAnimated:YES completion:nil];
+        [alertController dismissViewControllerAnimated:YES completion:nil];
         
     }];
     
     [alertController addAction:action1];
     [alertController addAction:action2];
+    [alertController addAction:action3];
     [alertController addAction:cancelAction];
     
     [self.viewController presentViewController:alertController animated:YES completion:nil];
