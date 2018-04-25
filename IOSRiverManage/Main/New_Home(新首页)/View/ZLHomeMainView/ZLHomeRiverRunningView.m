@@ -136,7 +136,7 @@
 
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.font = CHINESE_SYSTEM(18);
+        _titleLabel.font = CHINESE_SYSTEM(16);
         _titleLabel.text = @"莫愁湖河段";
     }
     return _titleLabel;
@@ -147,7 +147,7 @@
     
     if (!_peopleLabel) {
         _peopleLabel = [[UILabel alloc]init];
-        _peopleLabel.font = CHINESE_SYSTEM(16);
+        _peopleLabel.font = CHINESE_SYSTEM(14);
         _peopleLabel.text = @"李乐乐";
     }
     return _peopleLabel;
@@ -158,7 +158,7 @@
     
     if (!_checkLabel) {
         _checkLabel = [[UILabel alloc]init];
-        _checkLabel.font = CHINESE_SYSTEM(16);
+        _checkLabel.font = CHINESE_SYSTEM(14);
         _checkLabel.text = @"巡河中请查看";
         _checkLabel.textColor = [UIColor orangeColor];
     }
@@ -170,7 +170,7 @@
     
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
-        _timeLabel.font = CHINESE_SYSTEM(16);
+        _timeLabel.font = CHINESE_SYSTEM(14);
         _timeLabel.text = @"0分钟";
         _timeLabel.textAlignment = NSTextAlignmentRight;
         
@@ -184,7 +184,7 @@
     if (!_stateLabel) {
         _stateLabel = [[UILabel alloc]init];
         _stateLabel.text = @"已经巡河";
-        _stateLabel.font = CHINESE_SYSTEM(16);
+        _stateLabel.font = CHINESE_SYSTEM(14);
     }
     return _stateLabel;
     

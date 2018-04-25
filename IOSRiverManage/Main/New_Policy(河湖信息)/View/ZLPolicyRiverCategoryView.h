@@ -10,4 +10,5 @@
 
 @interface ZLPolicyRiverCategoryView : UIView
 @property (nonatomic, strong) UIButton *riverInfoButton;
+@property (nonatomic, strong) UIImageView *riverInfoImageV;
 @end

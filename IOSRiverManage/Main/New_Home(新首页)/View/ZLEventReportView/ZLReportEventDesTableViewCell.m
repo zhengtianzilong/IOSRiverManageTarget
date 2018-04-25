@@ -67,7 +67,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(10);
-        make.width.mas_equalTo(100);
+        make.width.mas_equalTo(90);
         make.top.equalTo(self.contentView).offset(10);
 //        make.centerY.equalTo(self.bgView);
         make.height.mas_equalTo(45);
@@ -85,17 +85,6 @@
     
 }
 
-//- (UIView *)bgView{
-//    
-//    if (!_bgView) {
-//        
-//        _bgView = [[UIView alloc]init];
-//        _bgView.backgroundColor = [UIColor whiteColor];
-//    }
-//    
-//    return _bgView;
-//    
-//}
 
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
@@ -103,7 +92,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"XXXXX";
         _titleLabel.backgroundColor = [UIColor whiteColor];
-        _titleLabel.font = CHINESE_SYSTEM(15);
+        _titleLabel.font = Font(13);
         
     }
     return _titleLabel;
@@ -113,10 +102,10 @@
     if (!_infoTextView) {
         _infoTextView = [[UITextView alloc]init];
         _infoTextView.backgroundColor = [UIColor whiteColor];
-        _infoTextView.font = CHINESE_SYSTEM(15);
+        _infoTextView.font = CHINESE_SYSTEM(13);
         _infoTextView.zw_limitCount = 140;
         //设置整个控件文字的上下距离
-        _infoTextView.textContainerInset = UIEdgeInsetsMake(5, 0, 5, 0);
+        _infoTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _infoTextView.scrollEnabled = NO;
         [_infoTextView scrollRangeToVisible:_infoTextView.selectedRange];
         _infoTextView.delegate = self;

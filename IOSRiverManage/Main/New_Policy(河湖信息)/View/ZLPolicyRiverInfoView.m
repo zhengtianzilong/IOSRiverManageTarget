@@ -37,9 +37,10 @@
     
     [self.riverLable mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(self).offset(AdaptedWidth(10));
-        make.width.mas_equalTo(150);
+        make.left.equalTo(self).offset(10);
+//        make.width.mas_equalTo(150);
         make.top.equalTo(self);
+        make.centerY.equalTo(self.mas_centerY);
         make.height.mas_equalTo(30);
         
     }];
@@ -48,8 +49,8 @@
         
         make.right.equalTo(self.mas_right).offset(-5);
         make.top.equalTo(self).offset(5);
-        make.height.mas_equalTo(AdaptedHeight(40));
-        make.width.mas_equalTo(120);
+        make.height.mas_equalTo(30);
+        make.width.mas_equalTo(110);
         make.bottom.equalTo(self.mas_bottom).offset(-5);
     }];
     
@@ -67,7 +68,7 @@
     if (!_riverLable) {
         _riverLable = [[UILabel alloc]initWithFrame:CGRectZero];
         _riverLable.text = @"河道水质信息";
-        _riverLable.font = SYSTEMFONT(18);
+        _riverLable.font = Font(16);
     }
     return _riverLable;
 }
@@ -83,7 +84,7 @@
         _watchAllButton.layer.borderWidth = 1;
         _watchAllButton.layer.masksToBounds = YES;
         _watchAllButton.layer.cornerRadius = 3;
-        _watchAllButton.titleLabel.font = SYSTEMFONT(15);
+        _watchAllButton.titleLabel.font = Font(13);
     }
     return _watchAllButton;
 }

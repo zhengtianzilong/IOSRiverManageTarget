@@ -121,7 +121,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"XXXXX";
         _titleLabel.backgroundColor = [UIColor whiteColor];
-        _titleLabel.font = CHINESE_SYSTEM(15);
+        _titleLabel.font = CHINESE_SYSTEM(13);
         
     }
     return _titleLabel;
@@ -132,7 +132,7 @@
         _infoTextView = [[UITextView alloc]init];
         _infoTextView.backgroundColor = [UIColor whiteColor];
         
-        _infoTextView.font = CHINESE_SYSTEM(15);
+        _infoTextView.font = CHINESE_SYSTEM(13);
         _infoTextView.zw_limitCount = 140;
         //设置整个控件文字的上下距离
         _infoTextView.textContainerInset = UIEdgeInsetsMake(5, 0, 5, 0);

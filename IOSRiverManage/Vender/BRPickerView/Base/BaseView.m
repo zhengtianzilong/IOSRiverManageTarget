@@ -67,11 +67,11 @@
         _leftBtn.frame = CGRectMake(5, 8, 60, 28);
         _leftBtn.backgroundColor = [UIColor clearColor];
         _leftBtn.layer.cornerRadius = 6.0f;
-        _leftBtn.layer.borderColor = RGB_HEX(KNavBarBG_color_blue, 1).CGColor;
+        _leftBtn.layer.borderColor = RGB_HEX(CNAVGATIONBAR_COLOR, 1).CGColor;
         _leftBtn.layer.borderWidth = 1.0f;
         _leftBtn.layer.masksToBounds = YES;
         _leftBtn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        [_leftBtn setTitleColor:RGB_HEX(KNavBarBG_color_blue, 1) forState:UIControlStateNormal];
+        [_leftBtn setTitleColor:RGB_HEX(CNAVGATIONBAR_COLOR, 1) forState:UIControlStateNormal];
         [_leftBtn setTitle:@"取消" forState:UIControlStateNormal];
         [_leftBtn addTarget:self action:@selector(clickLeftBtn) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -84,12 +84,12 @@
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _rightBtn.frame = CGRectMake(SCREEN_WIDTH - 65, 8, 60, 28);
         _rightBtn.backgroundColor = [UIColor clearColor];
-        _rightBtn.layer.borderColor = RGB_HEX(KNavBarBG_color_blue, 1).CGColor;
+        _rightBtn.layer.borderColor = RGB_HEX(CNAVGATIONBAR_COLOR, 1).CGColor;
         _rightBtn.layer.cornerRadius = 6.0f;
         _rightBtn.layer.borderWidth = 1.0f;
         _rightBtn.layer.masksToBounds = YES;
         _rightBtn.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-        [_rightBtn setTitleColor:RGB_HEX(KNavBarBG_color_blue, 1) forState:UIControlStateNormal];
+        [_rightBtn setTitleColor:RGB_HEX(CNAVGATIONBAR_COLOR, 1) forState:UIControlStateNormal];
         [_rightBtn setTitle:@"确定" forState:UIControlStateNormal];
         [_rightBtn addTarget:self action:@selector(clickRightBtn) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -102,7 +102,7 @@
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(65, 0, SCREEN_WIDTH - 130, kTopViewHeight)];
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        _titleLabel.textColor = RGB_HEX(KNavBarBG_color_blue, 1);
+        _titleLabel.textColor = RGB_HEX(CNAVGATIONBAR_COLOR, 1);
         _titleLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLabel;

@@ -70,6 +70,8 @@
 
 @property (nonatomic, strong) ZLNewLoginModel *loginModel;
 
+@property (nonatomic, assign) BOOL isPush;
+
 @end
 
 @implementation ZLHomeMainVC 
@@ -80,9 +82,28 @@
     [[NSNotificationCenter defaultCenter] removeObserver:@"RiverRunningEnd"];
 }
 
+
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    _isPush = NO;
+    
+}
+
+
+
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    if (_isPush) {
+        //push
+    }else{
+        //pop
+        self.lastCreateTime = @"";
+        [self getData];
+        
+    }
     
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     
@@ -284,7 +305,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     _sourceArray = [NSMutableArray array];
     _lastCreateTime = @"";
-    
+    _isPush = YES;
     [self getData];
     
     [self getAllData];
@@ -438,7 +459,7 @@
                             [SVProgressHUD showSuccessWithStatus:@"接收成功"];
                             [SVProgressHUD dismissWithDelay:0.3 completion:^{
                                 
-//                                [tableView.mj_header beginRefreshing];
+                                self.lastCreateTime = @"";
                                 [self getData];
                             }];
                             
@@ -461,6 +482,15 @@
                 vc.taskDetailID = homeDataModel.taskDetailId;
                 vc.taskId = homeDataModel.taskId;
                 vc.childCode = homeDataModel.taskChildCode;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }else if ([dealBtn.currentTitle isEqualToString:@"重做"]){
+                ZLTaskDealDetailVC *vc = [[ZLTaskDealDetailVC alloc]init];
+                //            vc.dataModel = dataModel;
+                
+                vc.taskDetailID = homeDataModel.taskDetailId;
+                vc.taskId = homeDataModel.taskId;
+                vc.childCode = homeDataModel.taskChildCode;
+                
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }
             
@@ -492,7 +522,7 @@
                             
                             [SVProgressHUD showSuccessWithStatus:@"接收成功"];
                             [SVProgressHUD dismissWithDelay:0.3 completion:^{
-                                
+                                self.lastCreateTime = @"";
                                 [self getData];
 //                                [tableView.mj_header beginRefreshing];
                                 
@@ -517,6 +547,7 @@
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             }
         };
+        
         return cell;
     }
     
@@ -569,7 +600,7 @@
             
         }];
         
-        _mainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _mainTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             [self getData];
             
         }];

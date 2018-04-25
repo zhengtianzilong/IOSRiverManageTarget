@@ -32,4 +32,7 @@
 @property (nonatomic, strong) NSString<Optional> *status;
 
 @property (nonatomic, strong) NSString<Optional> *createName;
+
+@property (nonatomic, strong) NSString<Optional> *isUrgent;
+
 @end

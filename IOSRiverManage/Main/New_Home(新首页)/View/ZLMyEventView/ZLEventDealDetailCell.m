@@ -45,7 +45,7 @@
         make.left.equalTo(self.colorIndicator.mas_right).offset(5);
         make.centerY.equalTo(self.colorIndicator);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
         
     }];
     
@@ -80,7 +80,7 @@
         make.left.equalTo(self.peopleLabel);
         make.top.equalTo(self.peopleLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
     }];
     
     [self.time mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -172,7 +172,7 @@
     if (!_peopleLabel) {
         _peopleLabel = [[UILabel alloc]init];
         _peopleLabel.text = @"执行人：";
-        _peopleLabel.font = Font(14);
+        _peopleLabel.font = Font(12);
     }
     return _peopleLabel;
 }
@@ -180,7 +180,7 @@
     if (!_people) {
         _people = [[UILabel alloc]init];
         _people.text = @"XXXXX";
-        _people.font = CHINESE_SYSTEM(14);
+        _people.font = CHINESE_SYSTEM(12);
     }
     return _people;
 }
@@ -189,7 +189,7 @@
     if (!_stateLabel) {
         _stateLabel = [[UILabel alloc]init];
         _stateLabel.text = @"状态：";
-        _stateLabel.font = Font(14);
+        _stateLabel.font = Font(12);
     }
     return _stateLabel;
 }
@@ -197,7 +197,7 @@
     if (!_state) {
         _state = [[UILabel alloc]init];
         _state.text = @"XXXXX";
-        _state.font = CHINESE_SYSTEM(14);
+        _state.font = CHINESE_SYSTEM(12);
     }
     return _state;
 }
@@ -224,7 +224,7 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.text = @"完成时间：";
-        _timeLabel.font = Font(14);
+        _timeLabel.font = Font(12);
     }
     return _timeLabel;
 }
@@ -233,7 +233,7 @@
     if (!_time) {
         _time = [[UILabel alloc]init];
         _time.text = @"123";
-        _time.font = CHINESE_SYSTEM(14);
+        _time.font = CHINESE_SYSTEM(12);
     }
     return _time;
 }

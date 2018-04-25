@@ -49,7 +49,7 @@
             make.left.equalTo(self.contentView).offset(10);
             make.top.equalTo(self.contentView).offset(10);
             make.height.mas_equalTo(20);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(80);
         }];
         
         [self.riverCount mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,7 +63,7 @@
             make.left.equalTo(self.riverCountLabel);
             make.top.equalTo(self.riverCountLabel.mas_bottom).offset(5);
             make.height.mas_equalTo(20);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(80);
         }];
         [self.riverCounty mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -79,7 +79,7 @@
             make.left.equalTo(self.riverCountLabel);
             make.top.equalTo(self.riverCountyLabel.mas_bottom).offset(5);
             make.height.mas_equalTo(20);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(80);
         }];
         [self.riverLevel mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -94,7 +94,7 @@
             make.left.equalTo(self.riverCountLabel);
             make.top.equalTo(self.riverLevelLabel.mas_bottom).offset(5);
             make.height.mas_equalTo(20);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(80);
         }];
         [self.riverLength mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -110,7 +110,7 @@
             make.left.equalTo(self.riverCountLabel);
             make.top.equalTo(self.riverLengthLabel.mas_bottom).offset(5);
             make.height.mas_equalTo(20);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(80);
         }];
         
         [self.riverStart mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -124,7 +124,7 @@
             make.left.equalTo(self.riverCountLabel);
             make.top.equalTo(self.riverStartLabel.mas_bottom).offset(5);
             make.height.mas_equalTo(20);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(80);
         }];
         
         [self.riverEnd mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -138,7 +138,7 @@
             make.left.equalTo(self.riverCountLabel);
             make.top.equalTo(self.riverEndLabel.mas_bottom).offset(5);
             make.height.mas_equalTo(20);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(80);
         }];
         
         [self.riverDuty mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -152,7 +152,7 @@
             make.left.equalTo(self.riverCountLabel);
             make.top.greaterThanOrEqualTo(self.riverDuty.mas_bottom).offset(5);
             make.height.mas_equalTo(20);
-            make.width.mas_equalTo(60);
+            make.width.mas_equalTo(80);
         }];
         
         [self.riverTarget mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -189,7 +189,7 @@
     
     _riverLevel.text = _infoBaseModel.RIVER_GRADE;
     
-    _riverLength.text = _infoBaseModel.RIVER_LENGTH;
+    _riverLength.text =  [NSString stringWithFormat:@"%@(千米)",_infoBaseModel.RIVER_LENGTH];
     
     _riverStart.text = _infoBaseModel.START_DESC;
     
@@ -200,34 +200,6 @@
     _riverTarget.text = _infoBaseModel.TARGET;
 }
 
-
-//- (instancetype)initWithFrame:(CGRect)frame{
-//    if (self = [super initWithFrame:frame]) {
-//
-//        self.backgroundColor = [UIColor whiteColor];
-//
-//        [self addSubview:self.riverCountLabel];
-//        [self addSubview:self.riverCount];
-//        [self addSubview:self.riverStartLabel];
-//        [self addSubview:self.riverStart];
-//        [self addSubview:self.riverEndLabel];
-//        [self addSubview:self.riverEnd];
-//        [self addSubview:self.riverDutyLabel];
-//        [self addSubview:self.riverDuty];
-//        [self addSubview:self.riverTargetLabel];
-//        [self addSubview:self.riverTarget];
-//        [self addSubview:self.riverCountyLabel];
-//        [self addSubview:self.riverCounty];
-//        [self addSubview:self.riverLevelLabel];
-//        [self addSubview:self.riverLevel];
-//        [self addSubview:self.riverLengthLabel];
-//        [self addSubview:self.riverLength];
-//        [self addSubview:self.checkAddressBtn];
-//        [self addSubview:self.editBtn];
-//    }
-//
-//    return self;
-//}
 
 
 - (void)checkAddressBtnClick{
@@ -256,7 +228,7 @@
     if (!_riverCountLabel) {
         _riverCountLabel = [[UILabel alloc]init];
         _riverCountLabel.text = @"河道编号";
-        _riverCountLabel.font = SYSTEMFONT(14);
+        _riverCountLabel.font = Font(12);
     }
     return _riverCountLabel;
 }
@@ -264,7 +236,7 @@
 - (UILabel *)riverCount{
     if (!_riverCount) {
         _riverCount = [[UILabel alloc]init];
-        _riverCount.font = SYSTEMFONT(14);
+        _riverCount.font = CHINESE_SYSTEM(12);
         _riverCount.text = @"111111";
     }
     return _riverCount;
@@ -274,7 +246,7 @@
     if (!_riverStartLabel) {
         _riverStartLabel = [[UILabel alloc]init];
         _riverStartLabel.text = @"河道起点";
-        _riverStartLabel.font = SYSTEMFONT(14);
+        _riverStartLabel.font = Font(12);
     }
     return _riverStartLabel;
 }
@@ -282,7 +254,7 @@
 - (UILabel *)riverStart{
     if (!_riverStart) {
         _riverStart = [[UILabel alloc]init];
-        _riverStart.font = SYSTEMFONT(14);
+        _riverStart.font = CHINESE_SYSTEM(12);
         _riverStart.text = @"111111";
     }
     return _riverStart;
@@ -292,7 +264,7 @@
     if (!_riverEndLabel) {
         _riverEndLabel = [[UILabel alloc]init];
         _riverEndLabel.text = @"河道终点";
-        _riverEndLabel.font = SYSTEMFONT(14);
+        _riverEndLabel.font = Font(12);
     }
     return _riverEndLabel;
 }
@@ -300,7 +272,7 @@
 - (UILabel *)riverEnd{
     if (!_riverEnd) {
         _riverEnd = [[UILabel alloc]init];
-        _riverEnd.font = SYSTEMFONT(14);
+        _riverEnd.font = CHINESE_SYSTEM(12);
         _riverEnd.text = @"111111";
     }
     return _riverEnd;
@@ -309,8 +281,8 @@
 - (UILabel *)riverDutyLabel{
     if (!_riverDutyLabel) {
         _riverDutyLabel = [[UILabel alloc]init];
-        _riverDutyLabel.text = @"河道职责";
-        _riverDutyLabel.font = SYSTEMFONT(14);
+        _riverDutyLabel.text = @"河长职责";
+        _riverDutyLabel.font = Font(12);
     }
     return _riverDutyLabel;
 }
@@ -318,7 +290,7 @@
 - (UILabel *)riverDuty{
     if (!_riverDuty) {
         _riverDuty = [[UILabel alloc]init];
-        _riverDuty.font = SYSTEMFONT(14);
+        _riverDuty.font = CHINESE_SYSTEM(12);
         _riverDuty.numberOfLines = 0;
         _riverDuty.text = @"整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标整治目标";
         
@@ -330,7 +302,7 @@
     if (!_riverTargetLabel) {
         _riverTargetLabel = [[UILabel alloc]init];
         _riverTargetLabel.text = @"治理目标";
-        _riverTargetLabel.font = SYSTEMFONT(14);
+        _riverTargetLabel.font = Font(12);
     }
     return _riverTargetLabel;
 }
@@ -338,7 +310,7 @@
 - (UILabel *)riverTarget{
     if (!_riverTarget) {
         _riverTarget = [[UILabel alloc]init];
-        _riverTarget.font = SYSTEMFONT(14);
+        _riverTarget.font = CHINESE_SYSTEM(12);
         _riverTarget.text = @"111111";
         _riverTarget.numberOfLines = 0;
     }
@@ -349,7 +321,7 @@
     if (!_riverCountyLabel) {
         _riverCountyLabel = [[UILabel alloc]init];
         _riverCountyLabel.text = @"所属区县";
-        _riverCountyLabel.font = SYSTEMFONT(14);
+        _riverCountyLabel.font = Font(12);
     }
     return _riverCountyLabel;
 }
@@ -357,7 +329,7 @@
 - (UILabel *)riverCounty{
     if (!_riverCounty) {
         _riverCounty = [[UILabel alloc]init];
-        _riverCounty.font = SYSTEMFONT(14);
+        _riverCounty.font = CHINESE_SYSTEM(12);
         _riverCounty.text = @"111111";
     }
     return _riverCounty;
@@ -367,7 +339,7 @@
     if (!_riverLevelLabel) {
         _riverLevelLabel = [[UILabel alloc]init];
         _riverLevelLabel.text = @"所属级别";
-        _riverLevelLabel.font = SYSTEMFONT(14);
+        _riverLevelLabel.font = Font(12);
     }
     return _riverLevelLabel;
 }
@@ -375,7 +347,7 @@
 - (UILabel *)riverLevel{
     if (!_riverLevel) {
         _riverLevel = [[UILabel alloc]init];
-        _riverLevel.font = SYSTEMFONT(14);
+        _riverLevel.font = CHINESE_SYSTEM(12);
         _riverLevel.text = @"111111";
     }
     return _riverLevel;
@@ -385,7 +357,7 @@
     if (!_riverLengthLabel) {
         _riverLengthLabel = [[UILabel alloc]init];
         _riverLengthLabel.text = @"河道长度";
-        _riverLengthLabel.font = SYSTEMFONT(14);
+        _riverLengthLabel.font = Font(12);
     }
     return _riverLengthLabel;
 }
@@ -393,7 +365,7 @@
 - (UILabel *)riverLength{
     if (!_riverLength) {
         _riverLength = [[UILabel alloc]init];
-        _riverLength.font = SYSTEMFONT(14);
+        _riverLength.font = CHINESE_SYSTEM(12);
         _riverLength.text = @"111111";
     }
     return _riverLength;
@@ -404,7 +376,7 @@
         _checkAddressBtn = [[UIButton alloc]init];
         [_checkAddressBtn setTitle:@"查看河道方位" forState:(UIControlStateNormal)];
         [_checkAddressBtn setTitleColor:HEXCOLOR(CNAVGATIONBAR_COLOR) forState:(UIControlStateNormal)];
-        _checkAddressBtn.titleLabel.font = SYSTEMFONT(14);
+        _checkAddressBtn.titleLabel.font = Font(12);
         [_checkAddressBtn setImage:[UIImage imageNamed:@"info_positioning"] forState:(UIControlStateNormal)];
         
         [_checkAddressBtn setImagePosition:(LXMImagePositionLeft) spacing:10];

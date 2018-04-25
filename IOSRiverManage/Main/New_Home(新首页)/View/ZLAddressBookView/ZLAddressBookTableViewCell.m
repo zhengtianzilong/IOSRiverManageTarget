@@ -107,7 +107,7 @@
         _detailLabel = [[UILabel alloc]init];
         //        _title.textColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
 //        _detailLabel.text = @"玄武区河长";
-        _detailLabel.font = CHINESE_SYSTEM(13);
+        _detailLabel.font = CHINESE_SYSTEM(11);
     }
     return _detailLabel;
 }
@@ -117,7 +117,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
 //        _titleLabel.text = @"徐倩";
-        _titleLabel.font = CHINESE_SYSTEM(17);
+        _titleLabel.font = Font(15);
     }
     return _titleLabel;
 }
@@ -125,7 +125,7 @@
     if (!_phoneLabel) {
         _phoneLabel = [[UILabel alloc]init];
 //        _phoneLabel.text = @"15951751095";
-        _phoneLabel.font = CHINESE_SYSTEM(13);
+        _phoneLabel.font = CHINESE_SYSTEM(11);
     }
     return _phoneLabel;
 }

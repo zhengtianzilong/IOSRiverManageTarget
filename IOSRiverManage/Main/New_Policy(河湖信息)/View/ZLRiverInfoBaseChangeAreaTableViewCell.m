@@ -102,7 +102,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"所在区县：";
         _titleLabel.backgroundColor = [UIColor whiteColor];
-        _titleLabel.font = CHINESE_SYSTEM(15);
+        _titleLabel.font = CHINESE_SYSTEM(13);
         
     }
     return _titleLabel;
@@ -116,7 +116,7 @@
         
         [_areaBtn setTitle:@"江苏省 南京市 浦口区" forState:(UIControlStateNormal)];
         [_areaBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-        _areaBtn.titleLabel.font = CHINESE_SYSTEM(15);
+        _areaBtn.titleLabel.font = CHINESE_SYSTEM(13);
         
 //        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
         

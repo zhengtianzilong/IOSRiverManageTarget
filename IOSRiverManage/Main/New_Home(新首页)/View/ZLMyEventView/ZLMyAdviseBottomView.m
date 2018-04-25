@@ -71,7 +71,7 @@
     self.startButton.backgroundColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
     self.startButton.layer.cornerRadius = 5;
     self.startButton.clipsToBounds = YES;
-    self.startButton.titleLabel.font = AdaptedFontSize(24);
+    self.startButton.titleLabel.font = CHINESE_SYSTEM(14);
     self.startButton.adjustsImageWhenHighlighted = NO;
     [self addSubview:self.startButton];
     [self.startButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -91,7 +91,7 @@
     self.endButton.layer.cornerRadius = 5;
     self.endButton.clipsToBounds = YES;
     self.endButton.backgroundColor = HEXCOLOR(0xf29503);
-    self.endButton.titleLabel.font = AdaptedFontSize(24);
+    self.endButton.titleLabel.font = CHINESE_SYSTEM(14);
     self.endButton.adjustsImageWhenHighlighted = NO;
     
     [self.endButton mas_makeConstraints:^(MASConstraintMaker *make) {

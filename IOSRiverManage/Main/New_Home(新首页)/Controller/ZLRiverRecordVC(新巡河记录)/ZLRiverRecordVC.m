@@ -211,9 +211,9 @@
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 85;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 85;
+//}
 
 
 - (UITableView *)mainTableView{
@@ -233,7 +233,8 @@
         }else {
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
-        _mainTableView.estimatedRowHeight = 0;
+        _mainTableView.estimatedRowHeight = 150;
+        _mainTableView.rowHeight = UITableViewAutomaticDimension;
         _mainTableView.estimatedSectionHeaderHeight = 0;
         _mainTableView.estimatedSectionFooterHeight = 0;
         
@@ -243,7 +244,7 @@
             
         }];
         
-        _mainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _mainTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             [self getData];
             
         }];

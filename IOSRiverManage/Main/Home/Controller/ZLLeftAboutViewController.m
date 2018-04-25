@@ -22,16 +22,17 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    _sourceArray = @[@[@"版权所有",@"中国移动通信集团江苏有限公司"],
-                     @[@"技术支持",@"南京新高智联信息技术有限公司"],
-                     @[@"问题反馈",@"njxgzl@singocn.com"],
-                     @[@"联系人",@"刘云鹏"],
-                     @[@"联系电话",@"025-58869698\n13585101674"]];
+//    _sourceArray = @[@[@"版权所有",@"中国移动通信集团江苏有限公司"],
+//                     @[@"技术支持",@"南京新高智联信息技术有限公司"],
+//                     @[@"问题反馈",@"njxgzl@singocn.com"],
+//                     @[@"联系人",@"刘云鹏"],
+//                     @[@"联系电话",@"025-58869698\n13585101674"]];
+    
+    _sourceArray = @[@[@"版权所有",@"中国移动通信集团江苏有限公司"]];
     
     NSDictionary *dicInfo = [[NSBundle mainBundle]infoDictionary];
     _versionLabel.text = [NSString stringWithFormat:@"版本:%@",dicInfo[@"CFBundleShortVersionString"]];
     
-//    [_mainTableView registerClass:[ZLLeftAboutTableViewCell class] forCellReuseIdentifier:@"ZLLeftAboutTableViewCell"];
     
     [_mainTableView registerNib:[UINib nibWithNibName:@"ZLLeftAboutTableViewCell" bundle:nil] forCellReuseIdentifier:@"ZLLeftAboutTableViewCell"];
     
@@ -42,16 +43,18 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 4) {
-        return 60;
-    }else{
-        return 44;
-    }
+//    if (indexPath.row == 4) {
+//        return 60;
+//    }else{
+//        return 44;
+//    }
+    
+    return 44;
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -38,7 +38,7 @@
 @end
 
 @interface BaseViewController : UIViewController<BBBaseViewControllerDataSource , BBBaseViewControllerDelegate>
-
+@property (nonatomic,weak) Reachability *hostReach;
 -(void)changeNavigationBarTranslationY:(CGFloat)translationY;
 -(void)set_Title:(NSMutableAttributedString *)title;
 @end

@@ -19,10 +19,10 @@
     [self.dealBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.equalTo(self.contentView.mas_right).offset(-10);
-        make.top.equalTo(self.lineViewBottom.mas_bottom).offset(10);
+        make.top.equalTo(self.lineViewBottom.mas_bottom).offset(5);
         make.height.mas_equalTo(30);
         make.width.mas_equalTo(55);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-5);
     }];
     
     
@@ -206,7 +206,7 @@
         _dealBtn = [[UIButton alloc]init];
         [_dealBtn setTitle:@"处理" forState:(UIControlStateNormal)];
         [_dealBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-        _dealBtn.titleLabel.font = CHINESE_SYSTEM(16);
+        _dealBtn.titleLabel.font = CHINESE_SYSTEM(14);
         _dealBtn.layer.borderWidth = 1;
         _dealBtn.layer.cornerRadius = 5;
         _dealBtn.layer.borderColor = HEXCOLOR(CVIEW_GRAY_COLOR).CGColor;

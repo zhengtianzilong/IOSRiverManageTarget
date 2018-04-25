@@ -13,6 +13,7 @@
 #import "ACMediaFrame.h"
 #import "ZLFeedbackIncidentForApp.h"
 #import "ZLMyAdviseBottomView.h"
+#import "ZLEventManagerVC.h"
 @interface  ZLMyEventAdviseVC()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 @property (nonatomic, strong) ACSelectMediaView *mediaView;
@@ -161,13 +162,16 @@
             if ([model.code isEqualToString:@"0"]) {
                 [SVProgressHUD showSuccessWithStatus:@"反馈成功"];
                 [SVProgressHUD dismissWithDelay:0.3 completion:^{
-                    [self.navigationController popViewControllerAnimated:YES];
+                    for (UIViewController *vc in self.navigationController.childViewControllers) {
+                        if ([vc isKindOfClass:[ZLEventManagerVC class]]) {
+                            ZLEventManagerVC *mainVC = (ZLEventManagerVC *)vc;
+                            [self.navigationController popToViewController:mainVC animated:NO];
+                        }
+                    }
                 }];
             }else{
                 [SVProgressHUD showErrorWithStatus:model.detail];
-                [SVProgressHUD dismissWithDelay:0.3 completion:^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                }];
+                [SVProgressHUD dismissWithDelay:0.3];
             }
         } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
             [SVProgressHUD showErrorWithStatus:@"网络错误"];

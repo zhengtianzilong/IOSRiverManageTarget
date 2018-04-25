@@ -6,15 +6,13 @@
 //  Copyright © 2017年 caizilong. All rights reserved.
 //
 #import "AppDelegate.h"
-#import "ZLLoginViewController.h"
 #import "ZLBaseNavViewController.h"
 #import "ZLMainTabBarControllerConfig.h"
-#import <BaiduMapAPI_Base/BMKMapManager.h>
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
 #import "ZLBadgeZeroService.h"
 
-#import <FLEX/FLEX.h>
+//#import <FLEX/FLEX.h>
 #import "XGPush.h"
 //#import "ZLHomeWebViewViewController.h"
 
@@ -31,7 +29,7 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
-@interface AppDelegate ()<UITabBarControllerDelegate, CYLTabBarControllerDelegate,BMKGeneralDelegate,XGPushDelegate,XGPushTokenManagerDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate, CYLTabBarControllerDelegate,XGPushDelegate,XGPushTokenManagerDelegate>
 
 @property (nonatomic, strong) YTKKeyValueStore *store;
 
@@ -95,7 +93,7 @@
 //    [self chinaMobile];
     
     
-    [[FLEXManager sharedManager] showExplorer];
+//    [[FLEXManager sharedManager] showExplorer];
     
     return YES;
 }
@@ -108,22 +106,6 @@
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
 }
 
-- (void)configBaiDuSDK {
-    BMKMapManager *manager = [[BMKMapManager alloc]init];
-//    qzRihoClqkXkLMISsEjBBYed6n7ZUHOH
-    
-#ifdef TouBiao
-    BOOL success = [manager start:@"qzRihoClqkXkLMISsEjBBYed6n7ZUHOH" generalDelegate:nil];
-#else
-    BOOL success = [manager start:kBaiduMapKey generalDelegate:nil];
-#endif
-    
-    
-    if (!success) {
-        
-        ZLLog(@"百度地图启动失败");
-    }
-}
 
 
 - (void)configGaoDeSDK{
@@ -285,23 +267,24 @@
     
     self.loginModel = [[ZLNewLoginModel alloc]initWithString:userModel error:nil];
     
+    NSString *version = [[NSUserDefaults standardUserDefaults]objectForKey:DBApp_Version];
+    
     ZLLoginVC *logInVc = [[ZLLoginVC alloc]init];
     CYLTabBarController *tabBarVC = nil;
-    if ([self.loginModel.data.version isEqualToString:@"1"]) {
+    
+    if([version isEqualToString:@"2"]){
         ZLSimpleMainTapBarVCConfig *tabBarVCConfig = [[ZLSimpleMainTapBarVCConfig alloc]init];
         tabBarVC = tabBarVCConfig.tabBarController;
-        
-    }else if([self.loginModel.data.version isEqualToString:@"2"]){
+    }else if ([version isEqualToString:@"1"]){
         ZLMainTabBarControllerConfig *tabBarVCConfig = [[ZLMainTabBarControllerConfig alloc]init];
         tabBarVC = tabBarVCConfig.tabBarController;
     }
-//    ZLBaseNavViewController *loginNav = [[ZLBaseNavViewController alloc]initWithRootViewController:logInVc];
-
+    
     tabBarVC.delegate = self;
     if (tokenCreateTime.length > 0) {
          NSInteger day = [self getDifferenceByDate:tokenCreateTime];
         
-        if (day > 10) {
+        if (day > 10 || version == nil) {
             self.window.rootViewController = logInVc;
         }else{
             
@@ -311,13 +294,6 @@
     }else{
         self.window.rootViewController = logInVc;
     }
-    
-   
-    
-    
-    
-
-
     
 //    if (userInfo != nil) {
 //        logInVc.userInfo = userInfo;

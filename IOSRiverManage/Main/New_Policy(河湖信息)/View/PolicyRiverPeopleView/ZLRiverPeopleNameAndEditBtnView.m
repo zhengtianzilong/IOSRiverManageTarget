@@ -70,7 +70,7 @@
     if (!_nameLable) {
         _nameLable = [[UILabel alloc]initWithFrame:CGRectZero];
         _nameLable.text = _name;
-        _nameLable.font = SYSTEMFONT(18);
+        _nameLable.font = Font(16);
         _nameLable.textColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
     }
     return _nameLable;

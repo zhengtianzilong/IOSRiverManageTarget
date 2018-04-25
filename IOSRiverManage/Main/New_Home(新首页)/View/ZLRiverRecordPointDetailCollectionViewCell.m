@@ -39,50 +39,50 @@
 - (void)setUpUI{
     _titleLabel = [[UILabel alloc]init];
     _titleLabel.text = @"标题：";
-    _titleLabel.font = CHINESE_SYSTEM(15);
+    _titleLabel.font = CHINESE_SYSTEM(13);
     [self.contentView addSubview:_titleLabel];
     
 
     
     
     _title = [[UILabel alloc]init];
-    _title.font = CHINESE_SYSTEM(14);
+    _title.font = CHINESE_SYSTEM(12);
     _title.text = @"哈哈哈";
     [self.contentView addSubview:_title];
     
     _contentLabel = [[UILabel alloc]init];
     _contentLabel.text = @"内容：";
-    _contentLabel.font = Font(14);
+    _contentLabel.font = Font(12);
     [self.contentView addSubview:_contentLabel];
     
     
     _content = [[UILabel alloc]init];
     _content.text = @"河道有许多垃圾袋,饮料瓶等等,相关部门注意看看啊啊啊啊啊啊啊啊啊啊多多发付军爱所付军奥所付所撒多付囧撒多军付";
-    _content.font = CHINESE_SYSTEM(14);
+    _content.font = CHINESE_SYSTEM(12);
     //    _content.numberOfLines = 0;
     [self.contentView addSubview:_content];
     
     _riverPeopleLabel = [[UILabel alloc]init];
     _riverPeopleLabel.text = @"巡河人：";
-    _riverPeopleLabel.font = Font(14);
+    _riverPeopleLabel.font = Font(12);
     [self.contentView addSubview:_riverPeopleLabel];
     
     
     
     _riverPeople = [[UILabel alloc]init];
     _riverPeople.text = @"接收人";
-    _riverPeople.font = Font(14);
+    _riverPeople.font = Font(12);
     [self.contentView addSubview:_riverPeople];
     
     _timeLabel = [[UILabel alloc]init];
     _timeLabel.text = @"创建时间：";
-    _timeLabel.font = Font(14);
+    _timeLabel.font = Font(12);
     [self.contentView addSubview:_timeLabel];
     
     
     _time = [[UILabel alloc]init];
     _time.text = @"2017-10-11 11:28";
-    _time.font = CHINESE_SYSTEM(14);
+    _time.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_time];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

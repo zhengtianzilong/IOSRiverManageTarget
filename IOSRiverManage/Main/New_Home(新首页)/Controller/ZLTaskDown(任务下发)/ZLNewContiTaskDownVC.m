@@ -20,6 +20,7 @@
 #import "ZLGetEventUserListModel.h"
 #import "ZLAlertSelectionView.h"
 #import "ZLGetUserListByTaskNormalService.h"
+#import "ZLTaskManagerVC.h"
 @interface ZLNewContiTaskDownVC ()<UITableViewDelegate, UITableViewDataSource>
 
 
@@ -558,7 +559,15 @@
                 [SVProgressHUD showSuccessWithStatus:@"下发成功"];
                 [SVProgressHUD dismissWithDelay:0.3 completion:^{
                     
-                    [self.navigationController popViewControllerAnimated:YES];
+//                    [self.navigationController popViewControllerAnimated:YES];
+
+                    for (UIViewController *vc in self.navigationController.childViewControllers) {
+                        if ([vc isKindOfClass:[ZLTaskManagerVC class]]) {
+                            ZLTaskManagerVC *mainVC = (ZLTaskManagerVC *)vc;
+                            [self.navigationController popToViewController:mainVC animated:NO];
+                        }
+                    }
+                    
                     
                 }];
             }else{
@@ -573,11 +582,6 @@
     });
     
 }
-
-
-
-
-
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
         _sourceArray = @[@"任务名称：",

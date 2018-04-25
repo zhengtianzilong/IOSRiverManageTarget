@@ -13,7 +13,7 @@
 #import "ACMediaFrame.h"
 #import "ZLFeedbackTaskService.h"
 #import "ZLMyAdviseBottomView.h"
-
+#import "ZLTaskManagerVC.h"
 @interface  ZLMyTaskAdviseVC()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 @property (nonatomic, strong) ACSelectMediaView *mediaView;
@@ -162,7 +162,15 @@
             if ([model.code isEqualToString:@"0"]) {
                 [SVProgressHUD showSuccessWithStatus:@"反馈成功"];
                 [SVProgressHUD dismissWithDelay:0.3 completion:^{
-                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                    for (UIViewController *vc in self.navigationController.childViewControllers) {
+                        if ([vc isKindOfClass:[ZLTaskManagerVC class]]) {
+                            ZLTaskManagerVC *mainVC = (ZLTaskManagerVC *)vc;
+                            [self.navigationController popToViewController:mainVC animated:NO];
+                        }
+                    }
+                    
+//                    [self.navigationController popToRootViewControllerAnimated:YES];
                 }];
             }else{
                 [SVProgressHUD showErrorWithStatus:model.detail];
@@ -188,7 +196,7 @@
         }
         
         
-    } title:@"提示" message:@"确定取反馈吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
+    } title:@"提示" message:@"确定取消反馈吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
     
 }
 

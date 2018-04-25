@@ -237,37 +237,37 @@
 
 
 
-// 河长联系单巡河查询当前用户管辖河道接口
-#define River_DemandReachUrl @"/hzz/phoneController.do?demandReach"
-
-//	河长联系单巡河上报事件接口
-#define River_AddRiverEventUrl @"/hzz/phoneController.do?goAddRiverEvent"
-
-//河长联系单巡河查询当前用户上报对象接口
-#define River_UpTaskUrl @"/hzz/phoneController.do?upTask"
-
-// 普通事件上报接口
-#define River_NormalEventUrl @"/hzz/phoneController.do?goAddEvent"
-// 继续事件上报接口
-#define River_ContinueEventUrl @"/hzz/mobile.do?continueReport"
-
-// 办结事件上报接口
-#define River_CompleteEventUrl @"/hzz/mobile.do?finishReport"
-// 结束巡河接口
-#define River_EndRiverUrl @"/hzz/phoneController.do?doBatchCoordion"
-// 下发对象接口
-#define River_GoTaskObjectUrl @"/hzz/appController.do?goTask"
-// 普通事件下发接口
-#define River_NormalTaskDownUrl @"/hzz/appController.do?doAddTask"
-// 继续事件下发接口
-#define River_ContinueTaskDownUrl @"/hzz/mobile.do?continueIssued"
-// 任务反馈接口
-#define River_CompleteTaskDownUrl @"/hzz/mobile.do?taskFeedback"
-//	河长联系单巡河下发事件接口
-#define River_DownRiverTaskUrl @"/hzz/phoneController.do?goAddRiverTask"
+//// 河长联系单巡河查询当前用户管辖河道接口
+//#define River_DemandReachUrl @"/hzz/phoneController.do?demandReach"
+//
+////    河长联系单巡河上报事件接口
+//#define River_AddRiverEventUrl @"/hzz/phoneController.do?goAddRiverEvent"
+//
+////河长联系单巡河查询当前用户上报对象接口
+//#define River_UpTaskUrl @"/hzz/phoneController.do?upTask"
+//
+//// 普通事件上报接口
+//#define River_NormalEventUrl @"/hzz/phoneController.do?goAddEvent"
+//// 继续事件上报接口
+//#define River_ContinueEventUrl @"/hzz/mobile.do?continueReport"
+//
+//// 办结事件上报接口
+//#define River_CompleteEventUrl @"/hzz/mobile.do?finishReport"
+//// 结束巡河接口
+//#define River_EndRiverUrl @"/hzz/phoneController.do?doBatchCoordion"
+//// 下发对象接口
+//#define River_GoTaskObjectUrl @"/hzz/appController.do?goTask"
+//// 普通事件下发接口
+//#define River_NormalTaskDownUrl @"/hzz/appController.do?doAddTask"
+//// 继续事件下发接口
+//#define River_ContinueTaskDownUrl @"/hzz/mobile.do?continueIssued"
+//// 任务反馈接口
+//#define River_CompleteTaskDownUrl @"/hzz/mobile.do?taskFeedback"
+////    河长联系单巡河下发事件接口
+//#define River_DownRiverTaskUrl @"/hzz/phoneController.do?goAddRiverTask"
 #define TuiSongBadgeUrl @"/hzz/mobile.do?delmsg"
-
-#define App_ChangeVersion @"/hzz/userController.do?updateVersionType"
+//
+//#define App_ChangeVersion @"/hzz/userController.do?updateVersionType"
 
 
 #endif /* NetUrl_h */

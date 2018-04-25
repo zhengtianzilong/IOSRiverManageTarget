@@ -106,7 +106,7 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
         [_timeLabel setText:@"日 期:"];
-        _timeLabel.font = CHINESE_SYSTEM(15);
+        _timeLabel.font = Font(12);
     }
     return _timeLabel;
 }
@@ -117,7 +117,7 @@
         _selectTimeLabel = [[UILabel alloc]init];
         _selectTimeLabel.textAlignment = NSTextAlignmentRight;
         [_selectTimeLabel setText:@"请选择时间"];
-        _selectTimeLabel.font = CHINESE_SYSTEM(15);
+        _selectTimeLabel.font = CHINESE_SYSTEM(12);
         _selectTimeLabel.textColor = [UIColor lightGrayColor];
         _selectTimeLabel.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(selectClick)];

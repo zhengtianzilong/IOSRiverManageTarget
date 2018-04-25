@@ -16,6 +16,7 @@
 #import "ZLMyAdviseBottomView.h"
 #import "ZLNewContiTaskDownVC.h"
 #import "ZLMyTaskAdviseVC.h"
+#import "ZLTaskManagerVC.h"
 @interface ZLTaskDealDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 @property (nonatomic, strong) NSMutableArray *sourceArray;;
@@ -67,6 +68,11 @@
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
     
     [self.view addSubview:self.mainTableView];
+    
+    
+    
+    
+    
     
 }
 - (void)viewDidLayoutSubviews{
@@ -141,6 +147,20 @@
     
     [self.navigationController pushViewController:vc animated:YES];
     
+    NSMutableArray*tempMarr =[NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+    
+    for (UIViewController *vc in self.navigationController.childViewControllers) {
+        if ([vc isKindOfClass:[ZLTaskManagerVC class]]) {
+            return;
+        }
+    }
+    
+    [tempMarr insertObject:[ZLTaskManagerVC new] atIndex:1];
+    
+    [tempMarr removeObject:self]; //此时 的self 就是指 B ,因为在 B 中呢
+    
+    [self.navigationController setViewControllers:tempMarr animated:YES];
+    
 }
 
 
@@ -155,6 +175,20 @@
     vc.taskDetailId = self.taskDetailID;
     
     [self.navigationController pushViewController:vc animated:YES];
+    
+    NSMutableArray*tempMarr =[NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+    
+    for (UIViewController *vc in self.navigationController.childViewControllers) {
+        if ([vc isKindOfClass:[ZLTaskManagerVC class]]) {
+            return;
+        }
+    }
+    
+    [tempMarr insertObject:[ZLTaskManagerVC new] atIndex:1];
+    
+    [tempMarr removeObject:self]; //此时 的self 就是指 B ,因为在 B 中呢
+    
+    [self.navigationController setViewControllers:tempMarr animated:YES];
     
     
 }

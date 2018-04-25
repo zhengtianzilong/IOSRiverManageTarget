@@ -447,7 +447,7 @@
                 [self.imageNameArray addObject:model.toDictionary];
             }
             
-            dispatch_group_leave(group);
+            
             
         }else{
             [SVProgressHUD showErrorWithStatus:imagesModel.detail];
@@ -456,7 +456,7 @@
         
         
         ZLLog(@"%@", request.responseString);
-        
+        dispatch_group_leave(group);
         
     } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
         [SVProgressHUD showErrorWithStatus:@"网络错误"];

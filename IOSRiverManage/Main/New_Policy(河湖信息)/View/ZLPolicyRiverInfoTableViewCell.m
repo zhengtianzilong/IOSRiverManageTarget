@@ -44,6 +44,21 @@
         _detailModel.riverGrade = @"";
     }
     
+    if ([_detailModel.riverGrade isEqualToString:@"1"]) {
+        
+        _detailModel.riverGrade = @"重要省级河道";
+        
+    }else if ([_detailModel.riverGrade isEqualToString:@"2"]){
+        _detailModel.riverGrade = @"重要市级河道";
+    }else if ([_detailModel.riverGrade isEqualToString:@"3"]){
+        _detailModel.riverGrade = @"重要区级河道";
+    }else if ([_detailModel.riverGrade isEqualToString:@"4"]){
+        _detailModel.riverGrade = @"重要街道级河道";
+    }else if ([_detailModel.riverGrade isEqualToString:@"5"]){
+        _detailModel.riverGrade = @"重要村级河道";
+    }
+    
+    
     _riverLabel.text = _detailModel.riverGrade;
     
     
@@ -85,9 +100,6 @@
         }
          _tipImageV.image = [UIImage imageNamed:levelImage];
     }
-    
-    
-   
     
     
     if ([_detailModel.isStandard isEqualToString:@"1"]) {
@@ -159,7 +171,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.text = @"秦淮河";
-        _titleLabel.font = CHINESE_SYSTEM(15);
+        _titleLabel.font = CHINESE_SYSTEM(13);
     }
     return _titleLabel;
 }
@@ -183,7 +195,7 @@
     if (!_riverLabel) {
         _riverLabel = [[UILabel alloc]init];
         _riverLabel.text = @"玄武区";
-        _riverLabel.font = CHINESE_SYSTEM(14);
+        _riverLabel.font = CHINESE_SYSTEM(12);
         _riverLabel.textColor = [UIColor lightGrayColor];
     }
     return _riverLabel;

@@ -10,6 +10,9 @@
 #define DataBaseKey_h
 
 // 下发事件人物对像
+#define DBApp_Version @"app_version"
+
+// 下发事件人物对像
 #define DBDownEventObject @"user_downEventObject"
 // 上报事件人物对象
 #define DBEventObject @"user_eventObject"

@@ -36,7 +36,7 @@
     
     _state = [[UILabel alloc]init];
     _state.text = @"已发起";
-    _state.font = Font(15);
+    _state.font = Font(13);
     _state.textColor = HEXCOLOR(CVIEW_EVENT_TIPS_COLOR);
     _state.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_state];
@@ -46,7 +46,7 @@
     [self.contentView addSubview:_colorIndicator];
     
     _title = [[UILabel alloc]init];
-    _title.font = Font(16);
+    _title.font = Font(14);
     _title.text = @"河面脏乱差";
     [self.contentView addSubview:_title];
     
@@ -61,38 +61,38 @@
     
     
     _initiatorLabel = [[UILabel alloc]init];
-    _initiatorLabel.font = Font(14);
-    _initiatorLabel.text = @"发起人:";
+    _initiatorLabel.font = Font(12);
+    _initiatorLabel.text = @"发起人：";
     [self.contentView addSubview:_initiatorLabel];
     
     _initiatorName = [[UILabel alloc]init];
     _initiatorName.text = @"李乐";
-    _initiatorName.font = CHINESE_SYSTEM(14);
+    _initiatorName.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_initiatorName];
     
     
     
     _receivedLabel = [[UILabel alloc]init];
-    _receivedLabel.text = @"接收人:";
-    _receivedLabel.font = Font(14);
+    _receivedLabel.text = @"接收人：";
+    _receivedLabel.font = Font(12);
     [self.contentView addSubview:_receivedLabel];
     
     
     _receivedName = [[UILabel alloc]init];
     _receivedName.text = @"陈庆,李丽";
-    _receivedName.font = CHINESE_SYSTEM(14);
+    _receivedName.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_receivedName];
     
     
     _contentLabel = [[UILabel alloc]init];
-    _contentLabel.text = @"内  容:";
-    _contentLabel.font = Font(14);
+    _contentLabel.text = @"内   容：";
+    _contentLabel.font = Font(12);
     [self.contentView addSubview:_contentLabel];
     
     
     _content = [[UILabel alloc]init];
     _content.text = @"河道有许多垃圾袋,饮料瓶等等,相关部门注意看看啊啊啊啊啊啊啊啊啊啊多多发付军爱所付军奥所付所撒多付囧撒多军付";
-    _content.font = CHINESE_SYSTEM(14);
+    _content.font = CHINESE_SYSTEM(12);
     _content.numberOfLines = 2;
     [self.contentView addSubview:_content];
     
@@ -103,7 +103,7 @@
     
     _timeLabel = [[UILabel alloc]init];
     _timeLabel.text = @"2017-10-11 11:28";
-    _timeLabel.font = CHINESE_SYSTEM(14);
+    _timeLabel.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_timeLabel];
     
     
@@ -151,8 +151,14 @@
         make.left.equalTo(_imageV.mas_right).offset(10);
         make.top.equalTo(_imageV.mas_top);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+//        make.width.mas_equalTo(60);
     }];
+    
+    [_initiatorLabel setContentCompressionResistancePriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
+    [_initiatorLabel setContentHuggingPriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
+    
+    [self setNeedsLayout];
+    
     
     [_initiatorName mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -167,8 +173,12 @@
         make.left.equalTo(_initiatorLabel);
         make.top.equalTo(_initiatorLabel.mas_bottom);
         make.height.mas_equalTo(_initiatorLabel);
-        make.width.mas_equalTo(60);
+//        make.width.mas_equalTo(60);
     }];
+    
+    [_receivedLabel setContentCompressionResistancePriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
+    [_receivedLabel setContentHuggingPriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
+    
     
     [_receivedName mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -183,9 +193,10 @@
         make.left.equalTo(_initiatorLabel);
         make.top.equalTo(_receivedLabel.mas_bottom);
         make.height.mas_equalTo(_initiatorLabel);
-        make.width.mas_equalTo(60);
+//        make.width.mas_equalTo(60);
     }];
-//    [_contentLabel setContentCompressionResistancePriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
+    [_contentLabel setContentCompressionResistancePriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
+    [_contentLabel setContentHuggingPriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
     
     [_content mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -209,22 +220,20 @@
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_imageV);
-        make.top.equalTo(_lineViewBottom.mas_bottom).offset(10);
-//        make.height.mas_equalTo(30);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+        make.top.equalTo(_lineViewBottom.mas_bottom).offset(5);
+        make.height.mas_equalTo(30);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-5);
         
 //        make.width.mas_equalTo(Main_Screen_Width / 2);
         
     }];
     
     
+    
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-   
-    
-    
     
 }
 

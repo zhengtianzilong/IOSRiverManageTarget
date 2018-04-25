@@ -68,7 +68,7 @@
         _titleLabel = [[UILabel alloc]init];
         [_titleLabel setText:self.title];
         _titleLabel.backgroundColor = [UIColor whiteColor];
-        _titleLabel.font = CHINESE_SYSTEM(15);
+        _titleLabel.font = Font(12);
         
     }
     return _titleLabel;
@@ -79,8 +79,8 @@
         _infoTextField = [[UITextField alloc]init];
         _infoTextField.placeholder = self.placeHolder;
         _infoTextField.backgroundColor = [UIColor whiteColor];
-        _infoTextField.font = CHINESE_SYSTEM(15);
-        [_infoTextField setValue:CHINESE_SYSTEM(15) forKeyPath:@"_placeholderLabel.font"];
+        _infoTextField.font = CHINESE_SYSTEM(12);
+        [_infoTextField setValue:CHINESE_SYSTEM(12) forKeyPath:@"_placeholderLabel.font"];
     }
     return _infoTextField;
 }

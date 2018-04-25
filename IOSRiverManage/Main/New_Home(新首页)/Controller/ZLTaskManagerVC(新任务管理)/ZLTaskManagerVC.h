@@ -6,8 +6,8 @@
 //  Copyright © 2018年 caizilong. All rights reserved.
 //
 
-#import "ZLBaseCustomNavViewController.h"
+#import "ZLBaseCustomNoNetworkVC.h"
 
-@interface ZLTaskManagerVC : ZLBaseCustomNavViewController
+@interface ZLTaskManagerVC : ZLBaseCustomNoNetworkVC
 
 @end

@@ -322,7 +322,7 @@
         
         UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width, 30)];
         lab.text = @"公示牌照片:";
-        lab.font = CHINESE_SYSTEM(15);
+        lab.font = CHINESE_SYSTEM(13);
         [headerView addSubview:lab];
         
         

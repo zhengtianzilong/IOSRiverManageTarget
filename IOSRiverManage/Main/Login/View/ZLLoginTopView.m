@@ -61,14 +61,10 @@
         
         make.centerX.equalTo(self);
         make.top.equalTo(self.logoImageV.mas_bottom).offset(15);
-        make.height.mas_equalTo(35);
+//        make.height.mas_equalTo(35);
         make.bottom.equalTo(self.mas_bottom) ;
         
     }];
-    
-    
-    
-    
     
 }
 

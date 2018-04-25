@@ -38,6 +38,9 @@
     pageView.underlineColor = underlineColor;
     pageView.topTabBackGroundColor = topTabColor;
     
+    
+//    [self.hostReach stopNotifier];
+    
     [self.view addSubview:pageView];
 }
 

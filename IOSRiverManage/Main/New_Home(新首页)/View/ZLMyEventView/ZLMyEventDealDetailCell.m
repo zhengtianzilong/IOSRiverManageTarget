@@ -276,7 +276,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.textColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
         _titleLabel.text = @"事件信息";
-        _titleLabel.font = Font(18);
+        _titleLabel.font = Font(16);
     }
     return _titleLabel;
 }
@@ -294,7 +294,7 @@
     if (!_eventLabel) {
         _eventLabel = [[UILabel alloc]init];
         _eventLabel.text = @"事件名称：";
-        _eventLabel.font = Font(14);
+        _eventLabel.font = Font(12);
     }
     return _eventLabel;
 }
@@ -302,7 +302,7 @@
     if (!_event) {
         _event = [[UILabel alloc]init];
         _event.text = @"XXXXX";
-        _event.font = CHINESE_SYSTEM(14);
+        _event.font = CHINESE_SYSTEM(12);
     }
     return _event;
 }
@@ -311,7 +311,7 @@
     if (!_stateLable) {
         _stateLable = [[UILabel alloc]init];
         _stateLable.text = @"状态：";
-        _stateLable.font = Font(14);
+        _stateLable.font = Font(12);
     }
     return _stateLable;
 }
@@ -319,7 +319,7 @@
     if (!_state) {
         _state = [[UILabel alloc]init];
         _state.text = @"XXXXX";
-        _state.font = CHINESE_SYSTEM(14);
+        _state.font = CHINESE_SYSTEM(12);
     }
     return _state;
 }
@@ -328,7 +328,7 @@
     if (!_originatorLabel) {
         _originatorLabel = [[UILabel alloc]init];
         _originatorLabel.text = @"创建人：";
-        _originatorLabel.font = Font(14);
+        _originatorLabel.font = Font(12);
     }
     return _originatorLabel;
 }
@@ -337,7 +337,7 @@
     if (!_originator) {
         _originator = [[UILabel alloc]init];
         _originator.text = @"80";
-        _originator.font = CHINESE_SYSTEM(14);
+        _originator.font = CHINESE_SYSTEM(12);
     }
     return _originator;
 }
@@ -346,7 +346,7 @@
     if (!_receiveLabel) {
         _receiveLabel = [[UILabel alloc]init];
         _receiveLabel.text = @"接收人：";
-        _receiveLabel.font = Font(14);
+        _receiveLabel.font = Font(12);
     }
     return _receiveLabel;
 }
@@ -355,7 +355,7 @@
     if (!_receive) {
         _receive = [[UILabel alloc]init];
         _receive.text = @"123";
-        _receive.font = CHINESE_SYSTEM(14);
+        _receive.font = CHINESE_SYSTEM(12);
     }
     return _receive;
 }
@@ -364,7 +364,7 @@
     if (!_departLabel) {
         _departLabel = [[UILabel alloc]init];
         _departLabel.text = @"接收部门：";
-        _departLabel.font = Font(14);
+        _departLabel.font = Font(12);
     }
     return _departLabel;
 }
@@ -373,7 +373,7 @@
     if (!_depart) {
         _depart = [[UILabel alloc]init];
         _depart.text = @"123";
-        _depart.font = CHINESE_SYSTEM(14);
+        _depart.font = CHINESE_SYSTEM(12);
     }
     return _depart;
 }
@@ -383,7 +383,7 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.text = @"时间：";
-        _timeLabel.font = Font(14);
+        _timeLabel.font = Font(12);
     }
     return _timeLabel;
 }
@@ -392,7 +392,7 @@
     if (!_time) {
         _time = [[UILabel alloc]init];
         _time.text = @"系统管理员标记";
-        _time.font = CHINESE_SYSTEM(14);
+        _time.font = CHINESE_SYSTEM(12);
     }
     return _time;
 }
@@ -403,7 +403,7 @@
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
         _describeLabel.text = @"内容：";
-        _describeLabel.font = Font(14);
+        _describeLabel.font = Font(12);
     }
     return _describeLabel;
 }
@@ -412,7 +412,7 @@
     if (!_describe) {
         _describe = [[UILabel alloc]init];
         _describe.text = @"系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记";
-        _describe.font = CHINESE_SYSTEM(14);
+        _describe.font = CHINESE_SYSTEM(12);
         _describe.numberOfLines = 0;
     }
     return _describe;
@@ -422,7 +422,7 @@
     if (!_attachmentLabel) {
         _attachmentLabel = [[UILabel alloc]init];
         _attachmentLabel.text = @"附件：";
-        _attachmentLabel.font = Font(14);
+        _attachmentLabel.font = Font(12);
         
     }
     return _attachmentLabel;
@@ -432,7 +432,7 @@
     if (!_attachment) {
         _attachment = [[UILabel alloc]init];
         _attachment.text = @"系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记";
-        _attachment.font = CHINESE_SYSTEM(14);
+        _attachment.font = CHINESE_SYSTEM(12);
         _attachment.numberOfLines = 0;
     }
     return _attachment;

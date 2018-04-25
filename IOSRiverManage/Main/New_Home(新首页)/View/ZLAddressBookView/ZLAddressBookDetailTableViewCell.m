@@ -30,12 +30,12 @@
         make.top.equalTo(self.contentView).offset(10);
 //        make.centerY.equalTo(self.contentView.mas_centerY);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(60);
+//        make.width.mas_equalTo(60);
     }];
     
-//    [_titleLabel setContentCompressionResistancePriority:(UILayoutPriorityFittingSizeLevel) forAxis:(UILayoutConstraintAxisHorizontal)];
-//
-//    [_titleLabel setContentHuggingPriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
+    [_titleLabel setContentCompressionResistancePriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
+
+    [_titleLabel setContentHuggingPriority:(UILayoutPriorityRequired) forAxis:(UILayoutConstraintAxisHorizontal)];
     
     
     
@@ -73,7 +73,7 @@
         //        _title.textColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
         _detailLabel.text = @"玄武区河长";
         _detailLabel.numberOfLines = 0;
-        _detailLabel.font = CHINESE_SYSTEM(15);
+        _detailLabel.font = CHINESE_SYSTEM(13);
     }
     return _detailLabel;
 }
@@ -83,7 +83,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"徐倩";
-        _titleLabel.font = CHINESE_SYSTEM(15);
+        _titleLabel.font = Font(13);
     }
     return _titleLabel;
 }

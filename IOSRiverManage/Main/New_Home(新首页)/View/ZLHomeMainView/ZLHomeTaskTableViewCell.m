@@ -35,7 +35,7 @@
     
     _state = [[UILabel alloc]init];
     _state.text = @"已发起";
-    _state.font = CHINESE_SYSTEM(15);
+    _state.font = CHINESE_SYSTEM(13);
     [self.contentView addSubview:_state];
 
     _colorIndicator = [[UIImageView alloc]init];
@@ -44,7 +44,7 @@
 
     _title = [[UILabel alloc]init];
     _title.text = @"河面脏乱差";
-    _title.font = CHINESE_SYSTEM(15);
+    _title.font = CHINESE_SYSTEM(13);
     [self.contentView addSubview:_title];
 
     
@@ -58,38 +58,38 @@
 
     
     _initiatorLabel = [[UILabel alloc]init];
-    _initiatorLabel.font = CHINESE_SYSTEM(14);
+    _initiatorLabel.font = CHINESE_SYSTEM(12);
     _initiatorLabel.text = @"发起人：";
     [self.contentView addSubview:_initiatorLabel];
 
     _initiatorName = [[UILabel alloc]init];
     _initiatorName.text = @"李乐";
-    _initiatorName.font = CHINESE_SYSTEM(14);
+    _initiatorName.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_initiatorName];
 
     
     
     _receivedLabel = [[UILabel alloc]init];
     _receivedLabel.text = @"接收人：";
-    _receivedLabel.font = CHINESE_SYSTEM(14);
+    _receivedLabel.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_receivedLabel];
 
     
     _receivedName = [[UILabel alloc]init];
     _receivedName.text = @"陈庆,李丽";
-    _receivedName.font = CHINESE_SYSTEM(14);
+    _receivedName.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_receivedName];
 
 
     _contentLabel = [[UILabel alloc]init];
     _contentLabel.text = @"内 容：";
-    _contentLabel.font = CHINESE_SYSTEM(14);
+    _contentLabel.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_contentLabel];
 
     
     _content = [[UILabel alloc]init];
     _content.text = @"河道有许多垃圾袋,饮料瓶等等,相关部门注意看看啊啊啊啊啊啊啊啊啊啊多多发付军爱所付军奥所付所撒多付囧撒多军付";
-    _content.font = CHINESE_SYSTEM(14);
+    _content.font = CHINESE_SYSTEM(12);
     _content.numberOfLines = 0;
     [self.contentView addSubview:_content];
 
@@ -100,7 +100,7 @@
 
     _timeLabel = [[UILabel alloc]init];
     _timeLabel.text = @"2017-10-11 11:28";
-    _timeLabel.font = CHINESE_SYSTEM(14);
+    _timeLabel.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_timeLabel];
 
     [_state mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -22,7 +22,7 @@
 - (void)setUpUI{
     
     _titleLabel = [[UILabel alloc]init];
-    _titleLabel.font = AdaptedFontBoldSize(22);
+    _titleLabel.font = Font(16);
     [self addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -34,7 +34,7 @@
     
     _startLabel = [[UILabel alloc]init];
     _startLabel.text = @"起:";
-    _startLabel.font = AdaptedFontSize(17);
+    _startLabel.font = CHINESE_SYSTEM(14);
     [self addSubview:_startLabel];
     [_startLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -46,7 +46,7 @@
     }];
     
     _startAddressLabel = [[UILabel alloc]init];
-    _startAddressLabel.font = AdaptedFontSize(17);
+    _startAddressLabel.font = CHINESE_SYSTEM(14);
     [self addSubview:_startAddressLabel];
     [_startAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -57,7 +57,7 @@
     
     _endLabel = [[UILabel alloc]init];
     _endLabel.text = @"终:";
-    _endLabel.font = AdaptedFontSize(17);
+    _endLabel.font = CHINESE_SYSTEM(14);
     [self addSubview:_endLabel];
     [_endLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -68,7 +68,7 @@
     
     _endAddressLabel = [[UILabel alloc]init];
     //    _endAddressLabel.text = @"水西门大街132号";
-    _endAddressLabel.font = AdaptedFontSize(17);
+    _endAddressLabel.font = CHINESE_SYSTEM(14);
     [self addSubview:_endAddressLabel];
     [_endAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -109,10 +109,6 @@
     
     [self setNeedsLayout];
     
-}
-
-- (void)layoutSubviews{
-    [super layoutSubviews];
 }
 
 

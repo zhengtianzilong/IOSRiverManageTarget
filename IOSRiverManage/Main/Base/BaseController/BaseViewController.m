@@ -16,7 +16,7 @@
     BOOL _isShowMenu;
 }
 @property CGFloat original_height;
-@property (nonatomic,weak) Reachability *hostReach;
+
 @end
 
 @implementation BaseViewController
@@ -58,13 +58,7 @@
         [self configRightBaritemWithImage];
     }
     
-    //监听网络变化
-    Reachability *reach = [Reachability reachabilityWithHostName:kURL_Reachability__Address];
-    
-    self.hostReach = reach;
-    [[NSNotificationCenter defaultCenter]addObserver:self  selector:@selector(netStatusChange:) name:kReachabilityChangedNotification object:nil];
-    //实现监听
-    [reach startNotifier];
+
 }
 
 
@@ -99,30 +93,7 @@
     [super viewDidAppear:animated];
 }
 
--(void)dealloc
-{
-    //移除通知
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
 
-//通知监听回调 网络状态发送改变 系统会发出一个kReachabilityChangedNotification通知，然后会触发此回调方法
-- (void)netStatusChange:(NSNotification *)noti{
-    ZLLog(@"-----%@",noti.userInfo);
-    //判断网络状态
-    switch (self.hostReach.currentReachabilityStatus) {
-        case NotReachable:
-            [MBProgressHUD showInfo:@"当前网络连接失败，请查看设置" ToView:self.view];
-            break;
-        case ReachableViaWiFi:
-            ZLLog(@"wifi上网2");
-            break;
-        case ReachableViaWWAN:
-            ZLLog(@"手机上网2");
-            break;
-        default:
-            break;
-    }
-}
 
 -(void)setNavigationBack:(UIImage*)image
 {

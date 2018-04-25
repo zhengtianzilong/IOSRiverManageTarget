@@ -98,11 +98,7 @@
     return self;
 }
 
-- (void)layoutSubviews{
-    [super layoutSubviews];
-    
 
-}
 
 - (ZLLabelAndTextFieldView *)eventName{
     if (!_eventName) {

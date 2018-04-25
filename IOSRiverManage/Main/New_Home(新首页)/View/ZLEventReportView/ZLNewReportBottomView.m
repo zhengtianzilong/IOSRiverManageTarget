@@ -79,7 +79,7 @@
 //        _saveButton.backgroundColor = HEXCOLOR(KNavBarBG_color_blue);
 //        _saveButton.layer.cornerRadius = 5;
 //        _saveButton.clipsToBounds = YES;
-        _saveButton.titleLabel.font = AdaptedFontSize(24);
+        _saveButton.titleLabel.font = CHINESE_SYSTEM(14);
         _saveButton.adjustsImageWhenHighlighted = NO;
     }
     return _saveButton;
@@ -95,7 +95,7 @@
         //        _saveButton.backgroundColor = HEXCOLOR(KNavBarBG_color_blue);
         //        _saveButton.layer.cornerRadius = 5;
         //        _saveButton.clipsToBounds = YES;
-        _reportButton.titleLabel.font = AdaptedFontSize(24);
+        _reportButton.titleLabel.font = CHINESE_SYSTEM(14);
         _reportButton.adjustsImageWhenHighlighted = NO;
     }
     return _reportButton;

@@ -162,18 +162,21 @@
     self.view = nil;
     
     if ([version isEqualToString:@"1"]) {
-        // 基础版
-        ZLSimpleMainTapBarVCConfig *tabBarVCConfig = [[ZLSimpleMainTapBarVCConfig alloc]init];
-        CYLTabBarController *tabBarVC = tabBarVCConfig.tabBarController;
-        
-        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarVC;
-        
-    }else if ([version isEqualToString:@"2"]){
         
         ZLMainTabBarControllerConfig *tabBarVCConfig = [[ZLMainTabBarControllerConfig alloc]init];
         CYLTabBarController *tabBarVC = tabBarVCConfig.tabBarController;
         
         [UIApplication sharedApplication].keyWindow.rootViewController = tabBarVC;
+        
+       
+        
+    }else if ([version isEqualToString:@"2"]){
+        // 基础版
+        ZLSimpleMainTapBarVCConfig *tabBarVCConfig = [[ZLSimpleMainTapBarVCConfig alloc]init];
+        CYLTabBarController *tabBarVC = tabBarVCConfig.tabBarController;
+        
+        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarVC;
+
     }
 }
 
@@ -227,9 +230,10 @@
 //            [self.store putString:getDepartTaskList.responseString withId:DBTaskDepartListRivers intoTable:DBUserTable];
 //        }
         
+        NSString *appVersion = [[NSUserDefaults standardUserDefaults]objectForKey:DBApp_Version];
         [SVProgressHUD showSuccessWithStatus:@"登录成功"];
         [SVProgressHUD dismissWithDelay:0.5 completion:^{
-            [self goToMainControllerWithVersion:model.data.version];
+            [self goToMainControllerWithVersion:appVersion];
         }];
         
     }else{

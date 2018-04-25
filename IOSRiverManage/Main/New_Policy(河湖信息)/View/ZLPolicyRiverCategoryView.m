@@ -10,10 +10,6 @@
 
 @interface ZLPolicyRiverCategoryView ()
 
-@property (nonatomic, strong) UIImageView *riverInfoImageV;
-
-
-
 @end
 
 @implementation ZLPolicyRiverCategoryView
@@ -46,7 +42,7 @@
         make.right.equalTo(self.riverInfoImageV.mas_right);
         make.top.equalTo(self.riverInfoImageV.mas_bottom).offset(0);
         make.height.mas_equalTo(AdaptedHeight(40));
-        make.width.mas_equalTo(100);
+        make.width.mas_equalTo(115);
         make.bottom.equalTo(self.mas_bottom);
     }];
     
@@ -66,6 +62,7 @@
     if (!_riverInfoImageV) {
         _riverInfoImageV = [[UIImageView alloc]initWithFrame:CGRectZero];
         _riverInfoImageV.image = [UIImage imageNamed:@"home_riverLevel"];
+        _riverInfoImageV.userInteractionEnabled = YES;
     }
     return _riverInfoImageV;
 }
@@ -77,7 +74,7 @@
         
         [_riverInfoButton setTitleColor:HEXCOLOR(CNAVGATIONBAR_COLOR) forState:(UIControlStateNormal)];
         
-        _riverInfoButton.titleLabel.font = SYSTEMFONT(13);
+        _riverInfoButton.titleLabel.font = Font(12);
         [_riverInfoButton setImage:[UIImage imageNamed:@"home_riverQuality"] forState:(UIControlStateNormal)];
         [_riverInfoButton setImagePosition:(LXMImagePositionLeft) spacing:5];
         

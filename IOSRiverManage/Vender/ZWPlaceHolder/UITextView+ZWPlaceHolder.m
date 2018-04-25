@@ -33,10 +33,18 @@ static const void *zw_placeHolderKey;
         UIEdgeInsets textContainerInset = self.textContainerInset;
         CGFloat lineFragmentPadding = self.textContainer.lineFragmentPadding;
         CGFloat x = lineFragmentPadding + textContainerInset.left + self.layer.borderWidth;
-        CGFloat y = textContainerInset.top + self.layer.borderWidth;
+//        CGFloat y = textContainerInset.top + self.layer.borderWidth + 3.5;
+        CGFloat y = textContainerInset.top;
         CGFloat width = CGRectGetWidth(self.bounds) - x - textContainerInset.right - 2*self.layer.borderWidth;
         CGFloat height = [self.zw_placeHolderLabel sizeThatFits:CGSizeMake(width, 0)].height;
+        
+//        CGFloat y = self.center.y - height/2.0;
+        
         self.zw_placeHolderLabel.frame = CGRectMake(x, y, width, height);
+        
+        
+        
+        
     }
     [self zwPlaceHolder_swizzling_layoutSubviews];
 }

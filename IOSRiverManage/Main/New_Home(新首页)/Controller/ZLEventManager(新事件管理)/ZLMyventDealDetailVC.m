@@ -16,6 +16,7 @@
 #import "ZLEventDetailModel.h"
 #import "ZLRiverPeopleNameAndEditBtnView.h"
 #import "ZLEventInfoCell.h"
+#import "ZLEventManagerVC.h"
 @interface ZLMyventDealDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 
@@ -77,6 +78,8 @@
     }];
 
     
+
+    
 }
 
 #pragma mark -- 列表的代理
@@ -130,6 +133,19 @@
     vc.riverCode = self.dataModel.riverCode;
     [self.navigationController pushViewController:vc animated:YES];
     
+    NSMutableArray*tempMarr =[NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+
+    for (UIViewController *vc in self.navigationController.childViewControllers) {
+        if ([vc isKindOfClass:[ZLEventManagerVC class]]) {
+            return;
+        }
+    }
+
+    [tempMarr insertObject:[ZLEventManagerVC new] atIndex:1];
+
+    [tempMarr removeObject:self]; //此时 的self 就是指 B ,因为在 B 中呢
+
+    [self.navigationController setViewControllers:tempMarr animated:YES];
     
 }
 
@@ -142,6 +158,19 @@
     vc.eventDetailId = _detailID;
     
     [self.navigationController pushViewController:vc animated:YES];
+    NSMutableArray*tempMarr =[NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+    
+    for (UIViewController *vc in self.navigationController.childViewControllers) {
+        if ([vc isKindOfClass:[ZLEventManagerVC class]]) {
+            return;
+        }
+    }
+    
+    [tempMarr insertObject:[ZLEventManagerVC new] atIndex:1];
+    
+    [tempMarr removeObject:self]; //此时 的self 就是指 B ,因为在 B 中呢
+    
+    [self.navigationController setViewControllers:tempMarr animated:YES];
     
 }
 

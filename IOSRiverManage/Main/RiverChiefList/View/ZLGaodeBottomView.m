@@ -78,7 +78,7 @@
         _startAndEndButton.backgroundColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
         _startAndEndButton.layer.cornerRadius = 5;
         _startAndEndButton.clipsToBounds = YES;
-        _startAndEndButton.titleLabel.font = AdaptedFontSize(24);
+        _startAndEndButton.titleLabel.font = CHINESE_SYSTEM(14);
         _startAndEndButton.adjustsImageWhenHighlighted = NO;
     }
     return _startAndEndButton;
@@ -98,7 +98,7 @@
         _downTaskButton.layer.borderColor = HEXCOLOR(CNAVGATIONBAR_COLOR).CGColor;
         _downTaskButton.layer.borderWidth = 1;
         _downTaskButton.clipsToBounds = YES;
-        _downTaskButton.titleLabel.font = AdaptedFontSize(24);
+        _downTaskButton.titleLabel.font = CHINESE_SYSTEM(14);
         _downTaskButton.adjustsImageWhenHighlighted = NO;
     }
     return _downTaskButton;
@@ -117,7 +117,7 @@
         _reportButton.layer.borderColor = HEXCOLOR(CNAVGATIONBAR_COLOR).CGColor;
         _reportButton.layer.borderWidth = 1;
         _reportButton.clipsToBounds = YES;
-        _reportButton.titleLabel.font = AdaptedFontSize(24);
+        _reportButton.titleLabel.font = CHINESE_SYSTEM(14);
         _reportButton.adjustsImageWhenHighlighted = NO;
         
         

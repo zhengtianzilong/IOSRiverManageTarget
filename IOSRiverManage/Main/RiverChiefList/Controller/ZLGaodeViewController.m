@@ -10,9 +10,6 @@
 #import "ZLMapManager.h"
 #import "ZLGaodeBottomView.h"
 #import "ZLGaodeRiverInfoView.h"
-#import "ZLGaodeReportViewController.h"
-#import "ZLGaodeDownTaskViewController.h"
-#import "ZLEndCheckRiverService.h"
 #import "FloatingWindow.h"
 #import "AppDelegate.h"
 #import "ZLGaodeCustomNavBar.h"
@@ -332,12 +329,20 @@ typedef enum : NSUInteger {
         [deleage.floatWindow resignKeyWindow];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"RiverRunningEnd" object:nil];
         [self dismissViewControllerAnimated:YES completion:^{
+            [self.manager endLocation];
+            
         }];
     }else{
         [deleage.floatWindow startWithTime:0 presentview:self.view inRect:CGRectMake(0, Main_Screen_Height, 0, 0) withRiverTitle:self.riverDataModel.riverName];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"RiverRunning" object:nil];
         [self dismissViewControllerAnimated:NO completion:^{
+            
+            
+            
         }];
+        
+        
+        
     }
 }
 
@@ -624,74 +629,7 @@ typedef enum : NSUInteger {
         [SVProgressHUD dismissWithDelay:0.3];
         
     }];
-    
-    
-    
-    
-//    ZLEndCheckRiverService *endService = [[ZLEndCheckRiverService alloc]initWithuid:_uid uuid:_uuid riverId:_riverDataModel.riverCode startTime:_startTime endTime:_endTime type:_type batchData: _manager.locationsAndAddress];
-//    [SVProgressHUD showWithStatus:@"结束巡河中"];
-//
-//    //    __weak typeof(self) weakSelf = self;
-//    [endService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-//
-//        NSDictionary *dic = request.responseObject;
-//        if ([dic[@"code"] isEqualToString:@"0"]) {
-//            _isEndRiver = YES;
-//
-//            [self.manager endLocation];
-//            _status = endRiver;
-//            [SVProgressHUD showSuccessWithStatus:@"结束巡河成功"];
-//            [SVProgressHUD dismissWithDelay:0.3 completion:^{
-//                // 放置终点旗帜
-//                if (_startAnnotation) {
-//                    _endAnnotation  = [self creatPointWithLocaiton:_manager.mapView.userLocation.location title:@"终点"];
-//
-//                    [button setTitle:@"开始巡河" forState:(UIControlStateNormal)];
-//                    [button setImage:[UIImage imageNamed:@"GaodeStartRiver"] forState:(UIControlStateNormal)];
-//                    [button setBackgroundColor:HEXCOLOR(KNavBarBG_color_blue)];
-//
-//
-//                    [self.store deleteObjectsByIdArray:@[@"uid",
-//                                                         @"uuid",
-//                                                         @"riverId",
-//                                                         @"startTime",
-//                                                         @"endTime",
-//                                                         @"type",
-//                                                         DBAddress
-//                                                         ] fromTable:DBMapTable];
-//                }
-//            }];
-//        }else{
-//
-////            [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-////                if (buttonIndex == 1) {
-////                    // 得到结束的时间戳
-////                    _endTime = [self getCurrenttTimer];
-////
-////                    [self endRiverService:button];
-////                }
-////            } title:@"提示" message:@"结束巡河失败,点击重试" cancelButtonName:@"取消" otherButtonTitles:@"确定",nil];
-//
-//            [SVProgressHUD showErrorWithStatus:@"结束巡河失败"];
-//            [SVProgressHUD dismissWithDelay:0.3];
-//
-//        }
-//
-//        ZLLog(@"%@",request.responseObject);
-//
-//    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-//        [self.store putString:_uid withId:@"uid" intoTable:DBMapTable];
-//        [self.store putString:_uuid withId:@"uuid" intoTable:DBMapTable];
-//        [self.store putString:_riverDataModel.riverCode withId:@"riverId" intoTable:DBMapTable];
-//        [self.store putString:_startTime withId:@"startTime" intoTable:DBMapTable];
-//        [self.store putString:_endTime withId:@"endTime" intoTable:DBMapTable];
-//        [self.store putString:_type withId:@"type" intoTable:DBMapTable];
-//        [self.store putObject:_manager.locationsAndAddress withId:DBAddress intoTable:DBMapTable];
-//
-//        [SVProgressHUD showErrorWithStatus:@"结束巡河失败 请检查网络"];
-//        [SVProgressHUD dismissWithDelay:0.3];
-//
-//    }];
+
 }
 
 

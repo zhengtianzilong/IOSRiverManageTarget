@@ -71,6 +71,10 @@
     [self setTabViewHeadView];
     [_headView.riverInfoView.watchAllButton addTarget:self action:@selector(checkAllRiver) forControlEvents:(UIControlEventTouchUpInside)];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(riverQualityDescriptionClick)];
+    
+    [_headView.riverCategoryView.riverInfoImageV addGestureRecognizer:tap];
+    
     [_headView.riverCategoryView.riverInfoButton addTarget:self action:@selector(riverQualityDescriptionClick) forControlEvents:(UIControlEventTouchUpInside)];
 
 }
@@ -103,8 +107,6 @@
     _mainTableView.tableHeaderView = headView;
     
 }
-
-
 
 /**
  水质类别说明
@@ -172,21 +174,6 @@
         _mainTableView.tableHeaderView = self.headView;
         
         _mainTableView.tableFooterView = [UIView new];
-        
-//        _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//
-//            _requestStart = 1;
-//            [self listData];
-//
-//        }];
-//
-//        _mainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//            _requestStart += 1;
-//            [self listData];
-//
-//        }];
-        
-        
     }
     return _mainTableView;
 }

@@ -36,18 +36,37 @@
     // 计算 text view 的高度
     CGSize maxSize = CGSizeMake(bounds.size.width, CGFLOAT_MAX);
     CGSize newSize = [textView sizeThatFits:maxSize];
-    bounds.size = newSize;
+//    bounds.size = newSize;
+    bounds.size =  CGSizeMake(newSize.width, newSize.height);
     textView.bounds = bounds;
     // 让 table view 重新计算高度
     UITableView *tableView = [self tableView];
+    
+//    if (@available(iOS 11.0, *)) {
+//
+//        [UIView performWithoutAnimation:^{
+//            [tableView performBatchUpdates:nil completion:nil];
+//            [textView sizeToFit];
+//        }];
+//
+//    } else {
+//        [tableView beginUpdates];
+//        [tableView endUpdates];
+//    }
+    
+//    [textView.textContainer setSize:CGSizeMake(newSize.width, newSize.height - 13)];
+
+    
+    [textView scrollRangeToVisible:NSMakeRange(0,0)];
     [tableView beginUpdates];
     [tableView endUpdates];
     
     if (_getText) {
         self.getText(textView.text, textView.tag);
     }
-    
+
 }
+
 
 - (UITableView *)tableView
 {
@@ -76,7 +95,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(10);
-        make.width.mas_equalTo(100);
+        make.width.mas_equalTo(90);
         make.top.equalTo(self.contentView).offset(0);
         //        make.centerY.equalTo(self.bgView);
         make.height.mas_equalTo(45);
@@ -112,7 +131,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"XXXXX";
         _titleLabel.backgroundColor = [UIColor whiteColor];
-        _titleLabel.font = CHINESE_SYSTEM(15);
+        _titleLabel.font = Font(13);
         
     }
     return _titleLabel;
@@ -122,9 +141,10 @@
     if (!_infoTextView) {
         _infoTextView = [[UITextView alloc]init];
         _infoTextView.backgroundColor = [UIColor whiteColor];
-        
-        _infoTextView.font = CHINESE_SYSTEM(15);
-        
+        _infoTextView.textContainerInset = UIEdgeInsetsMake(10,0, 10, 0);
+        _infoTextView.font = CHINESE_SYSTEM(13);
+//        [_infoTextView scrollRangeToVisible:_infoTextView.selectedRange];
+        _infoTextView.layoutManager.allowsNonContiguousLayout = NO;
         _infoTextView.scrollEnabled = NO;
         _infoTextView.delegate = self;
         

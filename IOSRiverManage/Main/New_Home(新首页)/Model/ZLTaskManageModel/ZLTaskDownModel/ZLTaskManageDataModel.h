@@ -30,4 +30,7 @@
 @property (nonatomic, strong) NSString<Optional> *taskStatus;
 
 @property (nonatomic, strong) NSString<Optional> *createName;
+
+@property (nonatomic, strong) NSString<Optional> *isUrgent;
+
 @end

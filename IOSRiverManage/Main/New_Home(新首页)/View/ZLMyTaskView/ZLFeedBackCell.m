@@ -90,10 +90,6 @@
     UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:browser];
     navC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self.viewController presentViewController:navC animated:YES completion:nil];
-    
-    
-    
-    
 }
 
 
@@ -137,7 +133,7 @@
         make.left.equalTo(self.contentView).offset(10);
         make.top.equalTo(self.lineView.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
         
     }];
     
@@ -155,7 +151,7 @@
         make.left.equalTo(self.originatorLabel);
         make.top.equalTo(self.originatorLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
         
     }];
     
@@ -173,7 +169,7 @@
         make.left.equalTo(self.originatorLabel);
         make.top.equalTo(self.timeLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
         
     }];
     
@@ -184,7 +180,7 @@
         make.top.equalTo(self.describeLabel).offset(0);
         //        make.height.mas_equalTo(80);
         //        make.width.mas_equalTo(50);
-        make.bottom.equalTo(self.contentView);
+//        make.bottom.equalTo(self.contentView);
     }];
     
     
@@ -215,6 +211,19 @@
         // containerView的高随宫格的高改变
         [self distributeDynamic2CellWithCount:dataModel.imgList.count warp:3 withImageUrl:dataModel.imgList];
 
+    }else{
+        [self.describe mas_remakeConstraints:^(MASConstraintMaker *make) {
+            
+            make.left.equalTo(self.describeLabel.mas_right);
+            make.right.equalTo(self.contentView.mas_right).offset(-10);
+            make.top.equalTo(self.describeLabel).offset(0);
+            //        make.height.mas_equalTo(80);
+            //        make.width.mas_equalTo(50);
+                    make.bottom.equalTo(self.contentView);
+        }];
+        
+        
+        
     }
 }
 
@@ -244,7 +253,7 @@
     if (!_originatorLabel) {
         _originatorLabel = [[UILabel alloc]init];
         _originatorLabel.text = @"执行人：";
-        _originatorLabel.font = Font(14);
+        _originatorLabel.font = Font(12);
     }
     return _originatorLabel;
 }
@@ -253,7 +262,7 @@
     if (!_originator) {
         _originator = [[UILabel alloc]init];
         _originator.text = @"80";
-        _originator.font = CHINESE_SYSTEM(14);
+        _originator.font = CHINESE_SYSTEM(12);
     }
     return _originator;
 }
@@ -264,7 +273,7 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.text = @"创建时间：";
-        _timeLabel.font = Font(14);
+        _timeLabel.font = Font(12);
     }
     return _timeLabel;
 }
@@ -273,7 +282,7 @@
     if (!_time) {
         _time = [[UILabel alloc]init];
         _time.text = @"系统管理员标记";
-        _time.font = CHINESE_SYSTEM(14);
+        _time.font = CHINESE_SYSTEM(12);
     }
     return _time;
 }
@@ -284,7 +293,7 @@
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
         _describeLabel.text = @"反馈描述：";
-        _describeLabel.font = Font(14);
+        _describeLabel.font = Font(12);
     }
     return _describeLabel;
 }
@@ -293,7 +302,7 @@
     if (!_describe) {
         _describe = [[UILabel alloc]init];
         _describe.text = @"系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记";
-        _describe.font = CHINESE_SYSTEM(14);
+        _describe.font = CHINESE_SYSTEM(12);
         _describe.numberOfLines = 0;
     }
     return _describe;

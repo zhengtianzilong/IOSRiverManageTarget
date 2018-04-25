@@ -503,6 +503,14 @@
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
         ZLLog(@"%@", self.imageNameArray);
+        
+        if ([_eventPeople isEqualToString:@""]) {
+            
+            self.receiverType = @"2";
+        }else if ([_eventDepart isEqualToString:@""]){
+            _receiverType = @"1";
+        }
+        
         ZLAddAndSentIncidentService *service = [[ZLAddAndSentIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentName:_eventName incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverCode:@"" patrolCode:nil longitude:nil latitude:nil positionDesc:@""];
         
         [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request){

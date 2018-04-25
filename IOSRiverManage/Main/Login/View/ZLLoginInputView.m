@@ -10,6 +10,8 @@
 #import "UIView+RoundedCorner.h"
 @interface ZLLoginInputView()
 
+@property (nonatomic, strong) UISegmentedControl *segment;
+
 
 @end
 
@@ -21,6 +23,10 @@
         
         [self setUpViews];
         
+        // 1 默认是高级版
+        [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:DBApp_Version];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
     }
     return self;
     
@@ -30,6 +36,9 @@
     [self addSubview:self.nameTextField];
     
     [self addSubview:self.passTextField];
+    
+    [self addSubview:self.segment];
+    
     
     [self addSubview:self.loginBtn];
     
@@ -58,10 +67,17 @@
         make.height.mas_equalTo(40 * kScreenHeightRatio);
     }];
     
-    [self.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+    
+    [self.segment mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
-        make.top.equalTo(self.passTextField.mas_bottom).offset(35 * kScreenHeightRatio);
+        make.top.equalTo(self.passTextField.mas_bottom).offset(15);
+        make.width.mas_equalTo(Main_Screen_Width / 3);
+        make.height.mas_equalTo(35);
+    }];
+    
+    [self.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self);
+        make.top.equalTo(self.segment.mas_bottom).offset(35 * kScreenHeightRatio);
         make.left.equalTo(self.passTextField).offset(10);
         make.right.equalTo(self.passTextField.mas_right).offset(-10);
         make.height.mas_equalTo(45 * kScreenHeightRatio);
@@ -88,6 +104,19 @@
 
     
 }
+
+- (void)selectItem:(UISegmentedControl *)segment{
+    if (segment.selectedSegmentIndex == 0) {
+        // 1 是高级版
+        [[NSUserDefaults standardUserDefaults]setObject:@"1" forKey:DBApp_Version];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    } else {
+        // 2.是基础班
+        [[NSUserDefaults standardUserDefaults]setObject:@"2" forKey:DBApp_Version];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
 
 - (UITextField *)nameTextField{
     if (!_nameTextField) {
@@ -119,16 +148,33 @@
     return _passTextField;
 }
 
+- (UISegmentedControl *)segment{
+    if (!_segment) {
+        _segment = [[UISegmentedControl alloc]initWithItems:@[@"高级版",@"基础版"]];
+        // 设置初始选中项
+        _segment.selectedSegmentIndex = 0;
+        // 设置整体的色调
+        _segment.tintColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
+        [_segment addTarget:self action:@selector(selectItem:) forControlEvents:UIControlEventValueChanged];// 添加响应方法
+    }
+    return _segment;
+    
+}
+
+
+
 - (UIButton *)loginBtn{
     if (!_loginBtn) {
         _loginBtn = [[UIButton alloc]init];
         [_loginBtn setTitle:@"登录" forState:(UIControlStateNormal)];
-        _loginBtn.titleLabel.font = CHINESE_SYSTEM(18);
+        _loginBtn.titleLabel.font = CHINESE_SYSTEM(16);
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
 
     }
     return _loginBtn;
 }
+
+
 
 - (UIImageView *)bgImageV{
     if (!_bgImageV) {

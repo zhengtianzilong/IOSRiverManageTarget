@@ -11,8 +11,8 @@
 #define kAPPAREA @"suqian"
 //中文字体iOS8
 #define CHINESE_FONT_NAME  @"Heiti SC"
-#define CHINESE_SYSTEM(x) [UIFont fontWithName:CHINESE_FONT_NAME size:x]
-#define Font(x) [UIFont systemFontOfSize:x]
+#define CHINESE_SYSTEM(x) [UIFont fontWithName:CHINESE_FONT_NAME size:x * SCALE_FONT]
+#define Font(x) [UIFont systemFontOfSize:(x * SCALE_FONT)]
 //中文字体粗体
 #define CHINESE_FONT_NAMEBold  @"Helvetica-Bold"
 #define CHINESE_SYSTEMBold(x) [UIFont fontWithName:CHINESE_FONT_NAMEBold size:x]
@@ -25,6 +25,12 @@
 #define AdaptedHeight(x) ceilf((x)/1280.0 * kScreenHeightRatio * Main_Screen_Height)
 
 #define AdaptedFontPS(x) ceilf((x)/96.0 * 72)
+
+#define IS_IPAD ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)&& (Main_Screen_Width > 760 )
+#define SCALE_FONT (IS_IPAD ? (15.537/12.0):((Main_Screen_Width == 320) ? 1 : ((Main_Screen_Width == 375 )? (14.077/12.0) : (15.537/12.0))))
+
+
+
 
 //中文字体iOS8适应
 #define AdaptedFontSize(R)     CHINESE_SYSTEM(AdaptedFontPS(R))
@@ -56,9 +62,9 @@
 // 底部TabBar高度
 #define BottomBarHeight (Main_Screen_Height==812.0? 83:48)
 // 字体大小(常规/粗体)
-#define BOLDSYSTEMFONT(FONTSIZE)[UIFont boldSystemFontOfSize:FONTSIZE]
-#define SYSTEMFONT(FONTSIZE)    [UIFont systemFontOfSize:FONTSIZE]
-#define FONT(NAME, FONTSIZE)    [UIFont fontWithName:(NAME) size:(FONTSIZE)]
+#define BOLDSYSTEMFONT(FONTSIZE)[UIFont boldSystemFontOfSize:FONTSIZE * SCALE_FONT]
+#define SYSTEMFONT(FONTSIZE)    [UIFont systemFontOfSize:FONTSIZE * SCALE_FONT]
+#define FONT(NAME, FONTSIZE)    [UIFont fontWithName:(NAME) size:(FONTSIZE * SCALE_FONT)]
 
 //字体色彩
 #define COLOR_WORD_BLACK HEXCOLOR(0x333333)

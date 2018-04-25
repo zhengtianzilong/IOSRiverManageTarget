@@ -102,7 +102,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         _titleLabel.text = @"区县河长";
-        _titleLabel.font = SYSTEMFONT(15);
+        _titleLabel.font = Font(13);
     }
     return _titleLabel;
 }
@@ -111,7 +111,7 @@
     if (!_nameLable) {
         _nameLable = [[UILabel alloc]initWithFrame:CGRectZero];
         _nameLable.text = @"xxxx";
-        _nameLable.font = SYSTEMFONT(15);
+        _nameLable.font = Font(13);
     }
     return _nameLable;
 }

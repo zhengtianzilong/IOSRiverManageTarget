@@ -34,4 +34,8 @@
 @property (nonatomic , copy) NSString<Optional>              * createName;
 @property (nonatomic , copy) NSString<Optional>              * incidentDetailCode;
 @property (nonatomic , copy) NSString<Optional>              * imgUrl;
+
+@property (nonatomic, strong) NSString<Optional>             *isUrgent;
+
+
 @end

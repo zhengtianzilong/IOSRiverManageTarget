@@ -74,7 +74,7 @@
     
     _state = [[UILabel alloc]init];
     _state.text = @"已发起";
-    _state.font = CHINESE_SYSTEM(16);
+    _state.font = Font(14);
     [self.contentView addSubview:_state];
     
     _colorIndicator = [[UIImageView alloc]init];
@@ -82,7 +82,7 @@
     [self.contentView addSubview:_colorIndicator];
     
     _title = [[UILabel alloc]init];
-    _title.font = CHINESE_SYSTEM(16);
+    _title.font = Font(14);
     _title.text = @"河面脏乱差";
     [self.contentView addSubview:_title];
     
@@ -93,72 +93,72 @@
     
     
     _nameLabel = [[UILabel alloc]init];
-    _nameLabel.font = CHINESE_SYSTEM(14);
+    _nameLabel.font = Font(12);
     _nameLabel.text = @"事项名称：";
     [self.contentView addSubview:_nameLabel];
     
     _name = [[UILabel alloc]init];
     _name.text = @"李乐";
-    _name.font = CHINESE_SYSTEM(14);
+    _name.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_name];
     
     _supDepartmentLabel = [[UILabel alloc]init];
     _supDepartmentLabel.text = @"督办单位：";
-    _supDepartmentLabel.font = CHINESE_SYSTEM(14);
+    _supDepartmentLabel.font = Font(12);
     [self.contentView addSubview:_supDepartmentLabel];
     
     _supDepartment = [[UILabel alloc]init];
     _supDepartment.text = @"江苏啊啊啊：";
-    _supDepartment.font = CHINESE_SYSTEM(14);
+    _supDepartment.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_supDepartment];
     
     _codeLabel = [[UILabel alloc]init];
     _codeLabel.text = @"交办单编号：";
-    _codeLabel.font = CHINESE_SYSTEM(14);
+    _codeLabel.font = Font(12);
     [self.contentView addSubview:_codeLabel];
     
     
     _code = [[UILabel alloc]init];
     _code.text = @"陈庆,李丽";
-    _code.font = CHINESE_SYSTEM(14);
+    _code.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_code];
     
     
     
     _departmentLabel = [[UILabel alloc]init];
     _departmentLabel.text = @"责任单位：";
-    _departmentLabel.font = CHINESE_SYSTEM(14);
+    _departmentLabel.font = Font(12);
     [self.contentView addSubview:_departmentLabel];
     
     
     _department = [[UILabel alloc]init];
     _department.text = @"陈庆,李丽";
-    _department.font = CHINESE_SYSTEM(14);
+    _department.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_department];
     
     
     _peopleLabel = [[UILabel alloc]init];
     _peopleLabel.text = @"责任人：";
-    _peopleLabel.font = CHINESE_SYSTEM(14);
+    _peopleLabel.font = Font(12);
     [self.contentView addSubview:_peopleLabel];
     
     
     _people = [[UILabel alloc]init];
     _people.text = @"河道有许多垃圾袋";
-    _people.font = CHINESE_SYSTEM(14);
+    _people.font = CHINESE_SYSTEM(12);
     _people.numberOfLines = 0;
     [self.contentView addSubview:_people];
     
     
     _superviseTimeLabel = [[UILabel alloc]init];
     _superviseTimeLabel.text = @"督办时间：";
-    _superviseTimeLabel.font = CHINESE_SYSTEM(14);
+    _superviseTimeLabel.font = Font(12);
     [self.contentView addSubview:_superviseTimeLabel];
     
     
     _superviseTime = [[UILabel alloc]init];
     _superviseTime.text = @"河道有许多垃圾袋";
-    _superviseTime.font = CHINESE_SYSTEM(14);
+    _superviseTime.font = CHINESE_SYSTEM(12);
     _superviseTime.numberOfLines = 0;
     [self.contentView addSubview:_superviseTime];
     
@@ -194,7 +194,7 @@
         make.left.equalTo(self.contentView).offset(5);
         make.top.equalTo(self.lineViewTop.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
     }];
     
     [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -208,7 +208,7 @@
         make.left.equalTo(self.nameLabel);
         make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
     }];
     [self.supDepartment mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -223,7 +223,7 @@
         make.left.equalTo(self.nameLabel);
         make.top.equalTo(self.supDepartmentLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
     }];
     [self.code mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -239,7 +239,7 @@
         make.left.equalTo(self.nameLabel);
         make.top.equalTo(self.codeLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
     }];
     [self.department mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -255,7 +255,7 @@
         make.left.equalTo(self.nameLabel);
         make.top.equalTo(self.departmentLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
     }];
     [self.people mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -271,7 +271,8 @@
         make.left.equalTo(self.nameLabel);
         make.top.equalTo(self.peopleLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-5);
     }];
     [self.superviseTime mas_makeConstraints:^(MASConstraintMaker *make) {
         

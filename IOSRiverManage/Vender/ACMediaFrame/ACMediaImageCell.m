@@ -42,7 +42,13 @@
     [self.contentView addSubview:_icon];
 
     _deleteButton = [[UIButton alloc] init];
-    [_deleteButton setBackgroundImage:[UIImage imageForResourcePath:@"ACMediaFrame.bundle/deleteButton" ofType:@"png" inBundle:[NSBundle bundleForClass:[self class]]] forState:UIControlStateNormal];
+//    [_deleteButton setBackgroundImage:[UIImage imageForResourcePath:@"ACMediaFrame.bundle/deleteButton" ofType:@"png" inBundle:[NSBundle bundleForClass:[self class]]] forState:UIControlStateNormal];
+    
+    [_deleteButton setBackgroundImage:[UIImage imageNamed:@"image_delete"] forState:(UIControlStateNormal)];
+    
+//    [_deleteButton setImage:[UIImage imageNamed:@"image_delete"] forState:UIControlStateNormal];
+    
+    
     [_deleteButton addTarget:self action:@selector(clickDeleteButton) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_deleteButton];
     
@@ -65,7 +71,10 @@
     if (addImage) {
         self.icon.image = addImage;
     }else {
-        self.icon.image = [UIImage imageForResourcePath:@"ACMediaFrame.bundle/AddMedia" ofType:@"png" inBundle:[NSBundle bundleForClass:[self class]]];
+//        self.icon.image = [UIImage imageForResourcePath:@"ACMediaFrame.bundle/AddMedia" ofType:@"png" inBundle:[NSBundle bundleForClass:[self class]]];
+        
+        self.icon.image = [UIImage imageNamed:@"image_add"];
+        
     }
     self.deleteButton.hidden = YES;
     self.videoImageView.hidden = YES;

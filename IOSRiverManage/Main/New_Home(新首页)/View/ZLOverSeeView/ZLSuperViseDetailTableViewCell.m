@@ -53,7 +53,7 @@
         make.left.equalTo(self.contentView).offset(5);
         make.top.equalTo(self.self.contentView).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
         
     }];
     
@@ -62,7 +62,7 @@
         make.left.equalTo(self.countLabel.mas_right);
         make.top.equalTo(self.countLabel);
         make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(75);
+        //        make.width.mas_equalTo(80);
         
     }];
     
@@ -72,7 +72,7 @@
         make.left.equalTo(self.countLabel);
         make.top.equalTo(self.countLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
         
     }];
     
@@ -81,7 +81,7 @@
         make.left.equalTo(self.assignedTimeLabel.mas_right);
         make.top.equalTo(self.assignedTimeLabel);
         make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(75);
+        //        make.width.mas_equalTo(80);
         
     }];
     
@@ -90,7 +90,7 @@
         make.left.equalTo(self.countLabel);
         make.top.equalTo(self.assignedTimeLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
         
     }];
     
@@ -99,7 +99,7 @@
         make.left.equalTo(self.completeTimeLabel.mas_right);
         make.top.equalTo(self.completeTimeLabel);
         make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(75);
+        //        make.width.mas_equalTo(80);
         
     }];
     [self.departmentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -107,7 +107,7 @@
         make.left.equalTo(self.countLabel);
         make.top.equalTo(self.completeTimeLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
     }];
     
     [self.department mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -123,7 +123,7 @@
         make.left.equalTo(self.countLabel);
         make.top.equalTo(self.departmentLabel.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
         
     }];
     
@@ -132,7 +132,7 @@
         make.left.equalTo(self.peopleLabel.mas_right);
         make.top.equalTo(self.peopleLabel);
         make.height.mas_equalTo(20);
-        //        make.width.mas_equalTo(75);
+        //        make.width.mas_equalTo(80);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-5);
     }];
     
@@ -180,7 +180,7 @@
     if (!_countLabel) {
         _countLabel = [[UILabel alloc]init];
         _countLabel.text = @"编号：";
-        _countLabel.font = Font(14);
+        _countLabel.font = Font(12);
     }
     return _countLabel;
 }
@@ -189,7 +189,7 @@
     if (!_count) {
         _count = [[UILabel alloc]init];
         _count.text = @"80";
-        _count.font = CHINESE_SYSTEM(14);
+        _count.font = CHINESE_SYSTEM(12);
     }
     return _count;
 }
@@ -198,7 +198,7 @@
     if (!_departmentLabel) {
         _departmentLabel = [[UILabel alloc]init];
         _departmentLabel.text = @"责任单位：";
-        _departmentLabel.font = Font(14);
+        _departmentLabel.font = Font(12);
     }
     return _departmentLabel;
 }
@@ -207,7 +207,7 @@
     if (!_department) {
         _department = [[UILabel alloc]init];
         _department.text = @"123";
-        _department.font = CHINESE_SYSTEM(14);
+        _department.font = CHINESE_SYSTEM(12);
     }
     return _department;
 }
@@ -216,7 +216,7 @@
     if (!_peopleLabel) {
         _peopleLabel = [[UILabel alloc]init];
         _peopleLabel.text = @"责任人：";
-        _peopleLabel.font = Font(14);
+        _peopleLabel.font = Font(12);
     }
     return _peopleLabel;
 }
@@ -225,7 +225,7 @@
     if (!_people) {
         _people = [[UILabel alloc]init];
         _people.text = @"系统管理员标记";
-        _people.font = CHINESE_SYSTEM(14);
+        _people.font = CHINESE_SYSTEM(12);
     }
     return _people;
 }
@@ -234,7 +234,7 @@
     if (!_assignedTimeLabel) {
         _assignedTimeLabel = [[UILabel alloc]init];
         _assignedTimeLabel.text = @"交办时间：";
-        _assignedTimeLabel.font = Font(14);
+        _assignedTimeLabel.font = Font(12);
     }
     return _assignedTimeLabel;
 }
@@ -243,7 +243,7 @@
     if (!_assignedTime) {
         _assignedTime = [[UILabel alloc]init];
         _assignedTime.text = @"系统管理员标记";
-        _assignedTime.font = CHINESE_SYSTEM(14);
+        _assignedTime.font = CHINESE_SYSTEM(12);
     }
     return _assignedTime;
 }
@@ -252,7 +252,7 @@
     if (!_completeTimeLabel) {
         _completeTimeLabel = [[UILabel alloc]init];
         _completeTimeLabel.text = @"完成时限：";
-        _completeTimeLabel.font = Font(14);
+        _completeTimeLabel.font = Font(12);
     }
     return _completeTimeLabel;
 }
@@ -261,7 +261,7 @@
     if (!_completeTime) {
         _completeTime = [[UILabel alloc]init];
         _completeTime.text = @"系统管理员标记";
-        _completeTime.font = CHINESE_SYSTEM(14);
+        _completeTime.font = CHINESE_SYSTEM(12);
     }
     return _completeTime;
 }

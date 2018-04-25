@@ -119,7 +119,7 @@
         _customBtn = [[UIButton alloc]init];
         //        [_customBtn setTitle:@"我的任务" forState:(UIControlStateNormal)];
         [_customBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-        _customBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        _customBtn.titleLabel.font = CHINESE_SYSTEM(12);
         _customBtn.userInteractionEnabled = NO;
         
 //        [_customBtn addTarget:self action:@selector(customBtnClick) forControlEvents:(UIControlEventTouchUpInside)];

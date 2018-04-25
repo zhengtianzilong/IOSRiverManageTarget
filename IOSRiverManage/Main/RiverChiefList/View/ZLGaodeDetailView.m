@@ -214,7 +214,7 @@
     
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
-        _titleLabel.font = CHINESE_SYSTEM(18);
+        _titleLabel.font = CHINESE_SYSTEM(16);
 
     }
     return _titleLabel;
@@ -233,7 +233,7 @@
     if (!_riverLabel) {
         _riverLabel = [[UILabel alloc]init];
         _riverLabel.text = @"巡河人：";
-        _riverLabel.font = Font(15);
+        _riverLabel.font = Font(13);
 //        _riverLabel.attributedText = [self setTextString:@"巡河人:"];
         
     }
@@ -244,7 +244,7 @@
     
     if (!_riverPeople) {
         _riverPeople = [[UILabel alloc]init];
-        _riverPeople.font = CHINESE_SYSTEM(15);
+        _riverPeople.font = CHINESE_SYSTEM(13);
     }
     return _riverPeople;
     
@@ -254,7 +254,7 @@
     if (!_reportObjectLabel) {
         _reportObjectLabel = [[UILabel alloc]init];
         _reportObjectLabel.text = @"上报对象：";
-        _reportObjectLabel.font = Font(15);
+        _reportObjectLabel.font = Font(13);
     }
     return _reportObjectLabel;
     
@@ -263,7 +263,7 @@
     
     if (!_reportObject) {
         _reportObject = [[UILabel alloc]init];
-        _reportObject.font = CHINESE_SYSTEM(15);
+        _reportObject.font = CHINESE_SYSTEM(13);
     }
     return _reportObject;
     
@@ -273,7 +273,7 @@
     if (!_reportTimeLabel) {
         _reportTimeLabel = [[UILabel alloc]init];
         _reportTimeLabel.text = @"上报时间：";
-        _reportTimeLabel.font = Font(15);
+        _reportTimeLabel.font = Font(13);
     }
     return _reportTimeLabel;
     
@@ -282,7 +282,7 @@
     
     if (!_reportTime) {
         _reportTime = [[UILabel alloc]init];
-        _reportTime.font = CHINESE_SYSTEM(15);
+        _reportTime.font = CHINESE_SYSTEM(13);
     }
     return _reportTime;
     
@@ -292,7 +292,7 @@
     if (!_addressLabel) {
         _addressLabel = [[UILabel alloc]init];
         _addressLabel.text = @"位置：";
-        _addressLabel.font = Font(15);
+        _addressLabel.font = Font(13);
     }
     return _addressLabel;
     
@@ -301,7 +301,7 @@
     
     if (!_address) {
         _address = [[UILabel alloc]init];
-        _address.font = CHINESE_SYSTEM(15);
+        _address.font = CHINESE_SYSTEM(13);
     }
     return _address;
     
@@ -312,7 +312,7 @@
     if (!_feedBackLabel) {
         _feedBackLabel = [[UILabel alloc]init];
         _feedBackLabel.text = @"反馈内容：";
-        _feedBackLabel.font = Font(15);;
+        _feedBackLabel.font = Font(13);;
     }
     return _feedBackLabel;
     
@@ -322,7 +322,7 @@
     if (!_feedBack) {
         _feedBack = [[UILabel alloc]init];
         _feedBack.numberOfLines = 0;
-        _feedBack.font = CHINESE_SYSTEM(15);
+        _feedBack.font = CHINESE_SYSTEM(13);
     }
     return _feedBack;
 }

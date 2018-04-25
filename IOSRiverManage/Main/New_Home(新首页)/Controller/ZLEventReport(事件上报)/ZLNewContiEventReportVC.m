@@ -20,6 +20,7 @@
 #import "ZLAlertSelectionView.h"
 #import "ZLGetEventUserListModel.h"
 #import "ZLGetUserListByIncidentService.h"
+#import "ZLEventManagerVC.h"
 @interface ZLNewContiEventReportVC ()<UITableViewDelegate, UITableViewDataSource>
 
 
@@ -531,7 +532,15 @@
             if ([model.code isEqualToString:@"0"]) {
                 [SVProgressHUD showSuccessWithStatus:@"上报成功"];
                 [SVProgressHUD dismissWithDelay:0.3 completion:^{
-                    [self.navigationController popViewControllerAnimated:YES];
+//                    [self.navigationController popViewControllerAnimated:YES];
+
+                    for (UIViewController *vc in self.navigationController.childViewControllers) {
+                        if ([vc isKindOfClass:[ZLEventManagerVC class]]) {
+                            ZLEventManagerVC *mainVC = (ZLEventManagerVC *)vc;
+                            [self.navigationController popToViewController:mainVC animated:NO];
+                        }
+                    }
+
                 }];
             }else{
                 [SVProgressHUD showErrorWithStatus:model.detail];

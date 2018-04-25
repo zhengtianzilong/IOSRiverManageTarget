@@ -222,7 +222,7 @@
         _title = [[UILabel alloc]init];
         _title.text = @"取水口信息";
         _title.textColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
-        _title.font = SYSTEMFONT(18);
+        _title.font = Font(16);
     }
     return _title;
 }
@@ -231,7 +231,7 @@
     if (!_codeLabel) {
         _codeLabel = [[UILabel alloc]init];
         _codeLabel.text = @"取水口编码";
-        _codeLabel.font = SYSTEMFONT(14);
+        _codeLabel.font = Font(12);
     }
     return _codeLabel;
 }
@@ -239,7 +239,7 @@
 - (UILabel *)code{
     if (!_code) {
         _code = [[UILabel alloc]init];
-        _code.font = SYSTEMFONT(14);
+        _code.font = CHINESE_SYSTEM(12);
         _code.text = @"111111";
     }
     return _code;
@@ -249,7 +249,7 @@
     if (!_nameLabel) {
         _nameLabel = [[UILabel alloc]init];
         _nameLabel.text = @"取水口名称";
-        _nameLabel.font = SYSTEMFONT(14);
+        _nameLabel.font = Font(12);
     }
     return _nameLabel;
 }
@@ -257,7 +257,7 @@
 - (UILabel *)name{
     if (!_name) {
         _name = [[UILabel alloc]init];
-        _name.font = SYSTEMFONT(14);
+        _name.font = CHINESE_SYSTEM(12);
         _name.text = @"111111";
     }
     return _name;
@@ -268,7 +268,7 @@
         _addressLabel = [[UILabel alloc]init];
         _addressLabel.text = @"位置";
         
-        _addressLabel.font = SYSTEMFONT(14);
+        _addressLabel.font = Font(12);
     }
     return _addressLabel;
 }
@@ -276,7 +276,7 @@
 - (UILabel *)address{
     if (!_address) {
         _address = [[UILabel alloc]init];
-        _address.font = SYSTEMFONT(14);
+        _address.font = CHINESE_SYSTEM(12);
         _address.numberOfLines = 0;
         _address.text = @"111111";
     }
@@ -289,7 +289,7 @@
     if (!_peopleLabel) {
         _peopleLabel = [[UILabel alloc]init];
         _peopleLabel.text = @"联系人";
-        _peopleLabel.font = SYSTEMFONT(14);
+        _peopleLabel.font = Font(12);
     }
     return _peopleLabel;
 }
@@ -297,7 +297,7 @@
     if (!_people) {
         _people = [[UILabel alloc]init];
         _people.text = @"ssdadds";
-        _people.font = SYSTEMFONT(14);
+        _people.font = CHINESE_SYSTEM(12);
     }
     return _people;
 }
@@ -305,7 +305,7 @@
 - (UILabel *)countyLabel{
     if (!_countyLabel) {
         _countyLabel = [[UILabel alloc]init];
-        _countyLabel.font = SYSTEMFONT(14);
+        _countyLabel.font = Font(12);
         _countyLabel.text = @"所属区县";
     }
     return _countyLabel;
@@ -315,7 +315,7 @@
 - (UILabel *)county{
     if (!_county) {
         _county = [[UILabel alloc]init];
-        _county.font = SYSTEMFONT(14);
+        _county.font = CHINESE_SYSTEM(12);
         _county.text = @"111111";
     }
     return _county;
@@ -324,7 +324,7 @@
 - (UILabel *)phoneLabel{
     if (!_phoneLabel) {
         _phoneLabel = [[UILabel alloc]init];
-        _phoneLabel.font = SYSTEMFONT(14);
+        _phoneLabel.font = Font(12);
         _phoneLabel.text = @"联系电话";
     }
     return _phoneLabel;
@@ -334,7 +334,7 @@
 - (UILabel *)phone{
     if (!_phone) {
         _phone = [[UILabel alloc]init];
-        _phone.font = SYSTEMFONT(14);
+        _phone.font = CHINESE_SYSTEM(12);
         _phone.text = @"111111sss";
     }
     return _phone;
@@ -343,7 +343,7 @@
 - (UILabel *)useLabel{
     if (!_useLabel) {
         _useLabel = [[UILabel alloc]init];
-        _useLabel.font = SYSTEMFONT(14);
+        _useLabel.font = Font(12);
         _useLabel.text = @"取水用途";
     }
     return _useLabel;
@@ -353,7 +353,7 @@
 - (UILabel *)use{
     if (!_use) {
         _use = [[UILabel alloc]init];
-        _use.font = SYSTEMFONT(14);
+        _use.font = CHINESE_SYSTEM(12);
         _use.numberOfLines = 0;
         _use.text = @"111111取水用途取水用途取水用途取水用途取水用途取水用途取水用途取水用途取水用途";
     }
@@ -367,7 +367,7 @@
         _checkAddressBtn = [[UIButton alloc]init];
         [_checkAddressBtn setTitle:@"查看取水口位置" forState:(UIControlStateNormal)];
         [_checkAddressBtn setTitleColor:HEXCOLOR(CNAVGATIONBAR_COLOR) forState:(UIControlStateNormal)];
-        _checkAddressBtn.titleLabel.font = SYSTEMFONT(14);
+        _checkAddressBtn.titleLabel.font = Font(12);
         [_checkAddressBtn setImage:[UIImage imageNamed:@"info_positioning"] forState:(UIControlStateNormal)];
         [_checkAddressBtn setImagePosition:(LXMImagePositionLeft) spacing:10];
         

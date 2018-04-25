@@ -73,7 +73,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.textColor = [UIColor blackColor];
         _titleLabel.text = @"问题清单";
-        _titleLabel.font = CHINESE_SYSTEM(15);
+        _titleLabel.font = CHINESE_SYSTEM(13);
     }
     return _titleLabel;
 }

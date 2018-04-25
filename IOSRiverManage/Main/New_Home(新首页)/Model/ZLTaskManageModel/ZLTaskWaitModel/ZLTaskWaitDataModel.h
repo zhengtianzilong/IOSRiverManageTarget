@@ -23,4 +23,7 @@
 @property (nonatomic , copy) NSString<Optional>              * taskHaveRiver;
 @property (nonatomic , copy) NSString<Optional>              * createTime;
 @property (nonatomic , copy) NSString<Optional>              * taskContent;
+
+@property (nonatomic, strong) NSString<Optional> *isUrgent;
+
 @end

@@ -34,6 +34,7 @@
         //push
     }else{
         //pop
+        _lastCreateTime = @"";
         [self getData];
         
     }
@@ -204,7 +205,7 @@
                         
                         [SVProgressHUD showSuccessWithStatus:@"接收成功"];
                         [SVProgressHUD dismissWithDelay:0.3 completion:^{
-                            
+                            _lastCreateTime = @"";
                             [self getData];
                             
                         }];
@@ -282,7 +283,7 @@
             
         }];
         
-        _mainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _mainTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             [self getData];
             
         }];

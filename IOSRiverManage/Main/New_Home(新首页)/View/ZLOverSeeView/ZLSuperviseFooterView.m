@@ -53,7 +53,7 @@
         make.left.equalTo(self.describeLabel);
         make.top.equalTo(self.describe.mas_bottom).offset(5);
         make.height.mas_equalTo(20);
-        make.width.mas_equalTo(75);
+        make.width.mas_equalTo(80);
         
     }];
     
@@ -100,7 +100,7 @@
     if (!_describeLabel) {
         _describeLabel = [[UILabel alloc]init];
         _describeLabel.text = @"交办工作内容：";
-        _describeLabel.font = Font(14);
+        _describeLabel.font = Font(12);
     }
     return _describeLabel;
 }
@@ -109,7 +109,7 @@
     if (!_describe) {
         _describe = [[UILabel alloc]init];
         _describe.text = @"系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记";
-        _describe.font = CHINESE_SYSTEM(14);
+        _describe.font = CHINESE_SYSTEM(12);
         _describe.numberOfLines = 0;
     }
     return _describe;
@@ -120,7 +120,7 @@
     if (!_noteLabel) {
         _noteLabel = [[UILabel alloc]init];
         _noteLabel.text = @"备注：";
-        _noteLabel.font = Font(14);
+        _noteLabel.font = Font(12);
         
     }
     return _noteLabel;
@@ -130,7 +130,7 @@
     if (!_note) {
         _note = [[UILabel alloc]init];
         _note.text = @"系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记系统管理员标记";
-        _note.font = CHINESE_SYSTEM(14);
+        _note.font = CHINESE_SYSTEM(12);
         _note.numberOfLines = 0;
     }
     return _note;

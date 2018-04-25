@@ -69,7 +69,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(10);
-        make.width.mas_equalTo(100);
+        make.width.mas_equalTo(90);
 //        make.right.equalTo(self.bgView.mas_right);
                 make.top.equalTo(self.contentView).offset(0);
 //        make.centerY.equalTo(self.bgView);
@@ -80,11 +80,11 @@
     [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.equalTo(self.contentView.mas_right).offset(-10);
-        make.width.mas_equalTo(25);
+        make.width.mas_equalTo(20);
         //        make.right.equalTo(self.bgView.mas_right);
         make.centerY.equalTo(self.contentView);
         //        make.centerY.equalTo(self.bgView);
-        make.height.mas_equalTo(25);
+        make.height.mas_equalTo(20);
         
     }];
     
@@ -149,7 +149,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"所在区县:";
         _titleLabel.backgroundColor = [UIColor whiteColor];
-        _titleLabel.font = CHINESE_SYSTEM(15);
+        _titleLabel.font = Font(13);
         
     }
     return _titleLabel;
@@ -160,7 +160,7 @@
     if (!_infoTextView) {
         _infoTextView = [[UITextView alloc]init];
         
-        _infoTextView.font = CHINESE_SYSTEM(15);
+        _infoTextView.font = CHINESE_SYSTEM(13);
         _infoTextView.editable = NO;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
         [_infoTextView addGestureRecognizer:tap];
@@ -171,7 +171,7 @@
         
         _infoTextView.delegate = self;
         _infoTextView.scrollEnabled = NO;
-        
+        _infoTextView.textContainerInset = UIEdgeInsetsMake(10,0, 10, 5);
         [_infoTextView addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
         
 //        [_infoTextView addTarget:self action:@selector(tapClick) forControlEvents:(UIControlEventTouchUpInside)];

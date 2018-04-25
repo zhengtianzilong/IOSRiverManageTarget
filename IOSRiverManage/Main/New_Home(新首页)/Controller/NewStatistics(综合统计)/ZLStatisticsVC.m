@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Width, App_Frame_Height)];
+    self.webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Width, Main_Screen_Height - (TopBarHeight-20))];
     self.webView.userInteractionEnabled = YES;
     
     NSString *uriStr = [NSString stringWithFormat:@"%@/%@",River_ComStatisticsUrl,@"comStatistics/index.html"];

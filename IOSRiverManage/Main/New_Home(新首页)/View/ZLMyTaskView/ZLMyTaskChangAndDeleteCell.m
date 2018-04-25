@@ -19,10 +19,10 @@
     [self.deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.equalTo(self.contentView.mas_right).offset(-10);
-        make.top.equalTo(self.lineViewBottom.mas_bottom).offset(10);
+        make.top.equalTo(self.lineViewBottom.mas_bottom).offset(5);
         make.height.mas_equalTo(30);
         make.width.mas_equalTo(55);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-5);
     }];
     
     [self.changeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -31,7 +31,7 @@
         make.top.equalTo(self.deleteBtn);
         make.height.equalTo(self.deleteBtn);
         make.width.equalTo(self.deleteBtn);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-5);
     }];
     
     self.colorIndicator.image = [UIImage imageNamed:@"task_point"];
@@ -147,7 +147,7 @@
         _deleteBtn.layer.borderWidth = 1;
         _deleteBtn.layer.cornerRadius = 5;
         _deleteBtn.layer.borderColor = HEXCOLOR(CVIEW_GRAY_COLOR).CGColor;
-        _deleteBtn.titleLabel.font = CHINESE_SYSTEM(16);
+        _deleteBtn.titleLabel.font = CHINESE_SYSTEM(14);
         _deleteBtn.layer.masksToBounds = YES;
         [_deleteBtn addTarget:self action:@selector(deleteBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
     }
@@ -160,7 +160,7 @@
         [_changeBtn setTitle:@"修改" forState:(UIControlStateNormal)];
         [_changeBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
         [_changeBtn addTarget:self action:@selector(changeBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
-        _changeBtn.titleLabel.font = CHINESE_SYSTEM(16);
+        _changeBtn.titleLabel.font = CHINESE_SYSTEM(14);
         _changeBtn.layer.borderWidth = 1;
         _changeBtn.layer.masksToBounds = NO;
         _changeBtn.layer.cornerRadius = 5;

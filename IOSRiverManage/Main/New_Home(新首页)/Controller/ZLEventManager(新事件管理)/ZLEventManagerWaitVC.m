@@ -36,6 +36,7 @@
         //push
     }else{
         //pop
+        _lastCreateTime = @"";
         [self getData];
         
     }
@@ -272,7 +273,7 @@
             
         }];
         
-        _mainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _mainTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             [self getData];
             
         }];

@@ -110,7 +110,7 @@
     if (!_descripe) {
         _descripe = [[UILabel alloc]init];
         _descripe.text = @"123hfjsdhuisdhfsdahfhdsahfsadhfidsahfdsaihfdsfsdafgdsafsdhfdsjhfdkjshfdjkshfjsjkdshjkdsfh";
-        _descripe.font = CHINESE_SYSTEM(14);
+        _descripe.font = CHINESE_SYSTEM(12);
         _descripe.numberOfLines = 0;
     }
     return _descripe;
@@ -120,7 +120,7 @@
     if (!_time) {
         _time = [[UILabel alloc]init];
         _time.text = @"2018-03-25 19:05:12";
-        _time.font = CHINESE_SYSTEM(14);
+        _time.font = CHINESE_SYSTEM(12);
     }
     return _time;
 }

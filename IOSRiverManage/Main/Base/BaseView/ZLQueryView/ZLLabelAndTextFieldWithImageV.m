@@ -98,7 +98,7 @@
         _titleLabel = [[UILabel alloc]init];
         [_titleLabel setText:self.title];
         _titleLabel.backgroundColor = [UIColor whiteColor];
-        _titleLabel.font = CHINESE_SYSTEM(15);
+        _titleLabel.font = CHINESE_SYSTEM(13);
         
     }
     return _titleLabel;
@@ -109,9 +109,9 @@
         _infoTextField = [[UITextField alloc]init];
         _infoTextField.placeholder = self.placeHolder;
         _infoTextField.backgroundColor = [UIColor whiteColor];
-        [_infoTextField setValue:CHINESE_SYSTEM(15) forKeyPath:@"_placeholderLabel.font"];
+        [_infoTextField setValue:CHINESE_SYSTEM(13) forKeyPath:@"_placeholderLabel.font"];
 //        [_infoTextField setEnabled:NO];
-        _infoTextField.font = CHINESE_SYSTEM(15);
+        _infoTextField.font = CHINESE_SYSTEM(13);
         _infoTextField.delegate = self;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapclick)];
         [_infoTextField addGestureRecognizer:tap];

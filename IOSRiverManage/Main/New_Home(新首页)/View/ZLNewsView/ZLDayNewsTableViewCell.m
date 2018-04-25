@@ -110,7 +110,7 @@
         _detailLabel = [[UILabel alloc]init];
         //        _title.textColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
         _detailLabel.text = @"2018年1月26日洪泽湖解除封航信息";
-        _detailLabel.font = CHINESE_SYSTEM(13);
+        _detailLabel.font = CHINESE_SYSTEM(11);
     }
     return _detailLabel;
 }
@@ -120,7 +120,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"请查看公告通知!";
-        _titleLabel.font = Font(17);
+        _titleLabel.font = Font(15);
     }
     return _titleLabel;
 }
@@ -128,7 +128,7 @@
     if (!_timeLabel) {
         _timeLabel = [[UILabel alloc]init];
         _timeLabel.text = @"XXXXX";
-        _timeLabel.font = CHINESE_SYSTEM(13);
+        _timeLabel.font = CHINESE_SYSTEM(11);
     }
     return _timeLabel;
 }

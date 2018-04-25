@@ -86,7 +86,7 @@
         _customBtn = [[UIButton alloc]init];
         //        [_customBtn setTitle:@"我的任务" forState:(UIControlStateNormal)];
         [_customBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-        _customBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        _customBtn.titleLabel.font = CHINESE_SYSTEM(12);
         _customBtn.userInteractionEnabled = NO;
         //        [_customBtn setImage:[UIImage imageNamed:@"day_rivers_total"] forState:(UIControlStateNormal)];
         
@@ -101,7 +101,7 @@
         _tipBtn = [[UIButton alloc]init];
         
         [_tipBtn setTitle:@"500" forState:(UIControlStateNormal)];
-        _tipBtn.titleLabel.font = CHINESE_SYSTEM(14);
+        _tipBtn.titleLabel.font = CHINESE_SYSTEM(12);
         _tipBtn.hidden = YES;
         [_tipBtn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
         _tipBtn.backgroundColor = [UIColor redColor];

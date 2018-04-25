@@ -35,6 +35,7 @@
         //push
     }else{
         //pop
+        _lastCreateTime = @"";
         [self getData];
         
     }
@@ -48,7 +49,7 @@
 }
 
 - (void)getData{
-    ZLEventManagerReportService *service = [[ZLEventManagerReportService alloc]initWithpageSize:10      incidentName:self.incidentName createBeginTime:self.createStartTime createEndTime:self.createEndTime appPageCreateTime:self.lastCreateTime];
+    ZLEventManagerReportService *service = [[ZLEventManagerReportService alloc]initWithpageSize:10 incidentName:self.incidentName createBeginTime:self.createStartTime createEndTime:self.createEndTime appPageCreateTime:self.lastCreateTime];
     
     [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
         
@@ -268,7 +269,7 @@
             
         }];
         
-        _mainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _mainTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
             [self getData];
             
         }];
