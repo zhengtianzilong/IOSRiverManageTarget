@@ -12,7 +12,6 @@
 @interface ZLEventManagerAlreadyVC : ZLBaseCustomNavViewController
 @property (nonatomic, strong) ZLQueryEventManagerAlreadyView *queryView;
 @property (nonatomic, strong) UITableView *mainTableView;
-
 @property (nonatomic, strong) NSString *userCode;
 
 @end

@@ -853,6 +853,9 @@
 		D58BE219205945F7000194AC /* ZLNewAreaDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D58BE217205945F7000194AC /* ZLNewAreaDataModel.m */; };
 		D58BE21A205945F7000194AC /* ZLNewAreaDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D58BE217205945F7000194AC /* ZLNewAreaDataModel.m */; };
 		D58C3821209023870055E010 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C3820209023860055E010 /* Default-568h@2x.png */; };
+		D58C3826209050D50055E010 /* ZLMySetupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C3825209050D50055E010 /* ZLMySetupTableViewController.m */; };
+		D58C3827209050D50055E010 /* ZLMySetupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C3825209050D50055E010 /* ZLMySetupTableViewController.m */; };
+		D58C3828209050D50055E010 /* ZLMySetupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C3825209050D50055E010 /* ZLMySetupTableViewController.m */; };
 		D58C4F59207AEFC5008B55D0 /* ZLSimpleHomeMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C4F58207AEFC5008B55D0 /* ZLSimpleHomeMainVC.m */; };
 		D58C4F5A207AEFC5008B55D0 /* ZLSimpleHomeMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C4F58207AEFC5008B55D0 /* ZLSimpleHomeMainVC.m */; };
 		D58C4F5B207AEFC5008B55D0 /* ZLSimpleHomeMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C4F58207AEFC5008B55D0 /* ZLSimpleHomeMainVC.m */; };
@@ -2065,6 +2068,8 @@
 		D58BE216205945F7000194AC /* ZLNewAreaDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLNewAreaDataModel.h; sourceTree = "<group>"; };
 		D58BE217205945F7000194AC /* ZLNewAreaDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLNewAreaDataModel.m; sourceTree = "<group>"; };
 		D58C3820209023860055E010 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D58C3824209050D50055E010 /* ZLMySetupTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLMySetupTableViewController.h; sourceTree = "<group>"; };
+		D58C3825209050D50055E010 /* ZLMySetupTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLMySetupTableViewController.m; sourceTree = "<group>"; };
 		D58C4F57207AEFC5008B55D0 /* ZLSimpleHomeMainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLSimpleHomeMainVC.h; sourceTree = "<group>"; };
 		D58C4F58207AEFC5008B55D0 /* ZLSimpleHomeMainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLSimpleHomeMainVC.m; sourceTree = "<group>"; };
 		D58C4F5D207AF6EB008B55D0 /* ZLSimpleHomeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLSimpleHomeView.h; sourceTree = "<group>"; };
@@ -3808,7 +3813,6 @@
 		D51D405D1F69399900CA0903 /* SDKFile */ = {
 			isa = PBXGroup;
 			children = (
-				D58C4F73207B7552008B55D0 /* ChinaMobile */,
 				D50F53E21F983EC000D16953 /* XGSdk */,
 				D5DEA29C1F6FAA7F00CD50C0 /* SDPhotoBrowserd */,
 			);
@@ -3950,9 +3954,7 @@
 			isa = PBXGroup;
 			children = (
 				D51D40F61F693FC700CA0903 /* Controller */,
-				D51D40F71F693FC700CA0903 /* Model */,
 				D51D40F81F693FC700CA0903 /* Other */,
-				D51D40F91F693FC700CA0903 /* Service */,
 				D51D40FA1F693FC700CA0903 /* View */,
 			);
 			name = "Home(首页)";
@@ -3969,25 +3971,11 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		D51D40F71F693FC700CA0903 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		D51D40F81F693FC700CA0903 /* Other */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Other;
-			sourceTree = "<group>";
-		};
-		D51D40F91F693FC700CA0903 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		D51D40FA1F693FC700CA0903 /* View */ = {
@@ -4010,7 +3998,6 @@
 		D51D41071F693FC700CA0903 /* RiverChiefList(河长联系单) */ = {
 			isa = PBXGroup;
 			children = (
-				D5850F5F1FF08979001B8165 /* RiverRecord */,
 				D51D41081F693FC700CA0903 /* Controller */,
 				D51D41091F693FC700CA0903 /* Model */,
 				D51D410A1F693FC700CA0903 /* Other */,
@@ -4359,38 +4346,6 @@
 			path = ZLOverSeeView;
 			sourceTree = "<group>";
 		};
-		D5850F5F1FF08979001B8165 /* RiverRecord */ = {
-			isa = PBXGroup;
-			children = (
-				D58511431FF0CC82001B8165 /* View */,
-				D5850F621FF08AD7001B8165 /* Service */,
-				D5850F611FF08A58001B8165 /* Model */,
-				D5850F601FF08A4E001B8165 /* Controller */,
-			);
-			path = RiverRecord;
-			sourceTree = "<group>";
-		};
-		D5850F601FF08A4E001B8165 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		D5850F611FF08A58001B8165 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		D5850F621FF08AD7001B8165 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		D585112C1FF08D5F001B8165 /* IOSRiverManageTouBiao */ = {
 			isa = PBXGroup;
 			children = (
@@ -4400,20 +4355,6 @@
 				D58511401FF094B6001B8165 /* Launch Screen.storyboard */,
 			);
 			path = IOSRiverManageTouBiao;
-			sourceTree = "<group>";
-		};
-		D58511431FF0CC82001B8165 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D5AC3DFB1FF1F4DB00BDF458 /* Cell */,
-				D58511491FF0CF20001B8165 /* ZLRiverRecordView.h */,
-				D585114A1FF0CF20001B8165 /* ZLRiverRecordView.m */,
-				D585114E1FF0CF81001B8165 /* ZLRiverRecordTopView.h */,
-				D585114F1FF0CF81001B8165 /* ZLRiverRecordTopView.m */,
-				D58511531FF0E480001B8165 /* ZLRiverThreeButton.h */,
-				D58511541FF0E480001B8165 /* ZLRiverThreeButton.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		D585CD641FE7A47000802DBB /* DQAlertView */ = {
@@ -4542,6 +4483,7 @@
 		D58916F52045360E0064A945 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D58C38232090339F0055E010 /* ZLRiverRecordView */,
 				D58C4F5C207AF6C6008B55D0 /* ZLSimpleView */,
 				D5A2A8FD206790D000064F47 /* ZLMyTaskView */,
 				D5B35DBF205CE14500369469 /* ZLEventReportView */,
@@ -4652,6 +4594,8 @@
 				D589171120453BB60064A945 /* ZLFAQVC.m */,
 				D58917192045405B0064A945 /* ZLMySetupVC.h */,
 				D589171A2045405B0064A945 /* ZLMySetupVC.m */,
+				D58C3824209050D50055E010 /* ZLMySetupTableViewController.h */,
+				D58C3825209050D50055E010 /* ZLMySetupTableViewController.m */,
 				D589171520453D5F0064A945 /* ZLMySetupVC.storyboard */,
 			);
 			path = Controller;
@@ -4790,6 +4734,21 @@
 			path = FloatingWindow;
 			sourceTree = "<group>";
 		};
+		D58C38232090339F0055E010 /* ZLRiverRecordView */ = {
+			isa = PBXGroup;
+			children = (
+				D5AC3DFC1FF1F50600BDF458 /* ZLRiverRecordCell.h */,
+				D5AC3DFD1FF1F50600BDF458 /* ZLRiverRecordCell.m */,
+				D58511491FF0CF20001B8165 /* ZLRiverRecordView.h */,
+				D585114A1FF0CF20001B8165 /* ZLRiverRecordView.m */,
+				D585114E1FF0CF81001B8165 /* ZLRiverRecordTopView.h */,
+				D585114F1FF0CF81001B8165 /* ZLRiverRecordTopView.m */,
+				D58511531FF0E480001B8165 /* ZLRiverThreeButton.h */,
+				D58511541FF0E480001B8165 /* ZLRiverThreeButton.m */,
+			);
+			path = ZLRiverRecordView;
+			sourceTree = "<group>";
+		};
 		D58C4F5C207AF6C6008B55D0 /* ZLSimpleView */ = {
 			isa = PBXGroup;
 			children = (
@@ -4797,13 +4756,6 @@
 				D58C4F5E207AF6EB008B55D0 /* ZLSimpleHomeView.m */,
 			);
 			path = ZLSimpleView;
-			sourceTree = "<group>";
-		};
-		D58C4F73207B7552008B55D0 /* ChinaMobile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ChinaMobile;
 			sourceTree = "<group>";
 		};
 		D5902A3D206B6702002721FB /* ZLTaskDownModel */ = {
@@ -5131,15 +5083,6 @@
 				D5B35E09205D235400369469 /* ZLQueryEventManagerCheckView.m */,
 			);
 			path = ZLEventQueryView;
-			sourceTree = "<group>";
-		};
-		D5AC3DFB1FF1F4DB00BDF458 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				D5AC3DFC1FF1F50600BDF458 /* ZLRiverRecordCell.h */,
-				D5AC3DFD1FF1F50600BDF458 /* ZLRiverRecordCell.m */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		D5AEF41720882C8B00BC17E7 /* ZWLimitCounter */ = {
@@ -5602,8 +5545,8 @@
 				TargetAttributes = {
 					D51D3AD61F69344900CA0903 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = X7285XJAR2;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 852BN2UPEC;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -6494,6 +6437,7 @@
 				D5C0B2DD2069153300E88716 /* ZLSaveTaskService.m in Sources */,
 				D51D40CB1F6939AE00CA0903 /* MJRefreshBackGifFooter.m in Sources */,
 				D5C023BB20567FBA0049BCDF /* NSString+ACMediaExt.m in Sources */,
+				D58C3826209050D50055E010 /* ZLMySetupTableViewController.m in Sources */,
 				D5AF55D2206E2849000F3BAB /* ZLRiverInfoFiveDetailVC.m in Sources */,
 				D5B35DCC205CE37B00369469 /* ZLReportEventDesTableViewCell.m in Sources */,
 				D51D3E561F69398900CA0903 /* MMPopupWindow.m in Sources */,
@@ -6956,6 +6900,7 @@
 				D5C0B2DE2069153300E88716 /* ZLSaveTaskService.m in Sources */,
 				D57668E71FEB9B3D00470A3F /* MJRefreshBackGifFooter.m in Sources */,
 				D5C023BC20567FBA0049BCDF /* NSString+ACMediaExt.m in Sources */,
+				D58C3827209050D50055E010 /* ZLMySetupTableViewController.m in Sources */,
 				D5AF55D3206E2849000F3BAB /* ZLRiverInfoFiveDetailVC.m in Sources */,
 				D5B35DCD205CE37B00369469 /* ZLReportEventDesTableViewCell.m in Sources */,
 				D57668EB1FEB9B3D00470A3F /* MMPopupWindow.m in Sources */,
@@ -7404,6 +7349,7 @@
 				D5C0B2DF2069153300E88716 /* ZLSaveTaskService.m in Sources */,
 				D58510511FF08CC8001B8165 /* MJRefreshBackGifFooter.m in Sources */,
 				D5C023BD20567FBA0049BCDF /* NSString+ACMediaExt.m in Sources */,
+				D58C3828209050D50055E010 /* ZLMySetupTableViewController.m in Sources */,
 				D5AF55D4206E2849000F3BAB /* ZLRiverInfoFiveDetailVC.m in Sources */,
 				D5B35DCE205CE37B00369469 /* ZLReportEventDesTableViewCell.m in Sources */,
 				D58510551FF08CC8001B8165 /* MMPopupWindow.m in Sources */,
@@ -7690,11 +7636,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = IOSRiverManage/IOSRiverManage.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = X7285XJAR2;
+				DEVELOPMENT_TEAM = 852BN2UPEC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7724,10 +7670,10 @@
 					"-force_load",
 					"\"$(SRCROOT)/IOSRiverManage/libVwtSdk.a\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xgzl.IOSRiverManage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hzz.jshezhangtong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5d8df809-1b3e-4df5-b85c-f13c3989af0e";
+				PROVISIONING_PROFILE_SPECIFIER = ICTHezhangzhi_Ent;
 				SWIFT_OBJC_BRIDGING_HEADER = "IOSRiverManage/Resource/Config/IOSRiverManage-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7982,11 +7928,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = IOSRiverManage/IOSRiverManage.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = X7285XJAR2;
+				DEVELOPMENT_TEAM = 852BN2UPEC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8016,10 +7962,10 @@
 					"-force_load",
 					"\"$(SRCROOT)/IOSRiverManage/libVwtSdk.a\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.xgzl.IOSRiverManage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hzz.jshezhangtong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5d8df809-1b3e-4df5-b85c-f13c3989af0e";
+				PROVISIONING_PROFILE_SPECIFIER = ICTHezhangzhi_Ent;
 				SWIFT_OBJC_BRIDGING_HEADER = "IOSRiverManage/Resource/Config/IOSRiverManage-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

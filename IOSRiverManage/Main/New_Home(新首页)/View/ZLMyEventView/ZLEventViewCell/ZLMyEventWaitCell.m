@@ -100,6 +100,13 @@
             self.dealBtn.hidden = YES;
         }
     }
+    
+    if ([_dataModel.isUrgent isEqualToString:@"1"]) {
+        
+        self.colorIndicator.image = [UIImage imageNamed:@"home_critical"];
+        
+    }
+    
     self.eventId = dataModel.ID;
     self.detailId = dataModel.detailId;
     self.state.text = status;
@@ -180,6 +187,13 @@
     }
     
     self.state.text = status;
+    
+    if ([_homeDataModel.isUrgent isEqualToString:@"1"]) {
+        
+        self.colorIndicator.image = [UIImage imageNamed:@"home_critical"];
+        
+    }
+    
     self.eventId = _homeDataModel.ID;
     self.detailId = _homeDataModel.detailId;
 }

@@ -218,8 +218,6 @@ typedef enum : NSUInteger {
     
     [_mapView addAnnotations:self.eventAndTaskArray];
     
-    
-//    [self.store putObject:_manager.locationsAndAddress withId:DBAddress intoTable:DBMapTable];
     NSArray *addressArray = [self.store getObjectById:DBAddress fromTable:DBMapTable];
     NSDictionary *startDic = [self.store getObjectById:@"startAnnotation" fromTable:DBMapTable];
     NSString *runningString = [self.store getStringById:DBRunningModel fromTable:DBMapTable];
@@ -305,10 +303,6 @@ typedef enum : NSUInteger {
             vc.locationModel = location;
             [weakSelf presentViewController:vc animated:YES completion:nil];
         }
-        
-//        ZLRiverChangePopView *popView = (ZLRiverChangePopView *)weakSelf.view.subviews.lastObject;
-//        [popView dismissView];
-        
     };
     
     [self.view addSubview:popView];
@@ -336,13 +330,7 @@ typedef enum : NSUInteger {
         [deleage.floatWindow startWithTime:0 presentview:self.view inRect:CGRectMake(0, Main_Screen_Height, 0, 0) withRiverTitle:self.riverDataModel.riverName];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"RiverRunning" object:nil];
         [self dismissViewControllerAnimated:NO completion:^{
-            
-            
-            
         }];
-        
-        
-        
     }
 }
 
@@ -425,20 +413,6 @@ typedef enum : NSUInteger {
         return;
     }else{
         __weak typeof(self) weakSelf = self;
-//        ZLGaodeDownTaskViewController *downVC = [[ZLGaodeDownTaskViewController alloc]initWithShowFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - App_Frame_Height * 0.9, [UIScreen mainScreen].bounds.size.width, App_Frame_Height * 0.9) ShowStyle:(MYPresentedViewShowStyleFromBottomSpreadStyle) callback:^(id callback) {
-//
-//            if ([callback isEqualToString:@"确定"]) {
-//                weakSelf.eventAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"下发任务"];
-//
-//            }
-//        }];
-        
-//        downVC.demandModel = self.riverDataModel;
-//        downVC.uid = _uid;
-//        downVC.type = _type;
-//        downVC.uuid = _uuid;
-//        downVC.location = self.manager.mapView.userLocation.location;
-        
         ZLGaodeDownTaskVC *downVC = [[ZLGaodeDownTaskVC alloc]initWithShowFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - App_Frame_Height * 0.7, [UIScreen mainScreen].bounds.size.width, App_Frame_Height * 0.7) ShowStyle:(MYPresentedViewShowStyleFromBottomSpreadStyle) callback:^(id callback) {
             
             if ([callback isEqualToString:@"确定"]) {
@@ -475,6 +449,8 @@ typedef enum : NSUInteger {
  开始和结束巡河
  */
 - (void)startAndEndClick:(UIButton *)button{
+    
+    
     if([[button currentTitle] isEqualToString:@"开始巡河"]){
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             if (buttonIndex == 1) {
@@ -501,6 +477,8 @@ typedef enum : NSUInteger {
                     NSDictionary *startDic = [NSDictionary dictionaryWithObjects:@[@(_startAnnotation.coordinate.latitude), @(_startAnnotation.coordinate.longitude)] forKeys:@[@"latitude",@"longitude"]];
                     
                     [self.store putObject:startDic withId:@"startAnnotation" intoTable:DBMapTable];
+                    
+                    
                     self.patrolCode = [NSString stringWithFormat:@"%@%@",[[self getCurrenttTimer] substringWithRange:NSMakeRange(2, 3)],[NSString UUID]];
                      [self.store putString:self.patrolCode withId:@"patrolCode" intoTable:DBMapTable];
                 }else{
@@ -514,8 +492,6 @@ typedef enum : NSUInteger {
             
         } title:@"提示" message: [NSString stringWithFormat:@"当前已选择%@,是否确定开始巡河", _riverDataModel.riverName] cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
     }else if ([[button currentTitle] isEqualToString:@"结束巡河"]){
-//        __weak typeof(self) weakSelf = self;
-        
         DQAlertView * alertView = [[DQAlertView alloc] initWithTitle:@"提示" message:@"是否确定结束巡河" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView actionWithBlocksCancelButtonHandler:^{
             
@@ -526,16 +502,6 @@ typedef enum : NSUInteger {
             [self endRiverService:button];
         }];
         [alertView show];
-        
-//        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-//            
-//            if (buttonIndex == 1) {
-//                // 得到结束的时间戳
-//                _endTime = [self getCurrenttTimer];
-//                
-//                [weakSelf endRiverService:button];
-//            }
-//        } title:@"提示" message:@"是否确定结束巡河" cancelButtonName:@"取消" otherButtonTitles:@"确定",nil];
     }
     
 }
@@ -546,8 +512,6 @@ typedef enum : NSUInteger {
 - (void)endRiverService:(UIButton *)button{
     
     NSArray *addressArray = [self.store getObjectById:DBAddress fromTable:DBMapTable];
-//    NSDictionary *startDics = [self.store getObjectById:@"startAnnotation" fromTable:DBMapTable];
-    
     
     NSDictionary *startDic = addressArray.firstObject;
     

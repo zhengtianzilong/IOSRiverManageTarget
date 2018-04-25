@@ -42,5 +42,5 @@
 @property (nonatomic , copy) NSString<Optional>              * taskContent;
 @property (nonatomic , copy) NSString<Optional>              * createTime;
 @property (nonatomic , copy) NSString<Optional>              * incidentDetailCode;
-
+@property (nonatomic , copy) NSString<Optional>              * isUrgent;
 @end

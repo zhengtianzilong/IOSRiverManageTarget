@@ -147,7 +147,7 @@
 - (void)setTabViewHeadView{
     
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(10);
+        make.top.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view.mas_bottom).offset(-40);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view.mas_right);

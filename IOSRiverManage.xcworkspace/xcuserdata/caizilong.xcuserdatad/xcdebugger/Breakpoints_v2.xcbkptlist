@@ -36,12 +36,12 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLEventReport(%E4%BA%8B%E4%BB%B6%E4%B8%8A%E6%8A%A5)/ZLNewChangeEventReportVC.m"
-                  timestampString = "546320470.9553961"
+                  timestampString = "546338046.137561"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "477"
                   endingLineNumber = "477"
-                  offsetFromSymbolStart = "1040">
+                  offsetFromSymbolStart = "1080">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -51,27 +51,27 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLEventReport(%E4%BA%8B%E4%BB%B6%E4%B8%8A%E6%8A%A5)/ZLNewChangeEventReportVC.m"
-                  timestampString = "546320470.962662"
+                  timestampString = "546338046.141606"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "478"
                   endingLineNumber = "478"
-                  offsetFromSymbolStart = "47">
+                  offsetFromSymbolStart = "64">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.352"
+                  symbolName = "__destroy_helper_block_.356"
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLEventReport(%E4%BA%8B%E4%BB%B6%E4%B8%8A%E6%8A%A5)/ZLNewChangeEventReportVC.m"
-                  timestampString = "546320470.966876"
+                  timestampString = "546338046.145259"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "477"
                   endingLineNumber = "477"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -115,12 +115,12 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLEventReport(%E4%BA%8B%E4%BB%B6%E4%B8%8A%E6%8A%A5)/ZLNewChangeEventReportVC.m"
-                  timestampString = "546320470.992286"
+                  timestampString = "546338046.1787781"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "440"
                   endingLineNumber = "440"
-                  offsetFromSymbolStart = "761">
+                  offsetFromSymbolStart = "776">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -130,27 +130,27 @@
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLEventReport(%E4%BA%8B%E4%BB%B6%E4%B8%8A%E6%8A%A5)/ZLNewChangeEventReportVC.m"
-                  timestampString = "546320470.998269"
+                  timestampString = "546338046.1841201"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "442"
                   endingLineNumber = "442"
-                  offsetFromSymbolStart = "79">
+                  offsetFromSymbolStart = "100">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.312"
+                  symbolName = "__destroy_helper_block_.316"
                   moduleName = "IOSRiverManage"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/New_Home(%E6%96%B0%E9%A6%96%E9%A1%B5)/Controller/ZLEventReport(%E4%BA%8B%E4%BB%B6%E4%B8%8A%E6%8A%A5)/ZLNewChangeEventReportVC.m"
-                  timestampString = "546320471.002288"
+                  timestampString = "546338046.188903"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "440"
                   endingLineNumber = "440"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "20">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -257,13 +257,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IOSRiverManage/Main/New_Home(&#x65b0;&#x9996;&#x9875;)/Controller/ZLHomeMainVC.m"
-            timestampString = "546160251.3142461"
+            filePath = "IOSRiverManage/Main/New_Home(&#x65b0;&#x9996;&#x9875;)/Controller/ZLEventReport(&#x4e8b;&#x4ef6;&#x4e0a;&#x62a5;)/ZLMyEventAdviseVC.m"
+            timestampString = "546160251.3143539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "526"
-            endingLineNumber = "526"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
+            landmarkName = "-reportClick"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOSRiverManage/Expand/Tool/MapManager/ZLMapManager.m"
+            timestampString = "546341641.05668"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "-addLocationCoordinate:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -273,13 +289,124 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IOSRiverManage/Main/New_Home(&#x65b0;&#x9996;&#x9875;)/Controller/ZLEventReport(&#x4e8b;&#x4ef6;&#x4e0a;&#x62a5;)/ZLMyEventAdviseVC.m"
-            timestampString = "546160251.3143539"
+            filePath = "IOSRiverManage/Expand/Tool/MapManager/ZLMapManager.m"
+            timestampString = "546341641.056785"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "-reportClick"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "-mapView:viewForAnnotation:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeViewController.m"
+            timestampString = "546341641.056866"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "532"
+            endingLineNumber = "532"
+            landmarkName = "-endRiverService:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ZLGaodeViewController endRiverService:]"
+                  moduleName = "IOSRiverManage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeViewController.m"
+                  timestampString = "546338046.265172"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "532"
+                  endingLineNumber = "532"
+                  offsetFromSymbolStart = "1180">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__41-[ZLGaodeViewController endRiverService:]_block_invoke"
+                  moduleName = "IOSRiverManage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeViewController.m"
+                  timestampString = "546338046.268661"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "534"
+                  endingLineNumber = "534"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_.448"
+                  moduleName = "IOSRiverManage"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caizilong/Documents/iOSSVN/code/iOSRiverManage/IOSRiverManageTarget/IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeViewController.m"
+                  timestampString = "546338046.271999"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "532"
+                  endingLineNumber = "532"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeViewController.m"
+            timestampString = "546341641.056945"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "454"
+            endingLineNumber = "454"
+            landmarkName = "-startAndEndClick:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeViewController.m"
+            timestampString = "546341641.0570199"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "495"
+            endingLineNumber = "495"
+            landmarkName = "-startAndEndClick:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IOSRiverManage/Main/RiverChiefList/Controller/ZLGaodeViewController.m"
+            timestampString = "546341641.057089"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "504"
+            endingLineNumber = "504"
+            landmarkName = "-startAndEndClick:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

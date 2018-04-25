@@ -90,7 +90,7 @@ static const double kMapDistanceFilter = 3.0;
 }
 
 // 得到定位信息,并添加到数组中
-- (void)getLocationdDetailAddress:(NSString *)latitude location:(CLLocation *)location longitude:(NSString *)longitude withCreateTime:(NSString *)createTime {
+- (void)getLocationdDetailAddress:(NSString *)latitude longitude:(NSString *)longitude withCreateTime:(NSString *)createTime {
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                          longitude,@"longitude",latitude,@"latitude",createTime,@"createTime", nil];
     [self.locationsAndAddress addObject:dic];
@@ -139,7 +139,7 @@ static const double kMapDistanceFilter = 3.0;
 
  @param coordinate 定位点
  */
-- (void)addLocationCoordinate:(CLLocationCoordinate2D)coordinate location:(CLLocation *)location{
+- (void)addLocationCoordinate:(CLLocationCoordinate2D)coordinate{
     
     ZLMapAnnotation *annotation = [[ZLMapAnnotation alloc]initWithCoordinate:coordinate];
     
@@ -149,8 +149,8 @@ static const double kMapDistanceFilter = 3.0;
     NSString *createTime = [self getCurrenttTimer];
     [self.annotationRecordArray addObject:annotation];
     
-    if (_annotationRecordArray.count > 2) {
-        [self getLocationdDetailAddress:latitude location:location longitude:longitude withCreateTime:createTime];
+    if (_annotationRecordArray.count) {
+        [self getLocationdDetailAddress:latitude longitude:longitude withCreateTime:createTime];
     }
     
     
@@ -209,11 +209,11 @@ static const double kMapDistanceFilter = 3.0;
         
 //        [self addLocationCoordinate:userLocation.coordinate location:userLocation.location];
         
-        self.updateLocationTimes++;
-        NSInteger ignoreTimes = 5;
-        if (self.updateLocationTimes <= ignoreTimes) {
-            return;
-        }
+//        self.updateLocationTimes++;
+//        NSInteger ignoreTimes = 5;
+//        if (self.updateLocationTimes <= ignoreTimes) {
+//            return;
+//        }
         // 滤波在处理慢速运行时，会出现路径端点与定位点连接不上的情况，所以在绘制路径时，将未处理过的当前点添加到数组的末尾，每次有新位置进行计算时，先将上一次数组末尾的点移除。
 //        if (self.annotationRecordArray.count > 0) {
 //            [self.annotationRecordArray removeLastObject];
@@ -225,7 +225,7 @@ static const double kMapDistanceFilter = 3.0;
         
         if (self.startSavePoint) {
             
-            [self addLocationCoordinate:filteredCoordinate location:userLocation.location];
+            [self addLocationCoordinate:filteredCoordinate];
             //        [self addLocationCoordinate:coordinate location:userLocation.location];
             [self updateRoute];
 
@@ -266,11 +266,12 @@ static const double kMapDistanceFilter = 3.0;
         
         if([[annotation title] isEqualToString:@"起点"]){ // 有起点旗帜代表应该放置终点旗帜（程序一个循环只放两张旗帜：起点与终点）
             annotationView.image = [UIImage imageNamed:@"map_startPoint.png"];
-//            annotationView.pinColor = BMKPinAnnotationColorGreen;
             
+            [self addLocationCoordinate:annotation.coordinate];
         }else if([[annotation title] isEqualToString:@"终点"]){
             annotationView.image = [UIImage imageNamed:@"map_endPoint.png"];
-//            annotationView.pinColor = BMKPinAnnotationColorRed;
+            [self addLocationCoordinate:annotation.coordinate];
+
         }else if([[annotation title] isEqualToString:@"上报案件"]){ // 没有起点旗帜，应放置起点旗帜
              annotationView.image = [UIImage imageNamed:@"GaodeRiverReport.png"];
             

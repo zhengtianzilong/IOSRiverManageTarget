@@ -70,8 +70,6 @@
     _initiatorName.font = CHINESE_SYSTEM(12);
     [self.contentView addSubview:_initiatorName];
     
-    
-    
     _receivedLabel = [[UILabel alloc]init];
     _receivedLabel.text = @"接收人：";
     _receivedLabel.font = Font(12);
@@ -118,7 +116,7 @@
     [_colorIndicator mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(10);
-        make.width.height.mas_equalTo(10);
+        make.width.height.mas_equalTo(12);
         make.centerY.equalTo(_state);
     }];
     

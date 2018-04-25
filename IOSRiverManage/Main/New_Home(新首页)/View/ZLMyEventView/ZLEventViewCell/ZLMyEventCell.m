@@ -119,6 +119,12 @@
         } 
     }
   
+    if ([_dataModel.isUrgent isEqualToString:@"1"]) {
+        
+        self.colorIndicator.image = [UIImage imageNamed:@"home_critical"];
+        
+    }
+    
     self.state.text = status;
     
     

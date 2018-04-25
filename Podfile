@@ -20,7 +20,6 @@ pod 'YYText'
 pod 'TZImagePickerController'  #照片选择浏览器
 pod 'UITableView+FDTemplateLayoutCell'
 pod 'YTKNetwork'
-#pod 'BaiduMapKit' #百度地图SDK
 pod 'ACAlertController'
 pod 'SVProgressHUD'
 pod 'AMap3DMap' #3D地图SDK

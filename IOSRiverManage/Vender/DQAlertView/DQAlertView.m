@@ -168,7 +168,7 @@
      window = deleage.floatWindow;
 
     
-    if (deleage.floatWindow.bounds.size.width < Main_Screen_Width) {
+    if (deleage.floatWindow.bounds.size.width < Main_Screen_Width || deleage.floatWindow.hidden == YES) {
         window = [[[UIApplication sharedApplication] delegate] window];
     }
     

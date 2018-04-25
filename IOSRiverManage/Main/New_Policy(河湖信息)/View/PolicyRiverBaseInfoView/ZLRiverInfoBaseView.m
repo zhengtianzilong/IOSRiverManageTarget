@@ -189,6 +189,13 @@
     
     _riverLevel.text = _infoBaseModel.RIVER_GRADE;
     
+    
+    if (_infoBaseModel.RIVER_LENGTH == nil) {
+        
+        _infoBaseModel.RIVER_LENGTH = @"";
+        
+    }
+    
     _riverLength.text =  [NSString stringWithFormat:@"%@(千米)",_infoBaseModel.RIVER_LENGTH];
     
     _riverStart.text = _infoBaseModel.START_DESC;

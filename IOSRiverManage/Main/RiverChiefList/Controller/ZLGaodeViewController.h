@@ -22,7 +22,6 @@
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) NSString *type;
 
-
 /**
  河道信息model
  */

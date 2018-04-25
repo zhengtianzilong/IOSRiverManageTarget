@@ -72,8 +72,14 @@
     
     NSString *time = _dataModel.createTime;
     
-    //    NSString *timeString = [ZLUtility getDateByTimestamp:[time longLongValue] / 1000 type:4];
     self.timeLabel.text = time;
+    
+    if ([_dataModel.isUrgent isEqualToString:@"1"]) {
+        
+        self.colorIndicator.image = [UIImage imageNamed:@"home_critical"];
+        
+    }
+    
     self.state.text = status;
     
     
@@ -132,8 +138,14 @@
     
     NSString *time = _checkDataModel.createTime;
     
-    //    NSString *timeString = [ZLUtility getDateByTimestamp:[time longLongValue] / 1000 type:4];
     self.timeLabel.text = time;
+    
+    if ([_checkDataModel.isUrgent isEqualToString:@"1"]) {
+        
+        self.colorIndicator.image = [UIImage imageNamed:@"home_critical"];
+        
+    }
+    
     self.state.text = status;
     
     
