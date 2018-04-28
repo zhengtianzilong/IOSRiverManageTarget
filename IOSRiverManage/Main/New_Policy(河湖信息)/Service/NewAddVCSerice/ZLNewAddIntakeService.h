@@ -17,5 +17,6 @@
                           contant:(NSString *)contant
                     contactperson:(NSString *)contactperson
                             phone:(NSString *)phone
-                          address:(NSString *)address;
+                          address:(NSString *)address
+                          imgList:(NSArray *)imgList;
 @end

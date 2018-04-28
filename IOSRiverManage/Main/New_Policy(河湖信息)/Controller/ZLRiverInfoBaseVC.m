@@ -396,7 +396,7 @@
         
         _mainTableView.dataSource = self;
         
-        _mainTableView.tableHeaderView = [[ZLHomeLoopTopView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 140.5)];
+        _mainTableView.tableHeaderView = [[ZLHomeLoopTopView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Width / 2.0 - 15)];
         
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
         _mainTableView.estimatedRowHeight = 150;

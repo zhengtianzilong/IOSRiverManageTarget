@@ -52,5 +52,8 @@ typedef void(^checkAddressBlock)(ZLPumpingPortModel *pumpModel);
 @property (nonatomic, strong) deletePumpClick deletepump;
 
 @property (nonatomic, strong) checkAddressBlock checkAddress;
+@property (nonatomic, weak) UIView *containerView;
 
+// 照片
+@property (nonatomic, strong) UILabel *pictureLabel;
 @end

@@ -24,7 +24,8 @@
 //#import "MBProgressHUD.h"
 #import "MBProgressHUD+MP.h"
 #import "MWPhotoBrowser.h"
-#import "KeyboardManager.h"
+//#import "KeyboardManager.h"
+#import <IQKeyboardManager/IQKeyboardManager.h>
 #import "Macros.h"
 #import "UIImage+Color.h"
 #import "UIFont+ZLFontPXAndPT.h"
@@ -50,7 +51,6 @@
 #elif TouBiao
 #import "IOSRiverManageTouBiao-Swift.h"
 #else
-#import "IOSRiverManage-Swift.h"
 #endif
 
 #import "UIAlertView+Block.h"

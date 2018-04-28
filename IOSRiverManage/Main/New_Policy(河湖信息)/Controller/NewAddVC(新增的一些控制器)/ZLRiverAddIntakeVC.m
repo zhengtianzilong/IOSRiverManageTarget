@@ -14,6 +14,9 @@
 //#import "ZLRiverInfoBaseChangeAreaTableViewCell.h"
 #import "ZLNewAddIntakeService.h"
 #import "ZLBaseModel.h"
+#import "ACSelectMediaView.h"
+#import "ZLNewFilesUpLoadService.h"
+#import "ZLUploadImagesModel.h"
 @interface ZLRiverAddIntakeVC ()<UITableViewDelegate, UITableViewDataSource>
 
 
@@ -31,6 +34,9 @@
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *note;
 
+@property (nonatomic, strong) ACSelectMediaView *mediaView;
+@property (nonatomic, strong) NSArray<ACMediaModel *> *imageArray;
+@property (nonatomic, strong) NSMutableArray *imageNameArray;
 @end
 
 @implementation ZLRiverAddIntakeVC
@@ -43,6 +49,8 @@
     self.contactPeople = @"";
     self.phone = @"";
     self.note = @"";
+    self.imageArray = [NSArray array];
+    self.imageNameArray = [NSMutableArray array];
     
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -154,31 +162,62 @@
     DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认提交吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
     
     alert.otherButtonAction = ^{
-        ZLNewAddIntakeService *service = [[ZLNewAddIntakeService alloc]initWithriverCode:_riverDataModel.riverCode code:self.code name:self.name longitude:self.locationModel.longitude latitude:self.locationModel.latitude contant:self.note contactperson:self.contactPeople phone:self.phone address:self.address];
+         [self.imageNameArray removeAllObjects];
         [SVProgressHUD showWithStatus:@"正在添加"];
-        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+        dispatch_group_t group = dispatch_group_create();
+        
+        ZLNewFilesUpLoadService *filesService = [[ZLNewFilesUpLoadService alloc]initWithImage:_imageArray];
+        
+        dispatch_group_enter(group);
+        
+        [filesService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
             
-            ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:request.responseString error:nil];
-            
-            if ([baseModel.code isEqualToString:@"0"]) {
+            ZLUploadImagesModel *imagesModel = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
+            if ([imagesModel.code isEqualToString:@"0"]) {
                 
-                [SVProgressHUD showSuccessWithStatus:@"添加成功"];
-                
-                [SVProgressHUD dismissWithDelay:0.4 completion:^{
+                for (ZLTaskInfoImageListModel *model in imagesModel.data) {
                     
-                    [self backClick];
-                    
-                }];
-            }else{
-                [SVProgressHUD showErrorWithStatus:baseModel.detail];
-                [SVProgressHUD dismissWithDelay:0.6];
-                
+                    [self.imageNameArray addObject:model.toDictionary];
+                }
             }
-        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
             
-            [SVProgressHUD showErrorWithStatus:@"添加失败"];
-            [SVProgressHUD dismiss];
+            ZLLog(@"%@", request.responseString);
+            dispatch_group_leave(group);
+            
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            [SVProgressHUD dismissWithDelay:0.3];
         }];
+        
+        
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            
+            ZLNewAddIntakeService *service = [[ZLNewAddIntakeService alloc]initWithriverCode:_riverDataModel.riverCode code:self.code name:self.name longitude:self.locationModel.longitude latitude:self.locationModel.latitude contant:self.note contactperson:self.contactPeople phone:self.phone address:self.address imgList:self.imageNameArray];
+            
+            [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                
+                ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                
+                if ([baseModel.code isEqualToString:@"0"]) {
+                    
+                    [SVProgressHUD showSuccessWithStatus:@"添加成功"];
+                    
+                    [SVProgressHUD dismissWithDelay:0.4 completion:^{
+                        
+                        [self backClick];
+                        
+                    }];
+                }else{
+                    [SVProgressHUD showErrorWithStatus:baseModel.detail];
+                    [SVProgressHUD dismissWithDelay:0.6];
+                    
+                }
+            } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                
+                [SVProgressHUD showErrorWithStatus:@"添加失败"];
+                [SVProgressHUD dismiss];
+            }];
+        });
     };
     [alert show];
     
@@ -324,13 +363,43 @@
             self.automaticallyAdjustsScrollViewInsets = NO;
         }
         
-        ZLSureBtnFooterView *footerView = [[ZLSureBtnFooterView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 100)];
+        UIView *headerView = [[UIView alloc] init];
+        ACSelectMediaView *mediaView = [[ACSelectMediaView alloc] initWithFrame:CGRectMake(0,  0, self.view.frame.size.width, 1)];
+        mediaView.showDelete = YES;
+        mediaView.showAddButton = YES;
+        mediaView.allowMultipleSelection = NO;
+        mediaView.allowPickingVideo = NO;
+        mediaView.rootViewController = self;
+        mediaView.maxImageSelected = 4;
+        self.mediaView = mediaView;
         
-        [footerView.sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
         
-
+        ZLSureBtnFooterView *bottomView = [[ZLSureBtnFooterView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 100)];
         
-        _mainTableView.tableFooterView = footerView;
+        [bottomView.sureButton addTarget:self action:@selector(sureButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
+        
+        [mediaView observeViewHeight:^(CGFloat mediaHeight) {
+            CGRect btnRect = bottomView.frame;
+            btnRect.origin.y = CGRectGetMaxY(mediaView.frame) + 50;
+            bottomView.frame = btnRect;
+            CGRect rect = headerView.frame;
+            rect.size.height = CGRectGetMaxY(bottomView.frame);
+            headerView.frame = rect;
+            
+            [_mainTableView beginUpdates];
+            [_mainTableView endUpdates];
+        }];
+        [mediaView observeSelectedMediaArray:^(NSArray<ACMediaModel *> *list) {
+            
+            self.imageArray = list;
+            
+        }];
+        [headerView addSubview:mediaView];
+        
+        [headerView addSubview:bottomView];
+        headerView.frame = CGRectMake(0, 0, self.view.frame.size.width, CGRectGetMaxY(bottomView.frame));
+        _mainTableView.tableFooterView = headerView;
+        
     }
     return _mainTableView;
 }

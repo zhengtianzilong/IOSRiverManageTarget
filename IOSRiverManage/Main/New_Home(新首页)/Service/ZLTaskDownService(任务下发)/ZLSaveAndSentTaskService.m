@@ -15,6 +15,7 @@
     NSString *_receiverDepartmentCodes;
     NSString *_receiverPersonIds;
     NSString *_receiverPersonNames;
+    NSString *_isUrgent;
 }
 
 @end
@@ -26,7 +27,8 @@
         receiverDepartmentNames:(NSString *)receiverDepartmentNames
         receiverDepartmentCodes:(NSString *)receiverDepartmentCodes
               receiverPersonIds:(NSString *)receiverPersonIds
-            receiverPersonNames:(NSString *)receiverPersonNames{
+            receiverPersonNames:(NSString *)receiverPersonNames
+                       isUrgent:(NSString *)isUrgent{
     self = [super init];
     if (self) {
         
@@ -37,6 +39,7 @@
         _receiverDepartmentCodes = receiverDepartmentCodes;
         _receiverPersonIds = receiverPersonIds;
         _receiverPersonNames = receiverPersonNames;
+        _isUrgent = isUrgent;
         
     }
     return self;
@@ -68,6 +71,7 @@
                          _receiverDepartmentCodes , @"receiverDepartmentCodes",
                          _receiverPersonIds , @"receiverPersonIds",
                          _receiverPersonNames , @"receiverPersonNames",
+                         _isUrgent, @"isUrgent",
                          nil];
     return dic;
     

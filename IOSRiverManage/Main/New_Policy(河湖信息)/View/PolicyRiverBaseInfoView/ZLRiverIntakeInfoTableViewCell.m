@@ -7,7 +7,9 @@
 //
 
 #import "ZLRiverIntakeInfoTableViewCell.h"
-@interface ZLRiverIntakeInfoTableViewCell ()
+#import "NSArray+ZLJiuGongGe.h"
+@interface ZLRiverIntakeInfoTableViewCell ()<MWPhotoBrowserDelegate>
+@property (nonatomic,retain) NSMutableArray *photosArray;
 @end
 @implementation ZLRiverIntakeInfoTableViewCell
 
@@ -35,6 +37,10 @@
         [self.contentView addSubview:self.useLabel];
         [self.contentView addSubview:self.use];
         
+        [self.contentView addSubview:self.pictureLabel];
+        UIView *containerView = [[UIView alloc] init];
+        [self.contentView addSubview:containerView];
+        self.containerView = containerView;
         
         [self.deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.contentView.mas_right).offset(-10);
@@ -151,14 +157,15 @@
             make.height.mas_greaterThanOrEqualTo(20);
         }];
         
-        
-        [self.checkAddressBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.contentView);
-            make.top.equalTo(self.use.mas_bottom);
-            make.height.mas_equalTo(25);
-            make.width.mas_equalTo(150);
-            make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+        [self.pictureLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.nameLabel);
+            make.top.greaterThanOrEqualTo(self.useLabel.mas_bottom).offset(5);
+            //             make.top.equalTo(self.addressLabel.mas_bottom).offset(5);
+            make.height.mas_equalTo(20);
+            make.width.mas_equalTo(80);
         }];
+        
+        
         
         
         
@@ -184,7 +191,104 @@
     _phone.text = _pumpingPortModel.PHONE;
     
     _use.text = _pumpingPortModel.CONTANT;
+    
+    // 固定containerView的宽
+    // 宫格的宽随containerView的宽改变
+    // 固定宫格的高
+    // containerView的高随宫格的高改变
+    
+    if (_pumpingPortModel.imgList.count > 0) {
+        [self distributeDynamic2CellWithCount:_pumpingPortModel.imgList.count warp:3 withImageUrl:_pumpingPortModel.imgList];
+    }else{
+        [self distributeDynamic2CellWithCount:0 warp:3 withImageUrl:_pumpingPortModel.imgList];
+    }
+    
+    [self.checkAddressBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.contentView);
+        make.top.equalTo(self.containerView.mas_bottom).offset(10);
+        make.height.mas_equalTo(25);
+        make.width.mas_equalTo(150);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+    }];
+    
 }
+
+// 固定containerView的宽
+// 宫格的宽随containerView的宽改变
+// 固定宫格的高
+// containerView的高随宫格的高改变
+- (void)distributeDynamic2CellWithCount:(NSUInteger)count warp:(NSUInteger)warp withImageUrl:(NSArray *)urls {
+    
+    [self.containerView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+    }];
+    
+    [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.pictureLabel.mas_right).offset(10);
+        make.top.equalTo(self.pictureLabel);
+        make.right.equalTo(self.deleteBtn.mas_left);
+    }];
+    
+    for (int i = 0; i < count; i++) {
+        UIImageView *imageV = [[UIImageView alloc] init];
+        
+        
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImage_URL,urls[i]]];
+        
+        MWPhoto *photo = [MWPhoto photoWithURL:url];
+        [self.photosArray addObject:photo];
+        [imageV sd_setImageWithURL:url];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
+        
+        imageV.tag = (i + 1000);
+        imageV.userInteractionEnabled = YES;
+        [imageV addGestureRecognizer:tap];
+        
+        //        imageV.backgroundColor = [UIColor redColor];
+        [self.containerView addSubview:imageV];
+    }
+    
+    
+    [self.containerView.subviews mas_distributeSudokuViewsWithFixedItemWidth:0 fixedItemHeight:80
+                                                            fixedLineSpacing:10 fixedInteritemSpacing:10
+                                                                   warpCount:3
+                                                                  topSpacing:10
+                                                               bottomSpacing:10 leadSpacing:10 tailSpacing:10];
+}
+
+//必须实现的方法
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
+    return  self.photosArray.count;
+}
+- (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
+    
+    if (index < self.photosArray.count) {
+        return [self.photosArray objectAtIndex:index];
+    }
+    return nil;
+}
+
+- (void)tapClick:(UITapGestureRecognizer *)tap{
+    
+    UIImageView *imageV = (UIImageView *)tap.view;
+    
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.displayActionButton = NO;
+    browser.alwaysShowControls = NO;
+    browser.displaySelectionButtons = NO;
+    browser.zoomPhotosToFill = YES;
+    browser.displayNavArrows = NO;
+    browser.startOnGrid = NO;
+    browser.enableGrid = YES;
+    [browser setCurrentPhotoIndex:imageV.tag - 1000];
+    //这样处理的目的是让整个页面跳转更加自然
+    UINavigationController *navC = [[UINavigationController alloc] initWithRootViewController:browser];
+    navC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self.viewController presentViewController:navC animated:YES completion:nil];
+}
+
+
 
 
 - (void)layoutSubviews{
@@ -387,4 +491,16 @@
     }
     return _deleteBtn;
 }
+
+- (UILabel *)pictureLabel{
+    if (!_pictureLabel) {
+        _pictureLabel = [[UILabel alloc]init];
+        _pictureLabel.text = @"取水口照片";
+        _pictureLabel.font = Font(12);
+    }
+    return _pictureLabel;
+}
+
+
+
 @end

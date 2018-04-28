@@ -22,5 +22,6 @@
                      patrolCode:(NSString *)patrolCode
                       longitude:(NSString *)longitude
                        latitude:(NSString *)latitude
-                   positionDesc:(NSString *)positionDesc;
+                   positionDesc:(NSString *)positionDesc
+                       isUrgent:(NSString *)isUrgent;
 @end

@@ -15,5 +15,6 @@
         receiverDepartmentNames:(NSString *)receiverDepartmentNames
         receiverDepartmentCodes:(NSString *)receiverDepartmentCodes
               receiverPersonIds:(NSString *)receiverPersonIds
-            receiverPersonNames:(NSString *)receiverPersonNames;
+            receiverPersonNames:(NSString *)receiverPersonNames
+                       isUrgent:(NSString *)isUrgent;
 @end

@@ -11,12 +11,13 @@
 @interface ZLContinueReportIncidentService : ZLCustomBaseRequest
 - (instancetype)initWithimgList:(NSArray *)imgList
                        fileList:(NSArray *)fileList
-                   incidentid:(NSString *)incidentid
+                     incidentid:(NSString *)incidentid
                 incidentContent:(NSString *)incidentContent
                    receiverType:(NSString *)receiverType
              receiverDepartCode:(NSString *)receiverDepartCode
              receiverDepartName:(NSString *)receiverDepartName
              receiverPersonName:(NSString *)receiverPersonName
              receiverPersonCode:(NSString *)receiverPersonCode
-             riverIncidentDetailId:(NSString *)riverIncidentDetailId;
+          riverIncidentDetailId:(NSString *)riverIncidentDetailId
+                       isUrgent:(NSString *)isUrgent;
 @end

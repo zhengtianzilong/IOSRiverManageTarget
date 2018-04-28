@@ -22,6 +22,7 @@
     NSString *_longitude;
     NSString *_latitude;
     NSString *_positionDesc;
+    NSString *_isUrgent;
 }
 
 @end
@@ -40,7 +41,9 @@
                      patrolCode:(NSString *)patrolCode
                       longitude:(NSString *)longitude
                        latitude:(NSString *)latitude
-                   positionDesc:(NSString *)positionDesc{
+                   positionDesc:(NSString *)positionDesc
+                       isUrgent:(NSString *)isUrgent
+{
     self = [super init];
     if (self) {
         
@@ -58,6 +61,7 @@
         _longitude = longitude;
         _latitude = latitude;
         _positionDesc = positionDesc;
+        _isUrgent = isUrgent;
         
     }
     return self;
@@ -88,6 +92,7 @@
                          _imgList , @"imgList",
                          _fileList, @"fileList",
                          _incidentName , @"incidentName",
+                         _isUrgent, @"isUrgent",
                          _incidentContent , @"incidentContent",
                          _receiverType , @"receiverType",
                          _receiverDepartCode , @"receiverDepartCode",
@@ -99,6 +104,7 @@
                          _longitude , @"longitude",
                          _latitude , @"latitude",
                          _positionDesc , @"positionDesc",
+                         
                          nil];
     return dic;
     

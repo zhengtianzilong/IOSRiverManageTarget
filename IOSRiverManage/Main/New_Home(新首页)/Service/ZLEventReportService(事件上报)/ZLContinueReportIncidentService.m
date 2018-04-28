@@ -18,6 +18,7 @@
     NSString *_receiverPersonName;
     NSString *_receiverPersonCode;
     NSString *_riverIncidentDetailId;
+    NSString *_isUrgent;
 }
 
 @end
@@ -32,7 +33,8 @@
              receiverDepartName:(NSString *)receiverDepartName
              receiverPersonName:(NSString *)receiverPersonName
              receiverPersonCode:(NSString *)receiverPersonCode
-          riverIncidentDetailId:(NSString *)riverIncidentDetailId{
+          riverIncidentDetailId:(NSString *)riverIncidentDetailId
+                       isUrgent:(NSString *)isUrgent{
     self = [super init];
     if (self) {
         
@@ -46,6 +48,7 @@
         _receiverPersonName = receiverPersonName;
         _receiverPersonCode = receiverPersonCode;
         _riverIncidentDetailId = riverIncidentDetailId;
+        _isUrgent = isUrgent;
         
     }
     return self;
@@ -75,6 +78,7 @@
                          _incidentid , @"id",
                          _incidentContent , @"feedbackContent",
                          _receiverType , @"receiverType",
+                         _isUrgent, @"isUrgent",
                          _receiverDepartCode , @"receiverDepartCode",
                          _receiverDepartName , @"receiverDepartName",
                          _receiverPersonName , @"receiverPersonName",

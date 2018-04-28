@@ -17,7 +17,7 @@
     NSString *_receiverPersonNames;
     
     NSString *_riverTaskDetailId;
-    
+    NSString *_isUrgent;
 }
 
 @end
@@ -30,7 +30,8 @@
         receiverDepartmentCodes:(NSString *)receiverDepartmentCodes
               receiverPersonIds:(NSString *)receiverPersonIds
             receiverPersonNames:(NSString *)receiverPersonNames
-              riverTaskDetailId:(NSString *)riverTaskDetailId{
+              riverTaskDetailId:(NSString *)riverTaskDetailId
+                       isUrgent:(NSString *)isUrgent{
     self = [super init];
     if (self) {
         
@@ -42,6 +43,7 @@
         _receiverPersonIds = receiverPersonIds;
         _receiverPersonNames = receiverPersonNames;
         _riverTaskDetailId = riverTaskDetailId;
+        _isUrgent = isUrgent;
         
     }
     return self;
@@ -68,6 +70,7 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                          _imgList , @"imgList",
                          _taskName , @"taskName",
+                         _isUrgent , @"isUrgent",
                          _taskContent , @"taskContent",
                          _receiverDepartmentNames , @"receiverDepartmentNames",
                          _receiverDepartmentCodes , @"receiverDepartmentCodes",

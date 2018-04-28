@@ -31,7 +31,7 @@
         make.left.equalTo(self);
         make.top.equalTo(self).offset(0);
         make.width.mas_equalTo(Main_Screen_Width);
-//        make.height.mas_equalTo(AdaptedHeight(220));
+        make.height.mas_equalTo(Main_Screen_Width / 2.0 - 10);
     }];
     
     [self.riverCategoryView mas_makeConstraints:^(MASConstraintMaker *make) {

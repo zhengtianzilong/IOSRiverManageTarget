@@ -7,6 +7,7 @@
 //
 
 #import <JSONModel/JSONModel.h>
+#import "ZLTaskInfoImageListModel.h"
 @protocol ZLPumpingPortModel
 @end
 @interface ZLPumpingPortModel : JSONModel
@@ -30,4 +31,7 @@
 @property (nonatomic, strong) NSString<Optional> *IS_STANDARD;
 @property (nonatomic, strong) NSString<Optional> *LATITUDE;
 @property (nonatomic, strong) NSString<Optional> *AREA_NAME;
+
+@property (nonatomic, strong) NSArray<ZLTaskInfoImageListModel, Optional> *imgList;
+
 @end

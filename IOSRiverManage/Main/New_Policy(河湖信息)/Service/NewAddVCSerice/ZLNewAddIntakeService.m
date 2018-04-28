@@ -17,6 +17,7 @@
     NSString *_contactperson;
     NSString *_phone;
     NSString *_address;
+    NSArray *_imgList;
 }
 
 @end
@@ -30,7 +31,8 @@
                           contant:(NSString *)contant
                     contactperson:(NSString *)contactperson
                             phone:(NSString *)phone
-                          address:(NSString *)address{
+                          address:(NSString *)address
+                          imgList:(NSArray *)imgList{
     self = [super init];
     if (self) {
         
@@ -43,7 +45,8 @@
         _contant = contant;
         _contactperson = contactperson;
         _phone = phone;
-        _address = address;   
+        _address = address;
+        _imgList = imgList;
     }
     return self;
 }
@@ -69,6 +72,7 @@
 
 - (id)requestArgument{
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
+                         _imgList , @"imgList",
                          _riverCode,@"riverCode",
                          _code,@"code",
                          _name,@"name",

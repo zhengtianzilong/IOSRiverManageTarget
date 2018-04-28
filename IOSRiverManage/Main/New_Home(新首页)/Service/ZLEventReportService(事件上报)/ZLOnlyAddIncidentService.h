@@ -10,17 +10,18 @@
 
 @interface ZLOnlyAddIncidentService : ZLCustomBaseRequest
 - (instancetype)initWithimgList:(NSArray *)imgList
-                       fileList:(NSArray *)fileList
-                   incidentName:(NSString *)incidentName
-                incidentContent:(NSString *)incidentContent
-                   receiverType:(NSString *)receiverType
-             receiverDepartCode:(NSString *)receiverDepartCode
-             receiverDepartName:(NSString *)receiverDepartName
-             receiverPersonName:(NSString *)receiverPersonName
-             receiverPersonCode:(NSString *)receiverPersonCode
-                      riverCode:(NSString *)riverCode
-                     patrolCode:(NSString *)patrolCode
-                      longitude:(NSString *)longitude
-                       latitude:(NSString *)latitude
-                   positionDesc:(NSString *)positionDesc;
+                        fileList:(NSArray *)fileList
+                    incidentName:(NSString *)incidentName
+                 incidentContent:(NSString *)incidentContent
+                    receiverType:(NSString *)receiverType
+              receiverDepartCode:(NSString *)receiverDepartCode
+              receiverDepartName:(NSString *)receiverDepartName
+              receiverPersonName:(NSString *)receiverPersonName
+              receiverPersonCode:(NSString *)receiverPersonCode
+                       riverCode:(NSString *)riverCode
+                      patrolCode:(NSString *)patrolCode
+                       longitude:(NSString *)longitude
+                        latitude:(NSString *)latitude
+                    positionDesc:(NSString *)positionDesc
+                       isUrgent:(NSString *)isUrgent;
 @end

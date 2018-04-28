@@ -21,6 +21,7 @@
     NSString *_latitude;
     NSString *_positionDesc;
     NSString *_patrolCode;
+    NSString *_isUrgent;
 }
 
 @end
@@ -37,7 +38,8 @@
                       longitude:(NSString *)longitude
                        latitude:(NSString *)latitude
                    positionDesc:(NSString *)positionDesc
-                     patrolCode:(NSString *)patrolCode{
+                     patrolCode:(NSString *)patrolCode
+                       isUrgent:(NSString *)isUrgent{
     self = [super init];
     if (self) {
         
@@ -54,6 +56,7 @@
         _latitude = latitude;
         _positionDesc = positionDesc;
         _patrolCode = patrolCode;
+        _isUrgent = isUrgent;
         
     }
     return self;
@@ -80,6 +83,7 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:
                          _imgList , @"imgList",
                          _taskName , @"taskName",
+                         _isUrgent , @"isUrgent",
                          _taskContent , @"taskContent",
                          _receiverDepartmentNames , @"receiverDepartmentNames",
                          _receiverDepartmentCodes , @"receiverDepartmentCodes",

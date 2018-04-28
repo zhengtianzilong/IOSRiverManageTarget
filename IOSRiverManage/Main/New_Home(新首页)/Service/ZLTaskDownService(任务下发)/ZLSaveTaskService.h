@@ -10,10 +10,11 @@
 
 @interface ZLSaveTaskService : ZLCustomBaseRequest
 - (instancetype)initWithimgList:(NSArray *)imgList
-                   taskName:(NSString *)taskName
+                       taskName:(NSString *)taskName
                     taskContent:(NSString *)taskContent
         receiverDepartmentNames:(NSString *)receiverDepartmentNames
         receiverDepartmentCodes:(NSString *)receiverDepartmentCodes
               receiverPersonIds:(NSString *)receiverPersonIds
-            receiverPersonNames:(NSString *)receiverPersonNames;
+            receiverPersonNames:(NSString *)receiverPersonNames
+                       isUrgent:(NSString *)isUrgent;
 @end

@@ -56,6 +56,12 @@
 
 @property (nonatomic, strong) YTKKeyValueStore *store;
 
+// 状态数组
+@property (nonatomic, strong) NSMutableArray *stateArray;
+
+// 是否是紧急状态
+@property (nonatomic, strong) NSString *isUrgent;
+
 /**
  位置
  */
@@ -126,6 +132,9 @@
     self.departCode = @"";
     self.peopleCode = @"";
     self.receiverType = 0;
+    
+    self.isUrgent = @"0";
+    
     self.store = [[YTKKeyValueStore alloc]initDBWithName:@"hzz.db"];
     
     self.address = _locationModel.addressDetail;
@@ -261,6 +270,36 @@
     }
     
     if (indexPath.row == 3) {
+        ZLReportPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportPeopleTableViewCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.titleLabel.text = self.sourceArray[indexPath.row];
+        cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
+        cell.imageV.image = [UIImage imageNamed:@"critical_select"];
+        cell.selectInfo = ^(UITextView *infoTextView) {
+            [self stateClick:infoTextView with:tableView];
+        };
+        
+        cell.infoTextView.text = @"非紧急";
+        
+        cell.infoTextView.tag = indexPath.row;
+        cell.getText = ^(NSString *text, NSInteger tag) {
+            switch (3) {
+                case 3:{
+                    if ([text isEqualToString:@""]) {
+                        self.isUrgent = @"";
+                    }
+                }
+                    break;
+            }
+        };
+        
+        return cell;
+    }
+    
+    
+    
+    if (indexPath.row == 4) {
         
         ZLReprotEventBaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReprotEventBaseTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -273,8 +312,8 @@
         
         cell.getText = ^(NSString *text, NSInteger tag) {
             
-            switch (3) {
-                case 3:
+            switch (4) {
+                case 4:
                     self.address = text;
                     break;
             }
@@ -286,7 +325,7 @@
     
     
     
-    if (indexPath.row == 4) {
+    if (indexPath.row == 5) {
         ZLReportEventDesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportEventDesTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.titleLabel.text = self.sourceArray[indexPath.row];
@@ -295,8 +334,8 @@
         cell.infoTextView.tag = indexPath.row;
         
         cell.getText = ^(NSString *text, NSInteger tag) {
-            switch (3) {
-                case 3:
+            switch (5) {
+                case 5:
                     self.eventDesc = text;
                     break;
             }
@@ -387,15 +426,32 @@
     };
     
     [alert show];
-    
-    
-    
 }
+
+// 状态选择
+- (void)stateClick:(UITextView *)textView with:(UITableView *)tableView{
+    
+    ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.stateArray withTitle:@"选择状态" sureTitle:@"确定" singleSelection:YES];
+    
+    alert.selectItem = ^(NSInteger index) {
+        ZLLog(@"%ld",(long)index);
+        
+        textView.text = self.stateArray[index];
+        
+        self.isUrgent = [NSString stringWithFormat:@"%ld",(long)index];
+        
+    };
+    
+    [alert show];
+}
+
+
 - (NSArray *)sourceArray{
     if (!_sourceArray) {
         _sourceArray = @[@"事件标题：",
                          @"接收对象：",
                          @"接收部门：",
+                         @"紧急状态：",
                          @"位置：",
                          @"问题反馈："];
         
@@ -409,6 +465,7 @@
         _placeHolderArray = @[@"请输入事件标题",
                               @"请选择上报",
                               @"请选择上报部门",
+                              @"请选择状态",
                               @"请输入位置信息",
                               @"请输入描述内容(140字以内)"];
         
@@ -416,6 +473,18 @@
     }
     return _placeHolderArray;
 }
+
+- (NSMutableArray *)stateArray{
+    
+    if (!_stateArray) {
+        
+        _stateArray = [NSMutableArray arrayWithArray:@[@"非紧急",@"紧急"]];
+        
+    }
+    return _stateArray;
+    
+}
+
 
 /**
  检测文本框的内容
@@ -437,6 +506,15 @@
         } title:@"提示" message:@"请填写事件名称" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         return NO;
     }
+    
+    if ([self.isUrgent isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请选择紧急状态" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
     if ([self.eventDesc isEqualToString:@""]) {
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
@@ -502,7 +580,7 @@
             _receiverType = @"1";
         }
         
-        ZLAddAndSentIncidentService *service = [[ZLAddAndSentIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentName:_eventName incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverCode:_userRiverModel.riverCode patrolCode:self.patrolCode longitude:_locationModel.longitude latitude:_locationModel.latitude positionDesc:self.address];
+        ZLAddAndSentIncidentService *service = [[ZLAddAndSentIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentName:_eventName incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverCode:_userRiverModel.riverCode patrolCode:self.patrolCode longitude:_locationModel.longitude latitude:_locationModel.latitude positionDesc:self.address isUrgent:self.isUrgent];
         
         [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request){
             ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];

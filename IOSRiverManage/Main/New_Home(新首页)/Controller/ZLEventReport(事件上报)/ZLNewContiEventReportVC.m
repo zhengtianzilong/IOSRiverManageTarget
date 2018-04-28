@@ -22,8 +22,6 @@
 #import "ZLGetUserListByIncidentService.h"
 #import "ZLEventManagerVC.h"
 @interface ZLNewContiEventReportVC ()<UITableViewDelegate, UITableViewDataSource>
-
-
 @property (nonatomic, strong) UITableView *mainTableView;
 
 @property (nonatomic, strong) NSArray *sourceArray;
@@ -56,6 +54,13 @@
 
 @property (nonatomic, strong) YTKKeyValueStore *store;
 
+// 状态数组
+@property (nonatomic, strong) NSMutableArray *stateArray;
+
+// 是否是紧急状态
+@property (nonatomic, strong) NSString *isUrgent;
+
+
 @end
 
 @implementation ZLNewContiEventReportVC
@@ -77,6 +82,7 @@
     self.departCode = @"";
     self.peopleCode = @"";
     self.receiverType = 0;
+    self.isUrgent = @"0";
     self.store = [[YTKKeyValueStore alloc]initDBWithName:@"hzz.db"];
     
     NSString *tableName = DBUserTable;
@@ -85,8 +91,6 @@
     NSString *departs = [self.store getStringById:DBEventDepartListRivers fromTable:DBUserTable];
     
     ZLGetDepartModel *departsModel = [[ZLGetDepartModel alloc]initWithString:departs error:nil];
-    
-
     
     if (departsModel.data.count > 0) {
         
@@ -326,7 +330,36 @@
         
         return cell;
     }
+    
     if (indexPath.row == 3) {
+        ZLReportPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportPeopleTableViewCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.titleLabel.text = self.sourceArray[indexPath.row];
+        cell.infoTextView.zw_placeHolder = self.placeHolderArray[indexPath.row];
+        cell.imageV.image = [UIImage imageNamed:@"critical_select"];
+        cell.selectInfo = ^(UITextView *infoTextView) {
+            [self stateClick:infoTextView with:tableView];
+        };
+        
+        cell.infoTextView.text = @"非紧急";
+        
+        cell.infoTextView.tag = indexPath.row;
+        cell.getText = ^(NSString *text, NSInteger tag) {
+            switch (3) {
+                case 3:{
+                    if ([text isEqualToString:@""]) {
+                        self.isUrgent = @"";
+                    }
+                }
+                    break;
+            }
+        };
+        
+        return cell;
+    }
+    
+    if (indexPath.row == 4) {
         ZLReportEventDesTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportEventDesTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.titleLabel.text = self.sourceArray[indexPath.row];
@@ -335,8 +368,8 @@
         cell.infoTextView.tag = indexPath.row;
         
         cell.getText = ^(NSString *text, NSInteger tag) {
-            switch (3) {
-                case 3:
+            switch (4) {
+                case 4:
                     self.eventDesc = text;
                     break;
             }
@@ -428,10 +461,25 @@
     };
     
     [alert show];
-    
-    
-    
 }
+
+// 状态选择
+- (void)stateClick:(UITextView *)textView with:(UITableView *)tableView{
+    
+    ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.stateArray withTitle:@"选择状态" sureTitle:@"确定" singleSelection:YES];
+    
+    alert.selectItem = ^(NSInteger index) {
+        ZLLog(@"%ld",(long)index);
+        
+        textView.text = self.stateArray[index];
+        
+        self.isUrgent = [NSString stringWithFormat:@"%ld",(long)index];
+        
+    };
+    
+    [alert show];
+}
+
 
 /**
  检测文本框的内容
@@ -453,6 +501,15 @@
         } title:@"提示" message:@"请填写事件名称" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         return NO;
     }
+    
+    if ([self.isUrgent isEqualToString:@""]) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请选择紧急状态" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
+    
     if ([self.eventDesc isEqualToString:@""]) {
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
@@ -525,7 +582,7 @@
             _receiverType = @"1";
         }
         
-        ZLContinueReportIncidentService *service = [[ZLContinueReportIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentid:self.incidentid incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverIncidentDetailId:_riverIncidentDetailId];
+        ZLContinueReportIncidentService *service = [[ZLContinueReportIncidentService alloc]initWithimgList:self.imageNameArray fileList:@[] incidentid:self.incidentid incidentContent:_eventDesc receiverType:_receiverType receiverDepartCode:_departCode receiverDepartName:_eventDepart receiverPersonName:_eventPeople receiverPersonCode:_peopleCode riverIncidentDetailId:_riverIncidentDetailId isUrgent:self.isUrgent];
         
         [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request){
             ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
@@ -560,6 +617,7 @@
         _sourceArray = @[@"任务名称：",
                          @"接收人：",
                          @"接收部门：",
+                         @"紧急状态：",
                          @"事件描述："];
     }
     return _sourceArray;
@@ -570,13 +628,23 @@
         _placeHolderArray = @[@"请输入事件名称",
                               @"请选择接收人",
                               @"请选择接收部门",
+                              @"请选择状态",
                               @"请输入描述内容(140字以内)"];
         
         
     }
     return _placeHolderArray;
 }
-
+- (NSMutableArray *)stateArray{
+    
+    if (!_stateArray) {
+        
+        _stateArray = [NSMutableArray arrayWithArray:@[@"非紧急",@"紧急"]];
+        
+    }
+    return _stateArray;
+    
+}
 
 - (UITableView *)mainTableView{
     if (!_mainTableView) {

@@ -16,5 +16,6 @@
         receiverDepartmentCodes:(NSString *)receiverDepartmentCodes
               receiverPersonIds:(NSString *)receiverPersonIds
             receiverPersonNames:(NSString *)receiverPersonNames
-              riverTaskDetailId:(NSString *)riverTaskDetailId;
+              riverTaskDetailId:(NSString *)riverTaskDetailId
+                       isUrgent:(NSString *)isUrgent;
 @end

@@ -53,7 +53,7 @@
     
     _lowerModel = lowerModel;
     
-    _titleLabel.text = _lowerModel.duty;
+    _titleLabel.text = _lowerModel.dutyName;
     
     _nameLable.text = _lowerModel.realName;
     self.phoneString = _lowerModel.phone;

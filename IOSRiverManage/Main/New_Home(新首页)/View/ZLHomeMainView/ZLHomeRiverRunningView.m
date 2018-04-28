@@ -204,6 +204,8 @@
         
         
         vc.riverDataModel = self.riverDataModel;
+        
+        
         [self.viewController presentViewController:vc animated:YES completion:nil];
         
     }

@@ -11,7 +11,7 @@
 
 @end
 @interface ZLRiverPeopleLowerModel : JSONModel
-
+@property (nonatomic, strong) NSString<Optional> *dutyName;
 @property (nonatomic, strong) NSString<Optional> *phone;
 @property (nonatomic, strong) NSString<Optional> *realName;
 @property (nonatomic, strong) NSString<Optional> *duty;

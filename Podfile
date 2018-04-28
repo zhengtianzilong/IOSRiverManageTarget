@@ -1,17 +1,17 @@
 # Uncomment the next line to define a global platform for your project
- platform :ios, ‘8.0’
+platform :ios, ‘8.0’
 use_frameworks!
 abstract_target 'ABC' do
 pod 'AFNetworking', '~>3.0'
-pod 'ReactiveCocoa', '~> 2.5'
-pod 'SDWebImage', '~> 3.7.5'
-pod 'JSONModel', '~> 1.0.1'
-pod 'Masonry','~>0.6.1'
+pod 'ReactiveCocoa'
+pod 'SDWebImage' 
+pod 'JSONModel'
+pod 'Masonry'
 pod 'FLEX', '~> 2.0', :configurations => ['Debug']
 pod 'ActionSheetPicker-3.0'
 pod 'CYLTabBarController'
-pod 'IQKeyboardManager', '~> 3.3.7'  #兼容IOS7
-pod 'LBXScan','~> 1.1.1'
+pod 'IQKeyboardManager'
+pod 'LBXScan'
 pod 'MBProgressHUD', '~> 0.9'
 pod 'MWPhotoBrowser'
 pod 'M13ProgressSuite', '~> 1.2.7'
@@ -28,6 +28,8 @@ pod 'AMapSearch' #搜索功能
 pod 'AMapLocation'
 pod 'NinaPagerView'
 
+
+
 target 'IOSRiverManage'
 target 'IOSRiverManageTouBiao'
 target 'IOSRiverManageSuqian'
@@ -40,5 +42,7 @@ target 'IOSRiverManageSuqian'
     inherit! :search_paths
     # Pods for testing
   end
+
+
 
 end

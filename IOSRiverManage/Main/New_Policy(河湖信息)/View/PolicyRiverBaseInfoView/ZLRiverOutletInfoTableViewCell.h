@@ -52,5 +52,10 @@ typedef void(^sewageOutletAddressBlock)(ZLSewageOutletModel *outletModel);
 @property (nonatomic, strong) selectOutletDelete outletDelete;
 @property (nonatomic, strong) sewageOutletAddressBlock sewageOutletAddress;
 
+@property (nonatomic, weak) UIView *containerView;
+
+// 照片
+@property (nonatomic, strong) UILabel *pictureLabel;
+
 
 @end

@@ -22,14 +22,17 @@
 
 #import "ZLSimpleMainTapBarVCConfig.h"
 
-#import "VwtIMLib.h"
-
 #import <AMapFoundationKit/AMapFoundationKit.h>
+
+
+
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
 #endif
 
-@interface AppDelegate ()<UITabBarControllerDelegate, CYLTabBarControllerDelegate,XGPushDelegate,XGPushTokenManagerDelegate>
+
+
+@interface AppDelegate ()<UITabBarControllerDelegate, CYLTabBarControllerDelegate,XGPushDelegate,XGPushTokenManagerDelegate, UNUserNotificationCenterDelegate>
 
 @property (nonatomic, strong) YTKKeyValueStore *store;
 
@@ -39,27 +42,6 @@
 
 @implementation AppDelegate
 
-- (void)chinaMobile{
-    
-    VwtUserInfo * vUserinfo = [[VwtUserInfo alloc] init];
-    vUserinfo.appId = @"10000019";//注册时的appId;
-    vUserinfo.appSecret = @"s8wBf22QXIOBeTFMzmyYJylGBtm80W7t1lqVt2MW8017Wes49clQtIevEcs9963a";//注册时的安全码;例如://@"IEb5QvSfabT2RImcu5DvFedkwJtfwp5HnWIgq3RI4Hq7CdkwIk5hrFwg6m579Aix" ;
-    vUserinfo.userId = @"10020442214" ;//用户 ID ;
-    [[VwtIMLib sharedInstance] loginWithUserInfo:vUserinfo success:^(id value) {
-        //登录成功
-        ZLLog(@"%@",value);
-    } error:^(VwtError * error) {
-        //登录失败
-        ZLLog(@"%@",error);
-    }] ;
-    vUserinfo.receivedMessageBlock = ^(VwtIMMessage *message) {
-        
-        
-        
-        
-    };
-    
-}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -90,8 +72,6 @@
     
     [self customizeTabbarItem];
     
-//    [self chinaMobile];
-    
     
 //    [[FLEXManager sharedManager] showExplorer];
     
@@ -113,35 +93,28 @@
     
 }
 
-#pragma mark -- 百度代理
-- (void)onGetNetworkState:(int)iError{
-    
-    ZLLog(@"NetworkState:%d",iError);
-    
-}
 
-- (void)onGetPermissionState:(int)iError{
-    ZLLog(@"GetPermissionState:%d",iError);
-}
-
-//CLUB-Q2QX-2CP6-PY4G-VU2H
 /**
  配置信鸽
  */
 - (void)xgConfigWithOptions:(NSDictionary *)launchOptions{
-    // 打开debug开关
-    [[XGPush defaultManager]setEnableDebug:YES];
-    // 查看debug开发是否打开
-    BOOL debugEnabled = [[XGPush defaultManager]isEnableDebug];
-    ZLLog(@"debugEnabled%d",debugEnabled);
-    // 开始推送 2200269075
-    [[XGPush defaultManager]startXGWithAppID:2200269075 appKey:@"I2Q55UXZ2D5E" delegate:self];
-    
-    // 上报数据
-    [[XGPush defaultManager]reportXGNotificationInfo:launchOptions];
-    [XGPushTokenManager defaultTokenManager].delegatge = self;
+//    // 打开debug开关
+//    [[XGPush defaultManager]setEnableDebug:YES];
+//    // 查看debug开发是否打开
+//    BOOL debugEnabled = [[XGPush defaultManager]isEnableDebug];
+//    ZLLog(@"debugEnabled%d",debugEnabled);
+//    // 开始推送 2200269075
+//    [[XGPush defaultManager]startXGWithAppID:2200269075 appKey:@"I2Q55UXZ2D5E" delegate:self];
+//    
+//    // 上报数据
+//    [[XGPush defaultManager]reportXGNotificationInfo:launchOptions];
+//    [XGPushTokenManager defaultTokenManager].delegatge = self;
     
 }
+
+
+
+
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     
@@ -380,7 +353,6 @@
 // 调用注册设备token
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
 
-    [[VwtIMLib sharedInstance] registerForRemoteNotificationsWithDeviceToken:deviceToken];
     
     
     

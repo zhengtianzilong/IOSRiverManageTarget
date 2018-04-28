@@ -13,7 +13,7 @@
 #define kcomStatisticsProduct @"http://183.207.103.139:86"
 #define kfileProduct @"http://183.207.103.139:86/file/"
 
-#define kDebug @"http://112.4.10.185:86/api/"
+#define kDebug @"http://192.168.0.84:1011/"
 #define kcomStatisticsDebug @"http://112.4.10.185:86"
 #define kfileDebug @"http://112.4.10.185:86/file/"
 
@@ -128,12 +128,6 @@
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressClick)];
         
         [_logoImageV addGestureRecognizer:longPress];
-        
-        
-        
-        
-        
-        
     }
     return _logoImageV;
     
@@ -144,8 +138,6 @@
     if (!_titleImageV) {
         
         _titleImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"new_login_title"]];
-        
-        
     }
     return _titleImageV;
     

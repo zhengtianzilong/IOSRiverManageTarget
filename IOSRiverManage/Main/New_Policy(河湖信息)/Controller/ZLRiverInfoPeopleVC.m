@@ -111,16 +111,16 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//
+//    if (self.lowerRiverManageArray.count <= 0 || self.riverManageArray.count <= 0) {
+//
+//        return 1;
+//
+//    }else{
+//        return 2;
+//    }
     
-    if (self.lowerRiverManageArray.count <= 0 || self.riverManageArray.count <= 0) {
-        
-        return 1;
-        
-    }else{
-        return 2;
-    }
-    
-   
+    return 2;
 
 }
 
@@ -205,7 +205,7 @@
         
         _mainTableView.dataSource = self;
         
-        _mainTableView.tableHeaderView = [[ZLHomeLoopTopView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 140.5)];
+        _mainTableView.tableHeaderView = [[ZLHomeLoopTopView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Width / 2.0 - 15)];
         
         _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             [self getData];
