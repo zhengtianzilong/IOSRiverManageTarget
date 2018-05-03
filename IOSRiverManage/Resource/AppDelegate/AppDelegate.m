@@ -24,15 +24,12 @@
 
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
-
+#import <GTSDK/GeTuiSdk.h>
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
 #endif
-
-
-
-@interface AppDelegate ()<UITabBarControllerDelegate, CYLTabBarControllerDelegate,XGPushDelegate,XGPushTokenManagerDelegate, UNUserNotificationCenterDelegate>
+@interface AppDelegate ()<UITabBarControllerDelegate, CYLTabBarControllerDelegate,XGPushDelegate,XGPushTokenManagerDelegate, UNUserNotificationCenterDelegate,GeTuiSdkDelegate>
 
 @property (nonatomic, strong) YTKKeyValueStore *store;
 
@@ -41,9 +38,6 @@
 @end
 
 @implementation AppDelegate
-
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -53,11 +47,12 @@
     [self.floatWindow makeKeyAndVisible];
     self.floatWindow.hidden = YES;
     
-    
-    
 //    [self configBaiDuSDK];
     // 配置信鸽
 //    [self xgConfigWithOptions:launchOptions];
+    
+    
+    [self configGeiTui];
     
     [self configPGYSDK];
     
@@ -112,15 +107,236 @@
     
 }
 
-
-
-
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+/**
+ 配置信鸽
+ */
+- (void)configGeiTui{
+    [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
     
-    [[XGPush defaultManager]reportXGNotificationInfo:userInfo];
+    [self registerRemoteNotification];
     
 }
+
+#pragma mark注册本地通知
+-(void)registLocationNotification
+{
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0){
+        // 使用 UNUserNotificationCenter 来管理通知
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        //监听回调事件
+        center.delegate = self;
+        
+        //iOS 10 使用以下方法注册，才能得到授权
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
+                              completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                                  // Enable or disable features based on authorization.
+                              }];
+        
+        //获取当前的通知设置，UNNotificationSettings 是只读对象，不能直接修改，只能通过以下方法获取
+        [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+            
+        }];
+    }else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0&&[[UIDevice currentDevice].systemVersion floatValue] < 10.0){
+        if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        }
+    }
+}
+
+
+- (void)registerRemoteNotification{
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge |UNAuthorizationOptionSound|UNAuthorizationOptionAlert|UNAuthorizationOptionCarPlay ) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+           
+            if (!error) {
+                ZLLog(@"request authorization succeeded");
+            }
+            
+        }];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        
+    }else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0){
+        UIUserNotificationType types = (UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        
+        
+    } else {
+        UIRemoteNotificationType apn_type = (UIRemoteNotificationType)(UIRemoteNotificationTypeAlert |
+                                                                       UIRemoteNotificationTypeSound |
+                                                                       UIRemoteNotificationTypeBadge);
+        
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:apn_type];
+        
+    }
+}
+
+/** SDK启动成功返回cid */
+- (void)GeTuiSdkDidRegisterClient:(NSString *)clientId{
+    //个推SDK已注册，返回clientId
+    NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
+}
+//// 在iOS 10 以前，为处APNs通知点击事件，统计有效 户点击数，需在 AppDelegate.m的 didReceiveRemoteNotification 回调 法中调 个推SDK接 :
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+//
+//    [GeTuiSdk handleRemoteNotification:userInfo];
+//    completionHandler(UIBackgroundFetchResultNewData);
+//
+//
+//}
+
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+// iOS 10: App在前台获取到通知
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+   
+    NSLog(@"willPresentNotification:%@", notification.request.content.userInfo);
+    // 根据APP需要，判断是否要提示 户Badge、Sound、Alert
+    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
+}
+// iOS 10: 点击通知进 App时触发，在该方法内统计有效 户点击数   iOS 10: 点击通知进入App时触发
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+    
+    NSLog(@"didReceiveNotification:%@", response.notification.request.content.userInfo);
+    // [ GTSdk ]:将收到的APNs信息传给个推统计
+    [GeTuiSdk handleRemoteNotification:response.notification.request.content.userInfo];
+    completionHandler();
+}
+#endif
+
+/** APP已经接收到“远程”通知(推送) - 透传推送消息 */
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
+    // 处 APNs代码，通过userInfo可以取到推送的信息(包括内容， 标， 定义参数等)。如果需要弹 窗等其他操作，则需要  编码。
+    NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo)
+    ;
+    [GeTuiSdk handleRemoteNotification:userInfo];
+    //静默推送收到消息后也需要将APNs信息传给个推统计 [GeTuiSdk handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+
+- (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId{
+    NSString *payloadMsg = nil;
+    if (payloadData) {
+        
+        payloadMsg = [[NSString alloc]initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
+    }
+    NSError *error=nil;
+    NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:payloadData options:NSJSONReadingMutableContainers error:&error];
+    NSString *title=[NSString stringWithFormat:@"%@",dic[@"title"]];
+    NSString *detail=[NSString stringWithFormat:@"%@",dic[@"text"]];
+//    _webTitle=[NSString stringWithFormat:@"%@",dic[@"messageTitle"]];
+//    _webUrl=[NSString stringWithFormat:@"%@",dic[@"messageUrl"]];
+    
+    
+   NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg :%@%@",taskId,msgId,payloadMsg,offLine ? @"<离线消息>" : @""];
+    
+    ZLLog(@"\n>>>[GexinSdk ReceivePayload]:%@\n\n", msg);
+    // 当app不在前台时，接收到的推送消息offLine值均为YES
+    // 判断app是否是点击通知栏消息进行唤醒或开启
+    // 如果是点击icon图标使得app进入前台，则不做操作，并且同一条推送通知，此方法只执行一次
+    if (!offLine) {//  离线消息已经有苹果的apns推过消息了，避免上线后再次受到消息
+        if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0){
+            [self registerNotification:1 andTitle:title andMess:detail];
+        }else{
+            [self registerLocalNotificationInOldWay:1 andTitle:title andMess:detail];
+        }
+    }
+    
+    
+}
+
+#pragma mark本地推送
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
+//使用 UNNotification 本地通知
+-(void)registerNotification:(NSInteger )alerTime andTitle:(NSString*)title andMess:(NSString*)mes{
+    
+    // 使用 UNUserNotificationCenter 来管理通知
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    //需创建一个包含待通知内容的 UNMutableNotificationContent 对象，注意不是 UNNotificationContent ,此对象为不可变对象。
+    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+    content.title = [NSString localizedUserNotificationStringForKey:title arguments:nil];
+    content.body = [NSString localizedUserNotificationStringForKey:mes
+                                                         arguments:nil];
+    content.sound = [UNNotificationSound defaultSound];
+//    content.userInfo=@{@"webTitle":_webTitle,@"webUrl":_webUrl};
+    
+    // 在 alertTime 后推送本地推送
+    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
+                                                  triggerWithTimeInterval:alerTime repeats:NO];
+    
+    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond"
+                                                                          content:content trigger:trigger];
+    
+    //添加推送成功后的处理！
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+    }];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[UIApplication sharedApplication].applicationIconBadgeNumber+1];
+    [GeTuiSdk setBadge:[UIApplication sharedApplication].applicationIconBadgeNumber];
+}
+#endif
+
+- (void)registerLocalNotificationInOldWay:(NSInteger)alertTime andTitle:(NSString*)title andMess:(NSString*)mes{
+    
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    // 设置触发通知的时间
+    NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:alertTime];
+    NSLog(@"fireDate=%@",fireDate);
+    
+    notification.fireDate = fireDate;
+    // 时区
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    // 设置重复的间隔-不重复
+    notification.repeatInterval = kCFCalendarUnitEra;
+    
+    // 通知内容
+    notification.alertBody = title;
+    notification.applicationIconBadgeNumber = 1;
+    // 通知被触发时播放的声音
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    // 通知参数
+    NSDictionary *userDict = [NSDictionary dictionaryWithObject:mes forKey:@"key"];
+    notification.userInfo = userDict;
+    
+    // ios8后，需要添加这个注册，才能得到授权
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationType type = UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type
+                                                                                 categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        // 通知重复提示的单位，可以是天、周、月
+        notification.repeatInterval = NSCalendarUnitDay;
+    } else {
+        // 通知重复提示的单位，可以是天、周、
+        notification.repeatInterval = NSDayCalendarUnit;
+    }
+    
+    // 执行通知注册
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[UIApplication sharedApplication].applicationIconBadgeNumber+1];
+    [GeTuiSdk setBadge:[UIApplication sharedApplication].applicationIconBadgeNumber];
+}
+
+
+
+
+
+
+
+
+
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+//
+//    [[XGPush defaultManager]reportXGNotificationInfo:userInfo];
+//
+//}
 
 
 
@@ -352,19 +568,14 @@
 
 // 调用注册设备token
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"\n>>>[DeviceToken Success]:%@\n\n", token);
     
-    
-    
-    
+    // 向个推服务 注册deviceToken
+    [GeTuiSdk registerDeviceToken:token];
     
 //    [[XGPushTokenManager defaultTokenManager]registerDeviceToken:deviceToken];
-    
-    
-    
-    
-    
-    
     
     // 绑定标签和账号
 //    [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:@"your tag"
@@ -418,11 +629,22 @@
 //            
 //        }];
 //    }
+    
+    if (application.applicationIconBadgeNumber > 0) {
+        
+        [application setApplicationIconBadgeNumber:0];
+        [GeTuiSdk setBadge:0];
+        
+    }
+    
+    
+    
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
+    
 }
 
 

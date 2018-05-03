@@ -11,7 +11,7 @@
 @implementation ZLPatrolCoordinateModel
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id" : @"ID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"id" : @"ID"}];
 }
 
 @end

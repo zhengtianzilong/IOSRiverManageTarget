@@ -110,34 +110,6 @@
     }else{
         [self getNoRiverUserListData];
     }
-//    if (eventUserListModel.data.count > 0) {
-//
-//        for (ZLGetEventUserListDataModel *dataModel in eventUserListModel.data ) {
-//
-//            NSString *riverNames = @"";
-//            NSString *areaName = @"";
-//            if (dataModel.riverNames.length > 0) {
-//
-//                riverNames = [NSString stringWithFormat:@"(%@)",dataModel.riverNames];
-//
-//            }
-//
-//            if (dataModel.areaName.length > 0) {
-//
-//                areaName = [NSString stringWithFormat:@"%@-",dataModel.areaName];
-//
-//            }
-//
-//            NSString *peopleName = [NSString stringWithFormat:@"%@%@%@",areaName,dataModel.realName,riverNames];
-//
-//            [self.peopleNameArray addObject:peopleName];
-//
-//
-//            [self.peopleModelArray addObject:dataModel];
-//
-//        }
-//
-//    }
     
 }
 
@@ -589,8 +561,6 @@
             if ([model.code isEqualToString:@"0"]) {
                 [SVProgressHUD showSuccessWithStatus:@"上报成功"];
                 [SVProgressHUD dismissWithDelay:0.3 completion:^{
-//                    [self.navigationController popViewControllerAnimated:YES];
-
                     for (UIViewController *vc in self.navigationController.childViewControllers) {
                         if ([vc isKindOfClass:[ZLEventManagerVC class]]) {
                             ZLEventManagerVC *mainVC = (ZLEventManagerVC *)vc;

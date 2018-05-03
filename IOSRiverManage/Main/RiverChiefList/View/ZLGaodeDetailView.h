@@ -33,7 +33,6 @@
 
 @property (nonatomic, strong) UILabel *feedBack;
 
-@property (nonatomic, strong) UICollectionView *mainCollectionView;
 
 @property (nonatomic, weak) UIView *containerView;
 @end

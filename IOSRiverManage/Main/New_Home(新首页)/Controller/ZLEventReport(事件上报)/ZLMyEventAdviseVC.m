@@ -134,7 +134,6 @@
         if ([imagesModel.code isEqualToString:@"0"]) {
             
             for (ZLTaskInfoImageListModel *model in imagesModel.data) {
-                
                 [self.imageNameArray addObject:model.toDictionary];
             }
         }else{

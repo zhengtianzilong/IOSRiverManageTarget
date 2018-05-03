@@ -16,7 +16,7 @@ pod 'MBProgressHUD', '~> 0.9'
 pod 'MWPhotoBrowser'
 pod 'M13ProgressSuite', '~> 1.2.7'
 pod 'WebViewJavascriptBridge', '~> 5.0'
-pod 'YYText'
+#pod 'YYText'
 pod 'TZImagePickerController'  #照片选择浏览器
 pod 'UITableView+FDTemplateLayoutCell'
 pod 'YTKNetwork'

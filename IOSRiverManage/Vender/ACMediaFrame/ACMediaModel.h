@@ -36,7 +36,4 @@
 
 // 图片模型对象
 @property (nonatomic , copy)  ZLTaskInfoImageListModel *imageListModel;
-
-
-
 @end

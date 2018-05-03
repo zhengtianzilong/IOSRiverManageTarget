@@ -33,9 +33,6 @@
             make.bottom.equalTo(self.mas_bottom);
             
         }];
-        
-        
-        
     }
     return self;
     

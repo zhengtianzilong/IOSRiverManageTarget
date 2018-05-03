@@ -7,7 +7,6 @@
 //
 
 #import "ZLGaodeDetailView.h"
-#import "ZLGaodeDetailImageCollectionViewCell.h"
 #import "NSArray+ZLJiuGongGe.h"
 @interface ZLGaodeDetailView()
 
@@ -327,25 +326,5 @@
     return _feedBack;
 }
 
-- (UICollectionView *)mainCollectionView{
-    
-    if (!_mainCollectionView) {
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-        
-        layout.minimumLineSpacing = 0;
-        layout.minimumInteritemSpacing = 0;
-        layout.sectionInset = UIEdgeInsetsMake(10, 5, 10, 5);
-        CGFloat width = (App_Frame_Width - 100) / 5;
-        layout.itemSize = CGSizeMake(width, width);
-        
-        _mainCollectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
-        _mainCollectionView.backgroundColor = [UIColor whiteColor];
-        [_mainCollectionView registerClass:[ZLGaodeDetailImageCollectionViewCell class] forCellWithReuseIdentifier:@"ZLGaodeDetailImageCollectionViewCell"];
-        _mainCollectionView.delegate = self;
-        _mainCollectionView.dataSource = self;
-        
-    }
-    return _mainCollectionView;
-}
 
 @end

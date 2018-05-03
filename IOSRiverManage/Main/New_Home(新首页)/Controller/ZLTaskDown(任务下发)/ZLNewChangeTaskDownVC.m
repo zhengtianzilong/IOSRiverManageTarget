@@ -111,11 +111,7 @@
 
 
 
-/**
- 得到数据
- */
-- (void)getDepartsData{
-    
+- (void)initData {
     self.departNameArray = [NSMutableArray array];
     self.departModelArray = [NSMutableArray array];
     self.peopleNameArray = [NSMutableArray array];
@@ -144,8 +140,6 @@
     
     ZLGetDepartModel *departsModel = [[ZLGetDepartModel alloc]initWithString:departs error:nil];
     
-
-    
     if (departsModel.data.count > 0) {
         
         for (ZLGetDepartDataModel *dataModel in departsModel.data ) {
@@ -158,8 +152,15 @@
         
     }
     
-    // 等待以后修复
+}
+
+/**
+ 得到数据
+ */
+- (void)getDepartsData{
     
+    [self initData];
+    // 等待以后修复
     [self getNomalUserList];
     
 }

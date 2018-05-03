@@ -56,7 +56,6 @@ PODS:
   - WebViewJavascriptBridge (5.2.0)
   - YTKNetwork (2.0.4):
     - AFNetworking (~> 3.0)
-  - YYText (1.0.7)
   - ZBarSDK (1.3.1)
 
 DEPENDENCIES:
@@ -83,7 +82,6 @@ DEPENDENCIES:
   - UITableView+FDTemplateLayoutCell
   - WebViewJavascriptBridge (~> 5.0)
   - YTKNetwork
-  - YYText
 
 SPEC CHECKSUMS:
   ACAlertController: 10f0455c3e1691a6197b5cd0d96d6f9a03c82763
@@ -113,9 +111,8 @@ SPEC CHECKSUMS:
   UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
   WebViewJavascriptBridge: a00b2d61252aec5207e3263d46fd0fd3cfaf7895
   YTKNetwork: df8a7a5597bda1664a4efaa7ef871a818a887fe0
-  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-PODFILE CHECKSUM: bb8816a8e39dc4fe80af262124619cf990f98257
+PODFILE CHECKSUM: 1d96dbdf6d5e9594ff000c5e5ed417c360bacd43
 
 COCOAPODS: 1.3.1

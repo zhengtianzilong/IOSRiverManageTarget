@@ -107,10 +107,6 @@
 		D51D3E4E1F69398900CA0903 /* blankpage_image_Sleep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51D3D381F69398800CA0903 /* blankpage_image_Sleep@2x.png */; };
 		D51D3E4F1F69398900CA0903 /* blankpage_image_Sleep@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51D3D391F69398800CA0903 /* blankpage_image_Sleep@3x.png */; };
 		D51D3E511F69398900CA0903 /* ZLEaseBlankPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D3D1F69398800CA0903 /* ZLEaseBlankPageView.m */; };
-		D51D3E531F69398900CA0903 /* MMPopupCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D431F69398800CA0903 /* MMPopupCategory.m */; };
-		D51D3E541F69398900CA0903 /* MMPopupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D461F69398800CA0903 /* MMPopupItem.m */; };
-		D51D3E551F69398900CA0903 /* MMPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D481F69398800CA0903 /* MMPopupView.m */; };
-		D51D3E561F69398900CA0903 /* MMPopupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D4A1F69398800CA0903 /* MMPopupWindow.m */; };
 		D51D3E581F69398900CA0903 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D4F1F69398900CA0903 /* Reachability.m */; };
 		D51D3E591F69398900CA0903 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D531F69398900CA0903 /* TAAbstractDotView.m */; };
 		D51D3E5A1F69398900CA0903 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D551F69398900CA0903 /* TAAnimatedDotView.m */; };
@@ -118,9 +114,7 @@
 		D51D3E5C1F69398900CA0903 /* TAPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D591F69398900CA0903 /* TAPageControl.m */; };
 		D51D3E5D1F69398900CA0903 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D5B1F69398900CA0903 /* SDCollectionViewCell.m */; };
 		D51D3E5F1F69398900CA0903 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D5F1F69398900CA0903 /* UIView+SDExtension.m */; };
-		D51D40091F69399000CA0903 /* Placeholder in Resources */ = {isa = PBXBuildFile; fileRef = D51D3F1F1F69398F00CA0903 /* Placeholder */; };
 		D51D40351F69399000CA0903 /* ZLMainTabBarControllerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3F8D1F69398F00CA0903 /* ZLMainTabBarControllerConfig.m */; };
-		D51D40371F69399000CA0903 /* Placeholder in Resources */ = {isa = PBXBuildFile; fileRef = D51D3F911F69398F00CA0903 /* Placeholder */; };
 		D51D40391F69399000CA0903 /* Placeholder in Resources */ = {isa = PBXBuildFile; fileRef = D51D3F951F69398F00CA0903 /* Placeholder */; };
 		D51D40551F69399400CA0903 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40491F69399400CA0903 /* AppDelegate.m */; };
 		D51D40571F69399400CA0903 /* HomeImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51D404E1F69399400CA0903 /* HomeImage.xcassets */; };
@@ -145,9 +139,6 @@
 		D51D40D31F6939AE00CA0903 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D408D1F6939AE00CA0903 /* UIScrollView+MJExtension.m */; };
 		D51D40D41F6939AE00CA0903 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D408F1F6939AE00CA0903 /* UIScrollView+MJRefresh.m */; };
 		D51D40D51F6939AE00CA0903 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40911F6939AE00CA0903 /* UIView+MJExtension.m */; };
-		D51D40E61F6939AE00CA0903 /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40B91F6939AE00CA0903 /* UIView+ViewController.m */; };
-		D51D40E71F6939AE00CA0903 /* ZLBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40BB1F6939AE00CA0903 /* ZLBaseView.m */; };
-		D51D40E81F6939AE00CA0903 /* ZLMyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40BD1F6939AE00CA0903 /* ZLMyScrollView.m */; };
 		D51D858720454E67007E5702 /* ZLPolicyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D858620454E67007E5702 /* ZLPolicyVC.m */; };
 		D51D858820454E6E007E5702 /* ZLPolicyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D858620454E67007E5702 /* ZLPolicyVC.m */; };
 		D51D858920454E6F007E5702 /* ZLPolicyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D858620454E67007E5702 /* ZLPolicyVC.m */; };
@@ -319,8 +310,6 @@
 		D57668301FEB9B3D00470A3F /* UIAlertView+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3C141F69398800CA0903 /* UIAlertView+Block.m */; };
 		D57668361FEB9B3D00470A3F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D585CD6B1FE7AF6900802DBB /* FMDatabaseQueue.m */; };
 		D57668371FEB9B3D00470A3F /* ZLRiverDemandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5866BF41F73AFF100225268 /* ZLRiverDemandModel.m */; };
-		D57668381FEB9B3D00470A3F /* MMPopupCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D431F69398800CA0903 /* MMPopupCategory.m */; };
-		D576683B1FEB9B3D00470A3F /* ZLMyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40BD1F6939AE00CA0903 /* ZLMyScrollView.m */; };
 		D576683C1FEB9B3D00470A3F /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D531F69398900CA0903 /* TAAbstractDotView.m */; };
 		D576683E1FEB9B3D00470A3F /* ZLLoginTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = D574C2C31F763D1C00D7FD35 /* ZLLoginTextFieldView.m */; };
 		D57668421FEB9B3D00470A3F /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40681F6939AE00CA0903 /* MJRefreshAutoFooter.m */; };
@@ -357,21 +346,16 @@
 		D57668A91FEB9B3D00470A3F /* ZLCustomBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D51428801F8F4B73005E2952 /* ZLCustomBaseRequest.m */; };
 		D57668B51FEB9B3D00470A3F /* NSManagedObjectContext+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3B1A1F69398800CA0903 /* NSManagedObjectContext+Extensions.m */; };
 		D57668B71FEB9B3D00470A3F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40491F69399400CA0903 /* AppDelegate.m */; };
-		D57668B81FEB9B3D00470A3F /* ZLBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40BB1F6939AE00CA0903 /* ZLBaseView.m */; };
 		D57668B91FEB9B3D00470A3F /* ZLGaodeBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A49D6F1FD67307001E1E4F /* ZLGaodeBottomView.m */; };
 		D57668BA1FEB9B3D00470A3F /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D55DB06A1F71029C001E1364 /* UIPlaceHolderTextView.m */; };
 		D57668C71FEB9B3D00470A3F /* ZLEaseBlankPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D3D1F69398800CA0903 /* ZLEaseBlankPageView.m */; };
 		D57668C91FEB9B3D00470A3F /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3CFB1F69398800CA0903 /* UIView+ViewController.m */; };
 		D57668CF1FEB9B3D00470A3F /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3BEB1F69398800CA0903 /* UIImage+RoundedCorner.m */; };
 		D57668D01FEB9B3D00470A3F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D585CD751FE7AF6900802DBB /* FMResultSet.m */; };
-		D57668D21FEB9B3D00470A3F /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40B91F6939AE00CA0903 /* UIView+ViewController.m */; };
-		D57668D41FEB9B3D00470A3F /* MMPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D481F69398800CA0903 /* MMPopupView.m */; };
 		D57668DF1FEB9B3D00470A3F /* FloatingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D58751951FDE195B0024127E /* FloatingWindow.m */; };
 		D57668E31FEB9B3D00470A3F /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D407E1F6939AE00CA0903 /* MJRefreshBackNormalFooter.m */; };
 		D57668E51FEB9B3D00470A3F /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D408F1F6939AE00CA0903 /* UIScrollView+MJRefresh.m */; };
 		D57668E71FEB9B3D00470A3F /* MJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D407C1F6939AE00CA0903 /* MJRefreshBackGifFooter.m */; };
-		D57668EB1FEB9B3D00470A3F /* MMPopupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D4A1F69398800CA0903 /* MMPopupWindow.m */; };
-		D57668EF1FEB9B3D00470A3F /* MMPopupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D461F69398800CA0903 /* MMPopupItem.m */; };
 		D57668F51FEB9B3D00470A3F /* ZLMapCalculateFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D3FB521FCFA65200C509F5 /* ZLMapCalculateFunc.m */; };
 		D57668F61FEB9B3D00470A3F /* ZLMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D3FB511FCFA65200C509F5 /* ZLMapManager.m */; };
 		D57668FA1FEB9B3D00470A3F /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3C671F69398800CA0903 /* UIImage+Color.m */; };
@@ -435,9 +419,7 @@
 		D57669A21FEB9B3D00470A3F /* blankpage_image_loadFail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51D3D361F69398800CA0903 /* blankpage_image_loadFail@2x.png */; };
 		D57669A31FEB9B3D00470A3F /* TabBarImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51D40521F69399400CA0903 /* TabBarImage.xcassets */; };
 		D57669A41FEB9B3D00470A3F /* BRCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = D549CCE61F7236F70038FF1E /* BRCity.plist */; };
-		D57669A51FEB9B3D00470A3F /* Placeholder in Resources */ = {isa = PBXBuildFile; fileRef = D51D3F911F69398F00CA0903 /* Placeholder */; };
 		D57669A61FEB9B3D00470A3F /* SDPhotoBrowserd.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D5DEA2A51F6FAA7F00CD50C0 /* SDPhotoBrowserd.podspec */; };
-		D57669A71FEB9B3D00470A3F /* Placeholder in Resources */ = {isa = PBXBuildFile; fileRef = D51D3F1F1F69398F00CA0903 /* Placeholder */; };
 		D57669A91FEB9B3D00470A3F /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D5DEA29D1F6FAA7F00CD50C0 /* LICENSE */; };
 		D57669AA1FEB9B3D00470A3F /* blankpage_image_loadFail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51D3D371F69398800CA0903 /* blankpage_image_loadFail@3x.png */; };
 		D57669AD1FEB9B3D00470A3F /* LoginAndRegisterImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51D404F1F69399400CA0903 /* LoginAndRegisterImage.xcassets */; };
@@ -590,8 +572,6 @@
 		D5850F9A1FF08CC8001B8165 /* UIAlertView+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3C141F69398800CA0903 /* UIAlertView+Block.m */; };
 		D5850FA01FF08CC8001B8165 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D585CD6B1FE7AF6900802DBB /* FMDatabaseQueue.m */; };
 		D5850FA11FF08CC8001B8165 /* ZLRiverDemandModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5866BF41F73AFF100225268 /* ZLRiverDemandModel.m */; };
-		D5850FA21FF08CC8001B8165 /* MMPopupCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D431F69398800CA0903 /* MMPopupCategory.m */; };
-		D5850FA51FF08CC8001B8165 /* ZLMyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40BD1F6939AE00CA0903 /* ZLMyScrollView.m */; };
 		D5850FA61FF08CC8001B8165 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D531F69398900CA0903 /* TAAbstractDotView.m */; };
 		D5850FA81FF08CC8001B8165 /* ZLLoginTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = D574C2C31F763D1C00D7FD35 /* ZLLoginTextFieldView.m */; };
 		D5850FAC1FF08CC8001B8165 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40681F6939AE00CA0903 /* MJRefreshAutoFooter.m */; };
@@ -628,21 +608,16 @@
 		D58510131FF08CC8001B8165 /* ZLCustomBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D51428801F8F4B73005E2952 /* ZLCustomBaseRequest.m */; };
 		D585101F1FF08CC8001B8165 /* NSManagedObjectContext+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3B1A1F69398800CA0903 /* NSManagedObjectContext+Extensions.m */; };
 		D58510211FF08CC8001B8165 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40491F69399400CA0903 /* AppDelegate.m */; };
-		D58510221FF08CC8001B8165 /* ZLBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40BB1F6939AE00CA0903 /* ZLBaseView.m */; };
 		D58510231FF08CC8001B8165 /* ZLGaodeBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A49D6F1FD67307001E1E4F /* ZLGaodeBottomView.m */; };
 		D58510241FF08CC8001B8165 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D55DB06A1F71029C001E1364 /* UIPlaceHolderTextView.m */; };
 		D58510311FF08CC8001B8165 /* ZLEaseBlankPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D3D1F69398800CA0903 /* ZLEaseBlankPageView.m */; };
 		D58510331FF08CC8001B8165 /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3CFB1F69398800CA0903 /* UIView+ViewController.m */; };
 		D58510391FF08CC8001B8165 /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3BEB1F69398800CA0903 /* UIImage+RoundedCorner.m */; };
 		D585103A1FF08CC8001B8165 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D585CD751FE7AF6900802DBB /* FMResultSet.m */; };
-		D585103C1FF08CC8001B8165 /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D40B91F6939AE00CA0903 /* UIView+ViewController.m */; };
-		D585103E1FF08CC8001B8165 /* MMPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D481F69398800CA0903 /* MMPopupView.m */; };
 		D58510491FF08CC8001B8165 /* FloatingWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D58751951FDE195B0024127E /* FloatingWindow.m */; };
 		D585104D1FF08CC8001B8165 /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D407E1F6939AE00CA0903 /* MJRefreshBackNormalFooter.m */; };
 		D585104F1FF08CC8001B8165 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D408F1F6939AE00CA0903 /* UIScrollView+MJRefresh.m */; };
 		D58510511FF08CC8001B8165 /* MJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D407C1F6939AE00CA0903 /* MJRefreshBackGifFooter.m */; };
-		D58510551FF08CC8001B8165 /* MMPopupWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D4A1F69398800CA0903 /* MMPopupWindow.m */; };
-		D58510591FF08CC8001B8165 /* MMPopupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3D461F69398800CA0903 /* MMPopupItem.m */; };
 		D585105F1FF08CC8001B8165 /* ZLMapCalculateFunc.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D3FB521FCFA65200C509F5 /* ZLMapCalculateFunc.m */; };
 		D58510601FF08CC8001B8165 /* ZLMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D3FB511FCFA65200C509F5 /* ZLMapManager.m */; };
 		D58510641FF08CC8001B8165 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = D51D3C671F69398800CA0903 /* UIImage+Color.m */; };
@@ -706,9 +681,7 @@
 		D585110D1FF08CC8001B8165 /* blankpage_image_loadFail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51D3D361F69398800CA0903 /* blankpage_image_loadFail@2x.png */; };
 		D585110E1FF08CC8001B8165 /* TabBarImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51D40521F69399400CA0903 /* TabBarImage.xcassets */; };
 		D585110F1FF08CC8001B8165 /* BRCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = D549CCE61F7236F70038FF1E /* BRCity.plist */; };
-		D58511101FF08CC8001B8165 /* Placeholder in Resources */ = {isa = PBXBuildFile; fileRef = D51D3F911F69398F00CA0903 /* Placeholder */; };
 		D58511111FF08CC8001B8165 /* SDPhotoBrowserd.podspec in Resources */ = {isa = PBXBuildFile; fileRef = D5DEA2A51F6FAA7F00CD50C0 /* SDPhotoBrowserd.podspec */; };
-		D58511121FF08CC8001B8165 /* Placeholder in Resources */ = {isa = PBXBuildFile; fileRef = D51D3F1F1F69398F00CA0903 /* Placeholder */; };
 		D58511131FF08CC8001B8165 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D5DEA29D1F6FAA7F00CD50C0 /* LICENSE */; };
 		D58511141FF08CC8001B8165 /* blankpage_image_loadFail@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51D3D371F69398800CA0903 /* blankpage_image_loadFail@3x.png */; };
 		D58511161FF08CC8001B8165 /* LoginAndRegisterImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51D404F1F69399400CA0903 /* LoginAndRegisterImage.xcassets */; };
@@ -1476,6 +1449,7 @@
 		D5D575ED20628B03000043F2 /* ZLAssignTaskDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D575EC20628B03000043F2 /* ZLAssignTaskDetailService.m */; };
 		D5D575EE20628B03000043F2 /* ZLAssignTaskDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D575EC20628B03000043F2 /* ZLAssignTaskDetailService.m */; };
 		D5D575EF20628B03000043F2 /* ZLAssignTaskDetailService.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D575EC20628B03000043F2 /* ZLAssignTaskDetailService.m */; };
+		D5DD42D9209992BA00B02F32 /* GTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53EF70320947565003C87C8 /* GTSDK.framework */; };
 		D5DEA2A91F6FAA7F00CD50C0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D5DEA29D1F6FAA7F00CD50C0 /* LICENSE */; };
 		D5DEA2AA1F6FAA7F00CD50C0 /* SDImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DEA2A01F6FAA7F00CD50C0 /* SDImageView.m */; };
 		D5DEA2AB1F6FAA7F00CD50C0 /* SDLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DEA2A21F6FAA7F00CD50C0 /* SDLoadingView.m */; };
@@ -1639,15 +1613,6 @@
 		D51D3D391F69398800CA0903 /* blankpage_image_Sleep@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blankpage_image_Sleep@3x.png"; sourceTree = "<group>"; };
 		D51D3D3C1F69398800CA0903 /* ZLEaseBlankPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLEaseBlankPageView.h; sourceTree = "<group>"; };
 		D51D3D3D1F69398800CA0903 /* ZLEaseBlankPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLEaseBlankPageView.m; sourceTree = "<group>"; };
-		D51D3D421F69398800CA0903 /* MMPopupCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupCategory.h; sourceTree = "<group>"; };
-		D51D3D431F69398800CA0903 /* MMPopupCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupCategory.m; sourceTree = "<group>"; };
-		D51D3D441F69398800CA0903 /* MMPopupDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupDefine.h; sourceTree = "<group>"; };
-		D51D3D451F69398800CA0903 /* MMPopupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupItem.h; sourceTree = "<group>"; };
-		D51D3D461F69398800CA0903 /* MMPopupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupItem.m; sourceTree = "<group>"; };
-		D51D3D471F69398800CA0903 /* MMPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupView.h; sourceTree = "<group>"; };
-		D51D3D481F69398800CA0903 /* MMPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupView.m; sourceTree = "<group>"; };
-		D51D3D491F69398800CA0903 /* MMPopupWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPopupWindow.h; sourceTree = "<group>"; };
-		D51D3D4A1F69398800CA0903 /* MMPopupWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPopupWindow.m; sourceTree = "<group>"; };
 		D51D3D4E1F69398900CA0903 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D51D3D4F1F69398900CA0903 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D51D3D521F69398900CA0903 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
@@ -1662,10 +1627,8 @@
 		D51D3D5B1F69398900CA0903 /* SDCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewCell.m; sourceTree = "<group>"; };
 		D51D3D5E1F69398900CA0903 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
 		D51D3D5F1F69398900CA0903 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
-		D51D3F1F1F69398F00CA0903 /* Placeholder */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Placeholder; sourceTree = "<group>"; };
 		D51D3F8C1F69398F00CA0903 /* ZLMainTabBarControllerConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLMainTabBarControllerConfig.h; sourceTree = "<group>"; };
 		D51D3F8D1F69398F00CA0903 /* ZLMainTabBarControllerConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLMainTabBarControllerConfig.m; sourceTree = "<group>"; };
-		D51D3F911F69398F00CA0903 /* Placeholder */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Placeholder; sourceTree = "<group>"; };
 		D51D3F951F69398F00CA0903 /* Placeholder */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Placeholder; sourceTree = "<group>"; };
 		D51D40481F69399400CA0903 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D51D40491F69399400CA0903 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1710,13 +1673,6 @@
 		D51D408F1F6939AE00CA0903 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		D51D40901F6939AE00CA0903 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		D51D40911F6939AE00CA0903 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
-		D51D40B71F6939AE00CA0903 /* UIParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIParameter.h; sourceTree = "<group>"; };
-		D51D40B81F6939AE00CA0903 /* UIView+ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ViewController.h"; sourceTree = "<group>"; };
-		D51D40B91F6939AE00CA0903 /* UIView+ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ViewController.m"; sourceTree = "<group>"; };
-		D51D40BA1F6939AE00CA0903 /* ZLBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLBaseView.h; sourceTree = "<group>"; };
-		D51D40BB1F6939AE00CA0903 /* ZLBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLBaseView.m; sourceTree = "<group>"; };
-		D51D40BC1F6939AE00CA0903 /* ZLMyScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLMyScrollView.h; sourceTree = "<group>"; };
-		D51D40BD1F6939AE00CA0903 /* ZLMyScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLMyScrollView.m; sourceTree = "<group>"; };
 		D51D40ED1F693B7C00CA0903 /* IOSRiverManage-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IOSRiverManage-Bridging-Header.h"; sourceTree = "<group>"; };
 		D51D40EE1F693DB200CA0903 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		D51D858520454E67007E5702 /* ZLPolicyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLPolicyVC.h; sourceTree = "<group>"; };
@@ -2531,6 +2487,7 @@
 				D53EF6EF209455DA003C87C8 /* libXG-SDK.a in Frameworks */,
 				D54952C31F752C3900DECB7C /* PgyUpdate.framework in Frameworks */,
 				88A05D88C1773FC21C954102 /* Pods_ABC_IOSRiverManage.framework in Frameworks */,
+				D5DD42D9209992BA00B02F32 /* GTSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2618,13 +2575,6 @@
 				C1007E485522FA2B9B11657F /* Pods_ABC_IOSRiverManageTouBiao.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D5058D7B1F6A861800199319 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		D50CD40A2047F69A00F0F0AA /* BaseController */ = {
@@ -3029,7 +2979,6 @@
 				D5682B2F1F6F7FC900508F0D /* GTMBase64 */,
 				D51D3D2F1F69398800CA0903 /* CutButtonDown */,
 				D51D3D341F69398800CA0903 /* EaseBlankPage */,
-				D51D3D3F1F69398800CA0903 /* MMPopupView */,
 				D51D3D4D1F69398900CA0903 /* Reachability */,
 				D51D3D501F69398900CA0903 /* SDCycleScrollView */,
 			);
@@ -3057,22 +3006,6 @@
 				D51D3D3D1F69398800CA0903 /* ZLEaseBlankPageView.m */,
 			);
 			path = EaseBlankPage;
-			sourceTree = "<group>";
-		};
-		D51D3D3F1F69398800CA0903 /* MMPopupView */ = {
-			isa = PBXGroup;
-			children = (
-				D51D3D421F69398800CA0903 /* MMPopupCategory.h */,
-				D51D3D431F69398800CA0903 /* MMPopupCategory.m */,
-				D51D3D441F69398800CA0903 /* MMPopupDefine.h */,
-				D51D3D451F69398800CA0903 /* MMPopupItem.h */,
-				D51D3D461F69398800CA0903 /* MMPopupItem.m */,
-				D51D3D471F69398800CA0903 /* MMPopupView.h */,
-				D51D3D481F69398800CA0903 /* MMPopupView.m */,
-				D51D3D491F69398800CA0903 /* MMPopupWindow.h */,
-				D51D3D4A1F69398800CA0903 /* MMPopupWindow.m */,
-			);
-			path = MMPopupView;
 			sourceTree = "<group>";
 		};
 		D51D3D4D1F69398900CA0903 /* Reachability */ = {
@@ -3131,7 +3064,6 @@
 			children = (
 				D50CD40A2047F69A00F0F0AA /* BaseController */,
 				D51D3E691F69398F00CA0903 /* BaseModel */,
-				D51D3E6B1F69398F00CA0903 /* BaseOther */,
 				D51D3E6E1F69398F00CA0903 /* BaseView */,
 			);
 			path = Base;
@@ -3146,13 +3078,6 @@
 				D58BE1F920592093000194AC /* ZLBaseModel.m */,
 			);
 			path = BaseModel;
-			sourceTree = "<group>";
-		};
-		D51D3E6B1F69398F00CA0903 /* BaseOther */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = BaseOther;
 			sourceTree = "<group>";
 		};
 		D51D3E6E1F69398F00CA0903 /* BaseView */ = {
@@ -3170,7 +3095,6 @@
 			children = (
 				D51D3F0F1F69398F00CA0903 /* Controller */,
 				D51D3F1C1F69398F00CA0903 /* Model */,
-				D51D3F1E1F69398F00CA0903 /* Other */,
 				D51D3F201F69398F00CA0903 /* Service */,
 				D51D3F221F69398F00CA0903 /* View */,
 			);
@@ -3222,14 +3146,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		D51D3F1E1F69398F00CA0903 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				D51D3F1F1F69398F00CA0903 /* Placeholder */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
 		D51D3F201F69398F00CA0903 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -3271,7 +3187,6 @@
 			children = (
 				D51D3F8B1F69398F00CA0903 /* Controller */,
 				D51D3F8E1F69398F00CA0903 /* Model */,
-				D51D3F901F69398F00CA0903 /* Other */,
 				D51D3F921F69398F00CA0903 /* Service */,
 				D51D3F941F69398F00CA0903 /* View */,
 			);
@@ -3298,14 +3213,6 @@
 				D5C382D3206CC124000F77F8 /* ZLUploadImagesModel.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		D51D3F901F69398F00CA0903 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				D51D3F911F69398F00CA0903 /* Placeholder */,
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		D51D3F921F69398F00CA0903 /* Service */ = {
@@ -3420,7 +3327,6 @@
 				D549CCE01F7236F70038FF1E /* BRPickerView */,
 				D55DB0621F71013E001E1364 /* AlertViewManager */,
 				D51D40651F6939AE00CA0903 /* MJRefresh */,
-				D51D40B61F6939AE00CA0903 /* ZLPagerView */,
 			);
 			path = Vender;
 			sourceTree = "<group>";
@@ -3518,20 +3424,6 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
-		D51D40B61F6939AE00CA0903 /* ZLPagerView */ = {
-			isa = PBXGroup;
-			children = (
-				D51D40B71F6939AE00CA0903 /* UIParameter.h */,
-				D51D40B81F6939AE00CA0903 /* UIView+ViewController.h */,
-				D51D40B91F6939AE00CA0903 /* UIView+ViewController.m */,
-				D51D40BA1F6939AE00CA0903 /* ZLBaseView.h */,
-				D51D40BB1F6939AE00CA0903 /* ZLBaseView.m */,
-				D51D40BC1F6939AE00CA0903 /* ZLMyScrollView.h */,
-				D51D40BD1F6939AE00CA0903 /* ZLMyScrollView.m */,
-			);
-			path = ZLPagerView;
-			sourceTree = "<group>";
-		};
 		D51D40F51F693FC700CA0903 /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
@@ -3563,7 +3455,6 @@
 		D51D40FA1F693FC700CA0903 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D5058D7B1F6A861800199319 /* Cell */,
 				D55DB05D1F70F987001E1364 /* ZLLeftAboutTableViewCell.h */,
 				D55DB05E1F70F987001E1364 /* ZLLeftAboutTableViewCell.m */,
 				D55DB05F1F70F987001E1364 /* ZLLeftAboutTableViewCell.xib */,
@@ -5136,8 +5027,7 @@
 				TargetAttributes = {
 					D51D3AD61F69344900CA0903 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = X7285XJAR2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -5206,9 +5096,7 @@
 				D5A165F220465A35008C810E /* quality_info.html in Resources */,
 				D549CCFA1F7236F70038FF1E /* BRCity.plist in Resources */,
 				D5A6E6BD204AF2A000D1582E /* unicode_to_hanyu_pinyin.txt in Resources */,
-				D51D40371F69399000CA0903 /* Placeholder in Resources */,
 				D5DEA2AD1F6FAA7F00CD50C0 /* SDPhotoBrowserd.podspec in Resources */,
-				D51D40091F69399000CA0903 /* Placeholder in Resources */,
 				D51D3AEA1F69344900CA0903 /* LaunchScreen.storyboard in Resources */,
 				D5DEA2A91F6FAA7F00CD50C0 /* LICENSE in Resources */,
 				D51D3E4D1F69398900CA0903 /* blankpage_image_loadFail@3x.png in Resources */,
@@ -5268,9 +5156,7 @@
 				D57669A21FEB9B3D00470A3F /* blankpage_image_loadFail@2x.png in Resources */,
 				D57669A31FEB9B3D00470A3F /* TabBarImage.xcassets in Resources */,
 				D57669A41FEB9B3D00470A3F /* BRCity.plist in Resources */,
-				D57669A51FEB9B3D00470A3F /* Placeholder in Resources */,
 				D57669A61FEB9B3D00470A3F /* SDPhotoBrowserd.podspec in Resources */,
-				D57669A71FEB9B3D00470A3F /* Placeholder in Resources */,
 				D57669A91FEB9B3D00470A3F /* LICENSE in Resources */,
 				D58C4F72207B6B6A008B55D0 /* Assets.xcassets in Resources */,
 				D5A165F320465A35008C810E /* quality_info.html in Resources */,
@@ -5310,12 +5196,10 @@
 				D585110D1FF08CC8001B8165 /* blankpage_image_loadFail@2x.png in Resources */,
 				D585110E1FF08CC8001B8165 /* TabBarImage.xcassets in Resources */,
 				D585110F1FF08CC8001B8165 /* BRCity.plist in Resources */,
-				D58511101FF08CC8001B8165 /* Placeholder in Resources */,
 				D58B0BFD204D45F500DA5151 /* RiverInfoImage.xcassets in Resources */,
 				D5A165F420465A35008C810E /* quality_info.html in Resources */,
 				D585113E1FF094B6001B8165 /* Launch Screen.storyboard in Resources */,
 				D58511111FF08CC8001B8165 /* SDPhotoBrowserd.podspec in Resources */,
-				D58511121FF08CC8001B8165 /* Placeholder in Resources */,
 				D58511131FF08CC8001B8165 /* LICENSE in Resources */,
 				D58511141FF08CC8001B8165 /* blankpage_image_loadFail@3x.png in Resources */,
 				D58C4F71207B6B68008B55D0 /* Assets.xcassets in Resources */,
@@ -5425,7 +5309,6 @@
 				"${BUILT_PRODUCTS_DIR}/UITableView+FDTemplateLayoutCell/UITableView_FDTemplateLayoutCell.framework",
 				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/YTKNetwork/YTKNetwork.framework",
-				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 				"${BUILT_PRODUCTS_DIR}/ZBarSDK/ZBarSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -5453,7 +5336,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITableView_FDTemplateLayoutCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YTKNetwork.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZBarSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5491,7 +5373,6 @@
 				"${BUILT_PRODUCTS_DIR}/UITableView+FDTemplateLayoutCell/UITableView_FDTemplateLayoutCell.framework",
 				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/YTKNetwork/YTKNetwork.framework",
-				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 				"${BUILT_PRODUCTS_DIR}/ZBarSDK/ZBarSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -5519,7 +5400,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITableView_FDTemplateLayoutCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YTKNetwork.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZBarSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5677,7 +5557,6 @@
 				"${BUILT_PRODUCTS_DIR}/UITableView+FDTemplateLayoutCell/UITableView_FDTemplateLayoutCell.framework",
 				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/YTKNetwork/YTKNetwork.framework",
-				"${BUILT_PRODUCTS_DIR}/YYText/YYText.framework",
 				"${BUILT_PRODUCTS_DIR}/ZBarSDK/ZBarSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -5705,7 +5584,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITableView_FDTemplateLayoutCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YTKNetwork.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYText.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZBarSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5821,12 +5699,10 @@
 				D585CD771FE7AF6900802DBB /* FMDatabaseQueue.m in Sources */,
 				D5866BF51F73AFF100225268 /* ZLRiverDemandModel.m in Sources */,
 				D58BE218205945F7000194AC /* ZLNewAreaDataModel.m in Sources */,
-				D51D3E531F69398900CA0903 /* MMPopupCategory.m in Sources */,
 				D59BBA31205A277B00B3DB4C /* ZLNewAddressBookModel.m in Sources */,
 				D5C0B2AA2068E2AB00E88716 /* ZLFindMyDoneTaskListService.m in Sources */,
 				D5B35E0F205D277C00369469 /* ZLTaskMyCheckVC.m in Sources */,
 				D589171220453BB60064A945 /* ZLFAQVC.m in Sources */,
-				D51D40E81F6939AE00CA0903 /* ZLMyScrollView.m in Sources */,
 				D537D95A20637F0F00392FF4 /* ZLOverSeeSelectInfoView.m in Sources */,
 				D5A2A905206793DC00064F47 /* ZLMyTaskWaitCell.m in Sources */,
 				D50CD4212048027400F0F0AA /* ZLNewsAndNotifactionVC.m in Sources */,
@@ -5981,7 +5857,6 @@
 				D5516DDA20633B9400D103B1 /* ZLAssignTaskDetailModel.m in Sources */,
 				D51D40551F69399400CA0903 /* AppDelegate.m in Sources */,
 				D57CCC6F1FFC688A00D80ED8 /* ZLRiverInfoPeopleVC.m in Sources */,
-				D51D40E71F6939AE00CA0903 /* ZLBaseView.m in Sources */,
 				D5826331204E6C2100359BEF /* ZLOverSeeManagerVC.m in Sources */,
 				D5A49D701FD67307001E1E4F /* ZLGaodeBottomView.m in Sources */,
 				D55DB06B1F71029C001E1364 /* UIPlaceHolderTextView.m in Sources */,
@@ -6018,9 +5893,7 @@
 				D585CD7B1FE7AF6A00802DBB /* FMResultSet.m in Sources */,
 				D597BD7420720B8C0056FD93 /* ZLGetNowAreaRiverListService.m in Sources */,
 				D528D54820576371005DE60F /* ZLRiverBilidChangeVC.m in Sources */,
-				D51D40E61F6939AE00CA0903 /* UIView+ViewController.m in Sources */,
 				D5A2A91420679A9C00064F47 /* ZLTaskInfoTableViewCell.m in Sources */,
-				D51D3E551F69398900CA0903 /* MMPopupView.m in Sources */,
 				D581016F20478D5100F7D08C /* ZLRiverPeopleNameAndEditBtnView.m in Sources */,
 				D51ACEC72048E164006C283D /* ZLSelectInfoView.m in Sources */,
 				D5BA2BF32085ED0300E15C4D /* ZLReportDepartTableViewCell.m in Sources */,
@@ -6043,7 +5916,6 @@
 				D58C3826209050D50055E010 /* ZLMySetupTableViewController.m in Sources */,
 				D5AF55D2206E2849000F3BAB /* ZLRiverInfoFiveDetailVC.m in Sources */,
 				D5B35DCC205CE37B00369469 /* ZLReportEventDesTableViewCell.m in Sources */,
-				D51D3E561F69398900CA0903 /* MMPopupWindow.m in Sources */,
 				D5A5B1BC2069DDDA00387451 /* ZLTaskInfoDetailModel.m in Sources */,
 				D537D95F2063810B00392FF4 /* ZLQueryOverSeeView.m in Sources */,
 				D5AB33A72064CBDA00C232B1 /* ZLMyEventWaitCell.m in Sources */,
@@ -6052,7 +5924,6 @@
 				D550942520610110009DD61E /* ZLRiverRecordAllPointModel.m in Sources */,
 				D58204052047F17900B37340 /* ZLHomeMainVC.m in Sources */,
 				D5C382F5206D06A9000F77F8 /* ZLEventManagerCheckService.m in Sources */,
-				D51D3E541F69398900CA0903 /* MMPopupItem.m in Sources */,
 				D58814B7205F93DB0086FE4C /* ZLRiverAddOutletVC.m in Sources */,
 				D537D9782063940D00392FF4 /* ZLSuperviseDetailVC.m in Sources */,
 				D5826336204E6DEB00359BEF /* ZLAssignedVC.m in Sources */,
@@ -6282,12 +6153,10 @@
 				D57668361FEB9B3D00470A3F /* FMDatabaseQueue.m in Sources */,
 				D57668371FEB9B3D00470A3F /* ZLRiverDemandModel.m in Sources */,
 				D58BE219205945F7000194AC /* ZLNewAreaDataModel.m in Sources */,
-				D57668381FEB9B3D00470A3F /* MMPopupCategory.m in Sources */,
 				D59BBA32205A277B00B3DB4C /* ZLNewAddressBookModel.m in Sources */,
 				D5C0B2AB2068E2AB00E88716 /* ZLFindMyDoneTaskListService.m in Sources */,
 				D5B35E10205D277C00369469 /* ZLTaskMyCheckVC.m in Sources */,
 				D589171320453BB60064A945 /* ZLFAQVC.m in Sources */,
-				D576683B1FEB9B3D00470A3F /* ZLMyScrollView.m in Sources */,
 				D537D95B20637F0F00392FF4 /* ZLOverSeeSelectInfoView.m in Sources */,
 				D5A2A906206793DC00064F47 /* ZLMyTaskWaitCell.m in Sources */,
 				D50CD4222048027400F0F0AA /* ZLNewsAndNotifactionVC.m in Sources */,
@@ -6443,7 +6312,6 @@
 				D5516DDB20633B9400D103B1 /* ZLAssignTaskDetailModel.m in Sources */,
 				D57668B71FEB9B3D00470A3F /* AppDelegate.m in Sources */,
 				D57CCC701FFC688A00D80ED8 /* ZLRiverInfoPeopleVC.m in Sources */,
-				D57668B81FEB9B3D00470A3F /* ZLBaseView.m in Sources */,
 				D5826332204E6C2100359BEF /* ZLOverSeeManagerVC.m in Sources */,
 				D57668B91FEB9B3D00470A3F /* ZLGaodeBottomView.m in Sources */,
 				D57668BA1FEB9B3D00470A3F /* UIPlaceHolderTextView.m in Sources */,
@@ -6480,9 +6348,7 @@
 				D57668D01FEB9B3D00470A3F /* FMResultSet.m in Sources */,
 				D597BD7520720B8C0056FD93 /* ZLGetNowAreaRiverListService.m in Sources */,
 				D528D54920576371005DE60F /* ZLRiverBilidChangeVC.m in Sources */,
-				D57668D21FEB9B3D00470A3F /* UIView+ViewController.m in Sources */,
 				D5A2A91520679A9C00064F47 /* ZLTaskInfoTableViewCell.m in Sources */,
-				D57668D41FEB9B3D00470A3F /* MMPopupView.m in Sources */,
 				D581017020478D5100F7D08C /* ZLRiverPeopleNameAndEditBtnView.m in Sources */,
 				D51ACEC82048E164006C283D /* ZLSelectInfoView.m in Sources */,
 				D5BA2BF42085ED0300E15C4D /* ZLReportDepartTableViewCell.m in Sources */,
@@ -6505,7 +6371,6 @@
 				D58C3827209050D50055E010 /* ZLMySetupTableViewController.m in Sources */,
 				D5AF55D3206E2849000F3BAB /* ZLRiverInfoFiveDetailVC.m in Sources */,
 				D5B35DCD205CE37B00369469 /* ZLReportEventDesTableViewCell.m in Sources */,
-				D57668EB1FEB9B3D00470A3F /* MMPopupWindow.m in Sources */,
 				D5A5B1BD2069DDDA00387451 /* ZLTaskInfoDetailModel.m in Sources */,
 				D537D9602063810B00392FF4 /* ZLQueryOverSeeView.m in Sources */,
 				D5AB33A82064CBDA00C232B1 /* ZLMyEventWaitCell.m in Sources */,
@@ -6514,7 +6379,6 @@
 				D550942620610110009DD61E /* ZLRiverRecordAllPointModel.m in Sources */,
 				D58204062047F17900B37340 /* ZLHomeMainVC.m in Sources */,
 				D5C382F6206D06A9000F77F8 /* ZLEventManagerCheckService.m in Sources */,
-				D57668EF1FEB9B3D00470A3F /* MMPopupItem.m in Sources */,
 				D58814B8205F93DB0086FE4C /* ZLRiverAddOutletVC.m in Sources */,
 				D537D9792063940D00392FF4 /* ZLSuperviseDetailVC.m in Sources */,
 				D5826337204E6DEB00359BEF /* ZLAssignedVC.m in Sources */,
@@ -6730,12 +6594,10 @@
 				D5850FA01FF08CC8001B8165 /* FMDatabaseQueue.m in Sources */,
 				D5850FA11FF08CC8001B8165 /* ZLRiverDemandModel.m in Sources */,
 				D58BE21A205945F7000194AC /* ZLNewAreaDataModel.m in Sources */,
-				D5850FA21FF08CC8001B8165 /* MMPopupCategory.m in Sources */,
 				D59BBA33205A277B00B3DB4C /* ZLNewAddressBookModel.m in Sources */,
 				D5C0B2AC2068E2AB00E88716 /* ZLFindMyDoneTaskListService.m in Sources */,
 				D5B35E11205D277C00369469 /* ZLTaskMyCheckVC.m in Sources */,
 				D589171420453BB60064A945 /* ZLFAQVC.m in Sources */,
-				D5850FA51FF08CC8001B8165 /* ZLMyScrollView.m in Sources */,
 				D537D95C20637F0F00392FF4 /* ZLOverSeeSelectInfoView.m in Sources */,
 				D5A2A907206793DC00064F47 /* ZLMyTaskWaitCell.m in Sources */,
 				D50CD4232048027400F0F0AA /* ZLNewsAndNotifactionVC.m in Sources */,
@@ -6891,7 +6753,6 @@
 				D5516DDC20633B9400D103B1 /* ZLAssignTaskDetailModel.m in Sources */,
 				D58510211FF08CC8001B8165 /* AppDelegate.m in Sources */,
 				D57CCC711FFC688A00D80ED8 /* ZLRiverInfoPeopleVC.m in Sources */,
-				D58510221FF08CC8001B8165 /* ZLBaseView.m in Sources */,
 				D5826333204E6C2100359BEF /* ZLOverSeeManagerVC.m in Sources */,
 				D58510231FF08CC8001B8165 /* ZLGaodeBottomView.m in Sources */,
 				D58510241FF08CC8001B8165 /* UIPlaceHolderTextView.m in Sources */,
@@ -6928,9 +6789,7 @@
 				D585103A1FF08CC8001B8165 /* FMResultSet.m in Sources */,
 				D597BD7620720B8C0056FD93 /* ZLGetNowAreaRiverListService.m in Sources */,
 				D528D54A20576371005DE60F /* ZLRiverBilidChangeVC.m in Sources */,
-				D585103C1FF08CC8001B8165 /* UIView+ViewController.m in Sources */,
 				D5A2A91620679A9C00064F47 /* ZLTaskInfoTableViewCell.m in Sources */,
-				D585103E1FF08CC8001B8165 /* MMPopupView.m in Sources */,
 				D581017120478D5100F7D08C /* ZLRiverPeopleNameAndEditBtnView.m in Sources */,
 				D51ACEC92048E164006C283D /* ZLSelectInfoView.m in Sources */,
 				D5BA2BF52085ED0300E15C4D /* ZLReportDepartTableViewCell.m in Sources */,
@@ -6953,7 +6812,6 @@
 				D58C3828209050D50055E010 /* ZLMySetupTableViewController.m in Sources */,
 				D5AF55D4206E2849000F3BAB /* ZLRiverInfoFiveDetailVC.m in Sources */,
 				D5B35DCE205CE37B00369469 /* ZLReportEventDesTableViewCell.m in Sources */,
-				D58510551FF08CC8001B8165 /* MMPopupWindow.m in Sources */,
 				D5A5B1BE2069DDDA00387451 /* ZLTaskInfoDetailModel.m in Sources */,
 				D537D9612063810B00392FF4 /* ZLQueryOverSeeView.m in Sources */,
 				D5AB33A92064CBDA00C232B1 /* ZLMyEventWaitCell.m in Sources */,
@@ -6962,7 +6820,6 @@
 				D550942720610110009DD61E /* ZLRiverRecordAllPointModel.m in Sources */,
 				D58204072047F17900B37340 /* ZLHomeMainVC.m in Sources */,
 				D5C382F7206D06A9000F77F8 /* ZLEventManagerCheckService.m in Sources */,
-				D58510591FF08CC8001B8165 /* MMPopupItem.m in Sources */,
 				D58814B9205F93DB0086FE4C /* ZLRiverAddOutletVC.m in Sources */,
 				D537D97A2063940D00392FF4 /* ZLSuperviseDetailVC.m in Sources */,
 				D5826338204E6DEB00359BEF /* ZLAssignedVC.m in Sources */,
@@ -7236,11 +7093,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = IOSRiverManage/IOSRiverManage.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = X7285XJAR2;
+				DEVELOPMENT_TEAM = 852BN2UPEC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7267,10 +7124,10 @@
 					"\"$(SRCROOT)/IOSRiverManage\"",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xgzl.IOSRiverManage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hzz.jshezhangtong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5d8df809-1b3e-4df5-b85c-f13c3989af0e";
+				PROVISIONING_PROFILE_SPECIFIER = ICTHezhangzhi_Ent;
 				SWIFT_OBJC_BRIDGING_HEADER = "IOSRiverManage/Resource/Config/IOSRiverManage-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7535,11 +7392,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = IOSRiverManage/IOSRiverManage.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = X7285XJAR2;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7566,10 +7423,10 @@
 					"\"$(SRCROOT)/IOSRiverManage\"",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xgzl.IOSRiverManage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hzz.jshezhangtong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = ICTHezhangzhi_Ent;
 				SWIFT_OBJC_BRIDGING_HEADER = "IOSRiverManage/Resource/Config/IOSRiverManage-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

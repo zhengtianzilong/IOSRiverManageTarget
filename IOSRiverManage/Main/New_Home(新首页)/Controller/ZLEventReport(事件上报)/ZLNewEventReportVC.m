@@ -657,9 +657,6 @@
         [bottomView.saveButton addTarget:self action:@selector(saveButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
         
         [bottomView.reportButton addTarget:self action:@selector(reportButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
-        
-//        [bottomView.deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
-//
         [mediaView observeViewHeight:^(CGFloat mediaHeight) {
             CGRect btnRect = bottomView.frame;
             btnRect.origin.y = CGRectGetMaxY(mediaView.frame) + 50;

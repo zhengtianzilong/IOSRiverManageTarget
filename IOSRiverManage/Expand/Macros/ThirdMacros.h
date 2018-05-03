@@ -33,9 +33,9 @@
 #define USER_APPID           @"56ce54a5"
 
 //个推开发者网站中申请App时，注册的AppId、AppKey、AppSecret
-#define kGtAppId           @"0uuwznWonIANoK07JeRWgA"
-#define kGtAppKey          @"6LeO4stbrA7TeyMUJdXlx3"
-#define kGtAppSecret       @"282vl0IwZd9KL3ZpDyoUL7"
+#define kGtAppId @"bk5J8xPKND7MPOhoHnxVb6"
+#define kGtAppKey @"IzKilnoM8b6WYCirpvj172"
+#define kGtAppSecret @"Jh9WK0xj7R7BRJItvP6mc8"
 
 //网络状态监控地址
 static NSString* const kURL_Reachability__Address=@"www.baidu.com";

@@ -167,8 +167,6 @@
     self.imageNameArray = [NSMutableArray array];
     
     [self getDepartsData];
-    
-    
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.mainTableView];
     
@@ -181,8 +179,6 @@
     
     
 }
-
-
 #pragma mark -- 列表的代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -219,8 +215,6 @@
     }
     
     if (indexPath.row == 1) {
-        
-        
         ZLReportPeopleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZLReportPeopleTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -330,8 +324,6 @@
     return nil;
     
 }
-
-
 
 // 接收人选择
 - (void)peopleClick:(UITextView *)textView with:(UITableView *)tableView{

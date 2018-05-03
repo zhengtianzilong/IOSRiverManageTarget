@@ -446,9 +446,6 @@
                 
                 [self.imageNameArray addObject:model.toDictionary];
             }
-            
-            
-            
         }else{
             [SVProgressHUD showErrorWithStatus:imagesModel.detail];
             [SVProgressHUD dismissWithDelay:0.3];
