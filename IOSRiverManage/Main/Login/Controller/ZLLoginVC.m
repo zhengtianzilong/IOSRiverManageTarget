@@ -23,7 +23,7 @@
 #import "ZLGetDepartmentListByTaskService.h"
 #import "ZLGetEventUserListModel.h"
 #import "ZLSimpleMainTapBarVCConfig.h"
-@interface ZLLoginVC ()<YTKChainRequestDelegate>
+@interface ZLLoginVC ()<YTKChainRequestDelegate, GeTuiSdkDelegate>
 
 @property (nonatomic, strong) ZLLoginTopView *topView;
 @property (nonatomic, strong) ZLLoginInputView *inputView;
@@ -124,19 +124,6 @@
             ZLNewGetUserRiversService *getUserRiversService = [[ZLNewGetUserRiversService alloc]init];
 
             [chainRequest addRequest:getUserRiversService callback:nil];
-//
-//            ZLGetUserListByIncidentService *getUserListService = [[ZLGetUserListByIncidentService alloc]initWithriverCode:@""];
-//            [chainRequest addRequest:getUserListService callback:nil];
-//
-//            ZLGetDepartmentListByIncidentService *getDepartListService = [[ZLGetDepartmentListByIncidentService alloc]init];
-//            [chainRequest addRequest:getDepartListService callback:nil];
-//
-//            ZLGetUserListByTaskNormalService *getTaskNormalService = [[ZLGetUserListByTaskNormalService alloc]initWithriverCode:nil];
-//            [chainRequest addRequest:getTaskNormalService callback:nil];
-//
-//            ZLGetDepartmentListByTaskService *getDepartListTaskService = [[ZLGetDepartmentListByTaskService alloc]init];
-//            [chainRequest addRequest:getDepartListTaskService callback:nil];
-//
         }else{
             [SVProgressHUD showErrorWithStatus:model.detail];
             [SVProgressHUD dismissWithDelay:0.5];
@@ -193,42 +180,11 @@
 
         [self.store putString:getUserString withId:DBUserRivers intoTable:DBUserTable];
         
+        // 绑定别名
+        [GeTuiSdk bindAlias:model.data.userId andSequenceNum:@"river"];
+        
         [self.store putString:request.responseString withId:DBLoginModel intoTable:DBUserTable];
         [self.store putString:[ZLUtility getDateByTimestamp:[ZLUtility getNowTimestampSec] type:4] withId:DBLoginTokenCreateTime intoTable:DBUserTable];
-//
-//        ZLGetUserListByIncidentService *getUserList = (ZLGetUserListByIncidentService *)chainRequest.requestArray[2];
-//
-//        ZLGetEventUserListModel *eventUserList = [[ZLGetEventUserListModel alloc]initWithString:getUserList.responseString error:nil];
-//
-//        if ([eventUserList.code isEqualToString:@"0"]) {
-//
-//           [self.store putString:getUserList.responseString withId:DBEventPeopleListRivers intoTable:DBUserTable];
-//
-//        }
-//
-//        ZLGetDepartmentListByIncidentService *getDepartList = (ZLGetDepartmentListByIncidentService *)chainRequest.requestArray[3];
-//
-//        ZLGetDepartModel *departModel = [[ZLGetDepartModel alloc]initWithString:getDepartList.responseString error:nil];
-//
-//        if ([departModel.code isEqualToString:@"0"]) {
-//            [self.store putString:getDepartList.responseString withId:DBEventDepartListRivers intoTable:DBUserTable];
-//        }
-//
-//        ZLGetUserListByTaskNormalService *getTaskUsersList = (ZLGetUserListByTaskNormalService *)chainRequest.requestArray[4];
-//
-//        ZLGetEventUserListModel *taskUserList = [[ZLGetEventUserListModel alloc]initWithString:getTaskUsersList.responseString error:nil];
-//
-//        if ([taskUserList.code isEqualToString:@"0"]) {
-//            [self.store putString:getTaskUsersList.responseString withId:DBTaskPeopleListRivers intoTable:DBUserTable];
-//        }
-//
-//        ZLGetDepartmentListByTaskService *getDepartTaskList = (ZLGetDepartmentListByTaskService *)chainRequest.requestArray[5];
-//
-//        ZLGetDepartModel *taskDepartModel = [[ZLGetDepartModel alloc]initWithString:getDepartTaskList.responseString error:nil];
-//
-//        if ([taskDepartModel.code isEqualToString:@"0"]) {
-//            [self.store putString:getDepartTaskList.responseString withId:DBTaskDepartListRivers intoTable:DBUserTable];
-//        }
         
         NSString *appVersion = [[NSUserDefaults standardUserDefaults]objectForKey:DBApp_Version];
         [SVProgressHUD showSuccessWithStatus:@"登录成功"];
@@ -240,6 +196,13 @@
         [SVProgressHUD showErrorWithStatus:model.detail];
         [SVProgressHUD dismissWithDelay:0.5];
     }
+}
+
+
+- (void)GeTuiSdkDidAliasAction:(NSString *)action result:(BOOL)isSuccess sequenceNum:(NSString *)aSn error:(NSError *)aError{
+    
+    [self.store putString:isSuccess?@"YES":@"NO" withId:@"AliasAction" intoTable:DBUserTable];
+    
 }
 
 - (void)chainRequestFailed:(YTKChainRequest *)chainRequest failedBaseRequest:(YTKBaseRequest *)request{

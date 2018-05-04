@@ -7,7 +7,7 @@ pod 'ReactiveCocoa'
 pod 'SDWebImage' 
 pod 'JSONModel'
 pod 'Masonry'
-pod 'FLEX', '~> 2.0', :configurations => ['Debug']
+pod 'FLEX'
 pod 'ActionSheetPicker-3.0'
 pod 'CYLTabBarController'
 pod 'IQKeyboardManager'

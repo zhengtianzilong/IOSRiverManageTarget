@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -73,6 +73,9 @@
                                                         <constraint firstAttribute="width" constant="47" id="yzN-RS-kbX"/>
                                                     </constraints>
                                                     <color key="onTintColor" red="0.37467764460000003" green="0.61661085819999994" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="switchClick:" destination="6lt-Lj-5tN" eventType="valueChanged" id="bOX-DY-qai"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -130,6 +133,9 @@
                             <outlet property="delegate" destination="6lt-Lj-5tN" id="Kec-gj-75a"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="switchBtn" destination="HGE-fl-PXi" id="Dbd-VN-Ml6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XPy-O4-stR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

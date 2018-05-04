@@ -11,8 +11,7 @@
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
 #import "ZLBadgeZeroService.h"
-
-//#import <FLEX/FLEX.h>
+#import <FLEX/FLEX.h>
 #import "XGPush.h"
 //#import "ZLHomeWebViewViewController.h"
 
@@ -21,11 +20,7 @@
 #import "ZLLoginVC.h"
 
 #import "ZLSimpleMainTapBarVCConfig.h"
-
 #import <AMapFoundationKit/AMapFoundationKit.h>
-
-#import <GTSDK/GeTuiSdk.h>
-
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
 #endif
@@ -47,11 +42,6 @@
     [self.floatWindow makeKeyAndVisible];
     self.floatWindow.hidden = YES;
     
-//    [self configBaiDuSDK];
-    // 配置信鸽
-//    [self xgConfigWithOptions:launchOptions];
-    
-    
     [self configGeiTui];
     
     [self configPGYSDK];
@@ -68,7 +58,7 @@
     [self customizeTabbarItem];
     
     
-//    [[FLEXManager sharedManager] showExplorer];
+    [[FLEXManager sharedManager] showExplorer];
     
     return YES;
 }
@@ -88,33 +78,14 @@
     
 }
 
-
 /**
- 配置信鸽
- */
-- (void)xgConfigWithOptions:(NSDictionary *)launchOptions{
-//    // 打开debug开关
-//    [[XGPush defaultManager]setEnableDebug:YES];
-//    // 查看debug开发是否打开
-//    BOOL debugEnabled = [[XGPush defaultManager]isEnableDebug];
-//    ZLLog(@"debugEnabled%d",debugEnabled);
-//    // 开始推送 2200269075
-//    [[XGPush defaultManager]startXGWithAppID:2200269075 appKey:@"I2Q55UXZ2D5E" delegate:self];
-//    
-//    // 上报数据
-//    [[XGPush defaultManager]reportXGNotificationInfo:launchOptions];
-//    [XGPushTokenManager defaultTokenManager].delegatge = self;
-    
-}
-
-/**
- 配置信鸽
+ 配置个推
  */
 - (void)configGeiTui{
     [GeTuiSdk startSdkWithAppId:kGtAppId appKey:kGtAppKey appSecret:kGtAppSecret delegate:self];
     
     [self registerRemoteNotification];
-    
+    [self registLocationNotification];
 }
 
 #pragma mark注册本地通知
@@ -180,16 +151,11 @@
 /** SDK启动成功返回cid */
 - (void)GeTuiSdkDidRegisterClient:(NSString *)clientId{
     //个推SDK已注册，返回clientId
+    
+    [self.store putString:clientId withId:@"clientId" intoTable:DBUserTable];
+    
     NSLog(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
 }
-//// 在iOS 10 以前，为处APNs通知点击事件，统计有效 户点击数，需在 AppDelegate.m的 didReceiveRemoteNotification 回调 法中调 个推SDK接 :
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
-//
-//    [GeTuiSdk handleRemoteNotification:userInfo];
-//    completionHandler(UIBackgroundFetchResultNewData);
-//
-//
-//}
 
 
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
@@ -197,6 +163,12 @@
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
    
     NSLog(@"willPresentNotification:%@", notification.request.content.userInfo);
+    [self.store putObject:notification.request.content.userInfo withId:@"qiantaihuoque" intoTable:DBUserTable];
+    
+//    [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+//
+//    } title:@"提示" message:notification.request.content.userInfo[@"payload"] cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
+    
     // 根据APP需要，判断是否要提示 户Badge、Sound、Alert
     completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
 }
@@ -204,6 +176,7 @@
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
     
     NSLog(@"didReceiveNotification:%@", response.notification.request.content.userInfo);
+    [self.store putObject:response.notification.request.content.userInfo withId:@"dianjitongzhijin" intoTable:DBUserTable];
     // [ GTSdk ]:将收到的APNs信息传给个推统计
     [GeTuiSdk handleRemoteNotification:response.notification.request.content.userInfo];
     completionHandler();
@@ -213,8 +186,9 @@
 /** APP已经接收到“远程”通知(推送) - 透传推送消息 */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
     // 处 APNs代码，通过userInfo可以取到推送的信息(包括内容， 标， 定义参数等)。如果需要弹 窗等其他操作，则需要  编码。
-    NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo)
-    ;
+    NSLog(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
+    [self.store putObject:userInfo withId:@"touchuan" intoTable:DBUserTable];
+    
     [GeTuiSdk handleRemoteNotification:userInfo];
     //静默推送收到消息后也需要将APNs信息传给个推统计 [GeTuiSdk handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
@@ -222,6 +196,14 @@
 
 
 - (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId{
+    
+    [self.store putObject:@"sss" withId:@"payloadData" intoTable:DBUserTable];
+    
+    [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+        
+    } title:@"提示" message:@"安徽骨灰盒" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
+    
+    
     NSString *payloadMsg = nil;
     if (payloadData) {
         
@@ -229,15 +211,15 @@
     }
     NSError *error=nil;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:payloadData options:NSJSONReadingMutableContainers error:&error];
+    
+    
+    
+    
     NSString *title=[NSString stringWithFormat:@"%@",dic[@"title"]];
-    NSString *detail=[NSString stringWithFormat:@"%@",dic[@"text"]];
-//    _webTitle=[NSString stringWithFormat:@"%@",dic[@"messageTitle"]];
-//    _webUrl=[NSString stringWithFormat:@"%@",dic[@"messageUrl"]];
-    
-    
+    NSString *detail=[NSString stringWithFormat:@"%@",dic[@"content"]];
    NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg :%@%@",taskId,msgId,payloadMsg,offLine ? @"<离线消息>" : @""];
     
-    ZLLog(@"\n>>>[GexinSdk ReceivePayload]:%@\n\n", msg);
+    NSLog(@"\n>>>[GexinSdk ReceivePayload]:%@\n\n", msg);
     // 当app不在前台时，接收到的推送消息offLine值均为YES
     // 判断app是否是点击通知栏消息进行唤醒或开启
     // 如果是点击icon图标使得app进入前台，则不做操作，并且同一条推送通知，此方法只执行一次
@@ -324,55 +306,11 @@
     [GeTuiSdk setBadge:[UIApplication sharedApplication].applicationIconBadgeNumber];
 }
 
-
-
-
-
-
-
-
-
-//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-//
-//    [[XGPush defaultManager]reportXGNotificationInfo:userInfo];
-//
-//}
-
-
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
-
-- (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
-    [[XGPush defaultManager]reportXGNotificationInfo:notification.request.content.userInfo];
-    completionHandler(UNNotificationPresentationOptionBadge |
-                      UNNotificationPresentationOptionSound |
-                      UNNotificationPresentationOptionAlert);
+- (void)GeTuiSdkDidOccurError:(NSError *)error{
+    
+    [self.store putObject:error.userInfo withId:@"error" intoTable:DBUserTable];
     
 }
-
-
-/**
- 收到远程的推送
-
- */
-- (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
-    
-    [[XGPush defaultManager]reportXGNotificationInfo:response.notification.request.content.userInfo];
-//    NSData *data = [[NSUserDefaults standardUserDefaults]objectForKey:ULoginModel];
-//    ZLLoginModel *loginModel = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-//    if (loginModel.ret_data.length > 0) {
-//        loginModel.ret_data = [NSString stringWithFormat:@"%@/hzz/phoneController.do?supervise",Base_URL];
-//    }
-//
-//    if (response.notification.request.content.userInfo != nil && loginModel.ret_data.length > 0) {
-//        [self pushLoginOrWebWithUserInfo:response.notification.request.content.userInfo loginModel:loginModel];
-//    }
-    completionHandler();
-    
-    
-}
-
-#endif
 
 
 /**
@@ -483,14 +421,6 @@
     }else{
         self.window.rootViewController = logInVc;
     }
-    
-//    if (userInfo != nil) {
-//        logInVc.userInfo = userInfo;
-//    }else{
-//        logInVc.userInfo = nil;
-//    }
-    
-    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 }
@@ -515,56 +445,6 @@
     
 }
 
-#pragma mark - XGPushDelegate
-/**
- 开始服务
- */
-- (void)xgPushDidFinishStart:(BOOL)isSuccess error:(NSError *)error{
-    ZLLog(@"%s, result %@, error %@", __FUNCTION__, isSuccess?@"OK":@"NO", error);
-    
-}
-
-/**
- 停止服务
- */
-- (void)xgPushDidFinishStop:(BOOL)isSuccess error:(NSError *)error{
-    ZLLog(@"%s, result %@, error %@", __FUNCTION__, isSuccess?@"OK":@"NO", error);
-
-}
-
-/**
- 监控信鸽服务上报推送消息的情况
- */
-- (void)xgPushDidReportNotification:(BOOL)isSuccess error:(NSError *)error{
-    ZLLog(@"%s, result %@, error %@", __FUNCTION__, isSuccess?@"OK":@"NO", error);
-
-}
-
-//http://192.168.0.250:18081/hzz/phoneController.do?home&token=HZZUSER-0aa537e7ec784d9abbff53cbe6b3d574-cas
-/**
- 监控token对象绑定的情况
-
- @param identifier token对象绑定的标识
- @param type 对象绑定的类型
- @param error 错误
- */
-- (void)xgPushDidBindWithIdentifier:(NSString *)identifier type:(XGPushTokenBindType)type error:(NSError *)error{
-    
-    ZLLog(@"DidBindWithIdentifier %@",error );
-    
-}
-
-
-/**
- 监控token对象解绑的情况
-
- @param identifier token对象绑定的标识
- @param type 对象绑定的类型
- @param error error 错误
- */
-- (void)xgPushDidUnbindWithIdentifier:(NSString *)identifier type:(XGPushTokenBindType)type error:(NSError *)error{
-     ZLLog(@"UnbindWithIdentifier %@",error);
-}
 
 // 调用注册设备token
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
@@ -575,18 +455,6 @@
     // 向个推服务 注册deviceToken
     [GeTuiSdk registerDeviceToken:token];
     
-//    [[XGPushTokenManager defaultTokenManager]registerDeviceToken:deviceToken];
-    
-    // 绑定标签和账号
-//    [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:@"your tag"
-//                                                            type:XGPushTokenBindTypeTag];
-//    
-//    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:@"your tag"
-//                                                             type:XGPushTokenBindTypeTag];
-//    
-//    [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:@"youraccount" type:XGPushTokenBindTypeAccount];
-//     
-//     [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:@"youraccount" type:XGPushTokenBindTypeAccount];
     
     
 }
@@ -613,32 +481,21 @@
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-//    NSData *data = [[NSUserDefaults standardUserDefaults]objectForKey:ULoginModel];
-//    ZLLoginModel *loginModel = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-//    // 说明是登录过的 在首页里的
-//    if (application.applicationIconBadgeNumber > 0 && loginModel.userId.length > 0) {
-//        
-//        ZLBadgeZeroService *service = [[ZLBadgeZeroService alloc]initWithUid:loginModel.userId];
-//        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-//            NSDictionary *dic = request.responseObject;
-//            if ([dic[@"code"] isEqualToString:@"0"]) {
-//                [application setApplicationIconBadgeNumber:0];
-//            }
-//            
-//        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-//            
-//        }];
+    
+//    if (application.applicationIconBadgeNumber > 0) {
+//
+//        [application setApplicationIconBadgeNumber:0];
+//        [GeTuiSdk setBadge:0];
+//
 //    }
     
-    if (application.applicationIconBadgeNumber > 0) {
-        
-        [application setApplicationIconBadgeNumber:0];
-        [GeTuiSdk setBadge:0];
-        
-    }
-    
-    
-    
+    //设置推送红点取消
+    //1.设置本地推送
+    UILocalNotification *localNote = [[UILocalNotification alloc] init];
+    localNote.applicationIconBadgeNumber = -1;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNote];
+    [[UIApplication sharedApplication] cancelLocalNotification:localNote];
+    [GeTuiSdk setBadge:0];
 }
 
 

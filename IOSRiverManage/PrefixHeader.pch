@@ -43,7 +43,7 @@
 
 #import "ZLUtility.h"
 #import "DQAlertView.h"
-
+#import <GTSDK/GeTuiSdk.h>
 #import "UITextView+ZWLimitCounter.h"
 
 #ifdef Suqian

@@ -11,11 +11,28 @@
 #import "ZLLoginOutService.h"
 #import "ZLBaseModel.h"
 #import "ZLClearCacheTool.h"
+#import "ZLNewLoginModel.h"
 @interface ZLMySetupTableViewController ()
 @property (nonatomic, strong) YTKKeyValueStore *store;
+
+@property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
+
 @end
 
 @implementation ZLMySetupTableViewController
+
+
+- (IBAction)switchClick:(UISwitch *)sender {
+    
+    if (sender.on) {
+        [GeTuiSdk setPushModeForOff:NO];
+        
+    }else{
+        [GeTuiSdk setPushModeForOff:YES];
+//        [GeTuiSdk destroy];
+        
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +46,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
+        
         if (indexPath.row == 1) {
             
             [SVProgressHUD show];
@@ -41,17 +59,6 @@
                 [SVProgressHUD dismissWithDelay:0.3];
             }
         }
-        
-        //            [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-        //
-        //                if (buttonIndex == 1) {
-        //
-        //
-        //
-        //            } title:@"确定清除缓存吗?" message:[NSString stringWithFormat:@"%@%@",@"缓存大小",[ZLClearCacheTool getCacheSize]]cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
-        //
-        //        }
-        //
     }
     
     
@@ -62,9 +69,14 @@
                 
                 self.store = [[YTKKeyValueStore alloc]initDBWithName:@"hzz.db"];
                 
+                NSString *userModel = [self.store getStringById:DBLoginModel fromTable:DBUserTable];
+                
+                ZLNewLoginModel *loginModel = [[ZLNewLoginModel alloc]initWithString:userModel error:nil];
+
+                [GeTuiSdk unbindAlias:loginModel.data.userId andSequenceNum:@"river" andIsSelf:false];
+                
                 [self.store clearTable:DBUserTable];
                 [self.store clearTable:DBMapTable];
-                
                 
                 [self presentViewController:login animated:YES completion:^{
                     [self removeFromParentViewController];
