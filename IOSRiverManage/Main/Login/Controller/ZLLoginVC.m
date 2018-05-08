@@ -134,11 +134,6 @@
     chain.delegate = self;
     [chain start];
     
-    
-    
-    
-    
-    
 }
 
 /**
@@ -201,7 +196,13 @@
 
 - (void)GeTuiSdkDidAliasAction:(NSString *)action result:(BOOL)isSuccess sequenceNum:(NSString *)aSn error:(NSError *)aError{
     
-    [self.store putString:isSuccess?@"YES":@"NO" withId:@"AliasAction" intoTable:DBUserTable];
+    if (isSuccess) {
+        [self.store putString:@"YES" withId:@"AliasAction" intoTable:DBUserTable];
+    }else{
+        [self.store putString:@"NO" withId:@"AliasAction" intoTable:DBUserTable];
+    }
+    
+    NSLog(@"%@",aError);
     
 }
 

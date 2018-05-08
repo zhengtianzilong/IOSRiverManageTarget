@@ -225,7 +225,7 @@
     ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
     
     ZLTaskAlreadyDataModel *dataModel = self.sourceArray[indexPath.section];
-    vc.passCode = @"已办任务";
+//    vc.passCode = @"已办任务";
     vc.code = dataModel.taskId;
     [self.navigationController pushViewController:vc animated:YES];
     

@@ -37,7 +37,7 @@ typedef void(^completeBtnClick)(ZLTaskRiverTaskDetailListModel *model);
 /**
  从不同控制器传入
  */
-@property (nonatomic, strong) NSString *passCode;
+//@property (nonatomic, strong) NSString *passCode;
 
 
 @property (nonatomic, strong) detailBtnClick detailClick;

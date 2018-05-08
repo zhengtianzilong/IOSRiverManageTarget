@@ -13,5 +13,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property(strong ,nonatomic) FloatingWindow *floatWindow;
 
+@property (nonatomic, strong) NSDictionary *userInfo;
+
 @end
 

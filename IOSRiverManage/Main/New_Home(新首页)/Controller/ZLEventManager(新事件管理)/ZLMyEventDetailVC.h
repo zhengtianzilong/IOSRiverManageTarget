@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSString *userCode;
 
+- (void)getData;
+
 @end

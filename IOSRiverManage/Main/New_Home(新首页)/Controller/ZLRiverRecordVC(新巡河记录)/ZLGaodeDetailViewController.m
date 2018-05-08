@@ -316,7 +316,7 @@
         }else{
             ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
             
-            vc.passCode = @"任务查询";
+//            vc.passCode = @"任务查询";
             
             vc.code = model.ID;
             

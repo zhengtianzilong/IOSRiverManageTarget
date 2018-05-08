@@ -11,8 +11,8 @@
 @interface ZLTaskDetailVC : ZLBaseCustomNavViewController
 
 @property (nonatomic, strong) NSString *code;
-
+- (void)getData;
 // 从什么控制器传入
-@property (nonatomic, strong) NSString *passCode;
+//@property (nonatomic, strong) NSString *passCode;
 
 @end

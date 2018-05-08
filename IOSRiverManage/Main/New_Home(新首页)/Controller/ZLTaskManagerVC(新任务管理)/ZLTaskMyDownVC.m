@@ -214,7 +214,7 @@
     
     ZLTaskManageDataModel *dataModel = self.sourceArray[indexPath.section];
     
-    vc.passCode = @"下发任务";
+//    vc.passCode = @"下发任务";
     
     vc.code = dataModel.taskId;
     

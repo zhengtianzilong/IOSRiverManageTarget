@@ -168,7 +168,7 @@
     }
     if ([_dataModel.taskDetailStatus isEqualToString:@"6"]) {
         
-        status = @"已反馈";
+        status = @"待核查";
     }
     if ([_dataModel.taskDetailStatus isEqualToString:@"7"]) {
         
@@ -190,7 +190,28 @@
     NSString *timeString = [ZLUtility getDateByTimestamp:[time longLongValue] / 1000 type:4];
     self.time.text = timeString;
     
-    if ([self.passCode isEqualToString:@"下发任务"] || [self.passCode isEqualToString:@"待办任务"] || [self.passCode isEqualToString:@"任务查询"]) {
+    // 必须先是 6 才判断 有没有两个按钮
+//    if ([self.passCode isEqualToString:@"下发任务"] || [self.passCode isEqualToString:@"待办任务"] || [self.passCode isEqualToString:@"任务查询"]) {
+//
+//        self.completeBtn.hidden = YES;
+//        self.backBtn.hidden = YES;
+//
+//    }else{
+//
+//        if ([dataModel.isPass isEqualToString:@"0"]) {
+//
+//            self.completeBtn.hidden = YES;
+//
+//        }
+//
+//        if ([dataModel.isReject isEqualToString:@"0"]) {
+//
+//            self.backBtn.hidden = YES;
+//
+//        }
+//    }
+    
+    if (![_dataModel.taskDetailStatus isEqualToString:@"6"]) {
         
         self.completeBtn.hidden = YES;
         self.backBtn.hidden = YES;
@@ -209,6 +230,7 @@
             
         }
     }
+    
     
 }
 

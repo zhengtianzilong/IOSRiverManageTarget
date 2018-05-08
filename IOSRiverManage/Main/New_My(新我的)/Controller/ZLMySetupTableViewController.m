@@ -73,7 +73,7 @@
                 
                 ZLNewLoginModel *loginModel = [[ZLNewLoginModel alloc]initWithString:userModel error:nil];
 
-                [GeTuiSdk unbindAlias:loginModel.data.userId andSequenceNum:@"river" andIsSelf:false];
+                [GeTuiSdk unbindAlias:loginModel.data.userId andSequenceNum:@"river" andIsSelf:true];
                 
                 [self.store clearTable:DBUserTable];
                 [self.store clearTable:DBMapTable];

@@ -75,7 +75,7 @@
 // 查询通讯录数据
 #define River_UserContactsUrl @"base/riverInfoController/getUserContacts"
 
-// 查询通讯录数据
+// 新闻公告与通知
 #define River_NewsListUrl @"base/appNew/getNewsListByAreaCode"
 
 //// 上传数据
@@ -94,7 +94,7 @@
 // 删除公示牌
 #define River_PublicBoardDeleteUrl @"base/appBrandController/deleteBrand"
 
-// 删除公示牌
+// 删除排污口
 #define River_OutletDeleteUrl @"base/appSewageController/deleteSewage"
 
 // 取水口添加

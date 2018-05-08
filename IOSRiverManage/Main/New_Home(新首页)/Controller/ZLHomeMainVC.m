@@ -7,10 +7,8 @@
 //
 
 #import "ZLHomeMainVC.h"
-//#import "ZLEventReportViewController.h"
 #import "ZLHomeTaskTableViewCell.h"
 #import "ZLHomeAddButtonMaskView.h"
-//#import "ZLNewsAndNotifactionViewController.h"
 #import "ZLHomeHeadView.h"
 #import "ZLNewsAndNotifactionVC.h"
 #import "ZLEventManagerVC.h"
@@ -20,11 +18,8 @@
 #import "ZLOverSeeManagerVC.h"
 
 #import "ZLAlertSelectionView.h"
-
-//#import "ZLEventReportViewController.h"
 #import "ZLNewEventReportVC.h"
 #import "ZLNewTaskDownVC.h"
-//#import "ZLEvent_SendDownViewController.h"
 #import "ZLGaodeViewController.h"
 
 #import "ZLNewUserRiversModel.h"
@@ -49,6 +44,7 @@
 #import "ZLGetDepartmentListByTaskService.h"
 #import "ZLGetEventUserListModel.h"
 #import "ZLGetDepartModel.h"
+#import "AppDelegate.h"
 @interface ZLHomeMainVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) ZLHomeHeadView *headView;
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -71,6 +67,8 @@
 @property (nonatomic, strong) ZLNewLoginModel *loginModel;
 
 @property (nonatomic, assign) BOOL isPush;
+
+@property (nonatomic, strong) AppDelegate * app;
 
 @end
 
@@ -319,6 +317,43 @@
         
         [self handleShow];
     }
+    
+    self.app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    //pushName 是我给后天约定的通知必传值，所以我可以根据他是否为空来判断是否有通知
+    if ([self.app.userInfo objectForKey:@"payload"]) {
+        
+        // 这里延迟1秒 否则不执行跳转
+        [self performSelector:@selector(skipToVC) withObject:nil afterDelay:1];
+        
+        
+    }
+}
+
+
+/**
+ 收到推送的跳转
+ */
+- (void)skipToVC{
+    NSString *payloadStr = [self.app.userInfo objectForKey:@"payload"];
+    NSData *jsonData = [payloadStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+    NSString *type=[NSString stringWithFormat:@"%@",dic[@"type"]];
+    // 1事件 2 任务 3 交办
+    NSString *Id=[NSString stringWithFormat:@"%@",dic[@"id"]];
+    if ([type isEqualToString:@"1"]) {
+        ZLMyEventDetailVC *vc = [[ZLMyEventDetailVC alloc]init];
+        vc.eventId = Id;
+        vc.userCode = _loginModel.data.userId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if ([type isEqualToString:@"2"]){
+        
+        ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
+        //        vc.passCode = @"待办任务";
+        vc.code = Id;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
 
 - (void)setUpUI{
@@ -563,7 +598,7 @@
     
     if ([model.type isEqualToString:@"1"]) {
         ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
-        vc.passCode = @"待办任务";
+//        vc.passCode = @"待办任务";
         vc.code = model.taskId;
         [self.navigationController pushViewController:vc animated:YES];
     }else if([model.type isEqualToString:@"2"]) {

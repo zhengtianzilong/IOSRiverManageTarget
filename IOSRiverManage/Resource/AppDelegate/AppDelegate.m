@@ -13,12 +13,10 @@
 #import "ZLBadgeZeroService.h"
 #import <FLEX/FLEX.h>
 #import "XGPush.h"
-//#import "ZLHomeWebViewViewController.h"
-
 #import "ZLNewLoginModel.h"
-
 #import "ZLLoginVC.h"
-
+#import "ZLMyEventDetailVC.h"
+#import "ZLTaskDetailVC.h"
 #import "ZLSimpleMainTapBarVCConfig.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
@@ -50,15 +48,18 @@
     
     [self configGaoDeSDK];
     
+    [self customizeTabbarItem];
+    [[FLEXManager sharedManager] showExplorer];
+    
+
     // 应用不在后台时,收到的推送
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     
     [self setupLoginViewControllerWithUserInfo:userInfo];
+    if (userInfo) {
+        self.userInfo = userInfo;
+    }
     
-    [self customizeTabbarItem];
-    
-    
-    [[FLEXManager sharedManager] showExplorer];
     
     return YES;
 }
@@ -165,10 +166,6 @@
     NSLog(@"willPresentNotification:%@", notification.request.content.userInfo);
     [self.store putObject:notification.request.content.userInfo withId:@"qiantaihuoque" intoTable:DBUserTable];
     
-//    [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-//
-//    } title:@"提示" message:notification.request.content.userInfo[@"payload"] cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
-    
     // 根据APP需要，判断是否要提示 户Badge、Sound、Alert
     completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
 }
@@ -180,6 +177,57 @@
     // [ GTSdk ]:将收到的APNs信息传给个推统计
     [GeTuiSdk handleRemoteNotification:response.notification.request.content.userInfo];
     completionHandler();
+    
+    if (response.notification.request.content.userInfo) {
+    
+    NSString *payloadStr = [response.notification.request.content.userInfo objectForKey:@"payload"];
+    NSData *jsonData = [payloadStr dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+    NSString *type=[NSString stringWithFormat:@"%@",dic[@"type"]];
+    // 1事件 2 任务 3 交办
+    
+    
+    CYLTabBarController *tabBarVC = (CYLTabBarController *)self.window.rootViewController;
+    
+    ZLBaseNavViewController *nav = tabBarVC.selectedViewController;
+    
+    UIViewController *baseVC = (UIViewController *)nav.visibleViewController;
+    
+        NSString *Id=[NSString stringWithFormat:@"%@",dic[@"id"]];
+        if ([type isEqualToString:@"1"]) {
+            if ([baseVC isKindOfClass:[ZLMyEventDetailVC class]]) {
+                
+                ZLMyEventDetailVC *vc = (ZLMyEventDetailVC *)baseVC;
+                vc.eventId = Id;
+                vc.userCode = _loginModel.data.userId;
+                
+                [vc getData];
+                
+            }else{
+                ZLMyEventDetailVC *vc = [[ZLMyEventDetailVC alloc]init];
+                vc.eventId = Id;
+                vc.userCode = _loginModel.data.userId;
+                [nav pushViewController:vc animated:YES];
+            }
+        }else if ([type isEqualToString:@"2"]){
+            
+            if ([baseVC isKindOfClass:[ZLMyEventDetailVC class]]) {
+                
+                ZLTaskDetailVC *vc = (ZLTaskDetailVC *)baseVC;
+                vc.code = Id;
+                
+                [vc getData];
+                
+            }else{
+                ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
+                //        vc.passCode = @"待办任务";
+                vc.code = Id;
+                [nav pushViewController:vc animated:YES];
+            }
+        }
+        
+    }
 }
 #endif
 
@@ -192,18 +240,65 @@
     [GeTuiSdk handleRemoteNotification:userInfo];
     //静默推送收到消息后也需要将APNs信息传给个推统计 [GeTuiSdk handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
+    
+    if (userInfo) {
+        
+        NSString *payloadStr = [userInfo objectForKey:@"payload"];
+        NSData *jsonData = [payloadStr dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+        NSString *type=[NSString stringWithFormat:@"%@",dic[@"type"]];
+        // 1事件 2 任务 3 交办
+        
+        
+        CYLTabBarController *tabBarVC = (CYLTabBarController *)self.window.rootViewController;
+        
+        ZLBaseNavViewController *nav = tabBarVC.selectedViewController;
+        
+        UIViewController *baseVC = (UIViewController *)nav.visibleViewController;
+        
+        NSString *Id=[NSString stringWithFormat:@"%@",dic[@"id"]];
+        if ([type isEqualToString:@"1"]) {
+            if ([baseVC isKindOfClass:[ZLMyEventDetailVC class]]) {
+                
+                ZLMyEventDetailVC *vc = (ZLMyEventDetailVC *)baseVC;
+                vc.eventId = Id;
+                vc.userCode = _loginModel.data.userId;
+                
+                [vc getData];
+                
+            }else{
+                ZLMyEventDetailVC *vc = [[ZLMyEventDetailVC alloc]init];
+                vc.eventId = Id;
+                vc.userCode = _loginModel.data.userId;
+                [nav pushViewController:vc animated:YES];
+            }
+        }else if ([type isEqualToString:@"2"]){
+            
+            if ([baseVC isKindOfClass:[ZLMyEventDetailVC class]]) {
+                
+                ZLTaskDetailVC *vc = (ZLTaskDetailVC *)baseVC;
+                vc.code = Id;
+                
+                [vc getData];
+                
+            }else{
+                ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
+                //        vc.passCode = @"待办任务";
+                vc.code = Id;
+                [nav pushViewController:vc animated:YES];
+            }
+        }
+        
+    }
+    
+    
+    
 }
 
 
 - (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId{
-    
-    [self.store putObject:@"sss" withId:@"payloadData" intoTable:DBUserTable];
-    
-    [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-        
-    } title:@"提示" message:@"安徽骨灰盒" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
-    
-    
+
     NSString *payloadMsg = nil;
     if (payloadData) {
         
@@ -212,12 +307,12 @@
     NSError *error=nil;
     NSDictionary *dic=[NSJSONSerialization JSONObjectWithData:payloadData options:NSJSONReadingMutableContainers error:&error];
     
-    
+    [self.store putObject:dic withId:@"payloadData" intoTable:DBUserTable];
     
     
     NSString *title=[NSString stringWithFormat:@"%@",dic[@"title"]];
     NSString *detail=[NSString stringWithFormat:@"%@",dic[@"content"]];
-   NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg :%@%@",taskId,msgId,payloadMsg,offLine ? @"<离线消息>" : @""];
+    NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg :%@%@",taskId,msgId,payloadMsg,offLine ? @"<离线消息>" : @""];
     
     NSLog(@"\n>>>[GexinSdk ReceivePayload]:%@\n\n", msg);
     // 当app不在前台时，接收到的推送消息offLine值均为YES
@@ -225,9 +320,10 @@
     // 如果是点击icon图标使得app进入前台，则不做操作，并且同一条推送通知，此方法只执行一次
     if (!offLine) {//  离线消息已经有苹果的apns推过消息了，避免上线后再次受到消息
         if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0){
-            [self registerNotification:1 andTitle:title andMess:detail];
+            NSDictionary *dic = [NSDictionary dictionaryWithObject:payloadMsg forKey:@"payload"];
+            [self registerNotification:1 andTitle:title andMess:detail userInfo:dic];
         }else{
-            [self registerLocalNotificationInOldWay:1 andTitle:title andMess:detail];
+            [self registerLocalNotificationInOldWay:1 andTitle:title andMess:detail userInfo:dic];
         }
     }
     
@@ -237,7 +333,7 @@
 #pragma mark本地推送
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 //使用 UNNotification 本地通知
--(void)registerNotification:(NSInteger )alerTime andTitle:(NSString*)title andMess:(NSString*)mes{
+-(void)registerNotification:(NSInteger )alerTime andTitle:(NSString*)title andMess:(NSString*)mes userInfo:(NSDictionary *)userInfo{
     
     // 使用 UNUserNotificationCenter 来管理通知
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
@@ -248,7 +344,7 @@
     content.body = [NSString localizedUserNotificationStringForKey:mes
                                                          arguments:nil];
     content.sound = [UNNotificationSound defaultSound];
-//    content.userInfo=@{@"webTitle":_webTitle,@"webUrl":_webUrl};
+    content.userInfo= userInfo;
     
     // 在 alertTime 后推送本地推送
     UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
@@ -265,7 +361,7 @@
 }
 #endif
 
-- (void)registerLocalNotificationInOldWay:(NSInteger)alertTime andTitle:(NSString*)title andMess:(NSString*)mes{
+- (void)registerLocalNotificationInOldWay:(NSInteger)alertTime andTitle:(NSString*)title andMess:(NSString*)mes userInfo:(NSDictionary *)userInfo{
     
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     // 设置触发通知的时间
@@ -279,13 +375,13 @@
     notification.repeatInterval = kCFCalendarUnitEra;
     
     // 通知内容
-    notification.alertBody = title;
+    notification.alertTitle = title;
+    notification.alertBody = mes;
     notification.applicationIconBadgeNumber = 1;
     // 通知被触发时播放的声音
     notification.soundName = UILocalNotificationDefaultSoundName;
     // 通知参数
-    NSDictionary *userDict = [NSDictionary dictionaryWithObject:mes forKey:@"key"];
-    notification.userInfo = userDict;
+    notification.userInfo = userInfo;
     
     // ios8后，需要添加这个注册，才能得到授权
     if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
@@ -423,18 +519,10 @@
     }
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+   
+    
 }
-
-//// 点击推送跳转
-//- (void)pushLoginOrWebWithUserInfo:(NSDictionary *)userInfo loginModel:(ZLLoginModel *)loginModel{
-//
-//    ZLHomeWebViewViewController *webVC = [[ZLHomeWebViewViewController alloc]init];
-//    
-//    webVC.loginModel = loginModel;
-//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:webVC];
-//    nav.interactivePopGestureRecognizer.enabled = NO;
-//    self.window.rootViewController = nav;
-//}
 
 
 #pragma mark - TabBardelegate

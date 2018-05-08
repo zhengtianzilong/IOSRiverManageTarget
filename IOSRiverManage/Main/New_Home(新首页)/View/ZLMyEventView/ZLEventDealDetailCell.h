@@ -30,7 +30,7 @@
 /**
  从不同控制器传入
  */
-@property (nonatomic, strong) NSString *passCode;
+//@property (nonatomic, strong) NSString *passCode;
 
 @property (nonatomic, strong) ZLRiverIncidentDetailListModel *dataModel;
 

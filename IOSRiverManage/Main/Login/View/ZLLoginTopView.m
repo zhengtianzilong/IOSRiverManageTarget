@@ -13,7 +13,7 @@
 #define kcomStatisticsProduct @"http://183.207.103.139:86"
 #define kfileProduct @"http://183.207.103.139:86/file/"
 
-#define kDebug @"http://192.168.0.84:1011/"
+#define kDebug @"http://112.4.10.185:86/api/"
 #define kcomStatisticsDebug @"http://112.4.10.185:86"
 #define kfileDebug @"http://112.4.10.185:86/file/"
 
@@ -54,7 +54,7 @@
     [self.logoImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
         make.centerX.equalTo(self);
-//        make.width.height.mas_equalTo(90);
+        make.width.height.mas_equalTo(85);
     }];
     
     [self.titleImageV mas_makeConstraints:^(MASConstraintMaker *make) {
