@@ -70,7 +70,7 @@
         make.width.mas_equalTo(90);
         make.top.equalTo(self.contentView).offset(10);
 //        make.centerY.equalTo(self.bgView);
-        make.height.mas_equalTo(45);
+        make.height.mas_equalTo(30);
         
     }];
     [self.infoTextView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -105,7 +105,7 @@
         _infoTextView.font = CHINESE_SYSTEM(13);
         _infoTextView.zw_limitCount = 140;
         //设置整个控件文字的上下距离
-        _infoTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        _infoTextView.textContainerInset = UIEdgeInsetsMake((45 - 21)/2.0,0, (45 - 21)/2.0, 0);
         _infoTextView.scrollEnabled = NO;
         [_infoTextView scrollRangeToVisible:_infoTextView.selectedRange];
         _infoTextView.delegate = self;

@@ -80,11 +80,11 @@
     [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.equalTo(self.contentView.mas_right).offset(-10);
-        make.width.mas_equalTo(20);
+//        make.width.mas_equalTo(20);
         //        make.right.equalTo(self.bgView.mas_right);
         make.centerY.equalTo(self.contentView);
         //        make.centerY.equalTo(self.bgView);
-        make.height.mas_equalTo(20);
+//        make.height.mas_equalTo(20);
         
     }];
     
@@ -171,7 +171,7 @@
         
         _infoTextView.delegate = self;
         _infoTextView.scrollEnabled = NO;
-        _infoTextView.textContainerInset = UIEdgeInsetsMake(10,0, 10, 5);
+        _infoTextView.textContainerInset = UIEdgeInsetsMake((45 - 21)/2.0,0, (45 - 21)/2.0, 0);
         [_infoTextView addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
         
 //        [_infoTextView addTarget:self action:@selector(tapClick) forControlEvents:(UIControlEventTouchUpInside)];

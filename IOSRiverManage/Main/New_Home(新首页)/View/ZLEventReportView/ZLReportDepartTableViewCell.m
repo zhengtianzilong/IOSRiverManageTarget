@@ -151,7 +151,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.text = @"所在区县:";
         _titleLabel.backgroundColor = [UIColor whiteColor];
-        _titleLabel.font = CHINESE_SYSTEM(13);
+        _titleLabel.font = Font(13);
         
     }
     return _titleLabel;
@@ -168,7 +168,7 @@
         [_infoTextView addGestureRecognizer:tap];
         
         UILongPressGestureRecognizer *longGes = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longGesClick:)];
-        _infoTextView.textContainerInset = UIEdgeInsetsMake(10,0, 10, 5);
+        _infoTextView.textContainerInset = UIEdgeInsetsMake((45 - 21)/2.0,0, (45 - 21)/2.0, 0);
         [_infoTextView addGestureRecognizer:longGes];
         
         _infoTextView.delegate = self;

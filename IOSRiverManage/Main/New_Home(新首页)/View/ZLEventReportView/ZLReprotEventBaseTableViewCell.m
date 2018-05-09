@@ -141,7 +141,7 @@
     if (!_infoTextView) {
         _infoTextView = [[UITextView alloc]init];
         _infoTextView.backgroundColor = [UIColor whiteColor];
-        _infoTextView.textContainerInset = UIEdgeInsetsMake(10,0, 10, 0);
+        _infoTextView.textContainerInset = UIEdgeInsetsMake((45 - 21)/2.0,0, (45 - 21)/2.0, 0);
         _infoTextView.font = CHINESE_SYSTEM(13);
 //        [_infoTextView scrollRangeToVisible:_infoTextView.selectedRange];
         _infoTextView.layoutManager.allowsNonContiguousLayout = NO;

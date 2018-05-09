@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Width, Main_Screen_Height - (TopBarHeight-20))];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, App_Frame_Width, Main_Screen_Height - (TopBarHeight))];
     
     _webView.scrollView.bounces = NO;
     

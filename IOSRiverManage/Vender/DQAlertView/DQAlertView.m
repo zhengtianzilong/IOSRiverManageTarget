@@ -592,7 +592,7 @@
     } else if (self.backgroundColor) {
         [self setBackgroundColor:self.backgroundColor];
     } else {
-        [self setBackgroundColor:[UIColor colorWithRed:246.0/255 green:246.0/25 blue:246.0/25 alpha:1.0]];
+        [self setBackgroundColor:[UIColor colorWithRed:240.0/255 green:240.0/255 blue:240.0/255 alpha:1]];
     }
     
     if (self.borderWidth) {
@@ -619,8 +619,8 @@
         self.horizontalSeparator.backgroundColor = self.separatorColor;
         self.verticalSeparator.backgroundColor = self.separatorColor;
     } else {
-        self.horizontalSeparator.backgroundColor = [UIColor colorWithRed:196.0/255 green:196.0/255 blue:201.0/255 alpha:1.0];
-        self.verticalSeparator.backgroundColor = [UIColor colorWithRed:196.0/255 green:196.0/255 blue:201.0/255 alpha:1.0];
+        self.horizontalSeparator.backgroundColor = [UIColor colorWithRed:223.0/255 green:223.0/255 blue:223.0/255 alpha:1.0];
+        self.verticalSeparator.backgroundColor = [UIColor colorWithRed:223.0/255 green:223.0/255 blue:223.0/255 alpha:1.0];
     }
     
     // Make the message fits to it bounds

@@ -67,34 +67,22 @@
 }
 - (void)setupUI{
     
-    [self.contentView addSubview:self.bgView];
-    
-    [self.bgView addSubview:self.titleLabel];
+    [self.contentView  addSubview:self.titleLabel];
     
     [self.contentView addSubview:self.infoTextView];
-    
-    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(0);
-        make.width.mas_equalTo(Main_Screen_Width);
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        make.left.equalTo(self.contentView).offset(10);
+        make.width.mas_equalTo(Main_Screen_Width - 20);
         make.top.equalTo(self.contentView).offset(0);
         make.height.mas_equalTo(30);
-    }];
-    
-    
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.left.equalTo(self.bgView).offset(10);
-        make.right.equalTo(self.bgView.mas_right);
-        //        make.top.equalTo(self.bgView).offset(10);
-        make.bottom.equalTo(self.bgView.mas_bottom);
-        make.height.mas_equalTo(20);
         
     }];
     [self.infoTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(self.contentView).offset(10);
         make.right.equalTo(self.contentView.mas_right).offset(-10);
-        make.top.equalTo(self.bgView.mas_bottom);
+        make.top.equalTo(self.titleLabel.mas_bottom);
         make.height.mas_greaterThanOrEqualTo(100);
         
         make.bottom.equalTo(self.contentView.mas_bottom);
@@ -103,17 +91,6 @@
     
 }
 
-- (UIView *)bgView{
-    
-    if (!_bgView) {
-        
-        _bgView = [[UIView alloc]init];
-        _bgView.backgroundColor = [UIColor whiteColor];
-    }
-    
-    return _bgView;
-    
-}
 
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
@@ -135,7 +112,10 @@
         _infoTextView.font = CHINESE_SYSTEM(13);
         _infoTextView.zw_limitCount = 140;
         //设置整个控件文字的上下距离
-        _infoTextView.textContainerInset = UIEdgeInsetsMake(5, 0, 5, 0);
+//        _infoTextView.textContainerInset = UIEdgeInsetsMake(5, 0, 5, 0);
+        
+        _infoTextView.textContainerInset = UIEdgeInsetsMake((45 - 21)/2.0,0, (45 - 21)/2.0, 0);
+        
         _infoTextView.scrollEnabled = NO;
         [_infoTextView scrollRangeToVisible:_infoTextView.selectedRange];
         _infoTextView.scrollEnabled = NO;

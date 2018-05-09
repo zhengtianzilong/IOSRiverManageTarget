@@ -11,7 +11,6 @@
 #import "ZLRiverInfoBaseChangeTableViewCell.h"
 #import "ZLSureBtnFooterView.h"
 #import "ZLRiverInfoBaseChangeNoteTableViewCell.h"
-//#import "ZLRiverInfoBaseChangeAreaTableViewCell.h"
 #import "ZLNewAddIntakeService.h"
 #import "ZLBaseModel.h"
 #import "ACSelectMediaView.h"
@@ -74,12 +73,6 @@
     
     
 }
-
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    
-}
-
 
 - (void)backClick{
     

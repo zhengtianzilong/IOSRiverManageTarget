@@ -204,33 +204,40 @@
             };
             
             cell.deletePublic = ^(ZLPublicityBrandModel *model) {
-                [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-                    if (buttonIndex == 1) {
-                        ZLPublicBoardDeleteService *service = [[ZLPublicBoardDeleteService alloc]initWithidCode:model.PUBLICITY_BRAND_CODE];
-                        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-                            ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                
+                DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确定删除此公示牌吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
+                
+                alert.otherButtonAction = ^{
+                    ZLPublicBoardDeleteService *service = [[ZLPublicBoardDeleteService alloc]initWithidCode:model.PUBLICITY_BRAND_CODE];
+                    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                        ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                        
+                        if ([baseModel.code isEqualToString:@"0"]) {
                             
-                            if ([baseModel.code isEqualToString:@"0"]) {
-                                
-                                [SVProgressHUD showSuccessWithStatus:@"删除成功"];
-                                
-                                [SVProgressHUD dismissWithCompletion:^{
-                                    [self getData];
-                                }];
-                            }else{
-                                [SVProgressHUD showErrorWithStatus:baseModel.detail];
-                                [SVProgressHUD dismiss];
-                                
-                            }
-                        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                            [SVProgressHUD showSuccessWithStatus:@"删除成功"];
                             
-                            [SVProgressHUD showErrorWithStatus:@"删除失败"];
+                            [SVProgressHUD dismissWithCompletion:^{
+                                [self getData];
+                            }];
+                        }else{
+                            [SVProgressHUD showErrorWithStatus:baseModel.detail];
                             [SVProgressHUD dismiss];
-                        }];
-                    }
-                    
-                    
-                } title:@"提示" message:@"确定删除此公示牌吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
+                        }
+                    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                        
+                        [SVProgressHUD showErrorWithStatus:@"删除失败"];
+                        [SVProgressHUD dismiss];
+                    }];
+                };
+                [alert show];
+                
+//                [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+//                    if (buttonIndex == 1) {
+//
+//                    }
+//
+//
+//                } title:@"提示" message:@"确定删除此公示牌吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
             };
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -257,37 +264,44 @@
             
             cell.deletepump = ^(ZLPumpingPortModel *pumpModel) {
               
-                [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-                    if (buttonIndex == 1) {
-                        [SVProgressHUD showWithStatus:@"删除中"];
-                        ZLPumpingPortDeleteService *service = [[ZLPumpingPortDeleteService alloc]initWithidCode:pumpModel.ID];
-                        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-                            
-                            ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:request.responseString error:nil];
-                            
-                            if ([baseModel.code isEqualToString:@"0"]) {
-                                
-                                [SVProgressHUD showSuccessWithStatus:@"删除成功"];
-                                
-                                [SVProgressHUD dismissWithCompletion:^{
-                                    [self getData];
-                                }];
-                            }else{
-                                [SVProgressHUD showErrorWithStatus:baseModel.detail];
-                                [SVProgressHUD dismiss];
-                                
-                            }
-                        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-                            
-                            [SVProgressHUD showErrorWithStatus:@"删除失败"];
-                            [SVProgressHUD dismiss];
-                        }];
+                DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确定删除此取水口吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
+                
+                alert.otherButtonAction = ^{
+                    [SVProgressHUD showWithStatus:@"删除中"];
+                    ZLPumpingPortDeleteService *service = [[ZLPumpingPortDeleteService alloc]initWithidCode:pumpModel.ID];
+                    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
                         
-                       
-                    }
-                    
-                    
-                } title:@"提示" message:@"确定删除此取水口吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
+                        ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                        
+                        if ([baseModel.code isEqualToString:@"0"]) {
+                            
+                            [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                            
+                            [SVProgressHUD dismissWithCompletion:^{
+                                [self getData];
+                            }];
+                        }else{
+                            [SVProgressHUD showErrorWithStatus:baseModel.detail];
+                            [SVProgressHUD dismiss];
+                            
+                        }
+                    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                        
+                        [SVProgressHUD showErrorWithStatus:@"网络出错"];
+                        [SVProgressHUD dismiss];
+                    }];
+                };
+                [alert show];
+
+//                [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+//                    if (buttonIndex == 1) {
+//
+//
+//
+//                    }
+//
+//
+//                } title:@"提示" message:@"确定删除此取水口吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
                 
                 
 
@@ -319,39 +333,48 @@
             
             cell.outletDelete = ^(ZLSewageOutletModel *model) {
               
-                [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-                    if (buttonIndex == 1) {
+                DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确定删除此排污口吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
+                
+                alert.otherButtonAction = ^{
+                    [SVProgressHUD showWithStatus:@"删除中"];
+                    
+                    ZLOutletDeleteService *service = [[ZLOutletDeleteService alloc]initWithidCode:model.ID];
+                    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
                         
-                        [SVProgressHUD showWithStatus:@"删除中"];
+                        ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:request.responseString error:nil];
                         
-                        ZLOutletDeleteService *service = [[ZLOutletDeleteService alloc]initWithidCode:model.ID];
-                        [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                        if ([baseModel.code isEqualToString:@"0"]) {
                             
-                            ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                            [SVProgressHUD showSuccessWithStatus:@"删除成功"];
                             
-                            if ([baseModel.code isEqualToString:@"0"]) {
-                                
-                                [SVProgressHUD showSuccessWithStatus:@"删除成功"];
-                                
-                                [SVProgressHUD dismissWithCompletion:^{
-                                    [self getData];
-                                }];
-                            }else{
-                                [SVProgressHUD showErrorWithStatus:baseModel.detail];
-                                [SVProgressHUD dismiss];
-                                
-                            }
-                        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-                            
-                            [SVProgressHUD showErrorWithStatus:@"删除失败"];
+                            [SVProgressHUD dismissWithCompletion:^{
+                                [self getData];
+                            }];
+                        }else{
+                            [SVProgressHUD showErrorWithStatus:baseModel.detail];
                             [SVProgressHUD dismiss];
-                        }];
+                            
+                        }
+                    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
                         
-                        
-                    }
-                    
-                    
-                } title:@"提示" message:@"确定删除此排污口吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
+                        [SVProgressHUD showErrorWithStatus:@"网络出错"];
+                        [SVProgressHUD dismiss];
+                    }];
+                };
+                [alert show];
+                
+                
+                
+//                [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+//                    if (buttonIndex == 1) {
+//
+//
+//
+//
+//                    }
+//
+//
+//                } title:@"提示" message:@"确定删除此排污口吗?" cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
                 
                 
             };

@@ -34,15 +34,15 @@ static const void *zw_placeHolderKey;
         CGFloat lineFragmentPadding = self.textContainer.lineFragmentPadding;
         CGFloat x = lineFragmentPadding + textContainerInset.left + self.layer.borderWidth;
 //        CGFloat y = textContainerInset.top + self.layer.borderWidth + 3.5;
-        CGFloat y = textContainerInset.top;
+//        CGFloat y = textContainerInset.top;
         CGFloat width = CGRectGetWidth(self.bounds) - x - textContainerInset.right - 2*self.layer.borderWidth;
         CGFloat height = [self.zw_placeHolderLabel sizeThatFits:CGSizeMake(width, 0)].height;
-        
-//        CGFloat y = self.center.y - height/2.0;
+        // 21.6
+        CGFloat y = 45/2.0 - height/2.0;
         
         self.zw_placeHolderLabel.frame = CGRectMake(x, y, width, height);
         
-        
+
         
         
     }

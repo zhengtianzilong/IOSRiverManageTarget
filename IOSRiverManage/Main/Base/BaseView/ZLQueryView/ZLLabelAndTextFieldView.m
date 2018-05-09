@@ -47,7 +47,7 @@
         make.left.equalTo(self).offset(10);
         make.top.equalTo(self).offset(0);
         make.bottom.equalTo(self.lineView.mas_top).offset(0);
-        make.width.mas_equalTo(80);
+        make.width.mas_equalTo(87);
     }];
     
     [self.infoTextField mas_makeConstraints:^(MASConstraintMaker *make) {

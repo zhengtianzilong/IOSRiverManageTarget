@@ -5027,8 +5027,8 @@
 				TargetAttributes = {
 					D51D3AD61F69344900CA0903 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 852BN2UPEC;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = X7285XJAR2;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -7094,11 +7094,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = IOSRiverManage/IOSRiverManage.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 852BN2UPEC;
+				DEVELOPMENT_TEAM = X7285XJAR2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7125,10 +7125,10 @@
 					"\"$(SRCROOT)/IOSRiverManage\"",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hzz.jshezhangtong;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xgzl.IOSRiverManage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d8df809-1b3e-4df5-b85c-f13c3989af0e";
-				PROVISIONING_PROFILE_SPECIFIER = ICTHezhangzhi_Ent;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IOSRiverManage/Resource/Config/IOSRiverManage-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7393,11 +7393,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = IOSRiverManage/IOSRiverManage.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 852BN2UPEC;
+				DEVELOPMENT_TEAM = X7285XJAR2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7424,10 +7424,10 @@
 					"\"$(SRCROOT)/IOSRiverManage\"",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hzz.jshezhangtong;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xgzl.IOSRiverManage;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5d8df809-1b3e-4df5-b85c-f13c3989af0e";
-				PROVISIONING_PROFILE_SPECIFIER = ICTHezhangzhi_Ent;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "IOSRiverManage/Resource/Config/IOSRiverManage-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

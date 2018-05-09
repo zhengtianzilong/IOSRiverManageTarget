@@ -153,9 +153,14 @@
         
     }else{
         
-        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-            
-        } title:@"提示" message:@"当前已是最新版本" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"当前已是最新版本" cancelButtonTitle:@"确定" otherButtonTitle:nil];
+        [alert show];
+        
+        
+        
+//        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+//            
+//        } title:@"提示" message:@"当前已是最新版本" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
     }
 }
