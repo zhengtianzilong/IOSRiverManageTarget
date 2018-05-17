@@ -45,6 +45,7 @@
 #import "ZLGetEventUserListModel.h"
 #import "ZLGetDepartModel.h"
 #import "AppDelegate.h"
+#import "ZLMyExamineManagerVC.h"
 @interface ZLHomeMainVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) ZLHomeHeadView *headView;
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -412,6 +413,12 @@
             vc.areaCode = weakSelf.loginModel.data.areaCode;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
+        
+        if ([model.title isEqualToString:@"更多"]) {
+            ZLMyExamineManagerVC *vc = [[ZLMyExamineManagerVC alloc]init];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+        
         
     };
 }

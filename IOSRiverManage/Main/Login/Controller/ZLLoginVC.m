@@ -196,13 +196,13 @@
 
 - (void)GeTuiSdkDidAliasAction:(NSString *)action result:(BOOL)isSuccess sequenceNum:(NSString *)aSn error:(NSError *)aError{
     
-    if (isSuccess) {
-        [self.store putString:@"YES" withId:@"AliasAction" intoTable:DBUserTable];
-    }else{
-        [self.store putString:@"NO" withId:@"AliasAction" intoTable:DBUserTable];
-    }
-    
-    NSLog(@"%@",aError);
+//    if (isSuccess) {
+//        [self.store putString:@"YES" withId:@"AliasAction" intoTable:DBUserTable];
+//    }else{
+//        [self.store putString:@"NO" withId:@"AliasAction" intoTable:DBUserTable];
+//    }
+//
+//    NSLog(@"%@",aError);
     
 }
 

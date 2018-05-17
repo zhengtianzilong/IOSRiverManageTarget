@@ -221,40 +221,41 @@
     _detailModel = detailModel;
     
     self.titleLabel.text = detailModel.assignName;
-//    NSString *status = @"";
-//
-//    if ([detailModel.assignStatus isEqualToString:@"2"]) {
-//
-//        status = @"已反馈";
-//
-//    }
-//    if ([detailModel.assignStatus isEqualToString:@"9"]) {
-//
-//        status = @"已完成";
-//
-//    }
-//    if ([detailModel.assignStatus isEqualToString:@"3"]) {
-//
-//        status = @"督办中";
-//
-//    }
-//    if ([detailModel.assignStatus isEqualToString:@"0"]) {
-//
-//        status = @"未交办";
-//
-//    }
-//    if ([detailModel.assignStatus isEqualToString:@"1"]) {
-//
-//        status = @"交办中";
-//
-//    }
-////    if ([detailModel.isExpire isEqualToString:@"1"]) {
-////
-////        status = @"超时";
-////
-////    }
-//
-//    self.state.text = status;
+    NSString *status = @"";
+
+    if ([detailModel.assignStatus isEqualToString:@"2"]) {
+
+        status = @"已反馈";
+
+    }
+    if ([detailModel.assignStatus isEqualToString:@"9"]) {
+
+        status = @"已完成";
+
+    }
+    if ([detailModel.assignStatus isEqualToString:@"3"]) {
+
+        status = @"督办中";
+
+    }
+    if ([detailModel.assignStatus isEqualToString:@"0"]) {
+
+        status = @"未交办";
+
+    }
+    if ([detailModel.assignStatus isEqualToString:@"1"]) {
+
+        if ([detailModel.isExpire isEqualToString:@"1"]) {
+            status = @"超时";
+        } else {
+            status = @"交办中";
+        }
+        
+
+    }
+
+
+    self.state.text = status;
     
     self.assignedTime.text = [ZLUtility getDateByTimestamp:[detailModel.createTime longLongValue]/1000 type:4];
     

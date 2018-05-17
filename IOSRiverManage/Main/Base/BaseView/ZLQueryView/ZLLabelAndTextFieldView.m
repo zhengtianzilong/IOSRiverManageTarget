@@ -57,14 +57,10 @@
         make.right.equalTo(self.mas_right);
         
     }];
-    
-
-
-}
+}   
 
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
-        
         _titleLabel = [[UILabel alloc]init];
         [_titleLabel setText:self.title];
         _titleLabel.backgroundColor = [UIColor whiteColor];

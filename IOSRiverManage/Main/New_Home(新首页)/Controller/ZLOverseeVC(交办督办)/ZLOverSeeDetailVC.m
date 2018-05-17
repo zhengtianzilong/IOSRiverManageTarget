@@ -80,16 +80,7 @@
         make.left.equalTo(self.view);
         make.right.equalTo(self.view.mas_right);
     }];
-    
-    
-    
 }
-
-
-
-
-
-
 #pragma mark -- 列表的代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

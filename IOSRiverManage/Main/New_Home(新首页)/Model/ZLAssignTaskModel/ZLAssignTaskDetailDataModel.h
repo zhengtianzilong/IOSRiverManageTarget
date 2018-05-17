@@ -18,7 +18,7 @@
 @property (nonatomic, strong) NSString<Optional> *assignStatus;
 @property (nonatomic, strong) NSString<Optional> *assignContent;
 @property (nonatomic, strong) NSString<Optional> *remark;
-
+@property (nonatomic, strong) NSString<Optional> *isExpire;
 @property (nonatomic, strong) NSString<Optional> *warnTime;
 
 

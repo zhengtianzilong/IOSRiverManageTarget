@@ -18,6 +18,7 @@
 #import "ZLMyEventDetailVC.h"
 #import "ZLTaskDetailVC.h"
 #import "ZLSimpleMainTapBarVCConfig.h"
+#import "ZLOverSeeDetailVC.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 #import <UserNotifications/UserNotifications.h>
@@ -225,8 +226,22 @@
                 vc.code = Id;
                 [nav pushViewController:vc animated:YES];
             }
+        }else if ([type isEqualToString:@"3"]){
+            
+            if ([baseVC isKindOfClass:[ZLOverSeeDetailVC class]]) {
+                
+                ZLOverSeeDetailVC *vc = (ZLOverSeeDetailVC *)baseVC;
+                vc.code = Id;
+                
+                [vc getData];
+                
+            }else{
+                ZLOverSeeDetailVC *vc = [[ZLOverSeeDetailVC alloc]init];
+                //        vc.passCode = @"待办任务";
+                vc.code = Id;
+                [nav pushViewController:vc animated:YES];
+            }
         }
-        
     }
 }
 #endif
@@ -249,8 +264,6 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
         NSString *type=[NSString stringWithFormat:@"%@",dic[@"type"]];
         // 1事件 2 任务 3 交办
-        
-        
         CYLTabBarController *tabBarVC = (CYLTabBarController *)self.window.rootViewController;
         
         ZLBaseNavViewController *nav = tabBarVC.selectedViewController;
@@ -284,6 +297,21 @@
                 
             }else{
                 ZLTaskDetailVC *vc = [[ZLTaskDetailVC alloc]init];
+                //        vc.passCode = @"待办任务";
+                vc.code = Id;
+                [nav pushViewController:vc animated:YES];
+            }
+        }else if ([type isEqualToString:@"3"]){
+            
+            if ([baseVC isKindOfClass:[ZLOverSeeDetailVC class]]) {
+                
+                ZLOverSeeDetailVC *vc = (ZLOverSeeDetailVC *)baseVC;
+                vc.code = Id;
+                
+                [vc getData];
+                
+            }else{
+                ZLOverSeeDetailVC *vc = [[ZLOverSeeDetailVC alloc]init];
                 //        vc.passCode = @"待办任务";
                 vc.code = Id;
                 [nav pushViewController:vc animated:YES];

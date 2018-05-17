@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSString *status;
 
+- (void)getData;
+
 @end
