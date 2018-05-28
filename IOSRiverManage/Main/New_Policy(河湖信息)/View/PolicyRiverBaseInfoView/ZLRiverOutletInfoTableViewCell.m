@@ -170,6 +170,9 @@
             //             make.top.equalTo(self.addressLabel.mas_bottom).offset(5);
             make.height.mas_equalTo(20);
             make.width.mas_equalTo(80);
+            
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+            
         }];
     }
     return self;
@@ -203,14 +206,14 @@
         [self distributeDynamic2CellWithCount:0 warp:3 withImageUrl:_outletModel.imgList];
     }
     
-    [self.checkAddressBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.contentView);
-        make.top.equalTo(self.containerView.mas_bottom).offset(10);
-        make.height.mas_equalTo(25);
-        make.width.mas_equalTo(150);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
-    }];
-    
+//    [self.checkAddressBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.contentView);
+//        make.top.equalTo(self.containerView.mas_bottom).offset(10);
+//        make.height.mas_equalTo(25);
+//        make.width.mas_equalTo(150);
+//        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+//    }];
+//
     
 }
 
@@ -230,6 +233,7 @@
         make.left.equalTo(self.pictureLabel.mas_right).offset(10);
         make.top.equalTo(self.pictureLabel);
         make.right.equalTo(self.deleteBtn.mas_left);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
     }];
     
     for (int i = 0; i < count; i++) {
@@ -482,6 +486,7 @@
         
         [_checkAddressBtn setImagePosition:(LXMImagePositionLeft) spacing:10];
         [_checkAddressBtn addTarget:self action:@selector(checkAddressBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+
     }
     return _checkAddressBtn;
 }

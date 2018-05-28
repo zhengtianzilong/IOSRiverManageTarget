@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^scroeInputBlock)(NSString *text);
+
+
 @interface ZLScoreTableViewCell : UITableViewCell
 
 
@@ -34,4 +37,9 @@
  */
 @property (nonatomic, strong) UILabel *totalScoreLabel;
 @property (nonatomic, strong) UITextField *totalScoreTextField;
+
+@property (nonatomic, strong) scroeInputBlock scroeInputBlock;
+
+
+
 @end

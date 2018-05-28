@@ -161,15 +161,16 @@
             make.right.equalTo(self.editBtn.mas_left);
             
             make.height.mas_greaterThanOrEqualTo(20);
-        }];
-        
-        [self.checkAddressBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.contentView);
-            make.top.equalTo(self.riverTarget.mas_bottom);
-            make.height.mas_equalTo(25);
-            make.width.mas_equalTo(160);
             make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
         }];
+        
+//        [self.checkAddressBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerX.equalTo(self.contentView);
+//            make.top.equalTo(self.riverTarget.mas_bottom);
+//            make.height.mas_equalTo(25);
+//            make.width.mas_equalTo(160);
+//            make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+//        }];
         
         
         
@@ -388,6 +389,8 @@
         
         [_checkAddressBtn setImagePosition:(LXMImagePositionLeft) spacing:10];
         [_checkAddressBtn addTarget:self action:@selector(checkAddressBtnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        
+        
     }
     return _checkAddressBtn;
 }

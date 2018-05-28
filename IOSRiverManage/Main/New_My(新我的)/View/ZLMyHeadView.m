@@ -57,7 +57,14 @@
         _iconView = [[UIImageView alloc]initWithFrame:CGRectZero];
         _iconView.layer.masksToBounds=YES;
         _iconView.layer.cornerRadius=self.iconView.frame.size.width/2;
+        
+#if WanApp
+        _iconView.image = [UIImage imageNamed:@"wan_my_header"];
+#else
         _iconView.image = [UIImage imageNamed:@"my_header"];
+#endif
+        
+        
     }
     return _iconView;
 }

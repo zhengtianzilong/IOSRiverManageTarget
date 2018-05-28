@@ -35,11 +35,22 @@
     
     if (self = [super initWithFrame:frame]) {
         
+#if WanApp
+        [[NSUserDefaults standardUserDefaults] setObject:@"http://112.33.250.183:86/api/" forKey:@"Server"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:@"http://112.33.250.183:86" forKey:@"ComStatistics"];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:@"http://112.33.250.183:86/file/" forKey:@"File"];
+#else
         [[NSUserDefaults standardUserDefaults] setObject:kProduct forKey:@"Server"];
         
         [[NSUserDefaults standardUserDefaults] setObject:kcomStatisticsProduct forKey:@"ComStatistics"];
         
         [[NSUserDefaults standardUserDefaults] setObject:kfileProduct forKey:@"File"];
+#endif
+        
+        
+       
         
         [self setUpUI];
     }
@@ -121,7 +132,17 @@
     
     if (!_logoImageV) {
         
+        
+#if WanApp
+        _logoImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wan_login_logo"]];
+#else
         _logoImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"new_login_logo"]];
+#endif
+        
+        
+        
+        
+        
         
         _logoImageV.userInteractionEnabled = YES;
         
@@ -137,7 +158,16 @@
     
     if (!_titleImageV) {
         
+        
+        
+#if WanApp
+       _titleImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"wan_login_title"]];
+#else
         _titleImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"new_login_title"]];
+#endif
+        
+        
+        
     }
     return _titleImageV;
     

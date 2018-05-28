@@ -15,7 +15,7 @@
 #import "ZLNewLoginModel.h"
 #import <PgySDK/PgyManager.h>
 #import <PgyUpdate/PgyUpdateManager.h>
-
+#import "ZLWanLeftAboutVC.h"
 @interface ZLMyVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) ZLMyHeadView *headView;
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -116,10 +116,14 @@
     }
     
     if ([self.contentArr[indexPath.row][@"content"] isEqualToString:@"关于系统"]) {
+        
+#if WanApp
+        ZLWanLeftAboutVC *vc=[[ZLWanLeftAboutVC alloc]init];
+#else
         ZLLeftAboutViewController *vc=[[ZLLeftAboutViewController alloc]init];
+        
+#endif
         [self.navigationController pushViewController:vc animated:YES];
-        
-        
     }
     
     if ([self.contentArr[indexPath.row][@"content"] isEqualToString:@"系统设置"]) {

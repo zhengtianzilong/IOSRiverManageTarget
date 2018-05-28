@@ -8,6 +8,12 @@
 
 #import "ZLScoreTableViewCell.h"
 
+@interface ZLScoreTableViewCell()<UITextFieldDelegate>
+
+
+
+@end
+
 @implementation ZLScoreTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -20,8 +26,6 @@
 }
 
 - (void)setUpUI{
-    
-
     
     _tipsImageV = [[UIImageView alloc]init];
     _tipsImageV.image = [UIImage imageNamed:@"score_tips"];
@@ -37,8 +41,6 @@
     _title.font = CHINESE_SYSTEM(12);
     _title.text = @"河面脏乱差";
     [self.contentView addSubview:_title];
-    
-    
     
     _descriptionLabel = [[UILabel alloc]init];
     _descriptionLabel.font = CHINESE_SYSTEM(12);
@@ -68,40 +70,33 @@
     
     _totalScoreTextField = [[UITextField alloc]init];
     _totalScoreTextField.placeholder = @"请输入分值";
+    _totalScoreTextField.delegate = self;
     _totalScoreTextField.font = CHINESE_SYSTEM(12);
+    _totalScoreTextField.keyboardType = UIKeyboardTypeNumberPad;
     [self.contentView addSubview:_totalScoreTextField];
     
     
     [_tipsImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        
         make.right.equalTo(self.contentView.mas_right).offset(0);
 //        make.width.height.mas_equalTo(40);
         make.top.equalTo(self.contentView).offset(0);
-    
     }];
     
     
     [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.tipsImageV).offset(5);
         make.right.equalTo(self.tipsImageV.mas_right).offset(-5);
-        
-        
     }];
     
     
     [_title mas_makeConstraints:^(MASConstraintMaker *make) {
-        
         make.left.equalTo(self.contentView.mas_left).offset(5);
         //        make.top.equalTo(self.contentView).offset(5);
 //        make.right.equalTo(_tipsImageV.mas_left).offset(-5);
         make.right.equalTo(self.contentView.mas_centerX);
         make.top.equalTo(self.contentView).offset(5);
         make.height.mas_equalTo(20);
-        
     }];
-    
-    
-    
     [_descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.left.equalTo(_title);
@@ -160,4 +155,19 @@
     }];
     
 }
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if (_scroeInputBlock) {
+        self.scroeInputBlock(textField.text);
+        
+    }
+    return YES;
+}
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+//
+//
+//    return YES;
+//}
+
 @end

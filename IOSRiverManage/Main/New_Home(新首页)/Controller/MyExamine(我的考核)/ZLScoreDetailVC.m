@@ -8,6 +8,8 @@
 
 #import "ZLScoreDetailVC.h"
 #import "ZLScoreDetailView.h"
+#import "ZLScoreBottomView.h"
+
 @interface ZLScoreDetailVC ()
 @property (nonatomic, strong) ZLScoreDetailView *detailView;
 @property (nonatomic, strong) UIScrollView *mainScrollView;
@@ -17,17 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self.view addSubview:self.mainScrollView];
-    
     
     [self.mainScrollView addSubview:self.detailView];
     
+    ZLScoreBottomView *bottomView = [[ZLScoreBottomView alloc]initWithFrame:CGRectMake(0, Main_Screen_Height - 50 * kScreenHeightRatio - TopBarHeight, Main_Screen_Width, 50 * kScreenHeightRatio) withTitles:@[@"保存",@"提交"]];
 
-    
-    
-    
-    
+    [self.view addSubview:bottomView];
+
 }
 
 - (void)viewDidLayoutSubviews{

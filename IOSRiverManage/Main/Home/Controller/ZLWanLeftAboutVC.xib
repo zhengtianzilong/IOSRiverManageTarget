@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZLWanLeftAboutVC">
+            <connections>
+                <outlet property="mainTableView" destination="yEj-Sl-PGz" id="itG-Oo-ugr"/>
+                <outlet property="versionLabel" destination="bTR-9R-gRv" id="zpg-wZ-gTL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yEj-Sl-PGz">
+                    <rect key="frame" x="0.0" y="188.5" width="375" height="236"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="236" id="qbW-ae-Pts"/>
+                    </constraints>
+                </tableView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wan_about_logo" translatesAutoresizingMaskIntoConstraints="NO" id="blX-0g-bcF">
+                    <rect key="frame" x="152" y="50" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="D2h-ma-YbK"/>
+                        <constraint firstAttribute="width" constant="70" id="Suf-2f-OhH"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="江苏湾长通" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Azt-bF-Mho">
+                    <rect key="frame" x="141.5" y="128" width="92" height="21.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTR-9R-gRv">
+                    <rect key="frame" x="177.5" y="157.5" width="20.5" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="6xP-aW-vSm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="yEj-Sl-PGz" secondAttribute="trailing" id="9It-je-PWe"/>
+                <constraint firstItem="yEj-Sl-PGz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EHd-SC-Bme"/>
+                <constraint firstItem="Azt-bF-Mho" firstAttribute="top" secondItem="blX-0g-bcF" secondAttribute="bottom" constant="8" symbolic="YES" id="GJq-cH-QY1"/>
+                <constraint firstItem="bTR-9R-gRv" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="OYV-2u-0uP"/>
+                <constraint firstItem="bTR-9R-gRv" firstAttribute="top" secondItem="Azt-bF-Mho" secondAttribute="bottom" constant="8" id="kjx-Rv-Rrt"/>
+                <constraint firstItem="yEj-Sl-PGz" firstAttribute="top" secondItem="bTR-9R-gRv" secondAttribute="bottom" constant="10" id="lKW-Ht-1G6"/>
+                <constraint firstItem="blX-0g-bcF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="tsC-wq-SfC"/>
+                <constraint firstItem="Azt-bF-Mho" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yle-rW-xa4"/>
+                <constraint firstItem="blX-0g-bcF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zQc-AO-A7z"/>
+            </constraints>
+            <point key="canvasLocation" x="25.5" y="51.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="wan_about_logo" width="60" height="60"/>
+    </resources>
+</document>

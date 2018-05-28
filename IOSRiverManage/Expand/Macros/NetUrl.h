@@ -231,9 +231,11 @@
 #define River_GetNowAreaRiverListForAppUrl @"base/riverInfoController/getNowAreaRiverListForApp"
 
 
+// 未评考核列表接口
+#define River_HaveNoExamineServiceUrl @"city/appraisalsManagerController/getMyApplisalsUnScoreForApp"
 
-
-
+// 已评考核列表接口
+#define River_HaveExamineServiceUrl @"city/appraisalsManagerController/getMyApplisalsAlreadyScoreForApp"
 
 
 

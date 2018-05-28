@@ -43,7 +43,13 @@
     //    ZLRiverInfoQualityVC *qualityVC = [[ZLRiverInfoQualityVC alloc]init];
     
     
-    NSMutableArray *nameArray = [NSMutableArray arrayWithArray:@[@"基本信息",@"河长信息"]];
+#if WanApp
+     NSMutableArray *nameArray = [NSMutableArray arrayWithArray:@[@"基本信息",@"湾长信息"]];
+#else
+     NSMutableArray *nameArray = [NSMutableArray arrayWithArray:@[@"基本信息",@"河长信息"]];
+#endif
+    
+   
     
     NSMutableArray *vcArray = [NSMutableArray arrayWithArray:@[baseVC,peopleVC]];
     

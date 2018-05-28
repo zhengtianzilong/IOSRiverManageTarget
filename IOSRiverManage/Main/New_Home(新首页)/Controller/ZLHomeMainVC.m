@@ -415,8 +415,8 @@
         }
         
         if ([model.title isEqualToString:@"更多"]) {
-            ZLMyExamineManagerVC *vc = [[ZLMyExamineManagerVC alloc]init];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
+//            ZLMyExamineManagerVC *vc = [[ZLMyExamineManagerVC alloc]init];
+//            [weakSelf.navigationController pushViewController:vc animated:YES];
         }
         
         
@@ -661,7 +661,13 @@
                           NSForegroundColorAttributeName:[UIColor whiteColor]
                           };
     
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"江苏河长通" attributes:dic];
+#if WanApp
+     NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"江苏湾长通" attributes:dic];
+#else
+     NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"江苏河长通" attributes:dic];
+#endif
+    
+   
     
     return title;
     

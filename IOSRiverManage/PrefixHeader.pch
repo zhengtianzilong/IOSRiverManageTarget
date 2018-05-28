@@ -47,9 +47,9 @@
 #import "UITextView+ZWLimitCounter.h"
 
 #ifdef Suqian
-#import "IOSRiverManageSuqian-Swift.h"
+//#import "IOSRiverManageSuqian-Swift.h"
 #elif TouBiao
-#import "IOSRiverManageTouBiao-Swift.h"
+//#import "IOSRiverManageTouBiao-Swift.h"
 #else
 #endif
 
