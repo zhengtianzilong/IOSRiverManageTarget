@@ -61,6 +61,9 @@ static CGFloat const YUFoldingIconWidth           = 24.0f;
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.descriptionLabel];
     [self.contentView addSubview:self.arrowImageView];
+    
+    self.arrowImageView.hidden = YES;
+    
     [self.contentView addGestureRecognizer:self.tapGesture];
     [self.contentView.layer addSublayer:self.separatorLine];
     

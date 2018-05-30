@@ -81,7 +81,16 @@
 - (UIButton *)startRiverBtn{
     if (!_startRiverBtn) {
         UIButton *button = [[UIButton alloc]init];
-        [button setTitle:@"开始巡河" forState:(UIControlStateNormal)];
+        
+#if WanApp
+        [button setTitle:@"开始巡湾" forState:(UIControlStateNormal)];
+#else
+         [button setTitle:@"开始巡河" forState:(UIControlStateNormal)];
+        
+        
+#endif
+        
+       
         [button setBackgroundColor:HEXCOLOR(CVIEW_EVENT_TIPS_COLOR)];
         [button setImage:[UIImage imageNamed:@"simple_startRiver"] forState:(UIControlStateNormal)];
         button.layer.cornerRadius = 8;
@@ -96,7 +105,14 @@
 - (UIButton *)riverRecordBtn{
     if (!_riverRecordBtn) {
         UIButton *button = [[UIButton alloc]init];
-        [button setTitle:@"巡河记录" forState:(UIControlStateNormal)];
+        
+#if WanApp
+      [button setTitle:@"巡查记录" forState:(UIControlStateNormal)];
+#else
+      [button setTitle:@"巡河记录" forState:(UIControlStateNormal)];
+#endif
+        
+//        [button setTitle:@"巡河记录" forState:(UIControlStateNormal)];
         [button setBackgroundColor:HEXCOLOR(0x56befa)];
         button.layer.cornerRadius = 8;
         button.layer.masksToBounds = YES;

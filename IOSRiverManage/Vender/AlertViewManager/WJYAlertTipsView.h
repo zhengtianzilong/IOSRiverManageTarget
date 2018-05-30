@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
+#import "ZLGetScoreDetailModel.h"
+
 typedef void (^alertBottomBlock)(void);
 @interface WJYAlertTipsView : UIView
 
@@ -17,5 +20,8 @@ typedef void (^alertBottomBlock)(void);
 
 @property (nonatomic, copy) alertBottomBlock bottomBlock;
 
--(instancetype)initPagesViewWithTitle:(NSString *)title bottomButtonTitle:(NSString *)bottomButtonTitle cellText:(NSString *)cellText;
+@property (nonatomic, strong) ZLGetScoreDetailModel *detailModel;
+
+
+-(instancetype)initPagesViewWithTitle:(NSString *)title bottomButtonTitle:(NSString *)bottomButtonTitle cellModel:(ZLGetScoreDetailModel *)cellModel;
 @end

@@ -280,7 +280,7 @@
         } title:@"提示" message:@"当前并无河道" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
     }else{
         if (self.isHideRunningView) {
-            ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡河" singleSelection:YES];
+            ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡查" singleSelection:YES];
             alert.selectItem = ^(NSInteger index) {
                 ZLLog(@"%ld",(long)index);
                 ZLGaodeViewController *gaode = [[ZLGaodeViewController alloc]init];

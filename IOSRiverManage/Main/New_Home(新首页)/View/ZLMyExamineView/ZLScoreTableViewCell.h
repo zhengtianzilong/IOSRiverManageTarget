@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZLGetScoreDetailModel.h"
+#import "ZLPlaceholderTextView.h"
 typedef void(^scroeInputBlock)(NSString *text);
 
 
 @interface ZLScoreTableViewCell : UITableViewCell
 
 
-@property (nonatomic, strong) UIImageView *tipsImageV;
-
-@property (nonatomic, strong) UILabel *numberLabel;
+//@property (nonatomic, strong) UIImageView *tipsImageV;
+//
+//@property (nonatomic, strong) UILabel *numberLabel;
 
 
 @property (nonatomic, strong) UILabel *title;
@@ -36,9 +37,15 @@ typedef void(^scroeInputBlock)(NSString *text);
  自评总分
  */
 @property (nonatomic, strong) UILabel *totalScoreLabel;
-@property (nonatomic, strong) UITextField *totalScoreTextField;
+@property (nonatomic, strong) ZLPlaceholderTextView *totalScoreTextField;
 
 @property (nonatomic, strong) scroeInputBlock scroeInputBlock;
+
+@property (nonatomic, strong) ZLGetScoreDetailModel *detailModel;
+
+
+// 根据状态来判断保存还是没保存
+@property (nonatomic, strong) NSString *status;
 
 
 

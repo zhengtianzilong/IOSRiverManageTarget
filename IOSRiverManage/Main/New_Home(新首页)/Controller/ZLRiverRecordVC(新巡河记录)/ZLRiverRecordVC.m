@@ -262,7 +262,14 @@
     NSDictionary *dic = @{NSFontAttributeName:AdaptedFontBoldSize(26),
                           NSForegroundColorAttributeName:[UIColor whiteColor]
                           };
+    
+#if WanApp
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"巡查记录" attributes:dic];
+#else
     NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"巡河记录" attributes:dic];
+#endif
+    
+    
     return title;
     
     

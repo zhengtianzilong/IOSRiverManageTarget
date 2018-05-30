@@ -1,16 +1,16 @@
 //
-//  ZLHaveNoExamineService.m
+//  ZLHaveExamineService.m
 //  IOSRiverManage
 //
-//  Created by 蔡紫龙 on 2018/5/28.
+//  Created by 蔡紫龙 on 2018/5/29.
 //  Copyright © 2018年 caizilong. All rights reserved.
 //
 
-#import "ZLHaveNoExamineService.h"
+#import "ZLHaveExamineService.h"
 
-@implementation ZLHaveNoExamineService
+@implementation ZLHaveExamineService
 - (NSString *)requestUrl {
-    return River_HaveNoExamineServiceUrl;
+    return River_HaveExamineServiceUrl;
 }
 
 - (YTKRequestMethod)requestMethod {

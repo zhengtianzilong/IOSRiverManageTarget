@@ -7,7 +7,12 @@
 //
 
 #import "ZLBaseCustomNoNetworkVC.h"
-
+#import "ZLHaveNoExamineModel.h"
 @interface ZLScoreDetailVC : ZLBaseCustomNoNetworkVC
+
+@property (nonatomic, strong) ZLHaveNoExamineModel *noModel;
+
+@property (nonatomic, assign) Boolean isShowBottomView;
+
 
 @end

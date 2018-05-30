@@ -231,7 +231,7 @@
     
     if (!_riverLabel) {
         _riverLabel = [[UILabel alloc]init];
-        _riverLabel.text = @"巡河人：";
+        _riverLabel.text = @"巡查人：";
         _riverLabel.font = Font(13);
 //        _riverLabel.attributedText = [self setTextString:@"巡河人:"];
         

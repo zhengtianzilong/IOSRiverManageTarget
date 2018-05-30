@@ -9,78 +9,62 @@
 #import "ZLHaveNoExamineVC.h"
 #import "ZLMyExamineBaseTableViewCell.h"
 #import "ZLScoreDetailVC.h"
+#import "ZLHaveNoExamineArrayModel.h"
+#import "ZLHaveNoExamineService.h"
+#import "ZLCommitMyScoreService.h"
 @interface ZLHaveNoExamineVC ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, assign) NSInteger requestStart;
-
 @property (nonatomic, strong) NSMutableArray *sourceArray;
-
-@property (nonatomic, strong) NSString *eventName;
-@property (nonatomic, strong) NSString *department;
-@property (nonatomic, strong) NSString *departPeople;
-@property (nonatomic, strong) NSString *creatStartTime;
-@property (nonatomic, strong) NSString *creatEndTime;
-@property (nonatomic, strong) NSString *completeStartTime;
-@property (nonatomic, strong) NSString *completeEndTime;
-
-@property (nonatomic, strong) NSString *startTime;
 
 @property (nonatomic, strong) UITableView *mainTableView;
 
 @end
 @implementation ZLHaveNoExamineVC
 
-//- (void)getData {
-//
-//    ZLGetAssignTaskListService *service = [[ZLGetAssignTaskListService alloc]initWithpageSize:10 currentPage:1 assignName:self.eventName assignStartTime:self.creatStartTime assignEndTime:self.creatEndTime completeStartTime:self.completeStartTime completeEndTime:self.completeEndTime departName:self.department userName:self.departPeople startTime:self.startTime];
-//
-//    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
-//
-//        ZLLog(@"%@",request.responseString);
-//
-//        ZLAssignTaskRowModel *model = [[ZLAssignTaskRowModel alloc]initWithString:request.responseString error:nil];
-//
-//        if ([model.code isEqualToString:@"0"]) {
-//
-//            if ([_startTime isEqualToString:@""]) {
-//                [_sourceArray removeAllObjects];
-//            }
-//
-//            for (ZLAssignTaskRowDetailModel *dataModel in model.data.rows) {
-//                [_sourceArray addObject:dataModel];
-//            }
-//        }
-//
-//        [self.mainTableView reloadData];
-//        [self.mainTableView.mj_header endRefreshing];
-//        [self.mainTableView.mj_footer endRefreshing];
-//
-//    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
-//
-//        [self.mainTableView.mj_header endRefreshing];
-//        [self.mainTableView.mj_footer endRefreshing];
-//    }];
-//}
+- (void)getData {
+    ZLHaveNoExamineService *service = [[ZLHaveNoExamineService alloc]init];
 
+    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
 
+        ZLLog(@"%@",request.responseString);
+
+        ZLHaveNoExamineArrayModel *model = [[ZLHaveNoExamineArrayModel alloc]initWithString:request.responseString error:nil];
+
+        if ([model.code isEqualToString:@"0"]) {
+
+            [_sourceArray removeAllObjects];
+
+            for (ZLHaveNoExamineModel *dataModel in model.data) {
+                [_sourceArray addObject:dataModel];
+            }
+        }
+
+        [self.mainTableView reloadData];
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+
+        [self.mainTableView.mj_header endRefreshing];
+        [self.mainTableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self.mainTableView.mj_header beginRefreshing];
+    
+    
+}
 
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.requestStart = 1;
-//
-//    self.eventName = @"";
-//    self.department = @"";
-//    self.departPeople = @"";
-//    self.creatStartTime = @"";
-//    self.creatEndTime = @"";
-//    self.completeStartTime = @"";
-//    self.completeEndTime = @"";
-//    self.startTime = @"";
-//
-//    self.sourceArray = [NSMutableArray array];
+    self.sourceArray = [NSMutableArray array];
     self.view.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
     [self.view addSubview:self.mainTableView];
     
@@ -107,8 +91,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    //    return self.sourceData.count;
-    return 10;
+    return self.sourceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -117,20 +100,61 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.scoreClick = ^{
+    ZLHaveNoExamineModel *noModel = self.sourceArray[indexPath.section];
+    
+    cell.noExamineModel = noModel;
+    
+    cell.commitClick = ^(ZLHaveNoExamineModel *model) {
       
-        ZLScoreDetailVC *vc = [[ZLScoreDetailVC alloc]init];
+        DQAlertView *alert = [[DQAlertView alloc]initWithTitle:@"提示" message:@"确认提交吗?" cancelButtonTitle:@"取消" otherButtonTitle:@"确定"];
         
-        [self.navigationController pushViewController:vc animated:YES];
+        alert.otherButtonAction = ^{
+            ZLCommitMyScoreService *commitService = [[ZLCommitMyScoreService alloc]initWithArray:nil managerDetailCode:model.managerDetailCode modelCode:model.managerCode flag:@"sub"];
+            [SVProgressHUD showWithStatus:@"提交中"];
+            [commitService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+                
+                ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+                
+                if ([model.code isEqualToString:@"0"]) {
+                    
+                    [SVProgressHUD showSuccessWithStatus:@"成功"];
+                    
+                    [SVProgressHUD dismissWithDelay:0.4 completion:^{
+                        [self getData];
+                    }];
+                }else{
+                    
+                    [SVProgressHUD showErrorWithStatus:model.detail];
+                    [SVProgressHUD dismissWithDelay:0.6];
+                    
+                }
+                ZLLog(@"%@", request.responseString);
+                
+            } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                [SVProgressHUD dismissWithDelay:0.3];
+            }];
         
+        };
+        [alert show];
     };
+    
+    
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   
+    ZLScoreDetailVC *vc = [[ZLScoreDetailVC alloc]init];
     
+    ZLHaveNoExamineModel *noModel = self.sourceArray[indexPath.section];
+    
+    vc.noModel = noModel;
+    
+    vc.isShowBottomView = YES;
+    
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
@@ -151,13 +175,11 @@
         _mainTableView.estimatedRowHeight = 180;
         
         
-//        _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//
-//            _requestStart = 1;
-//            _startTime = @"";
-//            [self getData];
-//
-//        }];
+        _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            
+            [self getData];
+
+        }];
 //
 //        _mainTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
 //            //            _requestStart += 1;

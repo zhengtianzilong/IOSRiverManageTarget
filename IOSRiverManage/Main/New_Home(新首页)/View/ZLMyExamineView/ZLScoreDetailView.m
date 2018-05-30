@@ -12,12 +12,14 @@
 #import "ZLMyExamineModel.h"
 #import "WJYAlertView.h"
 #import "WJYAlertTipsView.h"
+#import "ZLGetScoreDetailService.h"
+#import "ZLGetScoreDataModel.h"
 @interface ZLScoreDetailView()<YUFoldingTableViewDelegate>
 @property (nonatomic, strong) YUFoldingTableView *mainTableView;
 
 @property (nonatomic, strong) NSMutableArray *scoreMutableArray;
 
-@property (nonatomic, strong) NSMutableArray *sourceArray;
+
 
 @end
 
@@ -25,25 +27,56 @@
 
 - (void)getData{
     
-    for (NSInteger i = 0; i < 5; i++) {
+    ZLGetScoreDetailService *service = [[ZLGetScoreDetailService alloc]initWithmanagerDetailCode:_noModel.managerDetailCode modelCode:_noModel.modelCode];
+    
+    [service startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+       
+        ZLGetScoreDataModel *dataModel = [[ZLGetScoreDataModel alloc]initWithString:request.responseString error:nil];
         
-        for (int j = 0; j < 3; j++) {
+        if ([dataModel.code isEqualToString:@"0"]) {
             
-            ZLMyExamineModel *model = [[ZLMyExamineModel alloc]init];
-            model.score = @"";
-            [self.scoreMutableArray addObject:model];
+            for (ZLGetScoreDetailArrayModel *rowModel in dataModel.data.rows) {
+                
+                [self.sourceArray addObject:rowModel];
+                
+            }
+            
+            
         }
-        [self.sourceArray addObject:self.scoreMutableArray];
-    }
+        
+        [_mainTableView reloadData];
+        ZLLog(@"%@",request.responseString);
+        
+        
+    } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+         ZLLog(@"%@",request.responseString);
+        
+        
+    }];
+    
+//    for (NSInteger i = 0; i < 5; i++) {
+//
+//        for (int j = 0; j < 3; j++) {
+//
+//            ZLMyExamineModel *model = [[ZLMyExamineModel alloc]init];
+//            model.score = @"";
+//            [self.scoreMutableArray addObject:model];
+//        }
+//        [self.sourceArray addObject:self.scoreMutableArray];
+//    }
 }
 
-- (instancetype)init{
+- (instancetype)initWithModel:(ZLHaveNoExamineModel *)noModel{
     if (self = [super init]) {
         self.backgroundColor = HEXCOLOR(CVIEW_GRAY_COLOR);
         
         self.scoreMutableArray = [NSMutableArray array];
         self.sourceArray = [NSMutableArray array];
+        self.noModel = noModel;
         [self getData];
+        
+        
+        
         [self setupUI];
     }
     return self;
@@ -61,11 +94,6 @@
     }];
 }
 
-- (void)layoutSubviews{
-    
-    
-    
-}
 
 // 返回箭头的位置
 - (YUFoldingSectionHeaderArrowPosition)perferedArrowPositionForYUFoldingTableView:(YUFoldingTableView *)yuTableView
@@ -78,8 +106,8 @@
 }
 - (NSInteger )yuFoldingTableView:(YUFoldingTableView *)yuTableView numberOfRowsInSection:(NSInteger )section
 {
-    NSMutableArray *array = self.sourceArray[section];
-    return array.count;
+    ZLGetScoreDetailArrayModel *arrayModel = self.sourceArray[section];
+    return arrayModel.list.count;
 }
 - (CGFloat )yuFoldingTableView:(YUFoldingTableView *)yuTableView heightForHeaderInSection:(NSInteger )section
 {
@@ -91,7 +119,10 @@
 }
 - (NSString *)yuFoldingTableView:(YUFoldingTableView *)yuTableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"Title %ld",section];
+    
+    ZLGetScoreDetailArrayModel *arrayModel = self.sourceArray[section];
+    
+    return arrayModel.title;
 }
 - (UITableViewCell *)yuFoldingTableView:(YUFoldingTableView *)yuTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -100,30 +131,27 @@
     if (cell == nil) {
         cell = [[ZLScoreTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.title.text = [NSString stringWithFormat:@"Row %ld",indexPath.row];
-//    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
-    NSMutableArray *array = self.sourceArray[indexPath.section];
+    ZLGetScoreDetailArrayModel *arrayModel = self.sourceArray[indexPath.section];
     
-    ZLMyExamineModel *model = array[indexPath.row];
-    cell.totalScoreTextField.text = model.score;
-    cell.numberLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+    ZLGetScoreDetailModel *detailModel = arrayModel.list[indexPath.row];
     
+    cell.status = self.noModel.status;
+    cell.detailModel = detailModel;
+    
+//    cell.totalScoreTextField.text = detailModel.selfComment;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.scroeInputBlock = ^(NSString *text) {
         
         NSIndexPath *indexPath = [yuTableView indexPathForCell:cell];
         
-        NSMutableArray *array = self.sourceArray[indexPath.section];
+        ZLGetScoreDetailArrayModel *arrayModel = self.sourceArray[indexPath.section];
         
-        ZLMyExamineModel *model = array[indexPath.row];
+        ZLGetScoreDetailModel *detailModel = arrayModel.list[indexPath.row];
         
-        model.score = text;
+       detailModel.selfComment = text;
         
-        
-//        [dic setObject:text forKey:[NSString stringWithFormat:@"%ld",indexPath.row]];
-//        [self.scoreMutableArray addObject:dic];
         NSLog(@"hahaha%@",text);
         
     };
@@ -135,7 +163,11 @@
 {
     [yuTableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    WJYAlertTipsView *tipsView = [[WJYAlertTipsView alloc]initPagesViewWithTitle:@"河长制工作制度执行" bottomButtonTitle:@"关闭" cellText:@""];
+    ZLGetScoreDetailArrayModel *arrayModel = self.sourceArray[indexPath.section];
+    
+    ZLGetScoreDetailModel *detailModel = arrayModel.list[indexPath.row];
+    
+    WJYAlertTipsView *tipsView = [[WJYAlertTipsView alloc]initPagesViewWithTitle:@"河长制工作制度执行" bottomButtonTitle:@"关闭" cellModel:detailModel];
     WJYAlertView *alertView = [[WJYAlertView alloc]initWithCustomView:tipsView dismissWhenTouchedBackground:YES];
     
     tipsView.bottomBlock = ^{
@@ -166,11 +198,10 @@
 #pragma mark - YUFoldingTableViewDelegate / optional （可选择实现的）
 - (NSString *)yuFoldingTableView:(YUFoldingTableView *)yuTableView descriptionForHeaderInSection:(NSInteger )section
 {
-    return @"detailText";
+    return @"";
 }
 
 - (UIColor *)yuFoldingTableView:(YUFoldingTableView *)yuTableView backgroundColorForHeaderInSection:(NSInteger )section{
-    
     return [UIColor whiteColor];
 
 }
@@ -199,12 +230,9 @@
         //        _mainTableView.autoAdjustOpenAndClose = YES;
         _mainTableView.backgroundColor = [UIColor whiteColor];
         // 可以设置cell默认展开，不设置的话，默认折叠
-        _mainTableView.foldingState = YUFoldingSectionStateShow;
+        _mainTableView.foldingState = YUFoldingSectionStateFlod;
         _mainTableView.scrollEnabled = NO;
         
-        
-        
-        //            _mainTableView.autoAdjustOpenAndClose = NO;
     }
     return _mainTableView;
 }

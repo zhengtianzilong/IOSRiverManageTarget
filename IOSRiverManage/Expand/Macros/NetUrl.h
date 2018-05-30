@@ -237,6 +237,16 @@
 // 已评考核列表接口
 #define River_HaveExamineServiceUrl @"city/appraisalsManagerController/getMyApplisalsAlreadyScoreForApp"
 
+// 获取评分数据接口
+#define River_GetScoreExamineServiceUrl @"city/appraisalsManagerController/getScoreInfoForApp"
+
+
+// 提交我的考核接口
+#define River_SaveMyScoreUrl @"city/appraisalsManagerController/saveMyScoreForApp"
+
+
+
+
 
 
 //// 河长联系单巡河查询当前用户管辖河道接口

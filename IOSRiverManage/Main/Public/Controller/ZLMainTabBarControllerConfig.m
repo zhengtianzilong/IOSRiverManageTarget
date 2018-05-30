@@ -68,11 +68,24 @@
                                                  CYLTabBarItemImage : @"tabbar_home",
                                                  CYLTabBarItemSelectedImage : @"tabbar_home_selected",
                                                  };
+    
+#if WanApp
+    NSDictionary *secondTabBarItemsAttributes = @{
+                                                  CYLTabBarItemTitle : @"海湾信息",
+                                                  CYLTabBarItemImage : @"tabbar_policy",
+                                                  CYLTabBarItemSelectedImage : @"tabbar_policy_selected",
+                                                  };
+#else
     NSDictionary *secondTabBarItemsAttributes = @{
                                                   CYLTabBarItemTitle : @"河湖信息",
                                                   CYLTabBarItemImage : @"tabbar_policy",
                                                   CYLTabBarItemSelectedImage : @"tabbar_policy_selected",
                                                   };
+    
+#endif
+    
+    
+   
     NSDictionary *thirdTabBarItemsAttributes = @{
                                                  CYLTabBarItemTitle : @"我的",
                                                  CYLTabBarItemImage : @"tabbar_my",

@@ -25,7 +25,7 @@
     _riverBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     
 #if WanApp
-    [_riverBtn setTitle:@"湾长巡河" forState:(UIControlStateNormal)];
+    [_riverBtn setTitle:@"湾长巡湾" forState:(UIControlStateNormal)];
 #else
     [_riverBtn setTitle:@"河长巡河" forState:(UIControlStateNormal)];
 #endif

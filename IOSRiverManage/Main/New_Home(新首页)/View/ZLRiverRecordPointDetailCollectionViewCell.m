@@ -63,7 +63,7 @@
     [self.contentView addSubview:_content];
     
     _riverPeopleLabel = [[UILabel alloc]init];
-    _riverPeopleLabel.text = @"巡河人：";
+    _riverPeopleLabel.text = @"巡查人：";
     _riverPeopleLabel.font = Font(12);
     [self.contentView addSubview:_riverPeopleLabel];
     

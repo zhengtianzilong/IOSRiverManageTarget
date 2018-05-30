@@ -264,6 +264,8 @@
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-5);
     }];
     
+    self.scoreBtn.hidden = YES;
+    
     [self.scoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.right.equalTo(self.commitBtn.mas_left).offset(-10);
@@ -275,6 +277,62 @@
     
     
 }
+
+- (void)setNoExamineModel:(ZLHaveNoExamineModel *)noExamineModel{
+    
+    _noExamineModel = noExamineModel;
+    
+    self.startTime.text = noExamineModel.startTime;
+    self.endTime.text = noExamineModel.endTime;
+    
+    self.score.text = noExamineModel.score;
+    
+    self.totalScore.text = noExamineModel.selfComment;
+    
+    
+    NSString *timeString = [ZLUtility getDateByTimestamp:[noExamineModel.updateTime longLongValue] / 1000 type:4];
+    
+    self.timeLabel.text = timeString;
+    self.title.text = noExamineModel.modelName;
+    
+    if ([noExamineModel.status isEqualToString:@"0"]) {
+        
+        self.commitBtn.hidden = YES;
+        
+    }else{
+        self.commitBtn.hidden = NO;
+    }
+    
+    
+    
+    
+}
+
+- (void)setExamineModel:(ZLHaveExamineModel *)examineModel{
+    
+    self.scoreBtn.hidden = YES;
+    
+    self.commitBtn.hidden = YES;
+    
+    _examineModel = examineModel;
+    
+    self.startTime.text = examineModel.startTime;
+    self.endTime.text = examineModel.endTime;
+    
+    self.score.text = examineModel.score;
+    
+    self.totalScore.text = examineModel.selfComment;
+    NSString *timeString = [ZLUtility getDateByTimestamp:[examineModel.updateTime longLongValue] / 1000 type:4];
+    
+    self.timeLabel.text = timeString;
+    self.title.text = examineModel.modelName;
+    
+    
+    
+}
+
+
+
 
 - (void)scoreBtnBtnClick{
     
@@ -290,7 +348,7 @@
     
     if (self.commitClick) {
         
-        self.commitClick();
+        self.commitClick(_noExamineModel);
         
     }
     

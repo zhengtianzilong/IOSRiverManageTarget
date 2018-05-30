@@ -31,7 +31,7 @@
             make.left.equalTo(self.tipsLabel.mas_right).offset(5);
             make.right.equalTo(self.contentView.mas_right).offset(-5);
             make.top.equalTo(self.contentView.mas_top).offset(5);
-            make.height.mas_equalTo(20);
+            make.height.mas_equalTo(30);
             make.bottom.equalTo(self.contentView.mas_bottom).offset(-5);
             
         }];

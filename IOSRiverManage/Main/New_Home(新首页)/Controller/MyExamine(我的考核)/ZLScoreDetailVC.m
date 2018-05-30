@@ -9,7 +9,8 @@
 #import "ZLScoreDetailVC.h"
 #import "ZLScoreDetailView.h"
 #import "ZLScoreBottomView.h"
-
+#import "ZLGetScoreDataModel.h"
+#import "ZLCommitMyScoreService.h"
 @interface ZLScoreDetailVC ()
 @property (nonatomic, strong) ZLScoreDetailView *detailView;
 @property (nonatomic, strong) UIScrollView *mainScrollView;
@@ -23,11 +24,101 @@
     
     [self.mainScrollView addSubview:self.detailView];
     
-    ZLScoreBottomView *bottomView = [[ZLScoreBottomView alloc]initWithFrame:CGRectMake(0, Main_Screen_Height - 50 * kScreenHeightRatio - TopBarHeight, Main_Screen_Width, 50 * kScreenHeightRatio) withTitles:@[@"保存",@"提交"]];
-
+//    _detailView.noModel = self.noModel;
+    
+    ZLScoreBottomView *bottomView = [[ZLScoreBottomView alloc]initWithFrame:CGRectMake(0, Main_Screen_Height - 60 * kScreenHeightRatio - TopBarHeight, Main_Screen_Width, 60 * kScreenHeightRatio) withTitles:@[@"保存",@"提交"]];
+    
+    [bottomView.saveButton addTarget:self action:@selector(saveClick) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    [bottomView.reportButton addTarget:self action:@selector(commitClick) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    
     [self.view addSubview:bottomView];
-
+    
+    bottomView.hidden = !_isShowBottomView;
+    
 }
+
+
+- (void)reporeServiceWithflag:(NSString *)flag withStatus:(NSString *)status{
+    BOOL isCommit = YES;
+    
+    for (ZLGetScoreDetailArrayModel *rowModel in _detailView.sourceArray) {
+        // 判断是不是输入完全部分值了
+        for (ZLGetScoreDetailModel *detailModel in rowModel.list) {
+            
+            if (!([detailModel.type isEqualToString:@"2"] || [detailModel.type isEqualToString:@"3"])) {
+                if ( detailModel.selfComment == nil || [detailModel.selfComment isEqualToString:@""]) {
+                    isCommit = NO;
+                }
+            }
+        }
+    }
+    
+    if (isCommit) {
+        
+        ZLCommitMyScoreService *commitService = [[ZLCommitMyScoreService alloc]initWithArray:_detailView.sourceArray managerDetailCode:self.noModel.managerDetailCode modelCode:self.noModel.managerCode flag:flag];
+        [SVProgressHUD showWithStatus:status];
+        [commitService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
+            
+            ZLBaseModel *model = [[ZLBaseModel alloc]initWithString:request.responseString error:nil];
+            
+            if ([model.code isEqualToString:@"0"]) {
+                
+                [SVProgressHUD showSuccessWithStatus:@"成功"];
+                
+                [SVProgressHUD dismissWithDelay:0.4 completion:^{
+                    
+                    [self backClick];
+                    
+                }];
+            }else{
+                
+                [SVProgressHUD showErrorWithStatus:model.detail];
+                [SVProgressHUD dismissWithDelay:0.6];
+                
+            }
+            ZLLog(@"%@", request.responseString);
+            
+        } failure:^(__kindof YTKBaseRequest * _Nonnull request) {
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            [SVProgressHUD dismissWithDelay:0.3];
+        }];
+        
+    }else{
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+            if (buttonIndex == 0) {
+                return ;
+                
+            }
+            
+        } title:@"提示" message:@"还有未输入的分值" cancelButtonName:@"取消" otherButtonTitles:nil, nil];
+        
+    }
+}
+
+- (void)commitClick{
+    
+    [self reporeServiceWithflag:@"saveAndSub" withStatus:@"提交中"];
+    ZLLog(@"%@", _detailView.sourceArray);
+    
+    
+    
+}
+- (void)saveClick{
+    [self reporeServiceWithflag:@"save" withStatus:@"保存中"];
+}
+
+
+- (void)backClick{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+}
+
 
 - (void)viewDidLayoutSubviews{
     
@@ -100,7 +191,7 @@
 
 - (ZLScoreDetailView *)detailView{
     if (!_detailView) {
-        _detailView = [[ZLScoreDetailView alloc]init];
+        _detailView = [[ZLScoreDetailView alloc]initWithModel:self.noModel];
         
     }
     return _detailView;

@@ -247,7 +247,14 @@ typedef enum : NSUInteger {
         self.manager.startSavePoint = YES;
         [self.manager startLocation];
         
-        [self.bottomButtonView.startAndEndButton setTitle:@"结束巡河" forState:(UIControlStateNormal)];
+        
+#if WanApp
+      [self.bottomButtonView.startAndEndButton setTitle:@"结束巡湾" forState:(UIControlStateNormal)];
+#else
+      [self.bottomButtonView.startAndEndButton setTitle:@"结束巡河" forState:(UIControlStateNormal)];
+#endif
+        
+        
         [self.bottomButtonView.startAndEndButton setImage:[UIImage imageNamed:@"GaodeEndRiver"] forState:(UIControlStateNormal)];
         [self.bottomButtonView.startAndEndButton setBackgroundColor:HEXCOLOR(0xf29503)];
         
@@ -318,7 +325,8 @@ typedef enum : NSUInteger {
     
 //    deleage.floatWindow.rootViewController = self;
     
-    if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡河"]){
+    if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡河"] ||
+       [[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡湾"]){
         [deleage.floatWindow close];
         [deleage.floatWindow resignKeyWindow];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"RiverRunningEnd" object:nil];
@@ -342,13 +350,15 @@ typedef enum : NSUInteger {
 
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
 
-        } title:@"提示" message:@"巡河已经结束,无法上报" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"巡查已经结束,无法上报" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
 
-    }else if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡河"]){
+    }else if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡河"] ||
+             [[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡湾"]
+             ){
 
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
 
-        } title:@"提示" message:@"还未开始巡河,无法上报" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"还未开始巡查,无法上报" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
 
         return;
     }else{
@@ -403,12 +413,14 @@ typedef enum : NSUInteger {
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"巡河已经结束,无法下发" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
-    }else if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡河"]){
+        } title:@"提示" message:@"巡查已经结束,无法下发" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+    }else if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡河"] ||
+             [[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡湾"]
+             ){
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
-        } title:@"提示" message:@"还未开始巡河,无法下发" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:@"还未开始巡查,无法下发" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         
         return;
     }else{
@@ -451,7 +463,7 @@ typedef enum : NSUInteger {
 - (void)startAndEndClick:(UIButton *)button{
     
     
-    if([[button currentTitle] isEqualToString:@"开始巡河"]){
+    if([[button currentTitle] isEqualToString:@"开始巡河"] || [[button currentTitle] isEqualToString:@"开始巡湾"]){
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             if (buttonIndex == 1) {
                 // 得到当前的时间戳
@@ -470,7 +482,13 @@ typedef enum : NSUInteger {
                     _startAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"起点"];
                     _status = rivering;
                     
-                    [button setTitle:@"结束巡河" forState:(UIControlStateNormal)];
+#if WanApp
+    [button setTitle:@"结束巡湾" forState:(UIControlStateNormal)];
+#else
+   [button setTitle:@"结束巡河" forState:(UIControlStateNormal)];
+#endif
+                    
+                    
                     [button setImage:[UIImage imageNamed:@"GaodeEndRiver"] forState:(UIControlStateNormal)];
                     [button setBackgroundColor:HEXCOLOR(0xf29503)];
                     
@@ -485,14 +503,14 @@ typedef enum : NSUInteger {
                     
                     [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
                         
-                    } title:@"提示" message:@"巡河已经开始" cancelButtonName:@"确定" otherButtonTitles:nil,nil];
+                    } title:@"提示" message:@"巡查已经开始" cancelButtonName:@"确定" otherButtonTitles:nil,nil];
                     
                 }
             }
             
-        } title:@"提示" message: [NSString stringWithFormat:@"当前已选择%@,是否确定开始巡河", _riverDataModel.riverName] cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
-    }else if ([[button currentTitle] isEqualToString:@"结束巡河"]){
-        DQAlertView * alertView = [[DQAlertView alloc] initWithTitle:@"提示" message:@"是否确定结束巡河" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        } title:@"提示" message: [NSString stringWithFormat:@"当前已选择%@,是否确定开始巡查", _riverDataModel.riverName] cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
+    }else if ([[button currentTitle] isEqualToString:@"结束巡河"] || [[button currentTitle] isEqualToString:@"结束巡湾"]){
+        DQAlertView * alertView = [[DQAlertView alloc] initWithTitle:@"提示" message:@"是否确定结束巡查" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView actionWithBlocksCancelButtonHandler:^{
             
         } otherButtonHandler:^{
@@ -526,7 +544,7 @@ typedef enum : NSUInteger {
     }
     
     ZLSavepatrolpointService *endService = [[ZLSavepatrolpointService alloc]initWithpatrolCode:self.patrolCode userCode:self.userId riverCode:_riverDataModel.riverCode startTime:_startTime endTime:_endTime startLongitude:startDic[@"longitude"] startLatitude:startDic[@"latitude"] endLongitude:endDic[@"longitude"] endLatitude:endDic[@"latitude"] list:addressArray];
-    [SVProgressHUD showWithStatus:@"结束巡河中"];
+    [SVProgressHUD showWithStatus:@"结束巡查中"];
     
     //    __weak typeof(self) weakSelf = self;
     [endService startWithCompletionBlockWithSuccess:^(__kindof YTKBaseRequest * _Nonnull request) {
@@ -541,13 +559,20 @@ typedef enum : NSUInteger {
             self.manager.startSavePoint = NO;
             [self.manager endLocation];
             _status = endRiver;
-            [SVProgressHUD showSuccessWithStatus:@"结束巡河成功"];
+            [SVProgressHUD showSuccessWithStatus:@"结束巡查成功"];
             [SVProgressHUD dismissWithDelay:0.3 completion:^{
                 // 放置终点旗帜
                 if (_startAnnotation) {
                     _endAnnotation  = [self creatPointWithLocaiton:_manager.mapView.userLocation.location title:@"终点"];
                     
-                    [button setTitle:@"开始巡河" forState:(UIControlStateNormal)];
+#if WanApp
+      [button setTitle:@"开始巡湾" forState:(UIControlStateNormal)];
+#else
+      [button setTitle:@"开始巡河" forState:(UIControlStateNormal)];
+                    
+#endif
+                    
+                    
                     [button setImage:[UIImage imageNamed:@"GaodeStartRiver"] forState:(UIControlStateNormal)];
                     [button setBackgroundColor:[UIColor grayColor]];
                     button.enabled = NO;
@@ -589,7 +614,7 @@ typedef enum : NSUInteger {
         [self.store putString:endDic[@"latitude"] withId:@"endLatitude" intoTable:DBMapTable];
 //        [self.store putObject:_manager.locationsAndAddress withId:DBAddress intoTable:DBMapTable];
         
-        [SVProgressHUD showErrorWithStatus:@"结束巡河失败 请检查网络"];
+        [SVProgressHUD showErrorWithStatus:@"结束巡查失败 请检查网络"];
         [SVProgressHUD dismissWithDelay:0.3];
         
     }];

@@ -117,12 +117,12 @@
     
     if ([self.contentArr[indexPath.row][@"content"] isEqualToString:@"关于系统"]) {
         
-#if WanApp
-        ZLWanLeftAboutVC *vc=[[ZLWanLeftAboutVC alloc]init];
-#else
+//#if WanApp
+//        ZLWanLeftAboutVC *vc=[[ZLWanLeftAboutVC alloc]init];
+//#else
         ZLLeftAboutViewController *vc=[[ZLLeftAboutViewController alloc]init];
         
-#endif
+//#endif
         [self.navigationController pushViewController:vc animated:YES];
     }
     

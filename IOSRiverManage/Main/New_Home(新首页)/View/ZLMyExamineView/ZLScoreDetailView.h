@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ZLHaveNoExamineModel.h"
+
 @interface ZLScoreDetailView : UIView
 
+@property (nonatomic, strong) ZLHaveNoExamineModel *noModel;
+
+@property (nonatomic, strong) NSMutableArray *sourceArray;
+- (instancetype)initWithModel:(ZLHaveNoExamineModel *)noModel;
 @end

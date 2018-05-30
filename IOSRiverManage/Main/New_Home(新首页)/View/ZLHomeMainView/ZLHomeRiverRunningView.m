@@ -159,7 +159,7 @@
     if (!_checkLabel) {
         _checkLabel = [[UILabel alloc]init];
         _checkLabel.font = CHINESE_SYSTEM(14);
-        _checkLabel.text = @"巡河中请查看";
+        _checkLabel.text = @"巡查中请查看";
         _checkLabel.textColor = [UIColor orangeColor];
     }
     return _checkLabel;

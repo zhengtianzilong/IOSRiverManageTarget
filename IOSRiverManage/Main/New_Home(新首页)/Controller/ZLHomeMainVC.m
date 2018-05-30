@@ -394,7 +394,7 @@
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
         
-        if ([model.title isEqualToString:@"巡河记录"]) {
+        if ([model.title isEqualToString:@"巡河记录"] || [model.title isEqualToString:@"巡查记录"]) {
             ZLRiverRecordVC *vc = [[ZLRiverRecordVC alloc]init];
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
@@ -415,8 +415,8 @@
         }
         
         if ([model.title isEqualToString:@"更多"]) {
-//            ZLMyExamineManagerVC *vc = [[ZLMyExamineManagerVC alloc]init];
-//            [weakSelf.navigationController pushViewController:vc animated:YES];
+            ZLMyExamineManagerVC *vc = [[ZLMyExamineManagerVC alloc]init];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }
         
         
@@ -735,7 +735,7 @@
         } title:@"提示" message:@"当前并无河道" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
     }else{
         if (self.headView.isHideRunningView) {
-            ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡河" singleSelection:YES];
+            ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡查" singleSelection:YES];
             alert.selectItem = ^(NSInteger index) {
                 ZLLog(@"%ld",(long)index);
                 ZLGaodeViewController *gaode = [[ZLGaodeViewController alloc]init];
@@ -748,7 +748,7 @@
             [alert show];
         }else{
             [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-            } title:@"提示" message:@"当前已经在巡河中" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+            } title:@"提示" message:@"当前已经在巡查中" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         }
     }
 }

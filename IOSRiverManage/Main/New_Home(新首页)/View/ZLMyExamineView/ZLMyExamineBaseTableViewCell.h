@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZLHaveNoExamineModel.h"
+#import "ZLHaveExamineModel.h"
 typedef void(^zlScoreClick)(void);
-typedef void(^zlScoreCommitClick)(void);
+typedef void(^zlScoreCommitClick)(ZLHaveNoExamineModel *model);
 @interface ZLMyExamineBaseTableViewCell : UITableViewCell
 /**
  颜色指示器
@@ -59,5 +60,9 @@ typedef void(^zlScoreCommitClick)(void);
 
 @property (nonatomic, strong) zlScoreClick scoreClick;
 @property (nonatomic, strong) zlScoreCommitClick commitClick;
+
+@property (nonatomic, strong) ZLHaveNoExamineModel *noExamineModel;
+
+@property (nonatomic, strong) ZLHaveExamineModel *examineModel;
 
 @end

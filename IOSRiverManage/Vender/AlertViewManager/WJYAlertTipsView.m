@@ -36,14 +36,14 @@ static const CGFloat kButtonHeight=44;
     return self;
 }
 
--(instancetype)initPagesViewWithTitle:(NSString *)title bottomButtonTitle:(NSString *)bottomButtonTitle cellText:(NSString *)cellText
+-(instancetype)initPagesViewWithTitle:(NSString *)title bottomButtonTitle:(NSString *)bottomButtonTitle cellModel:(ZLGetScoreDetailModel *)cellModel
 {
     self = [super initWithFrame:[[UIScreen mainScreen] bounds]];
     if (self) {
         _viewTitle=title;
         _bottomButtonTitle = bottomButtonTitle;
         
-
+        _detailModel = cellModel;
         
         [self layoutViewPage];
     }
@@ -125,6 +125,8 @@ static const CGFloat kButtonHeight=44;
         self.mainTableView.rowHeight = UITableViewAutomaticDimension;
         self.mainTableView.estimatedRowHeight = 50;
         
+        self.mainTableView.tableFooterView = [UIView new];
+        
         [self.mainTableView registerClass:[ZLAlertScoreTableViewCell class] forCellReuseIdentifier:@"ZLAlertScoreTableViewCell"];
         [self.mainTableView registerClass:[ZLAlertContentTableViewCell class] forCellReuseIdentifier:@"ZLAlertContentTableViewCell"];
         
@@ -152,25 +154,15 @@ static const CGFloat kButtonHeight=44;
     if (indexPath.row == 0) {
         
         ZLAlertContentTableViewCell *contentCell = [tableView dequeueReusableCellWithIdentifier:@"ZLAlertContentTableViewCell" forIndexPath:indexPath];
-        
-        if (contentCell == nil) {
             
-            contentCell = [[ZLAlertContentTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"ZLAlertContentTableViewCell"];
-            
-        }
+        contentCell.contentLabel.text = _detailModel.content;
         
         return contentCell;
         
     }else if (indexPath.row == 1){
         
          ZLAlertScoreTableViewCell *scoreCell = [tableView dequeueReusableCellWithIdentifier:@"ZLAlertScoreTableViewCell" forIndexPath:indexPath];
-        
-        if (scoreCell == nil) {
-             scoreCell = [[ZLAlertScoreTableViewCell alloc]initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:@"ZLAlertScoreTableViewCell"];
-            
-            
-        }
-        
+        scoreCell.contentLabel.text = [NSString stringWithFormat:@"%@分",_detailModel.score] ;
         
         return scoreCell;
         
