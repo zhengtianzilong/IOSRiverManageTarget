@@ -167,7 +167,14 @@
                           NSForegroundColorAttributeName:[UIColor whiteColor]
                           };
     
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"全部河道" attributes:dic];
+    
+//#if WanApp
+//    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"全部海湾" attributes:dic];
+//#else
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:S_AllRiverInfo attributes:dic];
+//#endif
+    
+    
     
     return title;
     

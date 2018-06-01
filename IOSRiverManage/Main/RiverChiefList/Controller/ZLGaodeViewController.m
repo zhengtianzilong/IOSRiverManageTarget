@@ -248,12 +248,12 @@ typedef enum : NSUInteger {
         [self.manager startLocation];
         
         
-#if WanApp
-      [self.bottomButtonView.startAndEndButton setTitle:@"结束巡湾" forState:(UIControlStateNormal)];
-#else
-      [self.bottomButtonView.startAndEndButton setTitle:@"结束巡河" forState:(UIControlStateNormal)];
-#endif
-        
+//#if WanApp
+      [self.bottomButtonView.startAndEndButton setTitle:S_EndRiverInfo forState:(UIControlStateNormal)];
+//#else
+//      [self.bottomButtonView.startAndEndButton setTitle:@"结束巡河" forState:(UIControlStateNormal)];
+//#endif
+//
         
         [self.bottomButtonView.startAndEndButton setImage:[UIImage imageNamed:@"GaodeEndRiver"] forState:(UIControlStateNormal)];
         [self.bottomButtonView.startAndEndButton setBackgroundColor:HEXCOLOR(0xf29503)];
@@ -482,11 +482,11 @@ typedef enum : NSUInteger {
                     _startAnnotation = [self creatPointWithLocaiton:self.manager.mapView.userLocation.location title:@"起点"];
                     _status = rivering;
                     
-#if WanApp
-    [button setTitle:@"结束巡湾" forState:(UIControlStateNormal)];
-#else
-   [button setTitle:@"结束巡河" forState:(UIControlStateNormal)];
-#endif
+//#if WanApp
+    [button setTitle:S_EndRiverInfo forState:(UIControlStateNormal)];
+//#else
+//   [button setTitle:@"结束巡河" forState:(UIControlStateNormal)];
+//#endif
                     
                     
                     [button setImage:[UIImage imageNamed:@"GaodeEndRiver"] forState:(UIControlStateNormal)];
@@ -565,12 +565,12 @@ typedef enum : NSUInteger {
                 if (_startAnnotation) {
                     _endAnnotation  = [self creatPointWithLocaiton:_manager.mapView.userLocation.location title:@"终点"];
                     
-#if WanApp
-      [button setTitle:@"开始巡湾" forState:(UIControlStateNormal)];
-#else
-      [button setTitle:@"开始巡河" forState:(UIControlStateNormal)];
-                    
-#endif
+//#if WanApp
+      [button setTitle:S_StartRiverInfo forState:(UIControlStateNormal)];
+//#else
+//      [button setTitle:@"开始巡河" forState:(UIControlStateNormal)];
+//                    
+//#endif
                     
                     
                     [button setImage:[UIImage imageNamed:@"GaodeStartRiver"] forState:(UIControlStateNormal)];

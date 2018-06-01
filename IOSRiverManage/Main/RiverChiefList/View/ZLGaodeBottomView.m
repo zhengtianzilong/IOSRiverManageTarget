@@ -70,11 +70,11 @@
     if (!_startAndEndButton) {
         _startAndEndButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
         
-#if WanApp
-         [_startAndEndButton setTitle:@"开始巡湾" forState:(UIControlStateNormal)];
-#else
-         [_startAndEndButton setTitle:@"开始巡河" forState:(UIControlStateNormal)];
-#endif
+//#if WanApp
+         [_startAndEndButton setTitle:S_StartRiverInfo forState:(UIControlStateNormal)];
+//#else
+//         [_startAndEndButton setTitle:@"开始巡河" forState:(UIControlStateNormal)];
+//#endif
         
        
         [_startAndEndButton setImage:[UIImage imageNamed:@"GaodeStartRiver"] forState:(UIControlStateNormal)];

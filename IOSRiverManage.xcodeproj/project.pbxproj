@@ -2015,6 +2015,10 @@
 		D5C3830E206D2947000F77F8 /* ZLEventDetailDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C3830D206D2947000F77F8 /* ZLEventDetailDataModel.m */; };
 		D5C3830F206D2947000F77F8 /* ZLEventDetailDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C3830D206D2947000F77F8 /* ZLEventDetailDataModel.m */; };
 		D5C38310206D2947000F77F8 /* ZLEventDetailDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C3830D206D2947000F77F8 /* ZLEventDetailDataModel.m */; };
+		D5CD59F120BFCF200050FDFD /* ZLScoreDeatilsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CD59F020BFCF200050FDFD /* ZLScoreDeatilsVC.m */; };
+		D5CD59F220BFCF200050FDFD /* ZLScoreDeatilsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CD59F020BFCF200050FDFD /* ZLScoreDeatilsVC.m */; };
+		D5CD59F320BFCF200050FDFD /* ZLScoreDeatilsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CD59F020BFCF200050FDFD /* ZLScoreDeatilsVC.m */; };
+		D5CD59F420BFCF200050FDFD /* ZLScoreDeatilsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CD59F020BFCF200050FDFD /* ZLScoreDeatilsVC.m */; };
 		D5CF60982050EBC40060926D /* ZLRiverChangeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CF60972050EBC40060926D /* ZLRiverChangeCollectionViewCell.m */; };
 		D5CF60992050EBC40060926D /* ZLRiverChangeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CF60972050EBC40060926D /* ZLRiverChangeCollectionViewCell.m */; };
 		D5CF609A2050EBC40060926D /* ZLRiverChangeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5CF60972050EBC40060926D /* ZLRiverChangeCollectionViewCell.m */; };
@@ -3084,6 +3088,8 @@
 		D5C38308206D2099000F77F8 /* ZLEventDealDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventDealDetailCell.m; sourceTree = "<group>"; };
 		D5C3830C206D2947000F77F8 /* ZLEventDetailDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLEventDetailDataModel.h; sourceTree = "<group>"; };
 		D5C3830D206D2947000F77F8 /* ZLEventDetailDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLEventDetailDataModel.m; sourceTree = "<group>"; };
+		D5CD59EF20BFCF200050FDFD /* ZLScoreDeatilsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLScoreDeatilsVC.h; sourceTree = "<group>"; };
+		D5CD59F020BFCF200050FDFD /* ZLScoreDeatilsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLScoreDeatilsVC.m; sourceTree = "<group>"; };
 		D5CF60962050EBC40060926D /* ZLRiverChangeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLRiverChangeCollectionViewCell.h; sourceTree = "<group>"; };
 		D5CF60972050EBC40060926D /* ZLRiverChangeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLRiverChangeCollectionViewCell.m; sourceTree = "<group>"; };
 		D5CF609B205119FA0060926D /* ZLRiverAddIntakeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLRiverAddIntakeVC.h; sourceTree = "<group>"; };
@@ -3114,6 +3120,7 @@
 		D5D575E720627E52000043F2 /* ZLAssignTaskDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLAssignTaskDataModel.m; sourceTree = "<group>"; };
 		D5D575EB20628B03000043F2 /* ZLAssignTaskDetailService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLAssignTaskDetailService.h; sourceTree = "<group>"; };
 		D5D575EC20628B03000043F2 /* ZLAssignTaskDetailService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLAssignTaskDetailService.m; sourceTree = "<group>"; };
+		D5DA193F20C13F8800B2B4EF /* Strings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Strings.h; sourceTree = "<group>"; };
 		D5DEA29D1F6FAA7F00CD50C0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D5DEA29E1F6FAA7F00CD50C0 /* SDBrowserdConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserdConfig.h; sourceTree = "<group>"; };
 		D5DEA29F1F6FAA7F00CD50C0 /* SDImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageView.h; sourceTree = "<group>"; };
@@ -3653,6 +3660,7 @@
 				D558F2FC1F7A214B0076A0E3 /* UserDefaultKey.h */,
 				D585CD7E1FE7B83100802DBB /* DataBaseKey.h */,
 				D5A165E720464372008C810E /* Colors.h */,
+				D5DA193F20C13F8800B2B4EF /* Strings.h */,
 			);
 			path = Macros;
 			sourceTree = "<group>";
@@ -5362,6 +5370,8 @@
 				D5B22C2920AAB46F0014FB75 /* ZLHaveExamineVC.m */,
 				D5A6ACDD20AC1C1400286561 /* ZLScoreDetailVC.h */,
 				D5A6ACDE20AC1C1400286561 /* ZLScoreDetailVC.m */,
+				D5CD59EF20BFCF200050FDFD /* ZLScoreDeatilsVC.h */,
+				D5CD59F020BFCF200050FDFD /* ZLScoreDeatilsVC.m */,
 			);
 			path = "MyExamine(我的考核)";
 			sourceTree = "<group>";
@@ -5845,8 +5855,8 @@
 				TargetAttributes = {
 					D51D3AD61F69344900CA0903 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = X7285XJAR2;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 852BN2UPEC;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -6641,6 +6651,7 @@
 				D5B68771204F920A00347AA8 /* ZLHomeRiverRunningView.m in Sources */,
 				D550940C2060F9A3009DD61E /* ZLGetPatrolCoordinateIncidentTaskService.m in Sources */,
 				D570495F1FD7D5FF00D0EE99 /* ZLGaodeReportBottomView.m in Sources */,
+				D5CD59F120BFCF200050FDFD /* ZLScoreDeatilsVC.m in Sources */,
 				D53C1FDC1FFB5D9B00D2BCA3 /* ZLEventManageTableViewCell.m in Sources */,
 				D5C382BA206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m in Sources */,
 				D577876B205BD6AF005E39F4 /* ZLRiverPeopleLowerModel.m in Sources */,
@@ -7346,6 +7357,7 @@
 				D5252D9720B7A4710049F07A /* ZLRiverManegeDataDetailModel.m in Sources */,
 				D5252D9820B7A4710049F07A /* ZLMyExamineModel.m in Sources */,
 				D5252D9920B7A4710049F07A /* UIView+ViewController.m in Sources */,
+				D5CD59F420BFCF200050FDFD /* ZLScoreDeatilsVC.m in Sources */,
 				D5252D9A20B7A4710049F07A /* ZLRiverIncidentDetailListModel.m in Sources */,
 				D5252D9B20B7A4710049F07A /* ZLLoginTopView.m in Sources */,
 				D5252D9C20B7A4710049F07A /* ZLPublicityBrandModel.m in Sources */,
@@ -7592,6 +7604,7 @@
 				D550940D2060F9A3009DD61E /* ZLGetPatrolCoordinateIncidentTaskService.m in Sources */,
 				D576681B1FEB9B3D00470A3F /* ZLGaodeReportBottomView.m in Sources */,
 				D53C1FDD1FFB5D9B00D2BCA3 /* ZLEventManageTableViewCell.m in Sources */,
+				D5CD59F220BFCF200050FDFD /* ZLScoreDeatilsVC.m in Sources */,
 				D5C382BB206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m in Sources */,
 				D577876C205BD6AF005E39F4 /* ZLRiverPeopleLowerModel.m in Sources */,
 				D576681F1FEB9B3D00470A3F /* SDLoadingView.m in Sources */,
@@ -8060,6 +8073,7 @@
 				D550940E2060F9A3009DD61E /* ZLGetPatrolCoordinateIncidentTaskService.m in Sources */,
 				D5850F851FF08CC8001B8165 /* ZLGaodeReportBottomView.m in Sources */,
 				D53C1FDE1FFB5D9B00D2BCA3 /* ZLEventManageTableViewCell.m in Sources */,
+				D5CD59F320BFCF200050FDFD /* ZLScoreDeatilsVC.m in Sources */,
 				D5C382BC206C7B19000F77F8 /* ZLTaskAlreadyDataModel.m in Sources */,
 				D577876D205BD6AF005E39F4 /* ZLRiverPeopleLowerModel.m in Sources */,
 				D5850F891FF08CC8001B8165 /* SDLoadingView.m in Sources */,
@@ -8622,11 +8636,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = IOSRiverManage/IOSRiverManage.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = X7285XJAR2;
+				DEVELOPMENT_TEAM = 852BN2UPEC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8653,10 +8667,10 @@
 					"\"$(SRCROOT)/IOSRiverManage\"",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xgzl.IOSRiverManage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hzz.jshezhangtong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5d8df809-1b3e-4df5-b85c-f13c3989af0e";
+				PROVISIONING_PROFILE_SPECIFIER = ICTHezhangzhi_Ent;
 				SWIFT_OBJC_BRIDGING_HEADER = "IOSRiverManage/Resource/Config/IOSRiverManage-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -9029,11 +9043,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = IOSRiverManage/IOSRiverManage.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: China Mobile Group Jiangsu Company Limited";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = X7285XJAR2;
+				DEVELOPMENT_TEAM = 852BN2UPEC;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9060,10 +9074,10 @@
 					"\"$(SRCROOT)/IOSRiverManage\"",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xgzl.IOSRiverManage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hzz.jshezhangtong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5d8df809-1b3e-4df5-b85c-f13c3989af0e";
+				PROVISIONING_PROFILE_SPECIFIER = ICTHezhangzhi_Ent;
 				SWIFT_OBJC_BRIDGING_HEADER = "IOSRiverManage/Resource/Config/IOSRiverManage-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

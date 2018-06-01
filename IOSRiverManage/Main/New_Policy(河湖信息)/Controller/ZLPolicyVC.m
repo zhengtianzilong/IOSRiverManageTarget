@@ -186,7 +186,14 @@
                           NSForegroundColorAttributeName:[UIColor whiteColor]
                           };
     
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"河湖信息" attributes:dic];
+    
+//#if WanApp
+//    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"海湾信息" attributes:dic];
+//#else
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:S_PolicyInfo attributes:dic];
+    
+//#endif
+    
     
     return title;
     

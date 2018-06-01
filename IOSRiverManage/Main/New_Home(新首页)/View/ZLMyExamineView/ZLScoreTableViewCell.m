@@ -212,6 +212,7 @@
         
         NSString *total = [NSString stringWithFormat:@"%@%@",textView.text, text];
         
+        if (score > 0) {
         if ([total floatValue] == score) {
             
             if ([text isEqualToString:@""]) {
@@ -231,6 +232,7 @@
             
         }
         
+        }
         if ([textView.text rangeOfString:@"."].location==NSNotFound) {
             
             _isHaveDian = NO;
@@ -242,9 +244,6 @@
             _isFirstZero = NO;
             
         }
-        
-        
-        
         if ([text length]>0)
             
         {

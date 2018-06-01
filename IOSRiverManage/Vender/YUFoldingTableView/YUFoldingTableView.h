@@ -52,6 +52,8 @@
  */
 - (void )yuFoldingTableView:(YUFoldingTableView *)yuTableView tapHeader:(CGFloat)height;
 
+- (void)yuFoldingTableView:(YUFoldingTableView *)yuTableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+
 @optional
 
 /**

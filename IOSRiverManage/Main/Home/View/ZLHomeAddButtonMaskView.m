@@ -24,11 +24,11 @@
 - (void)setUpUI{
     _riverBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     
-#if WanApp
-    [_riverBtn setTitle:@"湾长巡湾" forState:(UIControlStateNormal)];
-#else
-    [_riverBtn setTitle:@"河长巡河" forState:(UIControlStateNormal)];
-#endif
+//#if WanApp
+//    [_riverBtn setTitle:@"湾长巡湾" forState:(UIControlStateNormal)];
+//#else
+    [_riverBtn setTitle:S_WanStartRiverInfo forState:(UIControlStateNormal)];
+//#endif
     
     
     _riverBtn.titleLabel.font = [UIFont systemFontOfSize:15];

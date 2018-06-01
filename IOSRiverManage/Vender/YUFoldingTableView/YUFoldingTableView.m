@@ -246,6 +246,17 @@ static NSString *YUFoldingSectionHeaderID = @"YUFoldingSectionHeader";
 }
 
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (_foldingDelegate && [_foldingDelegate respondsToSelector:@selector(yuFoldingTableView:willDisplayCell:forRowAtIndexPath:)]) {
+        
+        [_foldingDelegate yuFoldingTableView:self willDisplayCell:cell forRowAtIndexPath:indexPath];
+        
+    }
+    
+}
+
+
 #pragma mark - YUFoldingSectionHeaderDelegate
 
 - (void)yuFoldingSectionHeaderTappedAtIndex:(NSInteger)index

@@ -12,6 +12,7 @@
 #import "ZLHaveNoExamineArrayModel.h"
 #import "ZLHaveNoExamineService.h"
 #import "ZLCommitMyScoreService.h"
+#import "ZLScoreDeatilsVC.h"
 @interface ZLHaveNoExamineVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *sourceArray;
@@ -146,7 +147,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   
-    ZLScoreDetailVC *vc = [[ZLScoreDetailVC alloc]init];
+//    ZLScoreDetailVC *vc = [[ZLScoreDetailVC alloc]init];
+    
+    ZLScoreDeatilsVC *vc = [[ZLScoreDeatilsVC alloc]init];
     
     ZLHaveNoExamineModel *noModel = self.sourceArray[indexPath.section];
     
@@ -173,7 +176,6 @@
         _mainTableView.sectionHeaderHeight = 0;
         _mainTableView.rowHeight = UITableViewAutomaticDimension;
         _mainTableView.estimatedRowHeight = 180;
-        
         
         _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
             

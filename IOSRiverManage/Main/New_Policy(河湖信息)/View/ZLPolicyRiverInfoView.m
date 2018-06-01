@@ -76,7 +76,8 @@
 - (UIButton *)watchAllButton{
     if (!_watchAllButton) {
         _watchAllButton = [[UIButton alloc]initWithFrame:CGRectZero];
-        [_watchAllButton setTitle:@"查看所有河道" forState:(UIControlStateNormal)];
+        
+        [_watchAllButton setTitle:S_WatchAllButton forState:(UIControlStateNormal)];
         
         [_watchAllButton setTitleColor:HEXCOLOR(CNAVGATIONBAR_COLOR) forState:(UIControlStateNormal)];
         

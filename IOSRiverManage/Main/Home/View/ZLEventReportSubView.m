@@ -28,8 +28,6 @@
         
         [_nameLabel setNeedsDisplay];
         
-        
-        
         if (![placeHolder isEqualToString:@""]) {
             self.eventTextfiled = [[UITextField alloc]init];
             self.eventTextfiled.placeholder = placeHolder;
@@ -48,8 +46,6 @@
             _imageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"event_object"]];
             UIView *rightView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _imageV.frame.size.width + 10, _imageV.frame.size.height)];
             [rightView addSubview:_imageV];
-            
-            //            imageV.image = [UIImage imageNamed:@"event_object"];
             self.eventTextfiled.rightViewMode = UITextFieldViewModeAlways;
             self.eventTextfiled.rightView = rightView;
             

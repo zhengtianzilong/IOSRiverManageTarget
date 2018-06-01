@@ -46,6 +46,8 @@
 #import <GTSDK/GeTuiSdk.h>
 #import "UITextView+ZWLimitCounter.h"
 
+#import "Strings.h"
+
 #ifdef Suqian
 //#import "IOSRiverManageSuqian-Swift.h"
 #elif TouBiao

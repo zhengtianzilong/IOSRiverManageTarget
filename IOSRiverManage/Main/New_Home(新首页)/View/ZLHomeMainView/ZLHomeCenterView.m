@@ -136,22 +136,22 @@
             
             if ([subString isEqualToString:@"3211"]) {
                 
-#if WanApp
-       titleArray = @[@"事件管理", @"任务管理", @"巡查记录", @"综合统计", @"新闻公告", @"通讯录",@"更多"];
-#else
-       titleArray = @[@"事件管理", @"任务管理", @"巡河记录", @"综合统计", @"新闻公告", @"通讯录",@"更多"];
-#endif
+//#if WanApp
+                titleArray = @[@"事件管理", @"任务管理", S_RiverRecordInfo, @"综合统计", @"新闻公告", @"通讯录",@"我的考核"];
+//#else
+//                titleArray = @[@"事件管理", @"任务管理", @"巡河记录", @"综合统计", @"新闻公告", @"通讯录",@"我的考核"];
+//#endif
+//
                 
-               
                 imageTitle = @[@"home_eventManager", @"home_taskManager", @"home_riverRecord", @"home_statistical", @"home_news", @"home_addressbook",@"home_more"];
                 
             }else{
                 
-#if WanApp
-                titleArray = @[@"事件管理", @"任务管理", @"巡查记录", @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"更多"];
-#else
-                titleArray = @[@"事件管理", @"任务管理", @"巡河记录", @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"更多"];
-#endif
+//#if WanApp
+                titleArray = @[@"事件管理", @"任务管理", S_RiverRecordInfo, @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"我的考核"];
+//#else
+//                titleArray = @[@"事件管理", @"任务管理", @"巡河记录", @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"我的考核"];
+//#endif
                 
                 
                 imageTitle = @[@"home_eventManager", @"home_taskManager", @"home_riverRecord", @"home_statistical", @"home_news", @"home_addressbook", @"home_ oversee",@"home_more"];
@@ -160,11 +160,11 @@
             
         }else{
             
-#if WanApp
-            titleArray = @[@"事件管理", @"任务管理", @"巡查记录", @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"更多"];
-#else
-            titleArray = @[@"事件管理", @"任务管理", @"巡河记录", @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"更多"];
-#endif
+//#if WanApp
+            titleArray = @[@"事件管理", @"任务管理", S_RiverRecordInfo, @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"我的考核"];
+//#else
+//            titleArray = @[@"事件管理", @"任务管理", @"巡河记录", @"综合统计", @"新闻公告", @"通讯录", @"交办督办",@"我的考核"];
+//#endif
             imageTitle = @[@"home_eventManager", @"home_taskManager", @"home_riverRecord", @"home_statistical", @"home_news", @"home_addressbook", @"home_ oversee",@"home_more"];
         }
         

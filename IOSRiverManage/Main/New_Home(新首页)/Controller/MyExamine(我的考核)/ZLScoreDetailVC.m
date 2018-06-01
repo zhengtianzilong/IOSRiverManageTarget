@@ -23,9 +23,6 @@
     [self.view addSubview:self.mainScrollView];
     
     [self.mainScrollView addSubview:self.detailView];
-    
-//    _detailView.noModel = self.noModel;
-    
     ZLScoreBottomView *bottomView = [[ZLScoreBottomView alloc]initWithFrame:CGRectMake(0, Main_Screen_Height - 60 * kScreenHeightRatio - TopBarHeight, Main_Screen_Width, 60 * kScreenHeightRatio) withTitles:@[@"保存",@"提交"]];
     
     [bottomView.saveButton addTarget:self action:@selector(saveClick) forControlEvents:(UIControlEventTouchUpInside)];
@@ -120,12 +117,6 @@
 }
 
 
-- (void)viewDidLayoutSubviews{
-    
-    [super viewDidLayoutSubviews];
-    
-    
-}
 
 - (void)updateViewConstraints{
     [super updateViewConstraints];
@@ -196,7 +187,4 @@
     }
     return _detailView;
 }
-
-
-
 @end

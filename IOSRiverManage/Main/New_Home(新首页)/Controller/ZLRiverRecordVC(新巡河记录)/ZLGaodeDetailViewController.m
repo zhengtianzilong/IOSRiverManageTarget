@@ -347,11 +347,11 @@
                           NSForegroundColorAttributeName:[UIColor whiteColor]
                           };
     
-#if WanApp
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"巡河详情" attributes:dic];
-#else
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"巡查详情" attributes:dic];
-#endif
+//#if WanApp
+//    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"巡河详情" attributes:dic];
+//#else
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:S_RiverDetailInfo attributes:dic];
+//#endif
     
     
     return title;

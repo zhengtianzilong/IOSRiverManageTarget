@@ -69,20 +69,20 @@
                                                  CYLTabBarItemSelectedImage : @"tabbar_home_selected",
                                                  };
     
-#if WanApp
+//#if WanApp
+//    NSDictionary *secondTabBarItemsAttributes = @{
+//                                                  CYLTabBarItemTitle : @"海湾信息",
+//                                                  CYLTabBarItemImage : @"tabbar_policy",
+//                                                  CYLTabBarItemSelectedImage : @"tabbar_policy_selected",
+//                                                  };
+//#else
     NSDictionary *secondTabBarItemsAttributes = @{
-                                                  CYLTabBarItemTitle : @"海湾信息",
-                                                  CYLTabBarItemImage : @"tabbar_policy",
-                                                  CYLTabBarItemSelectedImage : @"tabbar_policy_selected",
-                                                  };
-#else
-    NSDictionary *secondTabBarItemsAttributes = @{
-                                                  CYLTabBarItemTitle : @"河湖信息",
+                                                  CYLTabBarItemTitle : S_PolicyInfo,
                                                   CYLTabBarItemImage : @"tabbar_policy",
                                                   CYLTabBarItemSelectedImage : @"tabbar_policy_selected",
                                                   };
     
-#endif
+//#endif
     
     
    

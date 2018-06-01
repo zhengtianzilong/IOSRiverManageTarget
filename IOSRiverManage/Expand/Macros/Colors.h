@@ -14,4 +14,7 @@
 
 #define CVIEW_EVENT_TIPS_COLOR 0xff9310
 
+
+
+
 #endif /* Colors_h */

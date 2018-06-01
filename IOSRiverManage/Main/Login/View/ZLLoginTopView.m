@@ -8,7 +8,7 @@
 
 #import "ZLLoginTopView.h"
 #import "ZLAlertSelectionView.h"
-#define kProduct @"http://192.168.0.83:1011"
+#define kProduct @"http://183.207.103.139:86/api/"
 #define kcomStatisticsProduct @"http://183.207.103.139:86"
 #define kfileProduct @"http://183.207.103.139:86/file/"
 

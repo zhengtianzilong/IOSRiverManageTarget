@@ -82,13 +82,13 @@
     if (!_startRiverBtn) {
         UIButton *button = [[UIButton alloc]init];
         
-#if WanApp
-        [button setTitle:@"开始巡湾" forState:(UIControlStateNormal)];
-#else
-         [button setTitle:@"开始巡河" forState:(UIControlStateNormal)];
+//#if WanApp
+//        [button setTitle:@"开始巡湾" forState:(UIControlStateNormal)];
+//#else
+         [button setTitle:S_StartRiverInfo forState:(UIControlStateNormal)];
         
         
-#endif
+//#endif
         
        
         [button setBackgroundColor:HEXCOLOR(CVIEW_EVENT_TIPS_COLOR)];
@@ -106,11 +106,11 @@
     if (!_riverRecordBtn) {
         UIButton *button = [[UIButton alloc]init];
         
-#if WanApp
-      [button setTitle:@"巡查记录" forState:(UIControlStateNormal)];
-#else
-      [button setTitle:@"巡河记录" forState:(UIControlStateNormal)];
-#endif
+//#if WanApp
+//      [button setTitle:@"巡查记录" forState:(UIControlStateNormal)];
+//#else
+      [button setTitle:S_RiverRecordInfo forState:(UIControlStateNormal)];
+//#endif
         
 //        [button setTitle:@"巡河记录" forState:(UIControlStateNormal)];
         [button setBackgroundColor:HEXCOLOR(0x56befa)];

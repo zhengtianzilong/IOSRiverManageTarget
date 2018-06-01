@@ -141,8 +141,14 @@
     
     if ([self.contentArr[indexPath.row][@"content"] isEqualToString:@"版本更新"]) {
         
+#if WanApp
+        
+#else
         [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(checkUpdateClick:)];
         
+#endif
+        
+      
     }
     
     

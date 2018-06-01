@@ -235,7 +235,7 @@
 - (UILabel *)riverCountLabel{
     if (!_riverCountLabel) {
         _riverCountLabel = [[UILabel alloc]init];
-        _riverCountLabel.text = @"河道编号";
+        _riverCountLabel.text = S_RiverCountLabel;
         _riverCountLabel.font = Font(12);
     }
     return _riverCountLabel;
@@ -253,7 +253,7 @@
 - (UILabel *)riverStartLabel{
     if (!_riverStartLabel) {
         _riverStartLabel = [[UILabel alloc]init];
-        _riverStartLabel.text = @"河道起点";
+        _riverStartLabel.text = S_RiverStartLabel;
         _riverStartLabel.font = Font(12);
     }
     return _riverStartLabel;
@@ -271,7 +271,7 @@
 - (UILabel *)riverEndLabel{
     if (!_riverEndLabel) {
         _riverEndLabel = [[UILabel alloc]init];
-        _riverEndLabel.text = @"河道终点";
+        _riverEndLabel.text = S_RiverEndLabel;
         _riverEndLabel.font = Font(12);
     }
     return _riverEndLabel;
@@ -289,7 +289,7 @@
 - (UILabel *)riverDutyLabel{
     if (!_riverDutyLabel) {
         _riverDutyLabel = [[UILabel alloc]init];
-        _riverDutyLabel.text = @"河长职责";
+        _riverDutyLabel.text = S_RiverDutyLabel;
         _riverDutyLabel.font = Font(12);
     }
     return _riverDutyLabel;
@@ -364,7 +364,7 @@
 - (UILabel *)riverLengthLabel{
     if (!_riverLengthLabel) {
         _riverLengthLabel = [[UILabel alloc]init];
-        _riverLengthLabel.text = @"河道长度";
+        _riverLengthLabel.text = S_RiverLengthLabel;
         _riverLengthLabel.font = Font(12);
     }
     return _riverLengthLabel;
