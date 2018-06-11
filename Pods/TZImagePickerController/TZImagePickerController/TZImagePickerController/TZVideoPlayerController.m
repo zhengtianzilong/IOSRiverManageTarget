@@ -146,7 +146,18 @@
 }
 
 - (void)doneButtonClick {
+
+    
     TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
+    
+    PHAsset *asset = _model.asset;
+    
+    if (asset.duration > 15) {
+        NSString *title = @"选择视频不能大于15秒";
+        [imagePickerVc showAlertWithTitle:title];
+        return;
+    }
+
     if (self.navigationController) {
         if (imagePickerVc.autoDismiss) {
             [self.navigationController dismissViewControllerAnimated:YES completion:^{

@@ -9,10 +9,14 @@
 #import "ZLRiverInfoTwoPictureVC.h"
 #import "ZLPolicyRiverFiveTableViewCell.h"
 #import "ZLPolicyFiveModel.h"
+#import "ZLRiverInfoTwoPictureDetailVC.h"
 @interface ZLRiverInfoTwoPictureVC ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *mainTableView;
 
 @property (nonatomic, strong) NSMutableArray *dataSourceArray;
+
+@property (nonatomic, strong) NSArray *imageSourceArray;;
+
 
 @end
 
@@ -68,10 +72,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //    ZLRiverInfoManagerVC *vc = [[ZLRiverInfoManagerVC alloc]init];
-    //    vc.title = @"呵呵呵";
-    //    [self.navigationController pushViewController:vc animated:YES];
+    ZLRiverInfoTwoPictureDetailVC *detailVC = [[ZLRiverInfoTwoPictureDetailVC alloc]init];
     
+    detailVC.imageString = self.imageSourceArray[indexPath.row];
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 
@@ -87,6 +92,19 @@
         
     }
     return _mainTableView;
+}
+
+- (NSArray *)imageSourceArray{
+    
+    if (!_imageSourceArray) {
+        
+        _imageSourceArray = @[
+                              @"xianzhuangtu",
+                              @"gongchengshiyitu"
+                              ];
+        
+    }
+    return _imageSourceArray;
 }
 
 - (NSMutableArray *)dataSourceArray{

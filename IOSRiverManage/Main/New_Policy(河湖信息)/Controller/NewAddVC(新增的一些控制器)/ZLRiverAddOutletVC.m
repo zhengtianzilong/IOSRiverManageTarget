@@ -370,8 +370,9 @@
         mediaView.showDelete = YES;
         mediaView.showAddButton = YES;
         mediaView.allowMultipleSelection = NO;
-        mediaView.allowPickingVideo = NO;
-        mediaView.rootViewController = self;
+        mediaView.allowPickingVideo = YES;
+        mediaView.videoMaximumDuration = 15;
+        mediaView.type = ACMediaTypeAll;
         mediaView.maxImageSelected = 4;
         self.mediaView = mediaView;
         

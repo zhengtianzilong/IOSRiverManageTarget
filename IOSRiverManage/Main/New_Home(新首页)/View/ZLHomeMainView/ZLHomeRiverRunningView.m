@@ -183,7 +183,7 @@
     
     if (!_stateLabel) {
         _stateLabel = [[UILabel alloc]init];
-        _stateLabel.text = @"已经巡河";
+        _stateLabel.text = @"已经巡查";
         _stateLabel.font = CHINESE_SYSTEM(14);
     }
     return _stateLabel;

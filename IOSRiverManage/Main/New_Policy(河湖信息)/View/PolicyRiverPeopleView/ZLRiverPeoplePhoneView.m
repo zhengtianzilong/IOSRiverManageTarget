@@ -101,7 +101,7 @@
 - (UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-        _titleLabel.text = @"区县河长";
+        _titleLabel.text = S_RiverCountryPeople;
         _titleLabel.font = Font(13);
     }
     return _titleLabel;

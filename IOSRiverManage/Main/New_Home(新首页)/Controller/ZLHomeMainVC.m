@@ -732,7 +732,7 @@
     if (self.riversTitleArray.count <= 0) {
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-        } title:@"提示" message:@"当前并无河道" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message: [NSString stringWithFormat:@"当前并无%@",S_BaseName] cancelButtonName:@"确定" otherButtonTitles:nil, nil];
     }else{
         if (self.headView.isHideRunningView) {
             ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡查" singleSelection:YES];

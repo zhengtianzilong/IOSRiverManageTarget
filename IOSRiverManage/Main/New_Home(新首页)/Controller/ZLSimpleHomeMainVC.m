@@ -277,10 +277,10 @@
     if (self.riversTitleArray.count <= 0) {
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
-        } title:@"提示" message:@"当前并无河道" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        } title:@"提示" message:[NSString stringWithFormat:@"当前并无%@",S_BaseName] cancelButtonName:@"确定" otherButtonTitles:nil, nil];
     }else{
         if (self.isHideRunningView) {
-            ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:@"选择河道" sureTitle:@"巡查" singleSelection:YES];
+            ZLAlertSelectionView *alert = [[ZLAlertSelectionView alloc]initWithFrame:CGRectZero sourceArray:self.riversTitleArray withTitle:[NSString stringWithFormat:@"选择%@",S_BaseName] sureTitle:@"巡查" singleSelection:YES];
             alert.selectItem = ^(NSInteger index) {
                 ZLLog(@"%ld",(long)index);
                 ZLGaodeViewController *gaode = [[ZLGaodeViewController alloc]init];
@@ -419,7 +419,7 @@
                           NSForegroundColorAttributeName:[UIColor whiteColor]
                           };
     
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:@"江苏河长通" attributes:dic];
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:S_AppName attributes:dic];
     
     return title;
     

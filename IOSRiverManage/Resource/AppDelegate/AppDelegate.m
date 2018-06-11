@@ -43,14 +43,8 @@
     
     [self configGeiTui];
     
-#if WanApp
-    
-#else
+
     [self configPGYSDK];
-#endif
-    
-    
-    
     
     [self configureBoardManager];
     
@@ -73,8 +67,8 @@
 }
 
 - (void)configPGYSDK {
-    [[PgyManager sharedPgyManager] startManagerWithAppId:@"f06f925116be13fb5d740af0ff399b46"];
-    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"f06f925116be13fb5d740af0ff399b46"];
+    [[PgyManager sharedPgyManager] startManagerWithAppId:kPgyKey];
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:kPgyKey];
     
     [[PgyUpdateManager sharedPgyManager] checkUpdate];
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
@@ -83,7 +77,7 @@
 
 
 - (void)configGaoDeSDK{
-    [AMapServices sharedServices].apiKey = @"f06f925116be13fb5d740af0ff399b46";
+    [AMapServices sharedServices].apiKey = kGaodeMapKey;
     
 }
 

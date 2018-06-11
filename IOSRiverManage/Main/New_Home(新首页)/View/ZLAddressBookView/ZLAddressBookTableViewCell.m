@@ -105,8 +105,6 @@
 - (UILabel *)detailLabel{
     if (!_detailLabel) {
         _detailLabel = [[UILabel alloc]init];
-        //        _title.textColor = HEXCOLOR(CNAVGATIONBAR_COLOR);
-//        _detailLabel.text = @"玄武区河长";
         _detailLabel.font = CHINESE_SYSTEM(11);
     }
     return _detailLabel;

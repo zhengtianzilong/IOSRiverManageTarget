@@ -16,7 +16,7 @@
 @property (nonatomic ,strong) NSString<Optional> *isclerk;
 
 @property (nonatomic ,strong) NSString<Optional> *userName;
-
+@property (nonatomic ,strong) NSString<Optional> *realName;
 @property (nonatomic ,strong) NSString<Optional> *userId;
 
 @property (nonatomic ,strong) NSString<Optional> *token;

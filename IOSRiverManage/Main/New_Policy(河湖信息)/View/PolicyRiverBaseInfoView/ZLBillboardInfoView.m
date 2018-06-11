@@ -9,6 +9,7 @@
 #import "ZLBillboardInfoView.h"
 #import "ZLBillboardCollectionViewCell.h"
 #import "NSArray+ZLJiuGongGe.h"
+#import "ZLGetVideoFirstImage.h"
 @interface ZLBillboardInfoView ()<MWPhotoBrowserDelegate>
 @property (nonatomic,retain) NSMutableArray *photosArray;
 @end
@@ -103,7 +104,7 @@
              make.height.mas_equalTo(20);
              make.width.mas_equalTo(80);
              
-             make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+//             make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
              
          }];
          
@@ -130,7 +131,19 @@
     if (_publicBrandModel.PUBLICITY_BRAND_URL.length > 0) {
         [self distributeDynamic2CellWithCount:1 warp:3 withImageUrl:@[_publicBrandModel.PUBLICITY_BRAND_URL]];
     }else{
-        [self distributeDynamic2CellWithCount:0 warp:3 withImageUrl:@[_publicBrandModel.PUBLICITY_BRAND_URL]];
+//        [self distributeDynamic2CellWithCount:0 warp:3 withImageUrl:@[_publicBrandModel.PUBLICITY_BRAND_URL]];
+        
+        [self.pictureLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.nameLabel);
+            make.top.greaterThanOrEqualTo(self.address.mas_bottom).offset(5);
+            //             make.top.equalTo(self.addressLabel.mas_bottom).offset(5);
+            make.height.mas_equalTo(20);
+            make.width.mas_equalTo(80);
+            
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+            
+        }];
+        
     }
     
     
@@ -180,6 +193,7 @@
         make.left.equalTo(self.pictureLabel.mas_right).offset(10);
         make.top.equalTo(self.pictureLabel);
         make.right.equalTo(self.deleteBtn.mas_left);
+        make.height.mas_equalTo(80);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
     }];
     
@@ -189,9 +203,37 @@
         
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImage_URL,urls[i]]];
         
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",BaseImage_URL,urls[i]];
+        NSString *suffix = [urlString pathExtension];
         MWPhoto *photo = [MWPhoto photoWithURL:url];
+        if ([suffix isEqualToString:@"mp4"]) {
+            
+            photo.videoURL = url;
+            photo.isVideo = YES;
+            
+//            imageV.image = [UIImage imageNamed:@"PlayVideo"];
+            
+//            imageV.image = [[ZLGetVideoFirstImage sharedManager]thumbnailImageForVideo:url atTime:1];
+
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
+                UIImage *image = [[ZLGetVideoFirstImage sharedManager]thumbnailImageForVideo:url atTime:1];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    imageV.image = image;
+                });
+                
+            });
+            
+            
+        }else{
+            
+            [imageV sd_setImageWithURL:url];
+            
+        }
+        
         [self.photosArray addObject:photo];
-        [imageV sd_setImageWithURL:url];
+        
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
         

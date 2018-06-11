@@ -141,9 +141,9 @@
     UIView *view = [[UIView alloc] init];
     ZLRiverPeopleNameAndEditBtnView *head;
     if (section == 0) {
-         head = [[ZLRiverPeopleNameAndEditBtnView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 50) WithName:@"河长联系方式"];
+         head = [[ZLRiverPeopleNameAndEditBtnView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 50) WithName:S_RiverPeopleNameAndEdit];
     }else{
-         head = [[ZLRiverPeopleNameAndEditBtnView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 50) WithName:@"下级河长"];
+         head = [[ZLRiverPeopleNameAndEditBtnView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 50) WithName:S_RiverLowPeopleName];
     }
     [view addSubview:head];
     return view;

@@ -18,11 +18,17 @@ typedef enum : NSUInteger {
 } TZAssetCellType;
 
 @class TZAssetModel;
+
+typedef void(^didSelectPhotoBlock)(BOOL isSelected, TZAssetModel *model);
+
 @interface TZAssetCell : UICollectionViewCell
 
 @property (weak, nonatomic) UIButton *selectPhotoButton;
 @property (nonatomic, strong) TZAssetModel *model;
-@property (nonatomic, copy) void (^didSelectPhotoBlock)(BOOL);
+//@property (nonatomic, copy) void (^didSelectPhotoBlock)(BOOL);
+
+@property (nonatomic, copy) didSelectPhotoBlock didSelectPhotoBlock;
+
 @property (nonatomic, assign) TZAssetCellType type;
 @property (nonatomic, assign) BOOL allowPickingGif;
 @property (nonatomic, assign) BOOL allowPickingMultipleVideo;

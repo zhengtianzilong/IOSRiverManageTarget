@@ -14,14 +14,12 @@
 
 /**
  初始化单例
-
  @return 返回 ACMediaManager 的一个实例
  */
 + (instancetype)manager;
 
 /**
  传入 Image 和 PHAsset，得到该图片的原图名称、上传类型NSData
- 
  @param image 传入的图片
  @param asset PHAsset对象，没有原图则传入nil
  @param completion 成功的回调
@@ -30,7 +28,6 @@
 
 /**
  根据 URL 等获取视频封面、名称 和 上传类型(优先路径 或 NSData)
- 
  @param videoURL   视频URL
  @param asset      视频PHAsset（本地存在原图才有这个属性值，不然传入nil）
  @param enableSave 对于本地没有的是否保存到本地
@@ -40,7 +37,6 @@
 
 /**
  根据 PHAsset 来获取 媒体文件(视频或图片)相关信息：文件名、文件上传类型（data 或 path）
- 
  @param asset  PHAsset对象
  @param completion 成功回调
  */

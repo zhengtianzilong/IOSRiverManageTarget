@@ -44,7 +44,7 @@
     
     ZLNewLoginModel *newLoginModel = [[ZLNewLoginModel alloc]initWithString:userModel error:nil];
     
-    self.headView.nameLabel.text = newLoginModel.data.userName;
+    self.headView.nameLabel.text = newLoginModel.data.realName;
     self.headView.identityLabel.text = newLoginModel.data.duty;
     self.contentArr = @[@{@"content":@"常见问题",@"image":@"my_question"},@{@"content":@"关于系统",@"image":@"my_about"},@{@"content":@"系统设置",@"image":@"my_set"},@{@"content":@"版本更新",@"image":@"systemUpdate"}];
     
@@ -141,12 +141,9 @@
     
     if ([self.contentArr[indexPath.row][@"content"] isEqualToString:@"版本更新"]) {
         
-#if WanApp
-        
-#else
+
         [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(checkUpdateClick:)];
         
-#endif
         
       
     }

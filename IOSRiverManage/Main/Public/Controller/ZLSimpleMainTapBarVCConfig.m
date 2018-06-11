@@ -68,7 +68,7 @@
                                                  CYLTabBarItemSelectedImage : @"tabbar_home_selected",
                                                  };
     NSDictionary *secondTabBarItemsAttributes = @{
-                                                  CYLTabBarItemTitle : @"河湖信息",
+                                                  CYLTabBarItemTitle : S_PolicyInfo,
                                                   CYLTabBarItemImage : @"tabbar_policy",
                                                   CYLTabBarItemSelectedImage : @"tabbar_policy_selected",
                                                   };

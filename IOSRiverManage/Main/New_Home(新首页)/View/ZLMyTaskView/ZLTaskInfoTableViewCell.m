@@ -8,6 +8,7 @@
 
 #import "ZLTaskInfoTableViewCell.h"
 #import "NSArray+ZLJiuGongGe.h"
+#import "ZLGetVideoFirstImage.h"
 @interface ZLTaskInfoTableViewCell ()<MWPhotoBrowserDelegate>
 @property (nonatomic,retain) NSMutableArray *photosArray;
 @end
@@ -50,11 +51,34 @@
         
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImage_URL, imageModel.fileAddr]];
         
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",BaseImage_URL,imageModel.fileAddr];
+        NSString *suffix = [urlString pathExtension];
         MWPhoto *photo = [MWPhoto photoWithURL:url];
+        if ([suffix isEqualToString:@"mp4"]) {
+            
+            photo.videoURL = url;
+            photo.isVideo = YES;
+             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                 
+                 UIImage *image = [[ZLGetVideoFirstImage sharedManager]thumbnailImageForVideo:url atTime:1];
+                 
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     imageV.image = image;
+                 });
+                 
+             });
+//            imageV.image = [UIImage imageNamed:@"PlayVideo"];
+            
+        }else{
+            
+            [imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"event_placeImage"]];
+            
+        }
+        
         [self.photosArray addObject:photo];
         
         
-        [imageV sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"event_placeImage"]];
+        
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick:)];
         

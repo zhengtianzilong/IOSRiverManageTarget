@@ -28,13 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-
-//    self.gaodeDetailView.titleLabel.text = @"河面污染严重, 很多垃圾啊";
-//    self.gaodeDetailView.riverPeople.text = @"李乐";
-//    self.gaodeDetailView.reportObject.text = @"李倩、刘云";
-//    self.gaodeDetailView.reportTime.text = @"2017-10-13 09:20";
-//    self.gaodeDetailView.address.text = @"南京市玄武区水西门大街120号";
-//    self.gaodeDetailView.feedBack.text = @"南京市玄武区水西门大街120号南京市玄武区水西门大街120号南京市玄武区水西门大街120号南京市玄武区水西门大街120号南京市玄武区水西门大街120号南京市玄武区水西门大街120号南京市玄武区水西门大街120号南京市玄武区水西门大街120号南京市玄武区水西门大街120号";
    
     
     [self.view addSubview:self.mainCollectionView];

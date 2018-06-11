@@ -97,7 +97,13 @@
         } title:@"提示" message:@"请填写位置信息" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
         return NO;
     }
-    
+    if (self.imageArray.count <= 0) {
+        
+        [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
+            
+        } title:@"提示" message:@"请选择图片" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
+        return NO;
+    }
     
     return YES;
 }
@@ -160,13 +166,10 @@
     ZLNewFilesUpLoadService *request = (ZLNewFilesUpLoadService *)chainRequest.requestArray[0];
     
     ZLUploadImagesModel *model = [[ZLUploadImagesModel alloc]initWithString:request.responseString error:nil];
+    ZLNewAddPublicBrandService *getObject = (ZLNewAddPublicBrandService *)chainRequest.requestArray[1];
     
+    ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:getObject.responseString error:nil];
     if ([model.code isEqualToString:@"0"]) {
-        
-        ZLNewAddPublicBrandService *getObject = (ZLNewAddPublicBrandService *)chainRequest.requestArray[1];
-        
-        ZLBaseModel *baseModel =[[ZLBaseModel alloc]initWithString:getObject.responseString error:nil];
-        
         if ([baseModel.code isEqualToString:@"0"]) {
             
             [SVProgressHUD showSuccessWithStatus:@"上传成功"];
@@ -180,11 +183,11 @@
         }else{
             
             [SVProgressHUD showInfoWithStatus:baseModel.detail];
-            [SVProgressHUD dismissWithDelay:0.3];
+            [SVProgressHUD dismissWithDelay:0.4];
         }
     }else{
-        [SVProgressHUD showErrorWithStatus:model.detail];
-        [SVProgressHUD dismissWithDelay:0.3];
+        [SVProgressHUD showErrorWithStatus:baseModel.detail];
+        [SVProgressHUD dismissWithDelay:0.4];
     }
 }
 
@@ -330,8 +333,10 @@
         mediaView.showDelete = YES;
         mediaView.showAddButton = YES;
         mediaView.allowMultipleSelection = NO;
+        mediaView.allowPickingVideo = YES;
+        mediaView.videoMaximumDuration = 15;
+        mediaView.type = ACMediaTypeAll;
         mediaView.maxImageSelected = 1;
-        mediaView.allowPickingVideo = NO;
         mediaView.rootViewController = self;
         self.mediaView = mediaView;
         

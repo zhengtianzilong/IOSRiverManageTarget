@@ -23,9 +23,14 @@
 #define S_RiverStartLabel @"海湾起点"
 #define S_RiverEndLabel @"海湾终点"
 #define S_RiverDutyLabel @"湾长职责"
-
 #define S_RiverLengthLabel @"海湾长度"
 #define S_RiverCountLabel @"海湾编号"
+#define S_RiverPeopleNameAndEdit @"湾长联系方式"
+#define S_RiverLowPeopleName @"下级湾长"
+#define S_RiverCountryPeople @"区县湾长"
+#define S_RiverQuityInfo @"海湾水质信息"
+#define S_BaseName @"海湾"
+#define S_ScoreDetailTips @"湾长通工作制度执行"
 
 #else
 #define S_PolicyInfo @"河湖信息"
@@ -46,6 +51,12 @@
 #define S_RiverDutyLabel @"河长职责"
 #define S_RiverLengthLabel @"河道长度"
 #define S_RiverCountLabel @"河道编号"
+#define S_RiverPeopleNameAndEdit @"河长联系方式"
+#define S_RiverLowPeopleName @"下级河长"
+#define S_RiverCountryPeople @"区县河长"
+#define S_RiverQuityInfo @"河道水质信息"
+#define S_BaseName @"河道"
+#define S_ScoreDetailTips @"河长制工作制度执行"
 
 #endif
 

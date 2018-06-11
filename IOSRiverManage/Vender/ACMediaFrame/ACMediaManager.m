@@ -8,6 +8,12 @@
 
 #import "ACMediaManager.h"
 #import "ACMediaFrameConst.h"
+#import <AssetsLibrary/ALAssetsLibrary.h>
+
+@interface ACMediaManager ()<UITextViewDelegate>
+@property (nonatomic, strong) NSData * CompressData;
+
+@end
 
 @implementation ACMediaManager
 
@@ -45,28 +51,125 @@
     //data视频
     NSData *videoData = [NSData dataWithContentsOfURL:videoURL];
     //视频封面
-    UIImage *screenshot = [self imageWithVideoURL:videoURL enableSave:enableSave];
+    UIImage *screenshot = [self imageWithVideoURL:videoURL enableSave:NO];
     
-    //判断本地是否有
-    BOOL success = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
-    //本地不存在的情况
-    if (!success) {
-        if (enableSave) {
-            //写入本地，成功之后返回路径
-            [videoData writeToFile:filePath atomically:YES];
-            success = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
-            if (success) {
-                !completion ?  :completion(fileName, screenshot, filePath);
-            }
-        }else{
-            //不保存，那么就只有返回NSData
-            !completion ?  : completion(fileName, screenshot, videoData);
-        }
-    }else {
-        //本地存在，那么就是本地视频，直接返回路径
-        !completion ?  : completion(fileName, screenshot, filePath);
-    }
+    [self mov2mp4:videoURL isSelectOrCamera:YES completion:^(NSData *data , NSString *fileName) {
+        
+        !completion ?  : completion(fileName, screenshot, data);
+        
+    }];
+    
+//    //判断本地是否有
+//    BOOL success = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+//    //本地不存在的情况
+//    if (!success) {
+//        if (enableSave) {
+//            //写入本地，成功之后返回路径
+//            [videoData writeToFile:filePath atomically:YES];
+//            success = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+//            if (success) {
+////                !completion ?  :completion(fileName, screenshot, filePath);
+//                !completion ?  :completion(fileName, screenshot, videoData);
+//            }
+//        }else{
+//            //不保存，那么就只有返回NSData
+//            !completion ?  : completion(fileName, screenshot, videoData);
+//        }
+//    }else {
+//        //本地存在，那么就是本地视频，直接返回路径
+////        !completion ?  : completion(fileName, screenshot, filePath);
+//        !completion ?  : completion(fileName, screenshot, videoData);
+//    }
 }
+
+- (void)mov2mp4:(NSURL *)movUrl isSelectOrCamera:(BOOL)isSelectOrCamera completion: (void(^)(NSData *data, NSString *fileName))completion
+{
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:movUrl options:nil];
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+    /**
+     AVAssetExportPresetMediumQuality 表示视频的转换质量，
+     */
+    if ([compatiblePresets containsObject:AVAssetExportPresetMediumQuality]) {
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:avAsset presetName:AVAssetExportPresetMediumQuality];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *nowTimeStr = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+        
+        //转换完成保存的文件路径
+        NSString * resultPath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4",nowTimeStr];
+        
+        NSString *fileName = [NSString stringWithFormat:@"output-%@.mp4",nowTimeStr];
+        
+        exportSession.outputURL = [NSURL fileURLWithPath:resultPath];
+        
+        //要转换的格式，这里使用 MP4
+        exportSession.outputFileType = AVFileTypeMPEG4;
+        
+        //转换的数据是否对网络使用优化
+        exportSession.shouldOptimizeForNetworkUse = YES;
+        
+        //异步处理开始转换
+        [exportSession exportAsynchronouslyWithCompletionHandler:^(void)
+         
+         {
+             //转换状态监控
+             switch (exportSession.status) {
+                 case AVAssetExportSessionStatusUnknown:
+                     NSLog(@"AVAssetExportSessionStatusUnknown");
+                     break;
+                     
+                 case AVAssetExportSessionStatusWaiting:
+                     NSLog(@"AVAssetExportSessionStatusWaiting");
+                     break;
+                     
+                 case AVAssetExportSessionStatusExporting:
+                     NSLog(@"AVAssetExportSessionStatusExporting");
+                     break;
+                 case AVAssetExportSessionStatusFailed:
+                     NSLog(@"AVAssetExportSessionStatusFailed");
+                     break;
+                 case AVAssetExportSessionStatusCancelled:
+                     NSLog(@"AVAssetExportSessionStatusCancelled");
+                     break;
+                     
+                 case AVAssetExportSessionStatusCompleted:
+                 {
+                     //转换完成
+                     NSLog(@"AVAssetExportSessionStatusCompleted");
+                     _CompressData = [NSData dataWithContentsOfURL:exportSession.outputURL];
+                     
+                     if (isSelectOrCamera) {
+                         //测试使用，保存在手机相册里面
+                         ALAssetsLibrary *assetLibrary = [[ALAssetsLibrary alloc] init];
+                         [assetLibrary writeVideoAtPathToSavedPhotosAlbum:exportSession.outputURL completionBlock:^(NSURL *assetURL, NSError *error){
+                             if (error) {
+
+                                 NSLog(@"%@",error);
+                             }
+                         }];
+                         
+                     }
+                     
+                    
+                     
+                     completion(_CompressData, fileName);
+                     
+                     break;
+                 }
+             }
+             
+         }];
+        
+    }
+    
+}
+
+
+
+
+
+
 
 - (void)getMediaInfoFromAsset: (PHAsset *)asset completion: (void(^)(NSString *name, id pathData))completion {
     if (!asset) {
@@ -97,16 +200,37 @@
              asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive) {
         //视频文件名
         mediaName = [self getMediaNameWithPHAsset:asset extensionName:@"IMG.MOV"];
+        //从PHAsset获取相册中视频的url
+        PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+        options.version = PHImageRequestOptionsVersionCurrent;
+        options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
+        PHImageManager *manager = [PHImageManager defaultManager];
+        [manager requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+            AVURLAsset *urlAsset = (AVURLAsset *)asset;
+            
+            NSURL *url = urlAsset.URL;
+            
+            [self mov2mp4:url isSelectOrCamera:NO completion:^(NSData *data , NSString *fileName) {
+                
+                !completion ?  : completion(fileName, data);
+                
+            }];
+            
+//            NSData *videoData = [NSData dataWithContentsOfURL:url];
+            
+            
+            NSLog(@"%@",url);
+        }];
         
-        NSString *videoPath = [NSTemporaryDirectory() stringByAppendingString:mediaName];
-        BOOL success = [[NSFileManager defaultManager] fileExistsAtPath:videoPath];
-        //当前处理方式：本地的视频 直接返回路径，非本地的也不存储到本地，直接返回data
-        if (success) {
-            !completion ?  : completion(mediaName, videoPath);
-        }else{
-            NSData *videoData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:videoPath]];
-            !completion ?  : completion(mediaName, videoData);
-        }
+//        NSString *videoPath = [NSTemporaryDirectory() stringByAppendingString:mediaName];
+//        BOOL success = [[NSFileManager defaultManager] fileExistsAtPath:videoPath];
+//        //当前处理方式：本地的视频 直接返回路径，非本地的也不存储到本地，直接返回data
+//        if (success) {
+//            !completion ?  : completion(mediaName, videoPath);
+//        }else{
+//            NSData *videoData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:videoPath]];
+//            !completion ?  : completion(mediaName, videoData);
+//        }
     }
 }
 

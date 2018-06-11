@@ -459,7 +459,9 @@ static CGFloat itemMargin = 5;
     __weak typeof(cell) weakCell = cell;
     __weak typeof(self) weakSelf = self;
     __weak typeof(_numberImageView.layer) weakLayer = _numberImageView.layer;
-    cell.didSelectPhotoBlock = ^(BOOL isSelected) {
+    
+    
+    cell.didSelectPhotoBlock = ^(BOOL isSelected, TZAssetModel *model) {
         TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)weakSelf.navigationController;
         // 1. cancel select / 取消选择
         if (isSelected) {
@@ -474,6 +476,37 @@ static CGFloat itemMargin = 5;
             }
             [weakSelf refreshBottomToolBarStatus];
         } else {
+//            0:27
+            if (model) {
+
+                NSArray *timeArray = [model.timeLength componentsSeparatedByString:@":"];
+                NSInteger zonghms;
+                if (timeArray.count==3) {
+                    NSString *HH = timeArray[0];
+                    NSString *MM= timeArray[1];
+                    NSString *ss = timeArray[2];
+                    NSInteger h = [HH integerValue];
+                    NSInteger m = [MM integerValue];
+                    NSInteger s = [ss integerValue];
+                    zonghms = h*3600 + m*60 +s;
+                }else {
+                    NSString *MM= timeArray[0];
+                    NSString *ss = timeArray[1];
+                    NSInteger m = [MM integerValue];
+                    NSInteger s = [ss integerValue];
+                    zonghms = m*60 +s;
+                }
+
+                if (zonghms >15) {
+
+                    NSString *title = @"不能选择大于15秒的视频";
+                    [tzImagePickerVc showAlertWithTitle:title];
+
+                    return;
+
+                }
+
+            }
             // 2. select:check if over the maxImagesCount / 选择照片,检查是否超过了最大个数的限制
             if (tzImagePickerVc.selectedModels.count < tzImagePickerVc.maxImagesCount) {
                 weakCell.selectPhotoButton.selected = YES;

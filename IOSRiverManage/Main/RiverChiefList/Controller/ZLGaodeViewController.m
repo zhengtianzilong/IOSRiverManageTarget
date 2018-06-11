@@ -325,8 +325,7 @@ typedef enum : NSUInteger {
     
 //    deleage.floatWindow.rootViewController = self;
     
-    if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡河"] ||
-       [[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡湾"]){
+    if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:S_StartRiverInfo]){
         [deleage.floatWindow close];
         [deleage.floatWindow resignKeyWindow];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"RiverRunningEnd" object:nil];
@@ -352,8 +351,7 @@ typedef enum : NSUInteger {
 
         } title:@"提示" message:@"巡查已经结束,无法上报" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
 
-    }else if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡河"] ||
-             [[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡湾"]
+    }else if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:S_StartRiverInfo]
              ){
 
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
@@ -414,8 +412,7 @@ typedef enum : NSUInteger {
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             
         } title:@"提示" message:@"巡查已经结束,无法下发" cancelButtonName:@"确定" otherButtonTitles:nil, nil];
-    }else if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡河"] ||
-             [[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:@"开始巡湾"]
+    }else if([[self.bottomButtonView.startAndEndButton currentTitle] isEqualToString:S_StartRiverInfo]
              ){
         
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
@@ -463,7 +460,7 @@ typedef enum : NSUInteger {
 - (void)startAndEndClick:(UIButton *)button{
     
     
-    if([[button currentTitle] isEqualToString:@"开始巡河"] || [[button currentTitle] isEqualToString:@"开始巡湾"]){
+    if([[button currentTitle] isEqualToString:S_StartRiverInfo]){
         [UIAlertView alertWithCallBackBlock:^(NSInteger buttonIndex) {
             if (buttonIndex == 1) {
                 // 得到当前的时间戳
@@ -509,7 +506,7 @@ typedef enum : NSUInteger {
             }
             
         } title:@"提示" message: [NSString stringWithFormat:@"当前已选择%@,是否确定开始巡查", _riverDataModel.riverName] cancelButtonName:@"取消" otherButtonTitles:@"确定", nil];
-    }else if ([[button currentTitle] isEqualToString:@"结束巡河"] || [[button currentTitle] isEqualToString:@"结束巡湾"]){
+    }else if ([[button currentTitle] isEqualToString:S_EndRiverInfo]){
         DQAlertView * alertView = [[DQAlertView alloc] initWithTitle:@"提示" message:@"是否确定结束巡查" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView actionWithBlocksCancelButtonHandler:^{
             

@@ -71,7 +71,7 @@
 - (ZLLabelAndTextFieldView *)nameAndTextField{
     if (!_nameAndTextField) {
         
-        _nameAndTextField = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:@"河道：" placeHolder:@"请输入河道名称"];
+        _nameAndTextField = [[ZLLabelAndTextFieldView alloc]initWithFrame:CGRectZero title:[NSString stringWithFormat:@"%@：",S_BaseName] placeHolder:[NSString stringWithFormat:@"请输入%@名称",S_BaseName]];
         
     }
     return _nameAndTextField;

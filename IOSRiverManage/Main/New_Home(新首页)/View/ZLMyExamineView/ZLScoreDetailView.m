@@ -153,7 +153,7 @@
     
     ZLGetScoreDetailModel *detailModel = arrayModel.list[indexPath.row];
     
-    WJYAlertTipsView *tipsView = [[WJYAlertTipsView alloc]initPagesViewWithTitle:@"河长制工作制度执行" bottomButtonTitle:@"关闭" cellModel:detailModel];
+    WJYAlertTipsView *tipsView = [[WJYAlertTipsView alloc]initPagesViewWithTitle:S_ScoreDetailTips bottomButtonTitle:@"关闭" cellModel:detailModel];
     WJYAlertView *alertView = [[WJYAlertView alloc]initWithCustomView:tipsView dismissWhenTouchedBackground:YES];
     
     tipsView.bottomBlock = ^{

@@ -67,7 +67,7 @@
 - (UILabel *)riverLable{
     if (!_riverLable) {
         _riverLable = [[UILabel alloc]initWithFrame:CGRectZero];
-        _riverLable.text = @"河道水质信息";
+        _riverLable.text = S_RiverQuityInfo;
         _riverLable.font = Font(16);
     }
     return _riverLable;

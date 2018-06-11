@@ -705,10 +705,10 @@
         ACSelectMediaView *mediaView = [[ACSelectMediaView alloc] initWithFrame:CGRectMake(0,  0, self.view.frame.size.width, 1)];
         mediaView.showDelete = YES;
         mediaView.showAddButton = YES;
-        
-
         mediaView.allowMultipleSelection = NO;
-        mediaView.allowPickingVideo = NO;
+        mediaView.allowPickingVideo = YES;
+        mediaView.videoMaximumDuration = 15;
+        mediaView.type = ACMediaTypeAll;
         mediaView.rootViewController = self;
         self.mediaView = mediaView;
         

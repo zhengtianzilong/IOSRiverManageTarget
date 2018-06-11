@@ -57,7 +57,7 @@
                            @"职务",
                            @"电话",
                            @"座机",
-                           @"所管河道"
+                           [NSString stringWithFormat:@"所管%@",S_BaseName],
                            ];
             
             if (_addressModelDataModel.dutyName == nil) {

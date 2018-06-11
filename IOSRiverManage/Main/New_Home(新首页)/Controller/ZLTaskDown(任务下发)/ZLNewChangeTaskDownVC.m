@@ -25,6 +25,7 @@
 #import "ZLUpdateTaskService.h"
 #import "ZLUpdateAndSentTaskService.h"
 #import "ZLGetUserListByTaskNormalService.h"
+#import "ZLGetVideoFirstImage.h"
 @interface ZLNewChangeTaskDownVC ()<UITableViewDelegate, UITableViewDataSource>
 
 
@@ -416,7 +417,7 @@
         ACMediaModel *model = _imageArray[i];
         
         // 说明是预加载的图片
-        if (model.imageUrlString.length > 0) {
+        if (model.imageUrlString.length > 0 || model.mediaURL) {
             [self.imageNameArray addObject:model.imageListModel.toDictionary];
         }else{
             // 不是预加载的图片
@@ -491,7 +492,7 @@
     for (int i = 0; i < _imageArray.count; i++) {
         ACMediaModel *model = _imageArray[i];
         // 说明是预加载的图片
-        if (model.imageUrlString.length > 0) {
+        if (model.imageUrlString.length > 0 || model.mediaURL) {
             [self.imageNameArray addObject:model.imageListModel.toDictionary];
         }else{
             // 不是预加载的图片
@@ -577,6 +578,10 @@
     ACSelectMediaView *mediaView = [[ACSelectMediaView alloc] initWithFrame:CGRectMake(0,  0, self.view.frame.size.width, 1)];
     mediaView.showDelete = YES;
     mediaView.showAddButton = YES;
+    mediaView.allowMultipleSelection = NO;
+    mediaView.allowPickingVideo = YES;
+    mediaView.videoMaximumDuration = 15;
+    mediaView.type = ACMediaTypeAll;
     //png、jpg、gif(本地和网络)
     if (self.detailDataModel) {
         if (self.detailDataModel.imgList.count > 0) {
@@ -586,22 +591,43 @@
             for (int i = 0; i < self.detailDataModel.imgList.count; i++) {
                 ZLTaskInfoImageListModel *imageModel = self.detailDataModel.imgList[i];
                 NSString *urlString = [NSString stringWithFormat:@"%@%@",BaseImage_URL, imageModel.fileAddr];
+                NSString *suffix = [urlString pathExtension];
                 [_imageTempArray addObject:urlString];
-                
                 ACMediaModel *mediaModel = [[ACMediaModel alloc]init];
-                mediaModel.imageUrlString = urlString;
                 
+                if ([suffix isEqualToString:@"mp4"]) {
+                    mediaModel.isVideo = YES;
+                    mediaModel.mediaURL = [NSURL URLWithString:urlString];
+                    
+                    //                    mediaModel.image = [ACMediaModel thumbnailImageForVideo:mediaModel.mediaURL atTime:1];
+                    
+//                    mediaModel.image = [UIImage imageNamed:@"event_placeImage"];
+                    
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        
+                        UIImage *image =  [[ZLGetVideoFirstImage sharedManager]thumbnailImageForVideo:mediaModel.mediaURL atTime:1];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            mediaModel.image = image;
+                        });
+                        
+                    });
+                    
+                    
+                    
+//                    mediaModel.image = [[ZLGetVideoFirstImage sharedManager]thumbnailImageForVideo:mediaModel.mediaURL atTime:1];
+                    
+                    //                    mediaModel.imageUrlString = urlString;
+                }else{
+                    mediaModel.imageUrlString = urlString;
+                }
                 mediaModel.imageListModel = imageModel;
                 [self.imageArray addObject:mediaModel];
-                
-                
             }
-            
             mediaView.preShowMedias = self.imageArray;
         }
     }
     mediaView.allowMultipleSelection = NO;
-    mediaView.allowPickingVideo = NO;
     mediaView.rootViewController = self;
     self.mediaView = mediaView;
 

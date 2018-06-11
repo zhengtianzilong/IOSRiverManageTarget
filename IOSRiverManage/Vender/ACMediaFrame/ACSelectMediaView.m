@@ -291,7 +291,7 @@
                 break;
             default:
             {
-                ACAlertController *alert = [[ACAlertController alloc] initWithActionSheetTitles:@[@"相册", @"相机", @"录像", @"视频"] cancelTitle:@"取消"];
+                ACAlertController *alert = [[ACAlertController alloc] initWithActionSheetTitles:@[@"相册", @"相机", @"录像"] cancelTitle:@"取消"];
                 [alert clickActionButton:^(NSInteger index) {
                     if (index == 0) {
                         [weakSelf openAlbum];
@@ -299,8 +299,6 @@
                         [weakSelf openCamera];
                     }else if (index == 2) {
                         [weakSelf openVideotape];
-                    }else {
-                        [weakSelf openVideo];
                     }
                 }];
                 [alert show];
@@ -407,6 +405,7 @@
     }
     
     TZImagePickerController *imagePickController = [[TZImagePickerController alloc] initWithMaxImagesCount:count delegate:self];
+    imagePickController.allowPickingMultipleVideo = NO;
     [self configureTZNaviBar:imagePickController];
     [[self viewController] presentViewController:imagePickController animated:YES completion:nil];
 }
@@ -431,9 +430,12 @@
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        NSArray * mediaTypes =[UIImagePickerController  availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+//        NSArray * mediaTypes =[UIImagePickerController  availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        picker.mediaTypes = mediaTypes;
+//        picker.mediaTypes = mediaTypes;
+        
+        picker.mediaTypes=@[(NSString *)kUTTypeMovie];
+        
         picker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
         picker.videoMaximumDuration = self.videoMaximumDuration;        //录像最长时间
     } else {
@@ -514,7 +516,7 @@
             PHFetchResult *result = [PHAsset fetchAssetsWithALAssetURLs:@[imageAssetURL] options:nil];
             asset = [result firstObject];
         }
-        [[ACMediaManager manager] getVideoPathFromURL:videoAssetURL PHAsset:asset enableSave:NO completion:^(NSString *name, UIImage *screenshot, id pathData) {
+        [[ACMediaManager manager] getVideoPathFromURL:videoAssetURL PHAsset:asset enableSave:YES completion:^(NSString *name, UIImage *screenshot, id pathData) {
             ACMediaModel *model = [[ACMediaModel alloc] init];
             model.image = screenshot;
             model.name = name;

@@ -46,16 +46,16 @@
     
     if ([_detailModel.riverGrade isEqualToString:@"1"]) {
         
-        _detailModel.riverGrade = @"重要省级河道";
+        _detailModel.riverGrade = [NSString stringWithFormat:@"重要省级%@",S_BaseName];
         
     }else if ([_detailModel.riverGrade isEqualToString:@"2"]){
-        _detailModel.riverGrade = @"重要市级河道";
+        _detailModel.riverGrade = [NSString stringWithFormat:@"重要市级%@",S_BaseName];
     }else if ([_detailModel.riverGrade isEqualToString:@"3"]){
-        _detailModel.riverGrade = @"重要区级河道";
+        _detailModel.riverGrade = [NSString stringWithFormat:@"重要区级%@",S_BaseName];
     }else if ([_detailModel.riverGrade isEqualToString:@"4"]){
-        _detailModel.riverGrade = @"重要街道级河道";
+        _detailModel.riverGrade = [NSString stringWithFormat:@"重要街道级%@",S_BaseName];
     }else if ([_detailModel.riverGrade isEqualToString:@"5"]){
-        _detailModel.riverGrade = @"重要村级河道";
+        _detailModel.riverGrade = [NSString stringWithFormat:@"重要村级%@",S_BaseName];
     }
     
     

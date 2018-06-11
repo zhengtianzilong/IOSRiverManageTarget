@@ -138,11 +138,6 @@
         _logoImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"new_login_logo"]];
 #endif
         
-        
-        
-        
-        
-        
         _logoImageV.userInteractionEnabled = YES;
         
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressClick)];

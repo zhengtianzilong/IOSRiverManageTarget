@@ -76,7 +76,9 @@
     if (!_riverLabel) {
         
         _riverLabel = [[UILabel alloc]init];
-        [_riverLabel setText:@"河 道："];
+        
+        
+        [_riverLabel setText:[NSString stringWithFormat:@"%@：",S_BaseName]];
         _riverLabel.font = SYSTEMFONT(20);
         
     }
@@ -88,7 +90,7 @@
 - (UITextField *)riverTextField{
     if (!_riverTextField) {
         _riverTextField = [[UITextField alloc]init];
-        _riverTextField.placeholder = @"请输入河道名称";
+        _riverTextField.placeholder = [NSString stringWithFormat:@"请输入%@名称", S_BaseName];
         
     }
     return _riverTextField;

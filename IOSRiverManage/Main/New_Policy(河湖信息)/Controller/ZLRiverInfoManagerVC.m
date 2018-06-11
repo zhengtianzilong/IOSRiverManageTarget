@@ -79,7 +79,12 @@
             
         }
     
-        
+        if ([funcModel.functionCode isEqualToString:@"1209"]) {
+            
+            [nameArray addObject:funcModel.functionName];
+            [vcArray addObject:twoPictureVC];
+            
+        }
     }
     
 //    NinaPagerView *pageView = [[NinaPagerView alloc]initWithFrame:CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height-TopBarHeight) WithTitles:@[@"基本信息",@"河长信息",@"五个清单",@"两张表",@"两张图"] WithVCs:@[baseVC,peopleVC,fiveVC,twoTableVC,twoPictureVC]];

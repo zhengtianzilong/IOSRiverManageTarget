@@ -20,7 +20,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
-        
         // 设置背景图片
 //        self.background = [UIImage resizeImageWithName:@"searchbar_textfield_background_os7@2x"];
         
@@ -29,8 +28,6 @@
         
         // 设置字体
 //        self.font = [UIFont systemFontOfSize:12];
-        
-        
         // 设置清楚按钮
         self.clearButtonMode = UITextFieldViewModeAlways;
         
@@ -40,7 +37,7 @@
         //        dict[NSForegroundColorAttributeName] = [UIColor grayColor];
         //        self.attributedPlaceholder = [[NSAttributedString alloc]initWithString:@"搜索" attributes:dict];
         
-        self.placeholder = @"请输入河道名称进行查询";
+        self.placeholder = [NSString stringWithFormat:@"请输入%@名称进行查询",S_BaseName];
         
         self.borderStyle = UITextBorderStyleRoundedRect;
         
